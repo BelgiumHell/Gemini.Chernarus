@@ -1,0 +1,56 @@
+author = "Jochem";
+OnLoadName = "Gemini";
+OnLoadMission = "WIP, about 60% complete";
+respawn = 3;
+respawndelay = 5;
+respawnOnStart = 1;
+respawnVehicleDelay = 0;
+disabledAI = true;
+enableDebugConsole = 1;
+showGroupIndicator = 0;
+wreckManagerMode = 1;
+
+corpseManagerMode = 1;
+corpseLimit = 50;
+corpseRemovalMinTime = 180;
+corpseRemovalMaxTime = 600;
+
+#include "CHVD\dialog.hpp"
+
+class Header
+{
+    gameType = Coop; // MP misison type
+    minPlayers = 1; //min # of players the mission supports
+    maxPlayers = 50; //max # of players the mission supports
+};
+
+class CfgFunctions
+{
+    #include "CHVD\CfgFunctions.hpp"
+};
+
+class CfgSounds
+{
+	sounds[] = {cookOff};
+	class cookOff
+	{
+		// how the sound is referred to in the editor (e.g. trigger effects)
+		name = "cookOffSound";
+		// filename, volume, pitch
+		sound[] = {"Sounds\cookoff.wav", 1, 1};
+	};
+};
+
+class CfgSFX
+{
+   sounds[] = {cookOff};
+
+	class cookOff
+   	{
+       name = "cookOff";
+       sounds[]={sound};
+       sound[] = {"Sounds\cookoff.wav", db-0,1,1,5,1.2,1.2};
+       empty[]= {, , , , 1 , 5, 20};
+    };
+};
+
