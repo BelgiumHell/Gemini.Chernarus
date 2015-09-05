@@ -8,7 +8,4 @@ if((_this select 0) distance respawn_obj < 500)then{
 };
 }]; //Base protection*/
 //[]spawn JOC_loadoutMaster;
-[]spawn JOC_playerLoop;
-[]spawn JOC_playerClick;
-["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
 cduEnabled = false;

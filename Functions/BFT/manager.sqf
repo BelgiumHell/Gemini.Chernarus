@@ -5,7 +5,7 @@ _groups = [];
 while{true}do{
 	_groups = [];
 	{
-		if((side _x == west) and ((count(units _x))>0))then{
+		if(side _x == west)then{
 			[_groups, (count _groups), _x] call Zen_ArrayInsert;
 		};
 	}forEach allGroups;
@@ -14,7 +14,7 @@ while{true}do{
 	{
 		_id = (groupId _x);
 		_leader = (leader _x);
-		if(!(isNull _leader))then{
+		if(!(alive _leader))then{
 			_icon = 0;
 			////////////////////////////////////////////////
 			if((count((getMarkerPos _id) - [0,0,0]))>1)then{
@@ -55,6 +55,8 @@ while{true}do{
 			///////////////////////////////////////////////////
 			_id setMarkerType _icon;
 			_id setMarkerText _id;
+		}else{
+			deleteMarker _id;
 		};
 	}forEach _groups;
 	sleep 5;

@@ -20,14 +20,14 @@ listT = _list;
 	if(!(_x getVariable "JOC_disable_caching"))then{
 		if(_x == (leader(group _x)))then{
 			_units =  (units(group _x));
+			_x setVariable ["leader",true,true];
+			_x setVariable ["units",_units,true];
 			{
 				_name = [10] call Zen_StringGenerateRandom;
 				_x setVehicleVarName _name;
 				_x enableSimulationGlobal false; _x hideObjectGlobal true;
 				[_x] joinSilent cacheGroup;
 			}forEach _units;
-			_x setVariable ["leader",true,true];
-			_x setVariable ["units",_units,true];
 		};
 	};
 }forEach _list;

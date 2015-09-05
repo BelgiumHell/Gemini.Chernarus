@@ -71,4 +71,6 @@ JOC_service = compileFinal preprocessFileLineNumbers "Functions\Vehicle\service.
 JOC_handleVehDamage = compileFinal preprocessFileLineNumbers "Functions\Vehicle\handleDamage.sqf";
 JOC_towAttach = compileFinal preprocessFileLineNumbers "Functions\Vehicle\Tow\attach.sqf";
 JOC_towDetach = compileFinal preprocessFileLineNumbers "Functions\Vehicle\Tow\detach.sqf";
-JOC_vehCDU = compileFinal preprocessFileLineNumbers "Functions\vehicle\cdu.sqf";
+JOC_vehCDU = compileFinal preprocessFileLineNumbers "Functions\Vehicle\cdu.sqf";
+JOC_garage = compileFinal preprocessFileLineNumbers "Functions\Vehicle\Garage\main.sqf";
+JOC_garageFnc = compileFinal preprocessFileLineNumbers "Functions\Vehicle\Garage\garageFnc.sqf";

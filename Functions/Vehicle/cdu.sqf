@@ -3,10 +3,10 @@
 /////////////////////////
 _veh = (vehicle player);
 //if(cduEnabled)then{cduEnabled = false};
-if(cduEnabled or (player != (commander _veh)))exitWith{cduEnabled = false};
+if(cduEnabled or (player != (commander _veh)) or player == _veh)exitWith{cduEnabled = false};
 if(!cduEnabled)then{
 cduEnabled = true;
-while{cduEnabled}do{
+while{cduEnabled && (player == (commander _veh))}do{
 	//Ammo
 	_magazines = magazinesAmmo _veh;
 	_magazinesD = magazinesDetail _veh;
@@ -44,8 +44,10 @@ while{cduEnabled}do{
 	_statusR = "";
 	_statusLO = (_veh getVariable "reloading_left");
 	_statusRO = ( _veh getVariable "reloading_right");
-	if(_statusLO == 0)then{_statusL = parseText "<t color='#01DF01'>Ready</t>";}else{_statusL = parseText "<t color='#DF0101'>Reloading</t>";};
-	if(_statusRO == 0)then{_statusR = parseText "<t color='#01DF01'>Ready</t>";}else{_statusR = parseText "<t color='#DF0101'>Reloading</t>";};
+	if(_statusLO == 0)then{_statusL = parseText "<t color='#01DF01'>Ready</t>";}else{_statusL = parseText "<t color='#FF8000'>Reloading</t>";};
+	if(_statusRO == 0)then{_statusR = parseText "<t color='#01DF01'>Ready</t>";}else{_statusR = parseText "<t color='#FF8000'>Reloading</t>";};
+	if((_veh getVariable "ammo_left") == 0)then{_statusL = parseText "<t color='#DF0101'>Depleted</t>";};
+	if((_veh getVariable "ammo_right") == 0)then{_statusR = parseText "<t color='#DF0101'>Depleted</t>";};
 	_aps_leftA = parseText format["APS left(%1)",(_veh getVariable "ammo_left")];
 	_aps_rightA = parseText format["APS right(%1)",(_veh getVariable "ammo_right")];
 	_apsText = composeText [_aps_leftA, " | Status: ", _statusL, lineBreak, _aps_rightA, " | Status: ", _statusR];

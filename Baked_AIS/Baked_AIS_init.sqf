@@ -17,7 +17,7 @@ if !(isnil "baps_running") exitwith {hintSilent "!WARNING! CANNOT RUN MULTIPLE I
 if (isServer) then 
 {
 	// Get config values
-	baps_startHint = 1; // Show hint on startup?
+	baps_startHint = 0; // Show hint on startup?
 	baps_startDelay = 10; // Delay script for x seconds
 	baps_enabledFor = 0; // Enable for types? 0 = M2A1, 1 = ALL TANKS, 2 = ALL ARMOR, 3 = ALL NATO ARMOR, 4 = ALL CSAT ARMOR
 	
@@ -81,7 +81,9 @@ baps_weapons = [
 baps_defenders = [];
 if (baps_enabledFor == 0) then { // FOR M2A1 SLAMMER ONLY
 	baps_defenders = [
-	"B_MBT_01_cannon_F"]; // Merkava Mk4
+	"B_MBT_01_cannon_F",
+	"rhsusf_m1a2sep1wd_usarmy"
+	]; 
 };
 if (baps_enabledFor == 1) then { // FOR MBT ONLY
 	baps_defenders = [

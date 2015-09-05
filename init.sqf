@@ -14,7 +14,7 @@ enableSaving [false, false];
 eastHQ = createCenter east;
 
 // Execution stops until the mission begins (past briefing), do not delete this line
-Sleep 1;
+sleep 1;
 
 // All clients stop executing here, do not delete this line
 if (!isServer) exitWith {};

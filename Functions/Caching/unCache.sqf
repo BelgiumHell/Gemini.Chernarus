@@ -20,9 +20,11 @@ _list = (list _trg);
 		_units joinSilent _group;
 		if(!(isNil{_x getVariable "patrol"}))then{
 			if((vehicle _x) != _x)then{
-				([_x] + (_x getVariable "patrol"))spawn Zen_OrderVehiclePatrol;
+				_arg = ([_x] + (_x getVariable "patrol"));
+				_arg spawn Zen_OrderVehiclePatrol;
 			}else{
-				([_group] + (_x getVariable "patrol")) spawn Zen_OrderInfantryPatrol;
+				_arg = ([_group] + (_x getVariable "patrol"));
+				_arg spawn Zen_OrderInfantryPatrol;
 			};
 		};
 	};

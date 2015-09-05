@@ -7,12 +7,9 @@ _active = 0;
 _vehicle setVariable ["towing", false, true];
 
 //if(isServer)exitWith{};
-hint "tow init";
 
 while{alive _vehicle}do{
     waitUntil{sleep 5;typeOf (vehicle player) == "B_APC_Tracked_01_CRV_F"};    //You cant tow when not in the right vehicle(duh)
-    
-    hint "check";
     
     _targetC = (nearestObjects [_vehicle, towableObjects, 10]) select 0;
     

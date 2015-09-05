@@ -222,7 +222,7 @@ FNC_BAPS_BLOCK =
 						{ 
 							_defender = _this Select 0;
 							_defender setVariable ["reloading_left", 1, true]; 
-							sleep 1.2; 
+							sleep 5; 
 							_defender setVariable ["reloading_left", 0, true]; 
 						};
 					};
@@ -232,7 +232,7 @@ FNC_BAPS_BLOCK =
 						{ 
 							_defender = _this Select 0;
 							_defender setVariable ["reloading_right", 1, true]; 
-							sleep 1.2; 
+							sleep 5; 
 							_defender setVariable ["reloading_right", 0, true]; 
 						};
 					};
