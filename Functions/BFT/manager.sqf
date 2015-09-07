@@ -14,7 +14,7 @@ while{true}do{
 	{
 		_id = (groupId _x);
 		_leader = (leader _x);
-		if(!(alive _leader))then{
+		if(alive _leader)then{
 			_icon = 0;
 			////////////////////////////////////////////////
 			if((count((getMarkerPos _id) - [0,0,0]))>1)then{

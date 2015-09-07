@@ -198,86 +198,99 @@ _defaultCrew = gettext (configfile >> "cfgvehicles" >> "all" >> "crew");
 
 testV = _vehicleData;
 
-garage_spawner_0 addAction ["Spawn vehicle",{
+garage_spawn_0 setVariable["count",0];
+garage_spawner_0 addAction ["Request vehicle",{
 	_veh = nearestObjects [(getPos garage_spawn_0),["AllVehicles"],5];
-	{
-		deleteVehicle _x;
-	}forEach _veh;
-	BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_0), [], 0, "CAN_COLLIDE" ];
-	_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
-	BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
-	["Open",true] call BIS_fnc_garage;
-	[garage_spawn_0]spawn JOC_garageFnc;
+	if(((count _veh) >= 1) or ((garage_spawn_0 getVariable "count") >= 1))then{
+		hint "Pad not clear or max vehicles reached";
+	}else{
+		BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_0), [], 0, "CAN_COLLIDE" ];
+		_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
+		BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
+		["Open",true] call BIS_fnc_garage;
+		[garage_spawn_0]spawn JOC_garageFnc;
+	};
 },_vehicleData];
 
-garage_spawner_1 addAction ["Spawn vehicle",{
+garage_spawn_1 setVariable["count",0];
+garage_spawner_1 addAction ["Request vehicle",{
 	_veh = nearestObjects [(getPos garage_spawn_1),["AllVehicles"],5];
-	{
-		deleteVehicle _x;
-	}forEach _veh;
-	BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_1), [], 0, "CAN_COLLIDE" ];
-	_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
-	BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
-	["Open",true] call BIS_fnc_garage;
-	[garage_spawn_1]spawn JOC_garageFnc;
+	if(((count _veh) >= 1) or ((garage_spawn_1 getVariable "count") >= 1))then{
+		hint "Pad not clear or max vehicles reached";
+	}else{
+		BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_1), [], 0, "CAN_COLLIDE" ];
+		_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
+		BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
+		["Open",true] call BIS_fnc_garage;
+		[garage_spawn_1]spawn JOC_garageFnc;
+	};
 },_vehicleData];
 
-garage_spawner_2 addAction ["Spawn vehicle",{
+garage_spawn_2 setVariable["count",0];
+garage_spawner_2 addAction ["Request vehicle",{
 	_veh = nearestObjects [(getPos garage_spawn_2),["AllVehicles"],5];
-	{
-		deleteVehicle _x;
-	}forEach _veh;
-	BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_2), [], 0, "CAN_COLLIDE" ];
-	_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
-	BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
-	["Open",true] call BIS_fnc_garage;
-	[garage_spawn_2]spawn JOC_garageFnc;
+	if(((count _veh) >= 1) or ((garage_spawn_2 getVariable "count") >= 1))then{
+		hint "Pad not clear or max vehicles reached";
+	}else{
+		BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_2), [], 0, "CAN_COLLIDE" ];
+		_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
+		BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
+		["Open",true] call BIS_fnc_garage;
+		[garage_spawn_2]spawn JOC_garageFnc;
+	};
 },_vehicleData];
 
-garage_spawner_3 addAction ["Spawn vehicle",{
+garage_spawn_3 setVariable["count",0];
+garage_spawner_3 addAction ["Request vehicle",{
 	_veh = nearestObjects [(getPos garage_spawn_3),["AllVehicles"],5];
-	{
-		deleteVehicle _x;
-	}forEach _veh;
-	BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_3), [], 0, "CAN_COLLIDE" ];
-	_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
-	BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
-	["Open",true] call BIS_fnc_garage;
-	[garage_spawn_3]spawn JOC_garageFnc;
+	if(((count _veh) >= 1) or ((garage_spawn_3 getVariable "count") >= 1))then{
+		hint "Pad not clear or max vehicles reached";
+	}else{
+		BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_3), [], 0, "CAN_COLLIDE" ];
+		_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
+		BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
+		["Open",true] call BIS_fnc_garage;
+		[garage_spawn_3]spawn JOC_garageFnc;
+	};
 },_vehicleData];
 
-garage_spawner_4 addAction ["Spawn vehicle",{
+garage_spawn_4 setVariable["count",0];
+garage_spawner_4 addAction ["Request vehicle",{
 	_veh = nearestObjects [(getPos garage_spawn_4),["AllVehicles"],5];
-	{
-		deleteVehicle _x;
-	}forEach _veh;
-	BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_4), [], 0, "CAN_COLLIDE" ];
-	_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
-	BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
-	["Open",true] call BIS_fnc_garage;
-	[garage_spawn_4]spawn JOC_garageFnc;
+	if(((count _veh) >= 1) or ((garage_spawn_4 getVariable "count") >= 1))then{
+		hint "Pad not clear or max vehicles reached";
+	}else{
+		BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_4), [], 0, "CAN_COLLIDE" ];
+		_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
+		BIS_fnc_garage_data = [[],[],(_array select 2),[],[],[]];
+		["Open",true] call BIS_fnc_garage;
+		[garage_spawn_4]spawn JOC_garageFnc;
+	};
 },_vehicleData];
 
-garage_spawner_5 addAction ["Spawn vehicle",{
+garage_spawn_5 setVariable["count",0];
+garage_spawner_5 addAction ["Request vehicle",{
 	_veh = nearestObjects [(getPos garage_spawn_5),["AllVehicles"],5];
-	{
-		deleteVehicle _x;
-	}forEach _veh;
-	BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_5), [], 0, "CAN_COLLIDE" ];
-	_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
-	BIS_fnc_garage_data = [(_array select 0),[],[],[],[],[]];
-	["Open",true] call BIS_fnc_garage;
-	[garage_spawn_5]spawn JOC_garageFnc;
+	if(((count _veh) >= 1) or ((garage_spawn_5 getVariable "count") >= 12))then{
+		hint "Pad not clear or max vehicles reached";
+	}else{
+		BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_5), [], 0, "CAN_COLLIDE" ];
+		_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
+		BIS_fnc_garage_data = [(_array select 0),[],[],[],[],[]];
+		["Open",true] call BIS_fnc_garage;
+		[garage_spawn_5]spawn JOC_garageFnc;
+	};
 },_vehicleData];
 
-garage_spawner_6 addAction ["Spawn vehicle",{
-	_veh = nearestObjects [(getPos garage_spawn_6),["AllVehicles"],5];
-	{
-		deleteVehicle _x;
-	}forEach _veh;
-	BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_6), [], 0, "CAN_COLLIDE" ];
-	_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
-	BIS_fnc_garage_data = [[],(_array select 1),[],[],[],[]];
-	["Open",true] call BIS_fnc_garage;
-	[garage_spawn_6]spawn JOC_garageFnc;
+garage_spawn_6 setVariable["count",0];
+garage_spawner_6 addAction ["Request vehicle",{
+	if(((count _veh) >= 1) or ((garage_spawn_6 getVariable "count") >= 4))then{
+		hint "Pad not clear or max vehicles reached";
+	}else{
+		BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_6), [], 0, "CAN_COLLIDE" ];
+		_array = ( _this select 3 ) select ( side player call BIS_fnc_sideID );
+		BIS_fnc_garage_data = [[],(_array select 1),[],[],[],[]];
+		["Open",true] call BIS_fnc_garage;
+		[garage_spawn_6]spawn JOC_garageFnc;
+	};
 },_vehicleData];

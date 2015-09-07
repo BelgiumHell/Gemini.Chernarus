@@ -80,8 +80,8 @@ publicVariable "tankMultiplier";
 []spawn JOC_bftManager;
 //[] spawn JOC_taskManager;
 []spawn JOC_cacheInit;	//Dunno why I can't use a call for this
-[]spawn JOC_cmdManager;
-
+//[]spawn JOC_cmdManager;
+/*
 //call -doesn't need a seperate thread
 []call JOC_initTowns;
 []call JOC_initAirfields;
@@ -90,4 +90,4 @@ publicVariable "tankMultiplier";
 []call JOC_initArty;	//Uses AA
 []call JOC_initRadio;	//Uses AA
 []call JOC_initPatrols;
-[]call JOC_initMines;
+[]call JOC_initMines;*/

@@ -2033,7 +2033,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=314;
+		items=331;
 		class Item0
 		{
 			position[]={689.72211,6.0638437,1797.7275};
@@ -2105,7 +2105,7 @@ class Mission
 		};
 		class Item7
 		{
-			position[]={584.31573,6,1735.7429};
+			position[]={584.45502,6,1735.8483};
 			azimut=50;
 			id=85;
 			side="EMPTY";
@@ -4968,10 +4968,181 @@ class Mission
 			skill=0.60000002;
 			text="garage_spawn_6";
 		};
+		class Item314
+		{
+			position[]={585.03925,5.9998951,1739.4398};
+			azimut=140;
+			id=392;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item315
+		{
+			position[]={588.39813,6,1742.255};
+			azimut=140;
+			id=393;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item316
+		{
+			position[]={598.42938,6.0542912,1750.6797};
+			azimut=140;
+			id=394;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item317
+		{
+			position[]={595.13855,6.0203271,1747.9103};
+			azimut=140;
+			id=395;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item318
+		{
+			position[]={591.71149,6,1745.0254};
+			azimut=140;
+			id=396;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item319
+		{
+			position[]={600.51654,6.0593295,1750.4819};
+			azimut=50;
+			id=397;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item320
+		{
+			position[]={611.72797,6.0272517,1737.1316};
+			azimut=50;
+			id=398;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item321
+		{
+			position[]={609.2088,6.0457883,1740.1292};
+			azimut=50;
+			id=399;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item322
+		{
+			position[]={602.94495,6.0579972,1747.554};
+			azimut=50;
+			id=400;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item323
+		{
+			position[]={609.66278,6.0466328,1740.8999};
+			azimut=5;
+			id=401;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item324
+		{
+			position[]={603.74005,6.0610042,1747.8864};
+			azimut=95;
+			id=402;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item325
+		{
+			position[]={598.12921,6,1723.8201};
+			azimut=140;
+			id=403;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item326
+		{
+			position[]={601.4881,6.0021806,1726.6353};
+			azimut=140;
+			id=404;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item327
+		{
+			position[]={611.51935,6.017067,1735.0599};
+			azimut=140;
+			id=405;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item328
+		{
+			position[]={608.22852,6,1732.2905};
+			azimut=140;
+			id=406;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item329
+		{
+			position[]={604.80145,6.0035982,1729.4056};
+			azimut=140;
+			id=407;
+			side="EMPTY";
+			vehicle="Land_CncBarrier_stripes_F";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item330
+		{
+			position[]={610.77899,6.0364151,1738.7897};
+			azimut=230;
+			id=408;
+			side="EMPTY";
+			vehicle="Land_InfoStand_V1_F";
+			skill=0.60000002;
+			text="garage_scrap";
+			init="this enableSimulationGlobal false;";
+		};
 	};
 	class Markers
 	{
-		items=90;
+		items=91;
 		class Item0
 		{
 			position[]={4885.7231,339,9659.6299};
@@ -5774,10 +5945,18 @@ class Mission
 			name="spawnMarker";
 			type="Empty";
 		};
+		class Item90
+		{
+			position[]={597.05756,6.0098667,1736.8634};
+			name="mrk_base_scrap";
+			text="Vehicle scrap";
+			type="b_service";
+			colorName="ColorBlue";
+		};
 	};
 	class Sensors
 	{
-		items=2;
+		items=3;
 		class Item0
 		{
 			position[]={683.15253,6.0177445,1823.5389};
@@ -5816,6 +5995,27 @@ class Mission
 			name="trg_rep_1";
 			expCond="(speed (list trg_rep_1 select 0)) < 1";
 			expActiv="_nul0= [(list trg_rep_1 select 0)] spawn JOC_service";
+			class Effects
+			{
+			};
+		};
+		class Item2
+		{
+			position[]={598.30573,6.0159326,1737.2659};
+			a=10;
+			b=10;
+			angle=50;
+			rectangular=1;
+			activationBy="WEST";
+			repeating=1;
+			timeoutMin=5;
+			timeoutMid=5;
+			timeoutMax=5;
+			interruptable=1;
+			age="UNKNOWN";
+			name="trg_scrap";
+			expCond="(speed (list trg_scrap select 0)) < 1";
+			expActiv="_nul0= [(list trg_scrap select 0)] spawn JOC_garageScrap;";
 			class Effects
 			{
 			};

@@ -74,3 +74,4 @@ JOC_towDetach = compileFinal preprocessFileLineNumbers "Functions\Vehicle\Tow\de
 JOC_vehCDU = compileFinal preprocessFileLineNumbers "Functions\Vehicle\cdu.sqf";
 JOC_garage = compileFinal preprocessFileLineNumbers "Functions\Vehicle\Garage\main.sqf";
 JOC_garageFnc = compileFinal preprocessFileLineNumbers "Functions\Vehicle\Garage\garageFnc.sqf";
+JOC_garageScrap = compileFinal preprocessFileLineNumbers "Functions\Vehicle\Garage\scrap.sqf";
