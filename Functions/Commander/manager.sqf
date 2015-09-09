@@ -10,4 +10,6 @@ while{true}do{
 		[]spawn JOC_cmdAttack;
 		cmdAttack = false;
 	};
+	sleep (2500/((count opTowns)/2));
+	[]spawn JOC_cmdConvoy;
 };

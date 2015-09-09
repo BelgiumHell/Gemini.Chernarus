@@ -26,6 +26,7 @@ JOC_cacheGroup = compileFinal preprocessFileLineNumbers "Functions\Caching\cache
 JOC_cmdManager = compileFinal preprocessFileLineNumbers "Functions\Commander\manager.sqf";
 JOC_cmdAttack = compileFinal preprocessFileLineNumbers "Functions\Commander\attack.sqf";
 JOC_cmdHeli = compileFinal preprocessFileLineNumbers "Functions\Commander\heli.sqf";
+JOC_cmdHeliMonitor = compileFinal preprocessFileLineNumbers "Functions\Commander\heliMonitor.sqf";
 
 //Init
 JOC_initAA = compileFinal preprocessFileLineNumbers "Functions\Init\initAA.sqf";

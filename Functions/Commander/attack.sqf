@@ -10,7 +10,6 @@ _capPrev = false;
 _targetTown = 0;
 _startTown = 0;
 while{_ok == 0}do{
-	hint "loop";
 	if(_capitalOcc)then{
 		_count = 0;
 		_capPrev = true;
@@ -25,14 +24,11 @@ while{_ok == 0}do{
 		_targetTown = _lastOcc;
 	};
 	
-	targetT = _targetTown;
-	
 	{
 		_disP = (getPos _targetTown) distance (getPos _x);
 		if(_disP <= _dis)then{
 			_dis = _disP;
 			_startTown = _x;
-			targetS = _startTown;
 		};
 	}forEach opTowns;
 	

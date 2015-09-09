@@ -22,7 +22,7 @@ truckPool    = ["RHS_Ural_MSV_01","RHS_Ural_Open_MSV_01"];        //truck classn
 apcPool      = ["rhs_btr80_msv","rhs_btr80a_msv"];       //apc classnames
 ifvPool      = ["rhs_brm1k_tv","rhs_bmp2k_tv","rhs_bmp2_tv","rhs_bmp1k_tv","rhs_prp3_tv"];       //ifv classnames
 tankPool     = ["rhs_t80um","rhs_t90_tv"];       //tank classnames
-supportPool  = [];     //support classnames
+supportPool  = ["rhs_gaz66_ammo_msv","rhs_gaz66_r142_msv","RHS_Ural_Fuel_MSV_01","rhs_gaz66_repair_msv"];     //support classnames
 airPool      = ["RHS_Mi8AMTSh_UPK23_vvsc","RHS_Mi8mt_vvsc","RHS_Mi8MTV3_vvsc"];     //transport helicopter classnames
 casPool      = ["RHS_Ka52_UPK23_vvsc","RHS_Mi24P_CAS_vvsc"];      //cas helicopters classnames
 jetPool      = ["O_Plane_CAS_02_F"];       //jet classnames
@@ -80,8 +80,8 @@ publicVariable "tankMultiplier";
 []spawn JOC_bftManager;
 //[] spawn JOC_taskManager;
 []spawn JOC_cacheInit;	//Dunno why I can't use a call for this
-//[]spawn JOC_cmdManager;
-/*
+[]spawn JOC_cmdManager;
+
 //call -doesn't need a seperate thread
 []call JOC_initTowns;
 []call JOC_initAirfields;
@@ -90,4 +90,4 @@ publicVariable "tankMultiplier";
 []call JOC_initArty;	//Uses AA
 []call JOC_initRadio;	//Uses AA
 []call JOC_initPatrols;
-[]call JOC_initMines;*/
+[]call JOC_initMines;

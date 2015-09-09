@@ -67,7 +67,7 @@ _troopVehicle = ZEN_STD_Array_LastElement(_vehicles);
 _troopCargo = ZEN_STD_OBJ_CountCargoSeats(_troopVehicle) + (count ([_troopVehicle, "cargoFFV"] call Zen_GetTurretPaths));
 
 if (_troopCargo > 0) then {
-    _troopGroup = [_startPos, _side, "infantry", [1, _troopCargo]] call Zen_SpawnInfantry;
+    _troopGroup = [_startPos, _side, "infantry", [1, _troopCargo],"Basic"] call Zen_SpawnInfantry;
     0 = [_troopGroup, _troopVehicle, "cargo"] call Zen_MoveInVehicle;
 };
 

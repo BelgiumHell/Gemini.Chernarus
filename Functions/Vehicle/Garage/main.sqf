@@ -284,6 +284,7 @@ garage_spawner_5 addAction ["Request vehicle",{
 
 garage_spawn_6 setVariable["count",0];
 garage_spawner_6 addAction ["Request vehicle",{
+	_veh = nearestObjects [(getPos garage_spawn_5),["AllVehicles"],5];
 	if(((count _veh) >= 1) or ((garage_spawn_6 getVariable "count") >= 4))then{
 		hint "Pad not clear or max vehicles reached";
 	}else{

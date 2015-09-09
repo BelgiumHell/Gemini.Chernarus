@@ -21,10 +21,14 @@ while{true}do{
 	[_groupV,_heli2] spawn Zen_MoveInVehicle;
 	[[_heli1,_heli2],"mrk_area",[],[0,360],"full"]spawn Zen_OrderVehiclePatrol;
 	
+	[_heli2,_groupV]spawn JOC_cmdHeliMonitor;
+	
 	waitUntil{sleep 60; (((fuel _heli1 <= 0.1) or (fuel _heli2 <= 0.1)) or ((!alive _heli1) and (!alive _heli2)))};
 	if((fuel _heli1 <= 0.1) or (fuel _heli2 <= 0.1))then{
 		[_heli1, _airfield,"full",100,false,true]spawn Zen_OrderHelicopterLand;
+		_heli1 addEventHandler["LandedTouchDown",{deleteVehicle ((crew (_this select 0)) select 0);deleteVehicle (_this select 0);}];
 		[_heli2, _airfield,"full",100,false,true]spawn Zen_OrderHelicopterLand;
+		_heli2 addEventHandler["LandedTouchDown",{deleteVehicle ((crew (_this select 0)) select 0);deleteVehicle (_this select 0);}];
 	};
 	
 	sleep 1200;

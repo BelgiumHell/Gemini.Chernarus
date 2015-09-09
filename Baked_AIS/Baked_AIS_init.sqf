@@ -83,7 +83,7 @@ if (baps_enabledFor == 0) then { // FOR M2A1 SLAMMER ONLY
 	baps_defenders = [
 	"B_MBT_01_cannon_F",
 	"rhsusf_m1a2sep1wd_usarmy"
-	]; 
+	] + tankPool; 
 };
 if (baps_enabledFor == 1) then { // FOR MBT ONLY
 	baps_defenders = [

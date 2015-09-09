@@ -10,7 +10,6 @@ while{true}do{
 		};
 	}forEach allGroups;
 	
-	groupT = _groups;
 	{
 		_id = (groupId _x);
 		_leader = (leader _x);
