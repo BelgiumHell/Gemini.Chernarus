@@ -6,12 +6,12 @@ _vehicle = _this select 0;
 _active = 0;
 _vehicle setVariable ["towing", false, true];
 
-//if(isServer)exitWith{};
+if(!isServer)exitWith{};
 
 while{alive _vehicle}do{
-    waitUntil{sleep 5;typeOf (vehicle player) == "B_APC_Tracked_01_CRV_F"};    //You cant tow when not in the right vehicle(duh)
+    waitUntil{sleep 5;((count (crew _vehicle)) > 0)};    //You cant tow when not in the right vehicle(duh)
     
-    _targetC = (nearestObjects [_vehicle, towableObjects, 10]) select 0;
+    _targetC = ((nearestObjects [_vehicle, ["car","truck","tank"], 15]) - [_vehicle]) select 0;
     
     targetT = _targetC;
     
@@ -22,7 +22,7 @@ while{alive _vehicle}do{
         _positionR = [_positionT,8,(getDir _targetC),"Compass",((getPosASL _targetC) select 2)] call Zen_ExtendPosition;
     };
 
-    if((_positionV distance _positionR) < 2) then{
+    if((_positionV distance _positionR) < 5) then{
         (driver _vehicle) addAction ["Attach vehicle", {[_this select 1]spawn JOC_towAttach;}];
         waitUntil{_positionT = getPosASL _targetC;_positionV = getPosASL _vehicle;!((_positionV distance _positionR) < 2)};
     };

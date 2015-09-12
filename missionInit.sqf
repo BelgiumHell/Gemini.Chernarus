@@ -38,13 +38,11 @@ airfieldMarkers = ["mrk_airfield_0","mrk_airfield_1","mrk_airfield_2"];   //Mark
 "mrk_aaZone_3" setMarkerAlpha 0;
 //Objects
 leaderArray = [cmd1,cmd2,a1,b1,c1,h1,r1,anv1,s1,v1,rip1];
-logisticsArray = ["l1","l2","l3","l4","a1"];
+logisticsArray = ["l1","l2","l3","l4"];
 logisticsVehArray = ["B_APC_Tracked_01_CRV_F"];
-towableObjects = ["rhsusf_rg33_m2_wd","rhsusf_m1025_w_s_m2","rhsusf_m1025_w_s_Mk19","rhsusf_m113_usarmy","B_Truck_01_fuel_F","B_Truck_01_ammo_F","B_Truck_01_Repair_F","rhsusf_M1078A1P2_B_M2_wd_fmtv_usarmy","RHS_M2A3_BUSKIII_wd","RHS_M6_wd"];
 motorizedArray = ["rhsusf_m113_usarmy","RHS_M2A3_BUSKIII_wd","RHS_M6_wd"];
 medicalVehArray = ["RHS_UH60M_MEV"];
 jetArray = [];
-radarTArray = ["RHS_UH1Y_UNARMED","RHS_UH1Y","B_Heli_Transport_03_unarmed_F","RHS_CH_47F","RHS_AH1Z_wd","MELB_AH6M_M"];
 
 //Init variables *DONT CHANGE*
 opTowns = [];
@@ -71,7 +69,6 @@ CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)
 
 //Public var for local scripts
 publicVariable "logisticsArray";
-publicVariable "towableObjects";
 publicVariable "tankMultiplier";
 
 //Run init scripts
@@ -81,6 +78,7 @@ publicVariable "tankMultiplier";
 //[] spawn JOC_taskManager;
 []spawn JOC_cacheInit;	//Dunno why I can't use a call for this
 []spawn JOC_cmdManager;
+[]spawn JOC_perfLoop;
 
 //call -doesn't need a seperate thread
 []call JOC_initTowns;

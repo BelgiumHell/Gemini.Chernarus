@@ -45,6 +45,11 @@ JOC_loadoutMaster = compileFinal preprocessFileLineNumbers "Functions\Loadouts\m
 #include "Logistics\fn_logistics_compile.sqf";
 JOC_crateInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\crateInit.sqf";
 
+//Performance
+JOC_perfLoop = compileFinal preprocessFileLineNumbers "Functions\Performance\loop.sqf";
+JOC_objectRemove = compileFinal preprocessFileLineNumbers "Functions\Performance\objectRemove.sqf";
+JOC_itemRemove = compileFinal preprocessFileLineNumbers "Functions\Performance\itemRemove.sqf";
+
 //Player
 JOC_playerLoop = compileFinal preprocessFileLineNumbers "Functions\Player\playerLoop.sqf";
 JOC_playerClick = compileFinal preprocessFileLineNumbers "Functions\Player\click.sqf";

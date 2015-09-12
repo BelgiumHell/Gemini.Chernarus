@@ -24,7 +24,7 @@ while{(count (_locationO nearObjects ["rhs_p37",50]) >= 1)}do{
 	_targets = [];
 
 	{
-		if((typeOf _x) in radarTArray)then{
+		if(_x isKindOf "Air")then{
 			if(!(terrainIntersectASL [getPosASL _x, _location]))then{
 				_task = true; [_targets,count _targets,_x] call Zen_ArrayInsert;
 			};
