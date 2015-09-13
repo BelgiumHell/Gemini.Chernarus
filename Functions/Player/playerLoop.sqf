@@ -9,5 +9,5 @@ while{alive player}do{
 	}else{
 		player setVariable ["tf_sendingDistanceMultiplicator", 1];
 	};
-	Sleep 60;
+	Sleep 10;
 };

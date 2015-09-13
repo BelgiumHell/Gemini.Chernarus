@@ -9,7 +9,7 @@ _dis = 0;
 hint "start";
 while{_ok == 0}do{
     _targetTown = opTowns select (round (random (count opTowns)));
-    
+
     {
         _dis = (getPos _targetTown) distance (getPos _x);
         if(_dis >= 4000)then{
@@ -18,7 +18,7 @@ while{_ok == 0}do{
             if(true)exitWith{};
         };
     }forEach opTowns;
-    
+
     _count = _count + 1;
     if(_count == (count opTowns))then{
         _dis = _dis - 50;
@@ -73,13 +73,13 @@ _name2 setMarkerType "mil_end";
 _name2 setMarkerColor "ColorOPFOR";
 _name2 setMarkerText "Convoy end";
 
-[["IntelAdded",[format ["An enemy convoy from %1 is due to leave for %2.", (text _startTown),(text _targetTown)]]],"BIS_fnc_showNotification",west] call BIS_fnc_MP; //Notification
+[["IntelAdded",[format ["A convoy from %1 left for %2.", (text _startTown),(text _targetTown)]]],"BIS_fnc_showNotification",west] call BIS_fnc_MP; //Notification
 
 waitUntil{sleep 5; (((leader _group)distance _targetP)< 100) or ([units _group]call Zen_AreNotInVehicle)};
 
 if(((leader _group)distance _targetP)< 100)then{
     [["IntelAdded",[format ["The enemy convoy arrived at %1",(text _targetTown)]]],"BIS_fnc_showNotification",west] call BIS_fnc_MP;
-    
+
     _clean = true;
     while{_clean}do{
         _nearestPlayers = [];

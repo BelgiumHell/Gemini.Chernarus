@@ -48,4 +48,6 @@ while {_xA < _hor}do{
 };
 
 cacheGroup = createGroup east;
+[cacheGroupLeader]joinSilent cacheGroup;
+cacheGroup selectLeader cacheGroupLeader;
 cachedGroups = [];

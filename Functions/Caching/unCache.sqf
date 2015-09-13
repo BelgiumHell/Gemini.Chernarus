@@ -16,7 +16,7 @@ _list = (list _trg);
 		_group = createGroup east;
 		[_x] joinSilent _group;
 		_group selectLeader _x;
-		_units = (_x getVariable "units");
+		_units = (_x getVariable "units") - [_x];
 		_units joinSilent _group;
 		if(!(isNil{_x getVariable "patrol"}))then{
 			if((vehicle _x) != _x)then{
