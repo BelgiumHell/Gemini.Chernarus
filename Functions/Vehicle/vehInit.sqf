@@ -34,8 +34,7 @@ if(_vehicletype == "B_Heli_Transport_03_unarmed_F" or _vehicletype == "RHS_CH_47
 };
 
 //Tank
-if(_vehicletype == "B_MBT_01_cannon_F" or _vehicletype == "rhsusf_m1a2sep1wd_usarmy")then{
-    _vehicle addMagazine "rhs_mag_M1069";
+if(_vehicle isKindOf "Tank")then{
 };
 
 //IFV

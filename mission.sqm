@@ -598,13 +598,13 @@ class Mission
 						};
 						class Item3
 						{
-							value="TFAR";
+							value="ArmA 3 EU #3 Modded w/ TFAR";
 							parentCls="tfar_ModuleTaskForceRadioEnforceUsage";
 							typeName="radio_channel_name";
 						};
 						class Item4
 						{
-							value="You'llneverguess";
+							value="ModdedWithTFAR";
 							parentCls="tfar_ModuleTaskForceRadioEnforceUsage";
 							typeName="radio_channel_password";
 						};
@@ -5909,7 +5909,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=91;
+		items=74;
 		class Item0
 		{
 			position[]={4885.7231,339,9659.6299};
@@ -6208,160 +6208,6 @@ class Mission
 		};
 		class Item31
 		{
-			position[]={-2010.1797,304.71854,7674.7813};
-			name="mrk_freq_back";
-			markerType="RECTANGLE";
-			type="Empty";
-			colorName="ColorRed";
-			a=2000;
-			b=7700;
-		};
-		class Item32
-		{
-			position[]={-2820.7283,545.63763,15118.16};
-			name="mrk_freq_title";
-			text="Frequency table";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item33
-		{
-			position[]={-3812.4487,513.48456,12388.657};
-			name="mrk_freq_alpha";
-			text="Alpha SR's";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item34
-		{
-			position[]={-3350.019,503.99557,11893.722};
-			name="mrk_freq_alpha_1";
-			text="Alpha lead";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item35
-		{
-			position[]={-3366.1506,579.45532,11393.406};
-			name="mrk_freq_alpha_2";
-			text="Alpha fireteam 1";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item36
-		{
-			position[]={-3376.9048,547.33691,10909.23};
-			name="mrk_freq_alpha_3";
-			text="Alpha fireteam 2";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item37
-		{
-			position[]={-3832.0432,432.83401,10379.143};
-			name="mrk_freq_alpha_4";
-			text="Bravo SR's";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item38
-		{
-			position[]={-3353.4824,389.99631,9884.207};
-			name="mrk_freq_bravo_1";
-			text="Bravo lead";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item39
-		{
-			position[]={-3369.6143,347.01813,9383.8916};
-			name="mrk_freq_bravo_2";
-			text="Bravo fireteam 1";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item40
-		{
-			position[]={-3380.3682,380.04196,8899.7158};
-			name="mrk_freq_bravo_3";
-			text="Bravo fireteam 2";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item41
-		{
-			position[]={-3837.4658,354.79449,8373.498};
-			name="mrk_freq_alpha_5";
-			text="Charlie SR's";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item42
-		{
-			position[]={-3396.5437,324.88177,7878.5625};
-			name="mrk_freq_charlie_1";
-			text="Charlie lead";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item43
-		{
-			position[]={-3412.6755,274.02872,7378.2471};
-			name="mrk_freq_charlie_2";
-			text="Charlie fireteam 1";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item44
-		{
-			position[]={-3423.4294,224.04544,6894.0713};
-			name="mrk_freq_charlie_3";
-			text="Charlie fireteam 2";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item45
-		{
-			position[]={-3802.073,408.35892,14353.947};
-			name="mrk_freq_ground";
-			text="Ground LW";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item46
-		{
-			position[]={-3802.073,327.68771,13889.919};
-			name="mrk_freq_air";
-			text="Air LW";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item47
-		{
-			position[]={-3799.6177,363.31152,13166.329};
-			name="mrk_freq_cmd";
-			text="Command SR";
-			type="respawn_unknown";
-			a=0;
-			b=0;
-		};
-		class Item48
-		{
 			position[]={4845.7603,339,10215.433};
 			name="mrk_airfield_0_hangar_0";
 			text="hangar";
@@ -6370,7 +6216,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item49
+		class Item32
 		{
 			position[]={4870.3047,339,10174.411};
 			name="mrk_airfield_0_hangar_1";
@@ -6380,7 +6226,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item50
+		class Item33
 		{
 			position[]={4894.564,339,10133.239};
 			name="mrk_airfield_0_hangar_2";
@@ -6390,7 +6236,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item51
+		class Item34
 		{
 			position[]={4918.9014,339,10093.081};
 			name="mrk_airfield_0_hangar_3";
@@ -6400,7 +6246,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item52
+		class Item35
 		{
 			position[]={4943.29,339,10049.99};
 			name="mrk_airfield_0_hangar_4";
@@ -6410,7 +6256,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item53
+		class Item36
 		{
 			position[]={4968.1021,338.99414,10007.954};
 			name="mrk_airfield_0_hangar_5";
@@ -6420,7 +6266,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item54
+		class Item37
 		{
 			position[]={4579.8066,338.98999,10678.79};
 			name="mrk_airfield_0_hangar_6";
@@ -6430,7 +6276,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item55
+		class Item38
 		{
 			position[]={4522.5366,338.98999,10781.051};
 			name="mrk_airfield_0_hangar_7";
@@ -6440,7 +6286,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item56
+		class Item39
 		{
 			position[]={4798.9849,339,9628.1279};
 			name="mrk_airfield_0_aa_0";
@@ -6450,7 +6296,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item57
+		class Item40
 		{
 			position[]={4997.3662,339,9744.0449};
 			name="mrk_airfield_0_aa_1";
@@ -6460,7 +6306,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item58
+		class Item41
 		{
 			position[]={4317.5796,339,10922.28};
 			name="mrk_airfield_0_aa_2";
@@ -6470,7 +6316,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item59
+		class Item42
 		{
 			position[]={4116.3027,339,10801.599};
 			name="mrk_airfield_0_aa_3";
@@ -6480,7 +6326,7 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item60
+		class Item43
 		{
 			position[]={4801.4951,339,10297.614};
 			name="mrk_airfield_0_aa_4";
@@ -6490,21 +6336,21 @@ class Mission
 			angle=235;
 			drawBorder=1;
 		};
-		class Item61
+		class Item44
 		{
 			position[]={5112.7568,9,2189.8379};
 			name="mrk_airfield_2_aa_0";
 			text="aa";
 			type="Empty";
 		};
-		class Item62
+		class Item45
 		{
 			position[]={4624.6353,8.9058619,2482.9395};
 			name="mrk_airfield_2_aa_1";
 			text="aa";
 			type="Empty";
 		};
-		class Item63
+		class Item46
 		{
 			position[]={4791.2861,8.6999998,2573.1758};
 			name="mrk_airfield_2_hangar_0";
@@ -6512,7 +6358,7 @@ class Mission
 			type="Empty";
 			angle=210;
 		};
-		class Item64
+		class Item47
 		{
 			position[]={4756.2593,8.6999998,2593.72};
 			name="mrk_airfield_2_hangar_1";
@@ -6520,7 +6366,7 @@ class Mission
 			type="Empty";
 			angle=210;
 		};
-		class Item65
+		class Item48
 		{
 			position[]={12312.272,159,12568.086};
 			name="mrk_airfield_1_aa_0";
@@ -6528,7 +6374,7 @@ class Mission
 			type="Empty";
 			angle=15;
 		};
-		class Item66
+		class Item49
 		{
 			position[]={11806.655,159,12709.518};
 			name="mrk_airfield_1_aa_1";
@@ -6536,7 +6382,7 @@ class Mission
 			type="Empty";
 			angle=15;
 		};
-		class Item67
+		class Item50
 		{
 			position[]={12057.019,158.8,12621.422};
 			name="mrk_airfield_1_hangar_0";
@@ -6544,7 +6390,7 @@ class Mission
 			type="Empty";
 			angle=15;
 		};
-		class Item68
+		class Item51
 		{
 			position[]={12010.067,158.8,12636.979};
 			name="mrk_airfield_1_hangar_1";
@@ -6552,57 +6398,57 @@ class Mission
 			type="Empty";
 			angle=15;
 		};
-		class Item69
+		class Item52
 		{
 			position[]={4748.8853,9,2539.3738};
 			name="mrk_heliSpawn_2";
 			text="heliSpawn";
 			type="Empty";
 		};
-		class Item70
+		class Item53
 		{
 			position[]={12056.696,159,12691.672};
 			name="mrk_heliSpawn_1";
 			text="heliSpawn";
 			type="Empty";
 		};
-		class Item71
+		class Item54
 		{
 			position[]={694.94067,6.0866742,1803.6934};
 			name="mrk_return";
 			type="Empty";
 		};
-		class Item72
+		class Item55
 		{
 			position[]={6897.0518,394.55701,11440.723};
 			name="mrk_castle_main";
 			type="Empty";
 		};
-		class Item73
+		class Item56
 		{
 			position[]={6859.5103,392.07971,11394.38};
 			name="mrk_castle_entr1";
 			type="Empty";
 		};
-		class Item74
+		class Item57
 		{
 			position[]={6948.6011,388.39505,11437.919};
 			name="mrk_castle_entr2";
 			type="Empty";
 		};
-		class Item75
+		class Item58
 		{
 			position[]={6887.5508,392.70258,11493.964};
 			name="mrk_castle_aa1";
 			type="Empty";
 		};
-		class Item76
+		class Item59
 		{
 			position[]={6907.8833,393.16238,11381.681};
 			name="mrk_castle_aa2";
 			type="Empty";
 		};
-		class Item77
+		class Item60
 		{
 			position[]={702.91925,6.0194201,1799.295};
 			name="mrk_base";
@@ -6610,7 +6456,7 @@ class Mission
 			type="b_hq";
 			colorName="ColorBlue";
 		};
-		class Item78
+		class Item61
 		{
 			position[]={679.0343,6.0262222,1779.3539};
 			name="mrk_base_car";
@@ -6618,7 +6464,7 @@ class Mission
 			type="b_motor_inf";
 			colorName="ColorBlue";
 		};
-		class Item79
+		class Item62
 		{
 			position[]={687.76147,6,1785.8634};
 			name="mrk_base_mech";
@@ -6626,7 +6472,7 @@ class Mission
 			type="b_motor_inf";
 			colorName="ColorBlue";
 		};
-		class Item80
+		class Item63
 		{
 			position[]={638.73395,6.1213431,1828.2622};
 			name="mrk_base_air";
@@ -6634,7 +6480,7 @@ class Mission
 			type="b_air";
 			colorName="ColorBlue";
 		};
-		class Item81
+		class Item64
 		{
 			position[]={585.50604,6.0426102,1780.7281};
 			name="mrk_base_log";
@@ -6642,7 +6488,7 @@ class Mission
 			type="b_support";
 			colorName="ColorBlue";
 		};
-		class Item82
+		class Item65
 		{
 			position[]={725.21576,6.0335016,1814.2253};
 			name="mrk_base_range";
@@ -6650,7 +6496,7 @@ class Mission
 			type="b_installation";
 			colorName="ColorBlue";
 		};
-		class Item83
+		class Item66
 		{
 			position[]={624.802,6.1412897,1768.6653};
 			name="mrk_rep";
@@ -6658,7 +6504,7 @@ class Mission
 			type="b_maint";
 			colorName="ColorBlue";
 		};
-		class Item84
+		class Item67
 		{
 			position[]={3794.2363,351.50992,11537.99};
 			name="mrk_aaZone_3";
@@ -6667,7 +6513,7 @@ class Mission
 			a=3800;
 			b=3800;
 		};
-		class Item85
+		class Item68
 		{
 			position[]={3794.2363,230.83879,3954.1167};
 			name="mrk_aaZone_1";
@@ -6676,7 +6522,7 @@ class Mission
 			a=3800;
 			b=3800;
 		};
-		class Item86
+		class Item69
 		{
 			position[]={11397.074,187.27644,3931.4102};
 			name="mrk_aaZone_0";
@@ -6685,7 +6531,7 @@ class Mission
 			a=3800;
 			b=3800;
 		};
-		class Item87
+		class Item70
 		{
 			position[]={11397.074,288.50131,11515.284};
 			name="mrk_aaZone_2";
@@ -6694,7 +6540,7 @@ class Mission
 			a=3800;
 			b=3800;
 		};
-		class Item88
+		class Item71
 		{
 			position[]={667.54822,6.1595759,1792.5311};
 			name="mrk_safeZone";
@@ -6706,13 +6552,13 @@ class Mission
 			b=1200;
 			drawBorder=1;
 		};
-		class Item89
+		class Item72
 		{
 			position[]={640.55707,6.1599998,1795.178};
 			name="spawnMarker";
 			type="Empty";
 		};
-		class Item90
+		class Item73
 		{
 			position[]={597.05756,6.0098667,1736.8634};
 			name="mrk_base_scrap";
