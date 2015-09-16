@@ -1,3 +1,6 @@
+/////////////////////////
+//Script made by Jochem//
+/////////////////////////
 private ["_veh"];
 _veh = _this select 0;
 

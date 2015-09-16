@@ -28,7 +28,7 @@ if(_targetTown in _towns)then{
     _trg = createTrigger ["EmptyDetector",_location,true];
     _trg setTriggerArea [900,900,900,false];
     _trg setTriggerActivation ["WEST","PRESENT", false];
-    _trg setTriggerStatements ["this","[getPos thisTrigger,550,[11,true],[5,false],[0,false],[3,false],[1,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,600] spawn JOC_monitorTown;deleteVehicle thisTrigger;",""];
+    _trg setTriggerStatements ["this","[getPos thisTrigger,475,[11,true],[5,false],[0,false],[3,false],[1,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,600] spawn JOC_monitorTown;deleteVehicle thisTrigger;",""];
     _trg setTriggerTimeout [5,5,5,true];
 
     _marker = createMarker [_nameT, _location];
@@ -48,7 +48,7 @@ if(_targetTown in _villages)then{
     _trg = createTrigger ["EmptyDetector",_location,true];
     _trg setTriggerArea [700,700,700,false];
     _trg setTriggerActivation ["WEST","PRESENT", false];
-    _trg setTriggerStatements ["this","[getPos thisTrigger,300,[7,true],[2,false],[0,false],[0,false],[0,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,400] spawn JOC_monitorTown; deleteVehicle thisTrigger;",""];
+    _trg setTriggerStatements ["this","[getPos thisTrigger,250,[7,true],[2,false],[0,false],[0,false],[0,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,400] spawn JOC_monitorTown; deleteVehicle thisTrigger;",""];
     _trg setTriggerTimeout [5,5,5,true];
 
     _marker = createMarker [_nameT, _location];

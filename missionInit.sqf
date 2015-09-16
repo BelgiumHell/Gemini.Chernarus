@@ -65,7 +65,7 @@ officerArray = [];
 RydFFE_Interval = 300;	//Sets interval between possible arty calls (I hope so atleast, I didn't make the addon)
 CHVD_allowNoGrass = false; // Set 'false' if you want to disable "Low" option for terrain (default: true)
 CHVD_maxView = 12000; // Set maximum view distance (default: 12000)
-CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)  
+CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)
 
 //Public var for local scripts
 publicVariable "logisticsArray";
@@ -79,7 +79,7 @@ publicVariable "tankMultiplier";
 []spawn JOC_cacheInit;	//Dunno why I can't use a call for this
 []spawn JOC_cmdManager;
 []spawn JOC_perfLoop;
-
+/*
 //call -doesn't need a seperate thread
 []call JOC_initTowns;
 []call JOC_initAirfields;
@@ -88,4 +88,4 @@ publicVariable "tankMultiplier";
 []call JOC_initArty;	//Uses AA
 []call JOC_initRadio;	//Uses AA
 []call JOC_initPatrols;
-[]call JOC_initMines;
+[]call JOC_initMines;*/

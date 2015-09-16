@@ -40,6 +40,7 @@ if((_car select 0) > 0)then{
 		_veh = [_locationS,(carPool call BIS_fnc_selectRandom)] call Zen_SpawnVehicle;
 		createVehicleCrew _veh;
 		zeusMod addCuratorEditableObjects [[_veh],false];
+		zeusMod addCuratorEditableObjects [(crew _veh),false];
 		_count = (_veh emptyPositions "cargo");
 		_groupV = [[0,0,0], east, "infantry", (_count - 1),"Basic"] call Zen_SpawnInfantry;
 		_units = (units _groupV);

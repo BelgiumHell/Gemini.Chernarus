@@ -21,7 +21,7 @@ if(_vehicletype == "RHS_AH64D_wd_AA")then{
 };
 
 //Medical heli
-if(_vehicletype == "RHS_UH60M_MEV")then{
+if(_vehicletype == "RHS_UH60M_MEV" or _vehicletype == "rhsusf_m113_usarmy_medical" or _vehicletype == "B_Truck_0")then{
     _vehicle setVariable ["ace_medical_medicClass", 1];
 };
 

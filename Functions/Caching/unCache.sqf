@@ -23,10 +23,18 @@ _list = (list _trg);
 				_arg = ([_x] + (_x getVariable "patrol"));
 				_arg spawn Zen_OrderVehiclePatrol;
 			}else{
-				_arg = ([_group] + (_x getVariable "patrol"));
+				_arg = ([group _x] + (_x getVariable "patrol"));
 				_arg spawn Zen_OrderInfantryPatrol;
 			};
 		};
+	};
+	if(!(_x isKindOf "man"))then{
+		{
+			if(!(_x getVariable "JOC_disable_caching"))then{
+				_x enableSimulationGlobal true;
+				_x hideObjectGlobal false;
+			};
+		}forEach (crew _x);
 	};
 	_x enableSimulationGlobal true; _x hideObjectGlobal false;
 }forEach _list;
