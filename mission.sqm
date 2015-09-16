@@ -2086,7 +2086,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=398;
+		items=401;
 		class Item0
 		{
 			position[]={689.72211,6.0638437,1797.7275};
@@ -5858,6 +5858,35 @@ class Mission
 			skill=0.60000002;
 			text="garage_spawner_med";
 			init="this enableSimulationGlobal false;";
+		};
+		class Item398
+		{
+			position[]={667.43811,6.0650091,1778.0951};
+			azimut=147;
+			id=478;
+			side="EMPTY";
+			vehicle="Land_HBarrierBig_F";
+			skill=0.60000002;
+		};
+		class Item399
+		{
+			position[]={663.93365,6.0661235,1775.8878};
+			azimut=147;
+			id=479;
+			side="EMPTY";
+			vehicle="Land_HBarrierBig_F";
+			skill=0.60000002;
+		};
+		class Item400
+		{
+			position[]={660.31696,6.0655694,1772.6523};
+			azimut=57;
+			id=480;
+			side="EMPTY";
+			vehicle="Land_InfoStand_V1_F";
+			skill=0.60000002;
+			text="garage_spawner_5_1";
+			init="this enableSimulationGlobal false;_action = this addAction[""Spawn FOB"",{[{[]spawn JOC_fobSpawn},""BIS_fnc_spawn"",false,false] call BIS_fnc_MP;}];";
 		};
 	};
 	class Markers

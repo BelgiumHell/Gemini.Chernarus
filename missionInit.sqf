@@ -13,7 +13,7 @@ mineCount   = 30;   //Number of minefields
 artyCount 	= 4;	//Number of artillery batteries
 radioCount 	= 4; 	//Number of radio towers
 officerCount = 5;	//Number of officers
-tankMultiplier = 0.8; //Damage multiplier for tanks;
+fobLimit 	= 5;	//Limitamount of fobs at the same time
 //Classnames
 infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
 sfPool       = [];
@@ -60,6 +60,7 @@ jetTargets = [];
 groups = [];
 groundArray = [];
 officerArray = [];
+fobTrucks = [];
 
 //Script vars
 RydFFE_Interval = 300;	//Sets interval between possible arty calls (I hope so atleast, I didn't make the addon)
