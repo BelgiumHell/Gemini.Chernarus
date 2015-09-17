@@ -10,9 +10,8 @@ _truck = _this select 0;
 	_x action ["eject", _truck]
 } forEach (crew _truck);
 
-_spawnPos= [(getPos _truck),3,((direction _truck) + 90)] call Zen_ExtendPosition;
 _name = [6] call Zen_StringGenerateRandom;
-_marker = createMarker [_name, (_spawnPos)];
+_marker = createMarker [_name, (getPos _truck)];
 _marker setMarkerType "b_support";
 _marker setMarkerText "FOB";
 

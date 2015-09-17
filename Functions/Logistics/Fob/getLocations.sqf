@@ -6,7 +6,7 @@ _array = [];
 {
 	_arrayN = [
 		(getPos _x),
-		{player setPos (_this select 0)},
+		{player setPos ([(getPos (_this select 0)),3,((direction (_this select 0)) + 90)] call Zen_ExtendPosition;},
 		"FOB",
 		"Relocate here",
 		"",

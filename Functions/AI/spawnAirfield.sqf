@@ -5,12 +5,13 @@ _marker = _this select 0;
 _id = _this select 1;
 _location = getMarkerPos _marker;
 _size = getMarkerSize _marker;
+_dir = (markerDir _marker);
 
 //Create activation trigger
 _trg = createTrigger ["EmptyDetector",_location,true];
 _trg setTriggerArea [(_size select 0)*3.5,(_size select 1)*3.5,1200,false];
 _trg setTriggerActivation ["WEST","PRESENT", false];
-_trg setTriggerStatements ["this","[getPos thisTrigger,1600,[11,true],[4,false],[0,false],[3,false],[2,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;deleteVehicle thisTrigger;",""];
+_trg setTriggerStatements ["this","[getPos thisTrigger,([(triggerArea thisTrigger select 0)*0.4,(triggerArea thisTrigger select 1)*0.4,getDir thisTrigger]),[11,true],[4,false],[0,false],[3,false],[2,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;deleteVehicle thisTrigger;",""];
 _trg setTriggerTimeout [5,5,5,true];
 _trg setDir (markerDir _marker);
 
@@ -55,25 +56,25 @@ while{_ok == 0}do{
 	_count = _count + 1;
 };
 
-//Create activation trigger
+//Create object triggers
 _trgO = createTrigger ["EmptyDetector",_location,true];
 _trgO setTriggerArea [(_size select 0),(_size select 1),1200,false];
 _trgO setTriggerActivation ["EAST","PRESENT", false];
 _trgO setTriggerStatements ["this","",""];
 _trgO setTriggerTimeout [5,5,5,true];
-_trgO setDir (markerDir _marker);
+_trgO setDir _dir;
 
 _trgB = createTrigger ["EmptyDetector",_location,true];
 _trgB setTriggerArea [(_size select 0),(_size select 1),1200,false];
 _trgB setTriggerActivation ["WEST","PRESENT", false];
 _trgB setTriggerStatements ["this","",""];
 _trgB setTriggerTimeout [5,5,5,true];
-_trgB setDir (markerDir _marker);
+_trgB setDir _dir;
 
-waitUntil{sleep 30;list _trgO >= 1};
+waitUntil{sleep 30;(count (list _trgO)) >= 1};
 
-while{list _trgO <= 5}do{
-	if(list _trgB >= 5)then{
+while{(count (list _trgO)) >= 5}do{
+	if((count (list _trgB)) >= 5)then{
 		[airfieldOccup,_id,cont] call Zen_ArrayInsert;
 		sleep 30;
 	};
