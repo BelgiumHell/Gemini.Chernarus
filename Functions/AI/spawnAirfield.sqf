@@ -75,8 +75,10 @@ waitUntil{sleep 30;(count (list _trgO)) >= 1};
 
 while{(count (list _trgO)) >= 5}do{
 	if((count (list _trgB)) >= 5)then{
-		[airfieldOccup,_id,cont] call Zen_ArrayInsert;
+		[airfieldOccup,_id,true] call Zen_ArrayInsert;
 		sleep 30;
+	}else{
+		[airfieldOccup,_id,false] call Zen_ArrayInsert;
 	};
 };
 

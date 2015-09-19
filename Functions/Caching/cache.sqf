@@ -10,7 +10,6 @@ _trg setTriggerActivation ["EAST","PRESENT", false];
 
 sleep 5;
 _list = (list _trg);
-hint "cch";
 listT = _list;
 
 {

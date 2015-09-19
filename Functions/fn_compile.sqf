@@ -36,6 +36,9 @@ JOC_initMines = compileFinal preprocessFileLineNumbers "Functions\Init\initMines
 JOC_initArty = compileFinal preprocessFileLineNumbers "Functions\Init\initArty.sqf";
 JOC_initRadio = compileFinal preprocessFileLineNumbers "Functions\Init\initRadio.sqf";
 JOC_initPatrols = compileFinal preprocessFileLineNumbers "Functions\Init\initPatrols.sqf";
+JOC_initDepot = compileFinal preprocessFileLineNumbers "Functions\Init\initDepot.sqf";
+JOC_initPlayerBase = compileFinal preprocessFileLineNumbers "Functions\Init\initPlayerBase.sqf";
+JOC_initBases = compileFinal preprocessFileLineNumbers "Functions\Init\initBases.sqf";
 
 //Loadouts
 JOC_arsenal = compileFinal preprocessFileLineNumbers "Functions\Loadouts\arsenal.sqf";
@@ -44,6 +47,7 @@ JOC_loadoutMaster = compileFinal preprocessFileLineNumbers "Functions\Loadouts\m
 //Logistics
 #include "Logistics\fn_logistics_compile.sqf";
 JOC_crateInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\crateInit.sqf";
+JOC_spawnComposition = compileFinal preprocessFileLineNumbers "Functions\Logistics\spawnComposition.sqf";
 
 //Performance
 JOC_perfLoop = compileFinal preprocessFileLineNumbers "Functions\Performance\loop.sqf";
@@ -63,6 +67,8 @@ JOC_taskCrash = compileFinal preprocessFileLineNumbers "Functions\Tasks\crashedC
 JOC_taskKill = compileFinal preprocessFileLineNumbers "Functions\Tasks\kill.sqf";
 JOC_taskRescue = compileFinal preprocessFileLineNumbers "Functions\Tasks\rescue.sqf";
 JOC_taskUav = compileFinal preprocessFileLineNumbers "Functions\Tasks\uav.sqf";
+JOC_getMainTasks = compileFinal preprocessFileLineNumbers "Functions\Tasks\getMainTasks.sqf";
+JOC_setMainTask = compileFinal preprocessFileLineNumbers "Functions\Tasks\setMainTask.sqf";
 
 //Towns
 JOC_occupy = compileFinal preprocessFileLineNumbers "Functions\Towns\occupy.sqf";

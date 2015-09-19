@@ -4,18 +4,21 @@
 _array = [];
 
 {
-	_arrayN = [
-		(getPos _x),
-		{player setPos ([(getPos (_this select 0)),3,((direction (_this select 0)) + 90)] call Zen_ExtendPosition;},
-		"FOB",
-		"Relocate here",
-		"",
-		"",
-		1,
-		[]
-	];
+	_pos = [(getPos _x),3,((direction _x) + 90)] call Zen_ExtendPosition;
+	if(locked _x != 0 and locked _x != 1)then{
+		_arrayN = [
+			_pos,
+			{player setPos (_this select 0);},
+			"FOB",
+			"Relocate here",
+			"",
+			"",
+			1,
+			[]
+		];
 
-	_array = _array + [_arrayN];
+		_array = _array + [_arrayN];
+	};
 }forEach fobTrucks;
 
 _array = _array +  [[

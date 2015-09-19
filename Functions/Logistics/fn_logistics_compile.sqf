@@ -14,3 +14,6 @@ JOC_fobUndeploy = compileFinal preprocessFileLineNumbers "Functions\Logistics\Fo
 JOC_fobInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\Fob\fobInit.sqf";
 JOC_fobManager = compileFinal preprocessFileLineNumbers "Functions\Logistics\Fob\fobManager.sqf";
 JOC_fobGetLocations = compileFinal preprocessFileLineNumbers "Functions\Logistics\Fob\getLocations.sqf";
+
+//Depot
+JOC_depotSpawnObject = compileFinal preprocessFileLineNumbers "Functions\Logistics\Depot\spawnObject.sqf";

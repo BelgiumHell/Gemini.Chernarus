@@ -6,8 +6,9 @@ while{true}do{
 	_airfieldID = [false,airfieldOccup]call Zen_ValueFindInArray;
 	_mrkN = format ["mrk_heliSpawn_%1",_airfieldID];
 	_airfield = getMarkerPos _mrkN;
-	
-	_heli1 = [_airfield,(casPool call BIS_fnc_selectRandom),50] call Zen_SpawnHelicopter;
+	_airfield2 = [_airfield,40,0] call Zen_ExtendPosition;
+
+	_heli1 = [_airfield2,(casPool call BIS_fnc_selectRandom),50] call Zen_SpawnHelicopter;
 	zeusMod addCuratorEditableObjects [[_heli1],false];
 	zeusMod addCuratorEditableObjects [(crew _heli1),false];
 	_heli2 = [_airfield,(airPool call BIS_fnc_selectRandom),0] call Zen_SpawnHelicopter;
@@ -19,10 +20,10 @@ while{true}do{
 	zeusMod addCuratorEditableObjects [(crew _heli2),false];
 	zeusMod addCuratorEditableObjects [(units _groupV),false];
 	[_groupV,_heli2] spawn Zen_MoveInVehicle;
-	[[_heli1,_heli2],"mrk_area",[],[0,360],"full"]spawn Zen_OrderVehiclePatrol;
-	
+	[[_heli1,_heli2],"mrk_area",blackMarkers,[0,360],"full"]spawn Zen_OrderVehiclePatrol;
+
 	[_heli2,_groupV]spawn JOC_cmdHeliMonitor;
-	
+
 	waitUntil{sleep 60; (((fuel _heli1 <= 0.1) or (fuel _heli2 <= 0.1)) or ((!alive _heli1) and (!alive _heli2)))};
 	if((fuel _heli1 <= 0.1) or (fuel _heli2 <= 0.1))then{
 		[_heli1, _airfield,"full",100,false,true]spawn Zen_OrderHelicopterLand;
@@ -30,6 +31,6 @@ while{true}do{
 		[_heli2, _airfield,"full",100,false,true]spawn Zen_OrderHelicopterLand;
 		_heli2 addEventHandler["LandedTouchDown",{deleteVehicle ((crew (_this select 0)) select 0);deleteVehicle (_this select 0);}];
 	};
-	
+
 	sleep 1200;
 };

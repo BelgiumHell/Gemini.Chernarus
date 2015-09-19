@@ -1,7 +1,7 @@
 if(side player == west)then{
 	player setPosASL getPosASL respawn_obj;
 };
-if(side == east)then{
+if(side player == east)then{
 	_airfieldID = [false,airfieldOccup]call Zen_ValueFindInArray;
 	_mrkN = format ["mrk_infSpawn_%1",_airfieldID];
 	_respawnPos = getMarkerPos _mrkN;

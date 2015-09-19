@@ -63,14 +63,12 @@ officerArray = [];
 fobTrucks = [];
 
 //Script vars
-RydFFE_Interval = 300;	//Sets interval between possible arty calls (I hope so atleast, I didn't make the addon)
 CHVD_allowNoGrass = false; // Set 'false' if you want to disable "Low" option for terrain (default: true)
 CHVD_maxView = 12000; // Set maximum view distance (default: 12000)
 CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)
 
 //Public var for local scripts
 publicVariable "logisticsArray";
-publicVariable "tankMultiplier";
 
 //Run init scripts
 //spawn -needs a seperate thread to work
@@ -82,9 +80,11 @@ publicVariable "tankMultiplier";
 []spawn JOC_perfLoop;
 
 //call -doesn't need a seperate thread
+[]call JOC_initDepot;
 []call JOC_initTowns;
+
 []call JOC_initAirfields;
-//[]call JOC_initBases; -not implemented
+//[]call JOC_initBases; -need compositions
 []call JOC_initAA;
 []call JOC_initArty;	//Uses AA
 []call JOC_initRadio;	//Uses AA
