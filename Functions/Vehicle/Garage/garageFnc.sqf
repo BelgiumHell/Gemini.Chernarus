@@ -31,10 +31,8 @@ if(_dis > 5)then{}else{
 	};
 
 	[_veh]spawn JOC_vehInit;
-
-	[[[_veh],{(_this select 0) setVehicleLock "LOCKED";}],"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
-	hint format["Vehicle will be ready in %1 minute(s)", (_time/60)];
+	_spawnObj setVariable["unable",true];
+	hint format["Pad will be available in %1 minutes", (_time/60)];
 	sleep _time;
-	[[[_veh],{(_this select 0) setVehicleLock "UNLOCKED";}],"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
-	hint "Vehicle is ready";
+	_spawnObj setVariable["unable",false];
 };

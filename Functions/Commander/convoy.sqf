@@ -53,9 +53,6 @@ _crew = [];
 }forEach _convoyO;
 _group = group (_convoyO select 0);
 
-zeusMod addCuratorEditableObjects [_convoyO,false];
-zeusMod addCuratorEditableObjects [_crew,false];
-
 _group setFormation "COLUMN";
 _group setBehaviour "SAFE";
 _group move _targetP;

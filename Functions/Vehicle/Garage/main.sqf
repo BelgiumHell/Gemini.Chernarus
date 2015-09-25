@@ -9,6 +9,7 @@ _medA = ["RHS_UH60M_MEV","rhsusf_m113_usarmy_medical","B_Truck_01_medical_F"];
 
 garage_spawn_0 setVariable["count",0];
 garage_spawner_0 addAction ["Request vehicle",{
+	if(garage_spawn_0 getVariable "unable")exitWith{hint "Pad not available"};
 	_veh = (nearestObjects [(getPos garage_spawn_0),["All"],3] - [garage_spawn_0]);
 	if(((count _veh) >= 1) or ((garage_spawn_0 getVariable "count") >= 1))then{
 		hint "Pad not clear or max vehicles reached";
@@ -23,6 +24,7 @@ garage_spawner_0 addAction ["Request vehicle",{
 
 garage_spawn_1 setVariable["count",0];
 garage_spawner_1 addAction ["Request vehicle",{
+	if(garage_spawn_1 getVariable "unable")exitWith{hint "Pad not available"};
 	_veh = (nearestObjects [(getPos garage_spawn_1),["All"],3] - [garage_spawn_1]);
 	if(((count _veh) >= 1) or ((garage_spawn_1 getVariable "count") >= 1))then{
 		hint "Pad not clear or max vehicles reached";
@@ -37,6 +39,7 @@ garage_spawner_1 addAction ["Request vehicle",{
 
 garage_spawn_2 setVariable["count",0];
 garage_spawner_2 addAction ["Request vehicle",{
+	if(garage_spawn_2 getVariable "unable")exitWith{hint "Pad not available"};
 	_veh = (nearestObjects [(getPos garage_spawn_2),["All"],3] - [garage_spawn_2]);
 	if(((count _veh) >= 1) or ((garage_spawn_2 getVariable "count") >= 1))then{
 		hint "Pad not clear or max vehicles reached";
@@ -51,6 +54,7 @@ garage_spawner_2 addAction ["Request vehicle",{
 
 garage_spawn_3 setVariable["count",0];
 garage_spawner_3 addAction ["Request vehicle",{
+	if(garage_spawn_3 getVariable "unable")exitWith{hint "Pad not available"};
 	_veh = (nearestObjects [(getPos garage_spawn_3),["All"],3] - [garage_spawn_3]);
 	if(((count _veh) >= 1) or ((garage_spawn_3 getVariable "count") >= 1))then{
 		hint "Pad not clear or max vehicles reached";
@@ -65,6 +69,7 @@ garage_spawner_3 addAction ["Request vehicle",{
 
 garage_spawn_4 setVariable["count",0];
 garage_spawner_4 addAction ["Request vehicle",{
+	if(garage_spawn_4 getVariable "unable")exitWith{hint "Pad not available"};
 	_veh = (nearestObjects [(getPos garage_spawn_4),["All"],3] - [garage_spawn_4]);
 	if(((count _veh) >= 1) or ((garage_spawn_4 getVariable "count") >= 1))then{
 		hint "Pad not clear or max vehicles reached";
@@ -79,6 +84,7 @@ garage_spawner_4 addAction ["Request vehicle",{
 
 garage_spawn_5 setVariable["count",0];
 garage_spawner_5 addAction ["Request vehicle",{
+	if(garage_spawn_5 getVariable "unable")exitWith{hint "Pad not available"};
 	_veh = (nearestObjects [(getPos garage_spawn_5),["All"],3] - [garage_spawn_5]);
 	if(((count _veh) >= 1) or ((garage_spawn_5 getVariable "count") >= 12))then{
 		hint "Pad not clear or max vehicles reached";
@@ -93,6 +99,7 @@ garage_spawner_5 addAction ["Request vehicle",{
 
 garage_spawn_6 setVariable["count",0];
 garage_spawner_6 addAction ["Request vehicle",{
+	if(garage_spawn_6 getVariable "unable")exitWith{hint "Pad not available"};
 	_veh = (nearestObjects [(getPos garage_spawn_6),["All"],3] - [garage_spawn_6]);
 	if(((count _veh) >= 1) or ((garage_spawn_6 getVariable "count") >= 4))then{
 		hint "Pad not clear or max vehicles reached";
@@ -107,6 +114,7 @@ garage_spawner_6 addAction ["Request vehicle",{
 
 garage_spawn_med setVariable["count",0];
 garage_spawner_med addAction ["Request vehicle",{
+	if(garage_spawn_med getVariable "unable")exitWith{hint "Pad not available"};
 	_veh = (nearestObjects [(getPos garage_spawn_med),["All"],3] - [garage_spawn_med]);
 	if(((count _veh) >= 1) or ((garage_spawn_med getVariable "count") >= 4))then{
 		hint "Pad not clear or max vehicles reached";

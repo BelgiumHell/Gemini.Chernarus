@@ -33,7 +33,6 @@ if((_inf select 0) > 0)then{
 		_locationS = [_spawnMarkerName,0,0,1] call Zen_FindGroundPosition;
 		_locationS = [_locationS,1,1] call Zen_ExtendPosition;
 		_groupV = [_locationS, east, "infantry", 4,"Basic"] call Zen_SpawnInfantry;
-		zeusMod addCuratorEditableObjects [(units _groupV),false];
 		if(_inf select 1)then{
 			[_groupV, _spawnMarkerName, [], [0,360],"limited","safe"] spawn Zen_OrderInfantryPatrol;
 			(leader _groupV) setVariable ["patrol",[_spawnMarkerName, [],[0,360],"limited","safe"],true];
@@ -49,12 +48,9 @@ if((_car select 0) > 0)then{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
 		_veh = [_locationS,(carPool call BIS_fnc_selectRandom)] call Zen_SpawnVehicle;
 		createVehicleCrew _veh;
-		zeusMod addCuratorEditableObjects [[_veh],false];
-		zeusMod addCuratorEditableObjects [(crew _veh),false];
 		_count = (_veh emptyPositions "cargo");
 		_groupV = [[0,0,0], east, "infantry", (_count - 1),"Basic"] call Zen_SpawnInfantry;
 		_units = (units _groupV);
-		zeusMod addCuratorEditableObjects [(units _groupV),false];
 		[_units,_veh] spawn Zen_MoveInVehicle;
 		if(_car select 1)then{
 			[_veh, _spawnMarkerName, [], [0,360],"limited",true] spawn Zen_OrderVehiclePatrol;
@@ -71,8 +67,6 @@ if((_apc select 0) > 0)then{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
 		_veh = [_locationS,(apcPool call BIS_fnc_selectRandom)] call Zen_SpawnVehicle;
     	createVehicleCrew _veh;
-		zeusMod addCuratorEditableObjects [[_veh],false];
-		zeusMod addCuratorEditableObjects [(crew _veh),false];
 		if(_apc select 1)then{
 			[_veh, _spawnMarkerName, [], [0,360],"limited",true] spawn Zen_OrderVehiclePatrol;
 			_veh setVariable ["patrol",[_spawnMarkerName, [], [0,360],"limited",true],true];
@@ -88,8 +82,6 @@ if((_ifv select 0) > 0)then{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
 		_veh = [_locationS,(ifvPool call BIS_fnc_selectRandom)] call Zen_SpawnVehicle;
     	createVehicleCrew _veh;
-		zeusMod addCuratorEditableObjects [[_veh],false];
-		zeusMod addCuratorEditableObjects [(crew _veh),false];
 		if(_ifv select 1)then{
 			[_veh, _spawnMarkerName, [], [0,360],"limited",true] spawn Zen_OrderVehiclePatrol;
 			_veh setVariable ["patrol",[_spawnMarkerName, [], [0,360],"limited",true],true];
@@ -105,8 +97,6 @@ if((_tank select 0) > 0)then{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
 		_veh = [_locationS,(tankPool call BIS_fnc_selectRandom)] call Zen_SpawnVehicle;
     	createVehicleCrew _veh;
-		zeusMod addCuratorEditableObjects [[_veh],false];
-		zeusMod addCuratorEditableObjects [(crew _veh),false];
 		if(_tank select 1)then{
 			[_veh, _spawnMarkerName, [], [0,360],"limited",true] spawn Zen_OrderVehiclePatrol;
 			_veh setVariable ["patrol",[_spawnMarkerName, [], [0,360],"limited",true],true];
@@ -131,8 +121,6 @@ if(_heliCount > 0)then{
 			_pool = casPool
 		};
 		_heli = [_locationS,(_pool call BIS_fnc_selectRandom),50] call Zen_SpawnHelicopter;
-		zeusMod addCuratorEditableObjects [[_heli],false];
-		zeusMod addCuratorEditableObjects [(crew _heli),false];
 		_j = _j + 1;
 	};
 };
@@ -145,8 +133,6 @@ if(_boatCount > 0)then{
 	while{_j < _boatCount} do{
 		_locationS = [_spawnMarkerName,0,0,2] call Zen_FindGroundPosition;
 		_boatV = [_locationS,["O_Boat_Armed_01_hmg_F"]] call Zen_SpawnBoat;
-		zeusMod addCuratorEditableObjects [[_boatV],false];
-		zeusMod addCuratorEditableObjects [(crew _boatV),false];
 		if(_boatPatrol)then{
 			[_boatV, _spawnMarkerName, []] spawn Zen_OrderBoatPatrol;
 		};

@@ -19,7 +19,7 @@ _textName = format["%1 %2",_rank,_name];
 
 Sleep 10;
 
-0=["Gemini",_textDate,_textName,"SE Chernarus"] spawn BIS_fnc_infoText;
+0=["Gemini",_textDate,_textName,"Chernarus"] spawn BIS_fnc_infoText;
 
 []spawn JOC_playerLoop;
 []spawn JOC_playerClick;

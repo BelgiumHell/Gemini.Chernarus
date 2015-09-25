@@ -1,6 +1,6 @@
 author = "Jochem";
 OnLoadName = "Gemini";
-OnLoadMission = "WIP, about 60% complete";
+OnLoadMission = "Please report any bugs to github";
 respawn = 3;
 respawndelay = 5;
 respawnOnStart = 1;
@@ -32,22 +32,13 @@ class CfgFunctions
 class CfgSounds
 {
 	sounds[] = {};
-	class AGM_CookOff
+	class heliSpeakerSound
 	{
 		// how the sound is referred to in the editor (e.g. trigger effects)
-		name = "Cook-Off";
+		name = "speakersForHeli";
 		// filename, volume, pitch
-		sound[] = {"Data\Sounds\cookoff.wav", 1, 1};
+		sound[] = {"Data\Sounds\heliSpeakerSound.wav", 1, 1};
 		// subtitle delay in seconds, subtitle text
-		titles[] = {1, "*wolf growls*"};
+		titles[] = {};
 	};
-};
-
-class CfgSFX {
-  class AGM_CookOff {
-    name = "Cook-Off";
-    sounds[] = {"cookoff"};
-    cookoff[] = {"Data\Sounds\cookoff.wav",6,1.8,400,1,0,0,0};
-    empty[] = {"",0,0,0,0,0,0,0};
-  };
 };

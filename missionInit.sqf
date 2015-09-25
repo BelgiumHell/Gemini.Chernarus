@@ -31,11 +31,25 @@ capitalName = "Chernogorsk";	//Name of capital
 blackTowns      = [];  //Blacklist towns
 blackMarkers = ["mrk_safeZone"];
 airfieldMarkers = ["mrk_airfield_0","mrk_airfield_1","mrk_airfield_2"];   //Markers for airfields
+
+"mrk_area" setMarkerPos [worldSize/2,worldSize/2];
+"mrk_area" setMarkerSize [worldSize/2,worldSize/2];
 "mrk_area" setMarkerAlpha 0;
+
+"mrk_aaZone_0" setMarkerPos [worldSize*0.25,worldSize*0.25];
+"mrk_aaZone_0" setMarkerSize [worldSize/4,worldSize/4];
 "mrk_aaZone_0" setMarkerAlpha 0;
+"mrk_aaZone_1" setMarkerPos [worldSize*0.75,worldSize*0.25];
+"mrk_aaZone_1" setMarkerSize [worldSize/4,worldSize/4];
 "mrk_aaZone_1" setMarkerAlpha 0;
+"mrk_aaZone_2" setMarkerPos [worldSize*0.25,worldSize*0.75];
+"mrk_aaZone_2" setMarkerSize [worldSize/4,worldSize/4];
 "mrk_aaZone_2" setMarkerAlpha 0;
+"mrk_aaZone_3" setMarkerPos [worldSize*0.75,worldSize*0.75];
+"mrk_aaZone_3" setMarkerSize [worldSize/4,worldSize/4];
 "mrk_aaZone_3" setMarkerAlpha 0;
+
+
 //Objects
 leaderArray = [cmd1,cmd2,a1,b1,c1,h1,r1,anv1,s1,v1,rip1];
 logisticsArray = ["l1","l2","l3","l4"];
@@ -82,9 +96,8 @@ publicVariable "logisticsArray";
 //call -doesn't need a seperate thread
 []call JOC_initDepot;
 []call JOC_initTowns;
-
 []call JOC_initAirfields;
-//[]call JOC_initBases; -need compositions
+//[]call JOC_initBases; -needs compositions
 []call JOC_initAA;
 []call JOC_initArty;	//Uses AA
 []call JOC_initRadio;	//Uses AA

@@ -53,6 +53,7 @@ JOC_spawnComposition = compileFinal preprocessFileLineNumbers "Functions\Logisti
 JOC_perfLoop = compileFinal preprocessFileLineNumbers "Functions\Performance\loop.sqf";
 JOC_objectRemove = compileFinal preprocessFileLineNumbers "Functions\Performance\objectRemove.sqf";
 JOC_itemRemove = compileFinal preprocessFileLineNumbers "Functions\Performance\itemRemove.sqf";
+JOC_addToZeus = compileFinal preprocessFileLineNumbers "Functions\Performance\addToZeus.sqf";
 
 //Player
 JOC_playerLoop = compileFinal preprocessFileLineNumbers "Functions\Player\playerLoop.sqf";

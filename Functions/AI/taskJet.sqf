@@ -7,10 +7,13 @@
 private ["_targetA"];
 _targetA = _this select 0;
 
-//Check if active
-if(jetActive)then{
-	jetTargets = jetTargets + _targetA;
-};
+//Check if already listed
+{
+	if(!(_x in jetTargets))then{
+    	jetTargets pushBack _x;
+	};
+} forEach _targetA;
+
 if(!(jetActive))then{
 	jetActive = true;
 
