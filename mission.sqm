@@ -2224,7 +2224,7 @@ class Mission
 					vehicle="Logic";
 					leader=1;
 					skill=0.60000002;
-					init="_veh = ""Land_Radar_Small_F"" createVehicle getPos this;";
+					init="if(!isServer)exitWith{};_veh = ""Land_Radar_Small_F"" createVehicle getPos this;";
 				};
 			};
 		};
@@ -2242,7 +2242,7 @@ class Mission
 					vehicle="Logic";
 					leader=1;
 					skill=0.60000002;
-					init="_veh = ""Land_Radar_Small_F"" createVehicle getPos this;";
+					init="if(!isServer)exitWith{};_veh = ""Land_Radar_Small_F"" createVehicle getPos this;";
 				};
 			};
 		};
@@ -2260,7 +2260,7 @@ class Mission
 					vehicle="Logic";
 					leader=1;
 					skill=0.60000002;
-					init="_veh = ""Land_Radar_Small_F"" createVehicle getPos this;";
+					init="if(!isServer)exitWith{};_veh = ""Land_Radar_Small_F"" createVehicle getPos this; ";
 				};
 			};
 		};
@@ -2278,7 +2278,7 @@ class Mission
 					vehicle="Logic";
 					leader=1;
 					skill=0.60000002;
-					init="_veh = ""Land_Radar_Small_F"" createVehicle getPos this;";
+					init="if(!isServer)exitWith{};_veh = ""Land_Radar_Small_F"" createVehicle getPos this;";
 				};
 			};
 		};
@@ -7834,7 +7834,7 @@ class Mission
 		};
 		class Item9
 		{
-			position[]={9410.416,47.092777,21262.498};
+			position[]={8997.499,17.987202,21368.871};
 			name="mrk_jetSpawn_2";
 			text="jetSpawn";
 			type="Empty";
@@ -8005,7 +8005,7 @@ class Mission
 		};
 		class Item27
 		{
-			position[]={15102.769,17.91,17252.922};
+			position[]={15106.064,17.91,17256.611};
 			name="mrk_airfield_0_hangar_6";
 			text="hangar";
 			type="Empty";
@@ -8015,7 +8015,7 @@ class Mission
 		};
 		class Item28
 		{
-			position[]={15085.594,17.91,17234.98};
+			position[]={15084.26,17.91,17233.252};
 			name="mrk_airfield_0_hangar_7";
 			text="hangar";
 			type="Empty";
@@ -8075,7 +8075,7 @@ class Mission
 		};
 		class Item34
 		{
-			position[]={9296.9492,33.014469,21232.672};
+			position[]={9301.1113,16.64838,21513.551};
 			name="mrk_airfield_2_aa_0";
 			text="aa";
 			type="Empty";
@@ -8293,7 +8293,7 @@ class Mission
 		};
 		class Item62
 		{
-			position[]={20799.313,29.090904,7228.478};
+			position[]={20799.494,29.0991,7227.6157};
 			name="mrk_airfield_3_hangar_0";
 			text="hangar";
 			type="Empty";

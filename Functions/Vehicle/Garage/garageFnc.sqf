@@ -26,10 +26,9 @@ if(_dis > 4)then{hint "No vehicle spawned";}else{
 	_codeE = [_veh]call BIS_fnc_exportVehicle;
 	deleteVehicle _veh;
 	_codeS = [_codeE,"position player","(_this select 0)",true] call Zen_StringFindReplace;
+	_codeS = _codeS + " _veh";
 	_code = compile _codeS;
-	[(getPos _spawnObj)]call _code;
-
-	_veh = nearestObject [_spawnObj, "AllVehicles"];
+	_veh = [(getPos _spawnObj)]call _code;
 
 	{
 		deleteVehicle _x;

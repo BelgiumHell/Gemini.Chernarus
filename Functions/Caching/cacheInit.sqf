@@ -13,7 +13,7 @@ _location = _startloc;
 while {_xA < _hor}do{
 	while {_yA < _vert}do{
 		_trg = createTrigger ["EmptyDetector",_location,true];
-  	 	_trg setTriggerArea [4000,4000,4000,true];
+  	 	_trg setTriggerArea [2500,2500,2500,true];
  	    _trg setTriggerActivation ["WEST","PRESENT", true];
   		_trg setTriggerStatements ["this","[getPos thisTrigger] spawn JOC_unCache","[getPos thisTrigger] spawn JOC_cache"];
 		_trg setTriggerTimeout [5,5,5,true];

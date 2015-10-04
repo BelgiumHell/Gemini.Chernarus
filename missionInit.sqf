@@ -105,5 +105,5 @@ publicVariable "fobTrucks";
 []call JOC_initAA;
 []call JOC_initArty;	//Uses AA
 []call JOC_initRadio;	//Uses AA
-[]call JOC_initPatrols;
+//[]call JOC_initPatrols;
 []call JOC_initMines;
