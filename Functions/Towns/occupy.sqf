@@ -4,10 +4,10 @@
 _ok = 0;
 
 //Get location of town
-_capitals = nearestLocations [getPosATL player, ["NameCityCapital"], 35000];
+_capitals = nearestLocations [(getMarkerPos "mrk_area"), ["NameCityCapital"], worldSize*2.0^0.5];
 _capitalName = capitalName;
-_towns = nearestLocations [getPosATL player, ["NameCity"], 35000];
-_villages = nearestLocations [getPosATL player, ["NameVillage"], 35000];
+_towns = nearestLocations [(getMarkerPos "mrk_area"), ["NameCity"], worldSize*2.0^0.5];
+_villages = nearestLocations [(getMarkerPos "mrk_area"), ["NameVillage"], worldSize*2.0^0.5];
 
 
 _targetTown = 0;

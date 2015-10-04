@@ -8,7 +8,7 @@ onMapSingleClick{
 	_groupIdG = "";
 	_group = 0;
 	_position = _pos;
-	_markers = (allMapMarkers - opTownMarkers);
+	_markers = allMapMarkers;
 	{
 		_distance = ((getMarkerPos _x) distance _position);
 		if((_distance < 10) and (_distance < _prevDis))then{

@@ -6,6 +6,6 @@ _j = 0;
 while{_j < townCount}do{
     [] spawn JOC_occupy;
     _j = _j + 1;
-    Sleep 0.01;
+    Sleep 0.1;
 };
 [] call JOC_indTown;

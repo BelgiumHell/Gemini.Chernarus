@@ -11,12 +11,10 @@ call compile preprocessFile "Baked_AIS\Baked_AIS_init.sqf";
 // Tested with ArmA 3 <1.50>
 
 enableSaving [false, false];
-eastHQ = createCenter east;
 
 // Execution stops until the mission begins (past briefing), do not delete this line
 sleep 1;
 
-// All clients stop executing here, do not delete this line
-if (!isServer) exitWith {};
-
+if(!isServer)exitWith{};
+    
 []execVM "missionInit.sqf";

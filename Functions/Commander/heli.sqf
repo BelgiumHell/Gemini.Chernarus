@@ -19,6 +19,12 @@ while{true}do{
 
 	[_heli2,_groupV]spawn JOC_cmdHeliMonitor;
 
+	{
+		_x setVariable ["JOC_disable_caching",true,true];
+		_name = [10] call Zen_StringGenerateRandom;
+		_x setVehicleVarName _name;
+	}forEach _groupV;
+
 	waitUntil{sleep 60; (((fuel _heli1 <= 0.1) or (fuel _heli2 <= 0.1)) or ((!alive _heli1) and (!alive _heli2)))};
 	if((fuel _heli1 <= 0.1) or (fuel _heli2 <= 0.1))then{
 		[_heli1, _airfield,"full",100,false,true]spawn Zen_OrderHelicopterLand;

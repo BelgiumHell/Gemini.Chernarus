@@ -19,7 +19,7 @@ _group = _this select 0;
 			_x setVehicleVarName _name;
 		}forEach (crew _x);
 	};
-}forEach _list;
+}forEach (units _group);
 
 {
 	if(!(_x getVariable "JOC_disable_caching"))then{

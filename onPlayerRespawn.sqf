@@ -8,6 +8,7 @@ if(side player == east)then{
 	player setPosASL getPosASL _respawnPos;
 };
 
+[]spawn JOC_playerLoop;
 zeusMod addCuratorEditableObjects [[player],false];
 cduEnabled = false;
 //[]spawn JOC_loadoutMaster;

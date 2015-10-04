@@ -1,8 +1,6 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-0=["Keep calm and play your role",0,0,10] spawn BIS_fnc_dynamicText;
-
 //intro text
 _date = date;
 _year = _date select 0;
@@ -16,12 +14,21 @@ _name = name player;
 
 _textDate = format["%3/%2/%1 - %4:%5",_year,_month,_day,_hour,_minute];
 _textName = format["%1 %2",_rank,_name];
+sleep 1;
 
-Sleep 10;
+[
+	[
+		["Gemini","<t align = 'center' shadow = '1' size = '0.6'>%1</t><br/>"],
+		[_textDate,"<t align = 'center' shadow = '1' size = '0.6'>%1</t><br/>"],
+		[_textName,"<t align = 'center' shadow = '1' size = '0.6'>%1</t><br/>"],
+        ["Molos airfield, NATO HQ","<t align = 'center' shadow = '1' size = '0.6'>%1</t><br/>"],
+        [worldName,"<t align = 'center' shadow = '1' size = '0.6'>%1</t>",30]
+	],
+    1,
+    1,
+    "<t align = 'center' shadow = '1' size = '1.0'>%1</t>"
+] spawn BIS_fnc_typeText;
 
-0=["Gemini",_textDate,_textName,"Chernarus"] spawn BIS_fnc_infoText;
-
-[]spawn JOC_playerLoop;
 []spawn JOC_playerClick;
 []call JOC_garage;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;

@@ -1,57 +1,49 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-radarBlacklist = [];
 tankBlacklist = [];
 
-//Set radars
-_radar = 0;
-while {_radar < (aaCount / 2)} do
+//"Activate" radars
+_radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
+
 {
-	_marker = format["mrk_aaZone_%1",_radar];
-	_location = [_marker,0,[radarBlacklist + blackMarkers,["mrk_area"],[]],1,0,0,0,0,0,[1,10,50],[1,0,20]] call Zen_FindGroundPosition;
-	_dish = "rhs_p37" createVehicle _location;
-	zeusMod addCuratorEditableObjects [[_dish],false];
-
-	[_dish] spawn JOC_radar;
-
-	_nameM = [5] call Zen_StringGenerateRandom;
-	_marker = createMarker [_nameM, _location];
-   	_nameM setMarkerShape "ELLIPSE";
-   	_nameM setMarkerSize [3000,3000];
-    _nameM setMarkerBrush "Border";
-    _nameM setMarkerColor "ColorOPFOR";
-    _nameM setMarkerAlpha 0;
+	_location = getPos _x;
 
 	_name = [5] call Zen_StringGenerateRandom;
 	_marker = createMarker [_name, _location];
 	_name setMarkerType "o_installation";
+	_name setMarkerSize [0.65, 0.65];
 
-	[radarBlacklist,count radarBlacklist,_nameM] call Zen_ArrayInsert;
+	[_x,_name] spawn JOC_radar;
+} forEach _radars;
 
-	_radar = _radar + 1;
-};
 
 //Place AA-tanks
 _tank = 0;
-_count = 0;
+_location = [];
+aaGroup = createGroup east;
 while {_tank < aaCount} do
 {
-	if(_count == (aaCount / 2))then{_count = 0};
-	_marker = format["mrk_aaZone_%1",_count];
+	_location = [];
+	while{count _location == 0}do{
+		_pos = ["mrk_area",0,[tankBlacklist + airfieldMarkers + blackMarkers,[],[]],1,0] call Zen_FindGroundPosition;
+		_location  = _pos findEmptyPosition [0,300,"rhs_zsu234_aa"];
+	};
 
-	_location = [_marker,0,[tankBlacklist + blackMarkers,["mrk_area"],[]],1,0,0,0,0,0,[1,10,50],[1,0,20]] call Zen_FindGroundPosition;
 	_aaTank = "rhs_zsu234_aa" createVehicle _location;
 	createVehicleCrew _aaTank;
 	_aaTank setFuel 0;
 	_aaTank addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	_aaTank setVariable["JOC_caching_disabled",true];
-	zeusMod addCuratorEditableObjects [[_aaTank],false];
-	zeusMod addCuratorEditableObjects [(crew _aaTank),false];
+	[_aaTank] joinSilent aaGroup;
 
 	_name = [5] call Zen_StringGenerateRandom;
 	_marker = createMarker [_name, _location];
 	_name setMarkerType "o_mortar";
+	_name setMarkerSize [0.65, 0.65];
+
+	_aaTank setVariable ["marker",_name];
+	_aaTank addEventHandler ["killed", {deleteMarker ((_this select 0) getVariable "marker");}];
 
 	_nameM = [5] call Zen_StringGenerateRandom;
 	_marker = createMarker [_nameM, _location];
@@ -63,5 +55,4 @@ while {_tank < aaCount} do
 	[tankBlacklist,count tankBlacklist,_nameM] call Zen_ArrayInsert;
 
 	_tank = _tank + 1;
-	_count = _count + 1;
 };

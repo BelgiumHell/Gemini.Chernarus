@@ -7,7 +7,7 @@ _targetC = jetTargets select 0;
 
 while{(alive (units jetG select 0)) OR (alive (units jetG select 1))}do {
 	scopeName "loop1";
-	while{!(canMove _targetC)}do{
+	while{!(canMove _targetC) or (isNull _targetC)}do{
 		jetTargets deleteAt 0;
 		if(count jetTargets == 0)then{
 			_airfieldID = [false,airfieldOccup]call Zen_ValueFindInArray;

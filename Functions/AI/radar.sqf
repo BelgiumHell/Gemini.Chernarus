@@ -3,6 +3,7 @@
 /////////////////////////
 private["_radar","_task","_list"];
 _radar = _this select 0;
+_marker = _this select 1;
 _location = getPosASL _radar;
 _locationO = getPos _radar;
 
@@ -13,13 +14,11 @@ _trg setTriggerArea [6000,6000,6000,false];
 _trg setTriggerActivation ["WEST","PRESENT", true];
 _trg setTriggerStatements ["this","",""];
 
-trgT = _trg;
-
 sleep 10;
 
-while{(count (_locationO nearObjects ["rhs_p37",50]) >= 1)}do{
+while{alive _radar}do{
 	_list = list _trg;
-	 
+
 	_task = false;
 	_targets = [];
 
@@ -34,8 +33,10 @@ while{(count (_locationO nearObjects ["rhs_p37",50]) >= 1)}do{
 	if(_task)then{
 		[_targets] spawn JOC_taskJet;
 	};
-	
+
 	sleep 5;
 };
 
 deleteVehicle _trg;
+
+deleteMarker _marker;

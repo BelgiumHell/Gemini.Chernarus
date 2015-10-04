@@ -12,7 +12,7 @@ _name = [5] call Zen_StringGenerateRandom;
 
 //Get position
 _targetTown =  opTownMarkers call BIS_fnc_selectRandom;
-_location = getMarkerPos (_targetTown);  
+_location = getMarkerPos (_targetTown);
 
 //Set location for triggers
 _missionDropoffzone = getMarkerPos "mrk_return";
@@ -34,7 +34,7 @@ _locationS = [_location,[0,50],0,1,[1,150]] call Zen_FindGroundPosition;
 _groupHostage = createGroup civilian;
 CIV = _groupHostage createUnit ["C_journalist_F",_locationS, [], 0, "NONE"];
 CIV allowFleeing 0;
-_locationHostage = _locationS
+_locationHostage = _locationS;
 CIV setPos _locationHostage;
 
 //Hostage set behaviour

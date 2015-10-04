@@ -30,3 +30,4 @@ cacheGroup = createGroup east;
 [cacheGroupLeader] joinSilent cacheGroup;
 cacheGroup selectLeader cacheGroupLeader;
 cachedGroups = [];
+publicVariable "cacheGroupLeader";

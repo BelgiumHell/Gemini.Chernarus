@@ -1,10 +1,12 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+JOC_missionInit = compileFinal preprocessFileLineNumbers "missionInit.sqf";
 
 //AI
 JOC_spawnZone = compileFinal preprocessFileLineNumbers "Functions\AI\spawnZone.sqf";
 JOC_spawnAirfield = compileFinal preprocessFileLineNumbers "Functions\AI\spawnAirfield.sqf";
+JOC_spawnBase = compileFinal preprocessFileLineNumbers "Functions\AI\spawnBase.sqf";
 JOC_taskJet = compileFinal preprocessFileLineNumbers "Functions\AI\taskJet.sqf";
 JOC_jetMonitor = compileFinal preprocessFileLineNumbers "Functions\AI\jetMonitor.sqf";
 JOC_radar = compileFinal preprocessFileLineNumbers "Functions\AI\radar.sqf";
@@ -27,6 +29,7 @@ JOC_cmdManager = compileFinal preprocessFileLineNumbers "Functions\Commander\man
 JOC_cmdAttack = compileFinal preprocessFileLineNumbers "Functions\Commander\attack.sqf";
 JOC_cmdHeli = compileFinal preprocessFileLineNumbers "Functions\Commander\heli.sqf";
 JOC_cmdHeliMonitor = compileFinal preprocessFileLineNumbers "Functions\Commander\heliMonitor.sqf";
+JOC_cmdOfficers = compileFinal preprocessFileLineNumbers "Functions\Commander\officers.sqf";
 
 //Init
 JOC_initAA = compileFinal preprocessFileLineNumbers "Functions\Init\initAA.sqf";

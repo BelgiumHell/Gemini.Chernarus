@@ -1,3 +1,4 @@
+
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
@@ -113,7 +114,7 @@ _j = 0;
 _pool = [];
 if(_heliCount > 0)then{
 	while{_j < _heliCount} do{
-		_locationS = [_spawnMarkerName,0,0,0,[1,_radius]] call Zen_FindGroundPosition;
+		_locationS = [_spawnMarkerName,0,0,0] call Zen_FindGroundPosition;
 		if(_heliType == "transport")then{
 			_pool = heliPool;
 		};

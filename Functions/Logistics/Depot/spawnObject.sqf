@@ -12,6 +12,7 @@ _unable = true;
 		_obj = _type createVehicle [99995,99995,0];
 		_obj setDir (getDir _x);
 		_obj setPos (getPos _x);
+		[_obj]spawn JOC_vehInit;
 		_unable = false;
 	};
 	if((count _veh) == 0)exitWith{};

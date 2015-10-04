@@ -9,7 +9,7 @@ _dir = (markerDir _marker);
 
 //Create activation trigger
 _trg = createTrigger ["EmptyDetector",_location,true];
-_trg setTriggerArea [(_size select 0)*3.5,(_size select 1)*3.5,1200,false];
+_trg setTriggerArea [(_size select 0)*2.5,(_size select 1)*2.5,1200,false];
 _trg setTriggerActivation ["WEST","PRESENT", false];
 _trg setTriggerStatements ["this","[getPos thisTrigger,([(triggerArea thisTrigger select 0)*0.4,(triggerArea thisTrigger select 1)*0.4,getDir thisTrigger]),[11,true],[4,false],[0,false],[3,false],[2,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;deleteVehicle thisTrigger;",""];
 _trg setTriggerTimeout [5,5,5,true];
@@ -30,8 +30,6 @@ while{_ok == 0}do{
 		sleep 2;
 		[_aa] joinSilent airfieldGroup;
 		(crew _aa) joinSilent airfieldGroup;
-		zeusMod addCuratorEditableObjects [[_aa],false];
-		zeusMod addCuratorEditableObjects [(crew _aa),false];
 	};
 	_count = _count + 1;
 };
@@ -51,7 +49,6 @@ while{_ok == 0}do{
 		sleep 2;
 		_heli enableSimulationGlobal true;
 		_heli allowDamage true;
-		zeusMod addCuratorEditableObjects [[_heli],false];
 	};
 	_count = _count + 1;
 };
@@ -71,7 +68,7 @@ _trgB setTriggerStatements ["this","",""];
 _trgB setTriggerTimeout [5,5,5,true];
 _trgB setDir _dir;
 
-waitUntil{sleep 30;(count (list _trgO)) >= 1};
+waitUntil{sleep 30;(count (list _trgO)) >= 5};
 
 while{(count (list _trgO)) >= 5}do{
 	if((count (list _trgB)) >= 5)then{
