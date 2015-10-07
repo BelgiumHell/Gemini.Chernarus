@@ -33,20 +33,6 @@ airfieldMarkers = ["mrk_airfield_0","mrk_airfield_1","mrk_airfield_2","mrk_airfi
 "mrk_area" setMarkerSize [worldSize/2,worldSize/2];
 "mrk_area" setMarkerAlpha 0;
 
-"mrk_aaZone_0" setMarkerPos [worldSize*0.25,worldSize*0.25];
-"mrk_aaZone_0" setMarkerSize [worldSize/4,worldSize/4];
-"mrk_aaZone_0" setMarkerAlpha 0;
-"mrk_aaZone_1" setMarkerPos [worldSize*0.75,worldSize*0.25];
-"mrk_aaZone_1" setMarkerSize [worldSize/4,worldSize/4];
-"mrk_aaZone_1" setMarkerAlpha 0;
-"mrk_aaZone_2" setMarkerPos [worldSize*0.25,worldSize*0.75];
-"mrk_aaZone_2" setMarkerSize [worldSize/4,worldSize/4];
-"mrk_aaZone_2" setMarkerAlpha 0;
-"mrk_aaZone_3" setMarkerPos [worldSize*0.75,worldSize*0.75];
-"mrk_aaZone_3" setMarkerSize [worldSize/4,worldSize/4];
-"mrk_aaZone_3" setMarkerAlpha 0;
-
-
 //Objects
 leaderArray = [cmd1,cmd2,a0_1,b0_1,c0_1,h1,r1,anv1,s1,v1,rip1];
 logisticsArray = ["l1","l2","l3","l4"];
@@ -65,7 +51,9 @@ indTownsN = [];
 opTownMarkers = [];
 bluTownMarkers = [];
 indTownMarkers = [];
-baseMarkers = [];
+baseMarkersO = [];
+baseMarkersB = [];
+airfieldMarkersB = [];
 activeTasks = [];
 airfieldOccup = [false,false,false,false];
 capitalOccup = [false];
@@ -87,18 +75,20 @@ CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)
 publicVariable "logisticsArray";
 publicVariable "baseObjects";
 publicVariable "fobTrucks";
+publicVariable "airfieldMarkers";
 
 //Run init scripts
 //spawn -needs a seperate thread to work
 []spawn JOC_fobManager;
 []spawn JOC_bftManager;
-//[] spawn JOC_taskManager;
+[] spawn JOC_taskManager;
 []spawn JOC_cacheInit;	//Dunno why I can't use a call for this
 []spawn JOC_cmdManager;
 []spawn JOC_perfLoop;
 
 //call -doesn't need a seperate thread
 []call JOC_initDepot;
+[]call JOC_initPlayerBase;
 []call JOC_initTowns;
 []call JOC_initAirfields;
 []call JOC_initBases;

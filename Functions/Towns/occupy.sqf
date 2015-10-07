@@ -14,11 +14,22 @@ _targetTown = 0;
 _townName = 0;
 while{_ok == 0}do{
     _targetTown = _villages select (floor (random (count _villages)));
-    if((count _towns + count _capitals) > count opTownsN)then{_targetTown = _towns select ((count opTownsN) - count _capitals);};
-    if((count _capitals) > count opTownsN)then{_targetTown = _capitals select (count opTownsN);};
+    if((count _towns + count _capitals) > count opTownsN)then{
+        _targetTown = _towns select ((count opTownsN) - count _capitals);
+    };
+
+    if((count _capitals) > count opTownsN)then{
+        _targetTown = _capitals select (count opTownsN);
+    };
+
     _townName = text _targetTown;
-    if (!(_townName in opTownsN) && !(_townName in blackTowns))then{_ok = 1; [opTownsN,count opTownsN,_townName] call Zen_ArrayInsert; [opTowns,count opTowns,_targetTown] call Zen_ArrayInsert;};
-    Sleep 1;
+    if (!(_townName in opTownsN) && !(_townName in blackTowns))then{
+        _ok = 1;
+        [opTownsN,count opTownsN,_townName] call Zen_ArrayInsert;
+        [opTowns,count opTowns,_targetTown] call Zen_ArrayInsert;
+    };
+
+    sleep 1;
 };
 
 if(_targetTown in _towns)then{
@@ -28,7 +39,7 @@ if(_targetTown in _towns)then{
     _trg = createTrigger ["EmptyDetector",_location,true];
     _trg setTriggerArea [900,900,900,false];
     _trg setTriggerActivation ["WEST","PRESENT", false];
-    _trg setTriggerStatements ["this","[getPos thisTrigger,475,[11,true],[5,false],[0,false],[3,false],[1,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,600] spawn JOC_monitorTown;deleteVehicle thisTrigger;",""];
+    _trg setTriggerStatements ["((speed((thisList) select 0)) < 400) or (count thisList) > 1","[getPos thisTrigger,475,[9,true],[3,false],[0,false],[2,false],[1,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,""town""] spawn JOC_monitorMarker;deleteVehicle thisTrigger;",""];
     _trg setTriggerTimeout [5,5,5,true];
 
     _marker = createMarker [_nameT, _location];
@@ -48,7 +59,7 @@ if(_targetTown in _villages)then{
     _trg = createTrigger ["EmptyDetector",_location,true];
     _trg setTriggerArea [700,700,700,false];
     _trg setTriggerActivation ["WEST","PRESENT", false];
-    _trg setTriggerStatements ["this","[getPos thisTrigger,250,[7,true],[2,false],[0,false],[0,false],[0,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,400] spawn JOC_monitorTown; deleteVehicle thisTrigger;",""];
+    _trg setTriggerStatements ["((speed((thisList) select 0)) < 400) or (count thisList) > 1","[getPos thisTrigger,250,[5,true],[2,false],[0,false],[0,false],[0,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,""town""] spawn JOC_monitorMarker;deleteVehicle thisTrigger;",""];
     _trg setTriggerTimeout [5,5,5,true];
 
     _marker = createMarker [_nameT, _location];
@@ -68,7 +79,7 @@ if(_targetTown in _capitals)then{
     _trg = createTrigger ["EmptyDetector",_location,true];
     _trg setTriggerArea [1200,1200,1200,false];
     _trg setTriggerActivation ["WEST","PRESENT", false];
-    _trg setTriggerStatements ["this","[getPos thisTrigger,700,[15,true],[7,false],[0,false],[5,false],[2,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,800] spawn JOC_monitorTown;deleteVehicle thisTrigger;",""];
+    _trg setTriggerStatements ["((speed((thisList) select 0)) < 400) or (count thisList) > 1","[getPos thisTrigger,700,[11,true],[4,false],[0,false],[3,false],[2,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;[getPos thisTrigger,""town""] spawn JOC_monitorMarker;deleteVehicle thisTrigger;",""];
     _trg setTriggerTimeout [5,5,5,true];
 
     _marker = createMarker [_nameT, _location];
@@ -79,3 +90,5 @@ if(_targetTown in _capitals)then{
 
     [opTownMarkers,count opTownMarkers,_nameT] call Zen_ArrayInsert;
 };
+
+publicVariable "opTowns";

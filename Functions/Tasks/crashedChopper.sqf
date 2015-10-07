@@ -3,10 +3,8 @@
 /////////////////////////
 //Set up var
 _name = [5] call Zen_StringGenerateRandom;
-pilotRescued = 0;
-pilotDead = 0;
 _ok = 0;
-
+_location = 0;
 
 //Get position
 while{_ok == 0}do{
@@ -17,12 +15,8 @@ while{_ok == 0}do{
             _nearestPlayers pushBack _x;
         };
     } forEach (playableUnits + switchableUnits);
-    if(count _nearestPlayers == 0)then{_ok = 1; locationT = _location;};
+    if(count _nearestPlayers == 0)then{_ok = 1;};
 };
-
-_location = locationT;
-
-_dropLocation = getMarkerPos "mrk_return";
 
 //Create marker
 _marker = createMarker [_nameM, _location];
@@ -35,10 +29,9 @@ _chopper = [_location, "Land_Wreck_Heli_Attack_01_F"] call Zen_SpawnVehicle;
 
 _locationP= [_location, random 20, random 20] call BIS_fnc_relPos;
 _groupPilot = createGroup west;
-Sleep 20;
-pilot = _groupPilot createUnit ["B_Helipilot_F",_locationP, [], 0, "NONE"];
-pilot setCaptive true;
-[pilot, true, 9999] call ace_medical_fnc_setUnconscious;
+sleep 20;
+_pilot = _groupPilot createUnit ["B_Helipilot_F",_locationP, [], 0, "NONE"];
+[_pilot, true, 9999] call ace_medical_fnc_setUnconscious;
 
 
 //Create task markers
@@ -62,38 +55,27 @@ _x = 0;
 _trg = createTrigger ["EmptyDetector",_location,true];
 _trg setTriggerArea [900,900,900,false];
 _trg setTriggerActivation ["WEST","PRESENT", false];
-_trg setTriggerStatements ["(!((typeOf (thisList select 0)) in jetArray)) OR ((count thisList) > 1)","[getPos thisTrigger,300,[4,true],[3,false],[0,false],[0,false],[0,false],[0,false,""cas""],[0,false]] spawn JOC_spawnZone;[getPos thisTrigger,600] spawn JOC_monitorTown;",""];
+_trg setTriggerStatements ["this","[getPos thisTrigger,300,[4,true],[3,false],[0,false],[0,false],[0,false],[0,false,""cas""],[0,false]] spawn JOC_spawnZone; deleteVehicle thisTrigger",""];
+_trg setTriggerTimeout [5,5,5,true];
 
+_pilot allowDamage true;
 
-//Spawn complete trigger
-_trgdrop = createTrigger ["EmptyDetector",_dropLocation];
-_trgdrop setTriggerArea [10,10,10,false];
-_trgdrop setTriggerActivation ["BLUFOR","PRESENT", false];
-_trgdrop setTriggerStatements ["{[thisTrigger, _x]call BIS_fnc_inTrigger}count [pilot, blu_hostage_2] > 0","pilotRescued = 1",""];
-
-//Spawn dead trigger
-_trgdead = createTrigger ["EmptyDetector",_dropLocation];
-_trgdead setTriggerStatements ["!alive pilot","pilotDead = 1",""];
-
-pilot allowDamage true;
-
-waitUntil {pilotRescued == 1 or pilotDead == 1};
+waitUntil {(!alive _pilot) or ((_pilot distance respawn_obj) < 10)};
 
 
 //Complete task
-if(pilotRescued == 1) then{
+if((_pilot distance respawn_obj) < 10) then{
     [_name, "succeeded"] call Zen_UpdateTask;
 };
 
-if(pilotDead == 1) then{
+if(!alive _pilot) then{
     [_name, "failed"] call Zen_UpdateTask;
 };
 
-Sleep 5;
+sleep 5;
 
 taskActive = 1;
 
-
 //Cleanup
 deleteMarker _marker;
-deleteVehicle pilot;
+deleteVehicle _pilot;

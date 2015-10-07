@@ -40,7 +40,7 @@ _arty2 setVariable["JOC_caching_disabled",true];
 _trg = createTrigger ["EmptyDetector",_location,true];
 _trg setTriggerArea [600,600,600,false];
 _trg setTriggerActivation ["WEST","PRESENT", false];
-_trg setTriggerStatements ["(!((typeOf (thisList select 0)) in jetArray)) OR ((count thisList) > 1)","[getPos thisTrigger,350,[4,true],[0,false],[0,false],[1,false],[0,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;",""];
+_trg setTriggerStatements ["((speed((thisList) select 0)) < 400) or (count thisList) > 1","[getPos thisTrigger,350,[4,true],[0,false],[0,false],[1,false],[0,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;",""];
 _trg setTriggerTimeout [5,5,5,true];
 
 waitUntil{!alive _arty1 && !alive _arty2};

@@ -5,14 +5,9 @@ private["_box","_unit","_uniforms","_vests","_helmets","_backpacks"];
 _box = _this select 0;
 
 _weapons = [
-	"arifle_MX_F",
-	"arifle_MXC_F",
-	"RH_m4_ris",
-	"RH_m4a1_ris",
-	"RH_m16a4",
-	"",
-	"RH_m9",
-	"tf47_at4_HEDP"
+	"UK3CB_BAF_L85A2_RIS",
+	"UK3CB_BAF_L131A1",
+	"UK3CB_BAF_AT4_AP_Launcher"
 ];
 
 _magazines = [
@@ -78,16 +73,9 @@ _items = [
 	"ACE_HandFlare_Yellow",
 	"ACE_M84",
 
-	"SMA_eotech552",
-	"SMA_eotech552_3XDOWN",
-	"RH_compm4s",
-	"RH_ta01nsn",
-	"RH_ta31rmr",
-	"optic_MRCO",
-	"optic_Hamr",
-	"muzzle_snds_H",
-	"RH_fa556"
-
+	"UK3CB_BAF_Eotech",
+	"UK3CB_BAF_SpecterLDS_Dot_3D",
+	"UK3CB_BAF_LLM_IR",
 ];
 weaponsT = _weapons;
 magazinesT = _magazines;

@@ -68,3 +68,5 @@ Sleep 15;
 
 deleteMarker _marker;
 deleteVehicle uav;
+deleteVehicle _trgdead;
+deleteVehicle _trgD;

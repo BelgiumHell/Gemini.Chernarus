@@ -14,6 +14,7 @@ JOC_mineField = compileFinal preprocessFileLineNumbers "Functions\AI\mineField.s
 JOC_radioTower = compileFinal preprocessFileLineNumbers "Functions\AI\radioTower.sqf";
 JOC_arty = compileFinal preprocessFileLineNumbers "Functions\AI\arty.sqf";
 JOC_patrol = compileFinal preprocessFileLineNumbers "Functions\AI\patrol.sqf";
+JOC_monitorMarker = compileFinal preprocessFileLineNumbers "Functions\AI\monitorMarker.sqf";
 
 //Bluforce tracking
 JOC_bftManager = compileFinal preprocessFileLineNumbers "Functions\BFT\manager.sqf";
@@ -51,6 +52,9 @@ JOC_loadoutMaster = compileFinal preprocessFileLineNumbers "Functions\Loadouts\m
 #include "Logistics\fn_logistics_compile.sqf";
 JOC_crateInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\crateInit.sqf";
 JOC_spawnComposition = compileFinal preprocessFileLineNumbers "Functions\Logistics\spawnComposition.sqf";
+
+//Opfor
+JOC_opforGetSpawnLocations = compileFinal preprocessFileLineNumbers "Functions\Opfor\getSpawnLocations.sqf";
 
 //Performance
 JOC_perfLoop = compileFinal preprocessFileLineNumbers "Functions\Performance\loop.sqf";

@@ -1,25 +1,18 @@
+/////////////////////////
+//Script made by Jochem//
+/////////////////////////
 if(side player == west)then{
 	player setPosASL getPosASL respawn_obj;
 };
 if(side player == east)then{
-	_airfieldID = [false,airfieldOccup]call Zen_ValueFindInArray;
-	_mrkN = format ["mrk_infSpawn_%1",_airfieldID];
-	_respawnPos = getMarkerPos _mrkN;
-	player setPosASL getPosASL _respawnPos;
+	waitUntil{!isNil{baseMarkers} && !isNil{opTowns}};
+	player setPos [worldSize * 3, worldSize * 3, 0];
+	player hideObject true;
+	_spawnArray = []call JOC_opforGetSpawnLocations;
+	[(findDisplay 46), getpos (_this select 1), _spawnArray, [], [], [], 5, true] call BIS_fnc_strategicMapOpen;
+	player hideObject false;
 };
 
 []spawn JOC_playerLoop;
-zeusMod addCuratorEditableObjects [[player],false];
 cduEnabled = false;
-//[]spawn JOC_loadoutMaster;
-
-
-
-
-
-/*player addEventHandler ["fired", {
-if((_this select 0) distance respawn_obj < 500)then{
-	hint "Don't fire in base!";
-	deleteVehicle (_this select 6);
-};
-}]; //Base protection*/
+[]spawn JOC_loadoutMaster;

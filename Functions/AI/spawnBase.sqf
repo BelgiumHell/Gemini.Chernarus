@@ -35,3 +35,18 @@ _compoundsR = [_compoundsS, ((count _compoundsS)/2)]call Zen_ArrayGetRandomSeque
 
 //Spawn patrolling infantry
 [_location,300,[7,true],[2,false],[0,false],[1,false],[1,false],[0,false,"cas"],[0,false]] call JOC_spawnZone;
+
+_trgO = createTrigger ["EmptyDetector",_location];
+_trgO setTriggerArea [_size,_size,_size,false];
+_trgO setTriggerActivation ["EAST","PRESENT", false];
+_trgO setTriggerStatements ["this","",""];
+
+_marker = "";
+
+{
+    if((_location distance (getMarkerPos _x)) < 100)then{
+        _marker = _x;
+    };
+} forEach baseMarkersO;
+
+[_marker, "base"]spawn JOC_monitorMarker;

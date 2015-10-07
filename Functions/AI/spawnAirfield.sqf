@@ -52,33 +52,3 @@ while{_ok == 0}do{
 	};
 	_count = _count + 1;
 };
-
-//Create object triggers
-_trgO = createTrigger ["EmptyDetector",_location,true];
-_trgO setTriggerArea [(_size select 0),(_size select 1),1200,false];
-_trgO setTriggerActivation ["EAST","PRESENT", false];
-_trgO setTriggerStatements ["this","",""];
-_trgO setTriggerTimeout [5,5,5,true];
-_trgO setDir _dir;
-
-_trgB = createTrigger ["EmptyDetector",_location,true];
-_trgB setTriggerArea [(_size select 0),(_size select 1),1200,false];
-_trgB setTriggerActivation ["WEST","PRESENT", false];
-_trgB setTriggerStatements ["this","",""];
-_trgB setTriggerTimeout [5,5,5,true];
-_trgB setDir _dir;
-
-waitUntil{sleep 30;(count (list _trgO)) >= 5};
-
-while{(count (list _trgO)) >= 5}do{
-	if((count (list _trgB)) >= 5)then{
-		airfieldOccup set [_id,true];
-		sleep 30;
-	}else{
-		airfieldOccup set [_id,false];
-	};
-};
-
-deleteMarker _trgO;
-
-[airfieldOccup,_id,true] call Zen_ArrayInsert;

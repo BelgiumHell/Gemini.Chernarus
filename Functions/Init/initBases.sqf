@@ -31,7 +31,7 @@ while {_s < baseCount} do {
     _trg = createTrigger ["EmptyDetector",_location,true];
     _trg setTriggerArea [900,900,900,false];
     _trg setTriggerActivation ["WEST","PRESENT", false];
-    _trg setTriggerStatements ["this","[getPos thisTrigger] call JOC_spawnBase;deleteVehicle thisTrigger;",""];
+    _trg setTriggerStatements ["((speed((thisList) select 0)) < 400) or (count thisList) > 1","[getPos thisTrigger] call JOC_spawnBase;deleteVehicle thisTrigger;",""];
     _trg setTriggerTimeout [5,5,5,true];
 
 	//Create marker
@@ -40,7 +40,9 @@ while {_s < baseCount} do {
 	_name setMarkerType "o_hq";
     _name setMarkerSize [0.65, 0.65];
 
-    baseMarkers pushback _name;
+    baseMarkersO pushback _name;
 
 	_s = _s + 1;
 };
+
+publicVariable "baseMarkersO";

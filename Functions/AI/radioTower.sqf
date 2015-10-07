@@ -15,7 +15,7 @@ _name setMarkerSize [0.65, 0.65];
 _trg = createTrigger ["EmptyDetector",_location,true];
 _trg setTriggerArea [600,600,600,false];
 _trg setTriggerActivation ["WEST","PRESENT", false];
-_trg setTriggerStatements ["(!((typeOf (thisList select 0)) in jetArray)) OR ((count thisList) > 1)","[getPos thisTrigger,600,[4,true],[0,false],[0,false],[1,false],[0,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;",""];
+_trg setTriggerStatements ["((speed((thisList) select 0)) < 400) or (count thisList) > 1","[getPos thisTrigger,600,[4,true],[0,false],[0,false],[1,false],[0,false],[0,false,""cas""],[0,false]] call JOC_spawnZone;",""];
 _trg setTriggerTimeout [5,5,5,true];
 
 waitUntil{!alive _tower};

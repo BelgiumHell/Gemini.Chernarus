@@ -40,6 +40,7 @@ while{true}do{
 		bluTownsN = bluTownsN - [_nameT];
 		_owner = 1;
 	};
-	
+
 	Sleep 10;
+	publicVariable "opTowns";
 };

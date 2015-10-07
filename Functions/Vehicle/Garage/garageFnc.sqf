@@ -18,11 +18,11 @@ while{!(isNull(uiNamespace getVariable ["BIS_fnc_arsenal_cam",objNull]))}do{
 
 waitUntil {isNull(uiNamespace getVariable ["BIS_fnc_arsenal_cam",objNull])};
 
-sleep 0.5;
+sleep 1;
 _veh = nearestObject [_spawnObj, "AllVehicles"];
 _dis = _veh distance _spawnObj;
 
-if(_dis > 4)then{hint "No vehicle spawned";}else{
+if(_dis > 5)then{hint "No vehicle spawned";}else{
 	_codeE = [_veh]call BIS_fnc_exportVehicle;
 	deleteVehicle _veh;
 	_codeS = [_codeE,"position player","(_this select 0)",true] call Zen_StringFindReplace;

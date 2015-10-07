@@ -14,7 +14,8 @@ _name = name player;
 
 _textDate = format["%3/%2/%1 - %4:%5",_year,_month,_day,_hour,_minute];
 _textName = format["%1 %2",_rank,_name];
-sleep 1;
+waitUntil {!isNull player};
+waitUntil {player == player};
 
 [
 	[
@@ -32,3 +33,6 @@ sleep 1;
 []spawn JOC_playerClick;
 []call JOC_garage;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
+
+viewDistanceI = ["ViewDistance","View distance","",{[]spawn CHVD_fnc_openDialog},{true}] call ace_interact_menu_fnc_createAction;
+[player, 1, ["ACE_SelfActions"], viewDistanceI] call ace_interact_menu_fnc_addActionToObject;
