@@ -8,7 +8,7 @@ _location = 0;
 
 //Get position
 while{_ok == 0}do{
-    _location       = [0,0,0,1,0,0,[1,0,10],0,0,[1,5,5],[1,[0,0,0],10]] call Zen_FindGroundPosition;
+    _location       = ["mrk_area",0,[airfieldMarkers + blackMarkers,[],[]],1,0,0,[1,0,10],0,0,[1,5,5],[1,[0,0,0],10]] call Zen_FindGroundPosition;
     _nearestPlayers = [];
     {
         if (isPlayer _x && _x distance _location < 1000) then {

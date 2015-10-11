@@ -34,7 +34,7 @@ _arty2 addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 _arty2 setFuel 0;
 _arty2 setVariable["JOC_caching_disabled",true];
 
-[_arty1,_arty2] join artyGroup;
+((crew _arty1) + (crew _arty2)) joinSilent artyGroup;
 
 //Spawn enemy's
 _trg = createTrigger ["EmptyDetector",_location,true];

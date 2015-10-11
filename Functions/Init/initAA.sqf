@@ -35,7 +35,7 @@ while {_tank < aaCount} do
 	_aaTank setFuel 0;
 	_aaTank addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	_aaTank setVariable["JOC_caching_disabled",true];
-	[_aaTank] joinSilent aaGroup;
+	(crew _aaTank) joinSilent aaGroup;
 
 	_name = [5] call Zen_StringGenerateRandom;
 	_marker = createMarker [_name, _location];

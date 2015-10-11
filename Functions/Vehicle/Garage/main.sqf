@@ -126,3 +126,18 @@ garage_spawner_med addAction ["Request vehicle",{
 		[garage_spawn_med]spawn JOC_garageFnc;
 	};
 },_medA];
+
+garage_spawn_jet setVariable["count",0];
+garage_spawner_jet addAction ["Request vehicle",{
+	if(garage_spawn_jet getVariable "unable")exitWith{hint "Pad not available"};
+	_veh = (nearestObjects [(getPos garage_spawn_jet),["AllVehicles"],3] - [garage_spawn_jet]);
+	if(((count _veh) >= 1) or ((garage_spawn_jet getVariable "count") >= 1))then{
+		hint "Pad not clear or max vehicles reached";
+	}else{
+		BIS_fnc_garage_center = createVehicle ["Land_HelipadEmpty_F", (getPos garage_spawn_jet), [], 0, "CAN_COLLIDE" ];
+		_array = [(_this select 3)]call JOC_garageGetArray;
+		BIS_fnc_garage_data = _array;
+		["Open",true] call BIS_fnc_garage;
+		[garage_spawn_jet]spawn JOC_garageFnc;
+	};
+},_jetA];
