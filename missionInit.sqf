@@ -2,29 +2,19 @@
 //Script made by Jochem//
 /////////////////////////
 //Parameters *FREE TO EDIT*
-townCount   = 26;   //Number of towns to occupy
-baseCount   = -1;   //Number of military structures to occupy /// -1 for all
-aaCount     = 14;   //Number of AA Emplacements
-roadCount   = 20;   //Number of roadblocks
-patrolCount = 25;   //Number of patrolling vehicles
-mineCount   = 30;   //Number of minefields
-artyCount 	= 4;	//Number of artillery batteries
-officerCount = 5;	//Number of officers (+ 1 general)
-fobLimit 	= 5;	//Limit amount of fobs at the same time
 //Classnames
-infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
+infantryPool = ["O_Soldier_SL_F","O_soldier_AR_F","O_soldier_AR_F","O_soldier_exp_F","O_soldier_GL_F","O_soldier_GL_F","O_soldier_M_F","O_medic_F","O_soldier_AA_F","O_soldier_repair_F","O_Soldier_F","O_Soldier_F","O_soldier_LAT_F","O_soldier_LAT_F","O_soldier_lite_F","O_soldier_TL_F","O_soldier_TL_F"];    //infantry classnames
 sfPool       = [];
-carPool      = ["rhs_tigr_msv","rhs_tigr_msv","rhs_uaz_open_MSV_01"];        //car classnames
-truckPool    = ["RHS_Ural_MSV_01","RHS_Ural_Open_MSV_01"];        //truck classnames
-apcPool      = ["rhs_btr80_msv","rhs_btr80a_msv"];       //apc classnames
-ifvPool      = ["rhs_brm1k_tv","rhs_bmp2k_tv","rhs_bmp2_tv","rhs_bmp1k_tv","rhs_prp3_tv"];       //ifv classnames
-tankPool     = ["rhs_t80um","rhs_t90_tv"];       //tank classnames
-supportPool  = ["rhs_gaz66_ammo_msv","rhs_gaz66_r142_msv","RHS_Ural_Fuel_MSV_01","rhs_gaz66_repair_msv"];     //support classnames
-airPool      = ["RHS_Mi8AMTSh_UPK23_vvsc","RHS_Mi8mt_vvsc","RHS_Mi8MTV3_vvsc"];     //transport helicopter classnames
-casPool      = ["RHS_Ka52_UPK23_vvsc","RHS_Mi24P_CAS_vvsc"];      //cas helicopters classnames
+carPool      = ["O_Heli_Attack_02_black_F","O_Heli_Attack_02_F"];        //car classnames
+truckPool    = ["O_Truck_02_covered_F","O_Truck_02_transport_F"];        //truck classnames
+apcPool      = ["O_APC_Wheeled_02_rcws_F"];       //apc classnames
+ifvPool      = ["O_APC_Tracked_02_cannon_F"];       //ifv classnames
+tankPool     = ["O_MBT_02_cannon_F"];       //tank classnames
+supportPool  = ["O_Truck_02_ammo_F","O_Truck_02_fuel_F"];     //support classnames
+airPool      = ["O_Heli_Light_02_F","O_Heli_Light_02_unarmed_F"];     //transport helicopter classnames
+casPool      = ["O_Heli_Attack_02_black_F","O_Heli_Attack_02_F"];      //cas helicopters classnames
 jetPool      = ["O_Plane_CAS_02_F"];       //jet classnames
 //Markers
-capitalName = "Pyrgos";	//Name of capital
 blackTowns = ["Sagonisi"];  //Blacklist towns
 blackMarkers = ["mrk_safeZone"];
 airfieldMarkers = ["mrk_airfield_0","mrk_airfield_1","mrk_airfield_2","mrk_airfield_3"];   //Markers for airfields
@@ -42,26 +32,13 @@ medicalVehArray = ["RHS_UH60M_MEV"];
 jetArray = [];
 
 //Init variables *DONT CHANGE*
-opTowns = [];
-opTownsN = [];
-bluTowns = [];
-bluTownsN = [];
-indTowns = [];
-indTownsN = [];
-opTownMarkers = [];
-bluTownMarkers = [];
-indTownMarkers = [];
-baseMarkersO = [];
-baseMarkersB = [];
-airfieldMarkersB = [];
+//[towns,bases,airfields,grids]
+opMarkers = [[],[],[],[]];
+bluMarkers = [[],[],[],[]];
+
+strategicArray = [];
+
 activeTasks = [];
-airfieldOccup = [false,false,false,false];
-capitalOccup = [false];
-jetActive = false;
-jetTargets = [];
-groups = [];
-groundArray = [];
-officerArray = [];
 fobTrucks = [];
 baseObjects = nearestObjects [(getMarkerPos "mrk_safeZone"), ["All"], 1200];
 eastHQ = createCenter east;
@@ -79,21 +56,7 @@ publicVariable "airfieldMarkers";
 
 //Run init scripts
 //spawn -needs a seperate thread to work
-[]spawn JOC_fobManager;
+/*[]spawn JOC_fobManager;
 []spawn JOC_bftManager;
-[] spawn JOC_taskManager;
-[]spawn JOC_cacheInit;	//Dunno why I can't use a call for this
-[]spawn JOC_cmdManager;
-[]spawn JOC_perfLoop;
-
-//call -doesn't need a seperate thread
-[]call JOC_initDepot;
-[]call JOC_initPlayerBase;
-[]call JOC_initTowns;
-[]call JOC_initAirfields;
-[]call JOC_initBases;
-[]call JOC_initAA;
-[]call JOC_initArty;	//Uses AA
-[]call JOC_initRadio;	//Uses AA
-//[]call JOC_initPatrols;
-[]call JOC_initMines;
+[]spawn JOC_aiManager;
+[]spawn JOC_perfLoop;*/

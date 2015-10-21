@@ -34,5 +34,9 @@ waitUntil {player == player};
 []call JOC_garage;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
 
+//Ace interaction
 viewDistanceI = ["ViewDistance","View distance","",{[]spawn CHVD_fnc_openDialog},{true}] call ace_interact_menu_fnc_createAction;
 [player, 1, ["ACE_SelfActions"], viewDistanceI] call ace_interact_menu_fnc_addActionToObject;
+
+gridMarkersI = ["gridMarkers","Show/hide grid markers","",{},{true}] call ace_interact_menu_fnc_createAction;
+[player, 1, ["ACE_SelfActions"], gridMarkersI] call ace_interact_menu_fnc_addActionToObject;

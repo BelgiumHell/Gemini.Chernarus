@@ -12,9 +12,9 @@ call compile preprocessFile "Baked_AIS\Baked_AIS_init.sqf";
 
 enableSaving [false, false];
 
+if(!isServer)exitWith{};
+
+[]execVM "missionInit.sqf";
+
 // Execution stops until the mission begins (past briefing), do not delete this line
 sleep 1;
-
-if(!isServer)exitWith{};
-    
-[]execVM "missionInit.sqf";

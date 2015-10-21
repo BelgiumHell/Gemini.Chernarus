@@ -23,16 +23,16 @@ _veh = nearestObject [_spawnObj, "AllVehicles"];
 _dis = _veh distance _spawnObj;
 
 if(_dis > 5)then{hint "No vehicle spawned";}else{
-	_codeE = [_veh]call BIS_fnc_exportVehicle;
-	deleteVehicle _veh;
-	_codeS = [_codeE,"position player","(_this select 0)",true] call Zen_StringFindReplace;
-	_codeS = _codeS + " _veh";
-	_code = compile _codeS;
-	_veh = [(getPos _spawnObj)]call _code;
-
 	{
 		deleteVehicle _x;
 	}forEach (crew _veh);
+	_codeE = [_veh]call BIS_fnc_exportVehicle;
+	deleteVehicle _veh;
+
+	_codeS = [_codeE,"position player","(_this select 0)",true] call Zen_StringFindReplace;
+	_codeS = _codeS + "_veh allowDamage false; _veh";
+	_code = compile _codeS;
+	_veh = [(getPos _spawnObj)]call _code;
 
 	sleep 0.1;
 

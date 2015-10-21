@@ -1,0 +1,67 @@
+/*
+Grab data:
+Mission:
+World: Altis
+Anchor position: [23671.8, 18978.3]
+Area size: 100
+Using orientation of objects: no
+*/
+
+[
+	["Land_CncWall4_F",[22.6797,-2.38086,0],90.1122,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[22.6895,2.71094,0],90.1122,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-22.9805,-10.1914,0],89.8466,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-23.1055,9.98828,0],270.257,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-28.5566,-0.431641,0],0.123281,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[1.54883,26.3242,0],0,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[-3.75586,26.3242,0],0,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[1.45703,-26.5977,0],180,1,0,[],"","",true,false], 
+	["Land_LampHalogen_F",[20.1113,0.0917969,0],0,1,0,[],"","",true,false],
+	["Land_CncWall4_F",[-3.84766,-26.5977,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[6.84766,26.3262,0],0,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[6.75586,-26.5957,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[-8.96094,26.3262,0],0,1,0,[],"","",true,false], 
+	["Land_Cargo_Patrol_V1_F",[29.4727,-0.0332031,0],270,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[-9.05273,-26.5957,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[24.6504,13.5566,0],90.7393,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-28.8574,10.1563,0],0.123281,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[24.832,-13.7871,0],90.7393,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-28.9824,-10.3828,0],0.123281,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[12.0586,26.3242,0],0,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-23.0898,15.6602,0],270.257,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-22.9766,-15.9141,0],90.2522,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[11.9668,-26.5977,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[27.3184,11.0723,0],0,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[27.4492,-11.2559,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[-14.1719,26.3223,0],0,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[-14.2637,-26.5996,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[24.6523,18.6191,0],90.7393,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[24.8359,-18.8516,0],90.7393,1,0,[],"","",true,false], 
+	["Land_BarGate_F",[-31.1172,8.07227,0],269.301,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[17.2324,26.3281,0],0,1,0,[],"","",true,false], 
+	["Land_BarGate_F",[-31.3145,-8.61914,0],90.5785,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[17.1406,-26.5938,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[-19.4727,26.3223,0],0,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-23.043,21.3672,0],270.257,1,0,[],"","",true,false], 
+	["Land_Cargo10_military_green_F",[32.5234,-6.38477,2.38419e-006],0.00103807,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-23.0566,-21.623,0],90.2522,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[-19.5645,-26.5996,0],180,1,0,[],"","",true,false], 
+	["Land_Cargo10_military_green_F",[32.8418,6.18164,-2.38419e-006],0.000525655,1,0,[],"","",true,false], 
+	["Land_Cargo10_military_green_F",[32.584,-9.14063,-4.76837e-006],0.000612326,1,0,[],"","",true,false], 
+	["Land_Cargo10_military_green_F",[32.7813,8.9375,2.38419e-006],0.0011006,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[32.3828,11.0723,0],0,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[24.7109,23.6348,0],90.7393,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[32.5137,-11.2559,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[22.2949,26.293,0],0,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[24.834,-24.0996,0],90.7393,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[22.2031,-26.6289,0],180,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[35.1328,1.49609,0],90.1122,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[35.123,-3.5957,0],90.1122,1,0,[],"","",true,false], 
+	["Land_CncWall1_F",[35.1719,4.39258,0],90.5726,1,0,[],"","",true,false], 
+	["Land_CncWall1_F",[35.1738,5.46289,0],90.5726,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[35.1113,-8.63086,0],90.1122,1,0,[],"","",true,false], 
+	["Land_CncWall4_F",[35.1953,8.49219,0],90.7393,1,0,[],"","",true,false], 
+	["Snake_random_F",[39.2988,-28.998,0.0083878],266.933,1,0,[],"","",true,false], 
+	["Snake_random_F",[-39.707,29.5801,0.0083878],216.225,1,0,[],"","",true,false], 
+	["Snake_random_F",[53.9141,-0.146484,0.0083878],64.6268,1,0,[],"","",true,false]
+]

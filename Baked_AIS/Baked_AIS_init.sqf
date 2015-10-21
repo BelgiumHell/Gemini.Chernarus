@@ -6,7 +6,7 @@
 // LICENSE		:	GO CRAZY - USE IT - ABUSE IT - CREDIT IF YOU WISH
 
 // *************************************************************
-// Call with 
+// Call with
 // call compile preprocessFile "Baked_AIS\Baked_AIS_init.sqf";
 // *************************************************************
 
@@ -14,23 +14,23 @@
 if !(isnil "baps_running") exitwith {hintSilent "!WARNING! CANNOT RUN MULTIPLE INSTANCES OF AIS-APS";};
 
 // Run only on server
-if (isServer) then 
+if (isServer) then
 {
 	// Get config values
 	baps_startHint = 0; // Show hint on startup?
 	baps_startDelay = 10; // Delay script for x seconds
 	baps_enabledFor = 0; // Enable for types? 0 = M2A1, 1 = ALL TANKS, 2 = ALL ARMOR, 3 = ALL NATO ARMOR, 4 = ALL CSAT ARMOR
-	
+
 	// Revert to default values if nil
 	if (isNil "baps_startHint") then { _startHint = 0 };
 	if (isNil "baps_startDelay") then { _startDelay = 0 };
 	if (isNil "baps_enabledFor") then { _enabledFor = 0 };
-	
+
 	// Broadcast Variables
 	publicVariable "baps_startHint";
 	publicVariable "baps_startDelay";
 	publicVariable "baps_enabledFor";
-	
+
 	onPlayerConnected "[] spawn FNC_ADD_ACTIONS";
 };
 
@@ -51,39 +51,29 @@ call compile preprocessFile "Baked_AIS\Baked_AIS_fnc.sqf";
 
 // List of weapons/launchers
 baps_weapons = [
-"missiles_titan", 
-"launch_RPG32_F", 
-"launch_Titan_short_F", 
+"missiles_titan",
+"launch_RPG32_F",
+"launch_Titan_short_F",
 "launch_B_Titan_short_F",
 "launch_O_Titan_short_F",
 "launch_I_Titan_short_F",
-"launch_Titan_F", 
+"launch_Titan_F",
 "launch_B_Titan_F",
 "launch_O_Titan_F",
 "launch_I_Titan_F",
-"launch_NLAW_F", 
-"missiles_DAGR", 
-"missiles_ASRAAM", 
-"missiles_SCALPEL", 
-"rockets_Skyfire",
-"Rhs_weap_TOW_Launcher",
-"rhs_weap_r73_Launcher",
-"rhs_weap_rpg18",
-"rhs_weap_rpg26",
-"rhs_weap_rpg7",
-"rhs_weap_rpg7_1pn93",
-"rhs_weap_rpg7_pgo",
-"rhs_weap_rshg2",
-"rhs_weap_fgm148",
-"rhs_weap_HellfireLauncher"];
+"launch_NLAW_F",
+"missiles_DAGR",
+"missiles_ASRAAM",
+"missiles_SCALPEL",
+"rockets_Skyfire"
+];
 
 // List of vehicles that defend
 baps_defenders = [];
 if (baps_enabledFor == 0) then { // FOR M2A1 SLAMMER ONLY
 	baps_defenders = [
-	"B_MBT_01_cannon_F",
-	"rhsusf_m1a2sep1wd_usarmy"
-	] + tankPool; 
+	"B_MBT_01_cannon_F"
+	] + tankPool;
 };
 if (baps_enabledFor == 1) then { // FOR MBT ONLY
 	baps_defenders = [
@@ -92,7 +82,7 @@ if (baps_enabledFor == 1) then { // FOR MBT ONLY
 };
 if (baps_enabledFor == 2) then { // FOR ALL ARMORED VEHICLES
 	baps_defenders = [
-	"B_APC_Tracked_01_rcws_F", 
+	"B_APC_Tracked_01_rcws_F",
 	"B_APC_Wheeled_01_cannon_F",
 	"B_APC_Tracked_01_CRV_F",
 	"B_APC_Tracked_01_AA_F",
@@ -108,7 +98,7 @@ if (baps_enabledFor == 2) then { // FOR ALL ARMORED VEHICLES
 };
 if (baps_enabledFor == 3) then { // BLUFOR / NATO ONLY
 	baps_defenders = [
-	"B_APC_Tracked_01_rcws_F", 
+	"B_APC_Tracked_01_rcws_F",
 	"B_APC_Wheeled_01_cannon_F",
 	"B_APC_Tracked_01_CRV_F",
 	"B_APC_Tracked_01_AA_F",
@@ -133,14 +123,14 @@ baps_vehiclelist = [];
 	while { true } do
 	{
 		{
-			if (!(_x in baps_vehiclelist) && (alive _x) && ((typeOf _x) in baps_defenders)) then 
+			if (!(_x in baps_vehiclelist) && (alive _x) && ((typeOf _x) in baps_defenders)) then
 			{
 				baps_vehiclelist set [count baps_vehiclelist, _x];
 				_x setVariable ["ammo_left", 4, true];
 				_x setVariable ["ammo_right", 4, true];
 				_x setVariable ["reloading_left", 0, true];
 				_x setVariable ["reloading_right", 0, true];
-			};			
+			};
 		} forEach vehicles;
 		[] spawn FNC_ADD_ACTIONS;
 		sleep 10;
@@ -150,10 +140,10 @@ baps_vehiclelist = [];
 baps_unitsActionList = [];
 baps_vehiclesActionsList = [];
 
-FNC_ADD_ACTIONS = 
+FNC_ADD_ACTIONS =
 {
 	{
-		if (!(_x in baps_unitsActionList)) then 
+		if (!(_x in baps_unitsActionList)) then
 		{
 			_x addEventHandler ["Fired",{_this spawn FNC_BAPS_FIRED}];
 			baps_unitsActionList set [count baps_unitsActionList, _x];
@@ -161,12 +151,12 @@ FNC_ADD_ACTIONS =
 	} forEach allUnits;
 
 	{
-		if (!(_x in baps_vehiclesActionsList)) then 
+		if (!(_x in baps_vehiclesActionsList)) then
 		{
 			_x addEventHandler ["Fired",{_this spawn FNC_BAPS_FIRED}];
 			baps_vehiclesActionsList set [count baps_vehiclesActionsList, _x];
 		};
-	} forEach vehicles; 
+	} forEach vehicles;
 };
 
 // Hint that system is active

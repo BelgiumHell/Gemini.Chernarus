@@ -1,11 +1,12 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_airA = ["RHS_UH60M","RHS_AH64D","B_Heli_Transport_03_F","B_Heli_Transport_01_F","RHS_CH_47F"] + ["BAF_Apache_AH1_DG1","BAF_Merlin_HC3_DG1","BAF_Merlin_HC3_DG1","BAF_Puma_VA_DG1","BAF_AW159_Wildcat_Armed_DG1"];
-_carA = ["rhsusf_m1025_w_m2","rhsusf_m1025_w_mk19","rhsusf_m1025_w","rhsusf_m1025_w_s","rhsusf_m998_w_2dr","rhsusf_m998_w_4dr","B_MRAP_01_F","B_MRAP_01_gmg_F","B_MRAP_01_hmg_F"] + ["BAF_Jackal2_GMG_W_DG1","BAF_Jackal2_L2A1_W_DG1","BAF_LandRover_Special_W_DG1"];
-_armorA = ["rhsusf_m1a2sep1wd_usarmy","rhsusf_m1a2sep1tuskiwd_usarmy","rhsusf_m1a2sep1tuskiiwd_usarmy","rhsusf_m113_usarmy","rhsusf_m113d_usarmy_M240","rhsusf_m113d_usarmy_MK19","rhsusf_m113d_usarmy_unarmed","RHS_M2A3","RHS_M2A3_BUSKI","RHS_M2A3_BUSKIII","RHS_M6"] + ["BAF_FV510_W_SLAT_DG1","BAF_FV510_W_NOSLAT_DG1"];
+_airA = ["B_Heli_Transport_03_F","B_Heli_Transport_01_F"];
+_carA = ["B_MRAP_01_F","B_MRAP_01_gmg_F","B_MRAP_01_hmg_F","B_Truck_01_covered_F","B_Truck_01_transport_F"];
+_armorA = ["B_MBT_01_TUSK_F","B_MBT_01_cannon_F","B_APC_Tracked_01_rcws_F","B_APC_Wheeled_01_cannon_F"];
 _suppA = ["B_Heli_Transport_03_unarmed_F","B_APC_Tracked_01_CRV_F","B_Truck_01_fuel_F","B_Truck_01_ammo_F","B_Truck_01_Repair_F"];
-_medA = ["RHS_UH60M_MEV","rhsusf_m113_usarmy_medical","B_Truck_01_medical_F"] + ["BAF_LandRover_Ambulance_W_DG1"];
+_medA = ["B_Truck_01_medical_F"];
+_jetA = ["B_Plane_CAS_01_F"];
 
 garage_spawn_0 setVariable["count",0];
 garage_spawner_0 addAction ["Request vehicle",{

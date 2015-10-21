@@ -19,8 +19,6 @@ _objArray = [];
 	_objArray pushBack _obj;
 }forEach _compArray;
 
-zeusMod addCuratorEditableObjects [_objArray,false];
-
 deleteVehicle _obj;
 
 _objArray
