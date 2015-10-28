@@ -1,47 +1,43 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+hint "spawning";
 
-[position, priority, type, marker, west]
+{
+    _pos = _x select 0;
+    _priority = _x select 1;
+    _type = _x select 2;
+    _marker = _x select 3;
 
+    switch (_type) do {
+        case "aa": {
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[3,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
+        case "radar": {
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[6,true],[2,false],[0,false],[2,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
+        case "airfield":{
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[11,true],[4,false],[0,false],[3,false],[2,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
+        case "arty": {
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[3,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
+        case "base": {
+            [_pos,300]call JOC_cmdSpawnBase;
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[(_priority / 300),true],[(_priority / 600),false],[0,false],[(_priority / 800),false],[(_priority / 1000),false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
+        case "outpost": {
+            [_pos,50]call JOC_cmdSpawnBase;
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[2,true],[0,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
+        case "factory": {
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[6,true],[2,false],[0,false],[2,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
+        case "radio":{
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[3,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
+        case "town": {
 
-//Attack
-
-//Command
-
-//Defend
-
-//Init
-//JOC_cmdInitAA = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\aa.sqf";
-//JOC_cmdInitAirfield = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\airfield.sqf";
-//JOC_cmdInitArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\arty.sqf";
-JOC_cmdInitBase = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\base.sqf";
-JOC_cmdInitIndTown compileFinal preprocessFileLineNumbers "Functions\Commander\Init\indTown.sqf";
-//JOC_cmdInitMine = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\mine.sqf";
-//JOC_cmdInitRadio = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\radio.sqf";
-JOC_cmdInitTown = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\town.sqf";
-
-//Logistics
-
-//Misc
-
-//Patrol
-
-
-
-
-
-
-
-
-
-enemyforce = [];
-
-//First regiment
-//Create base
-
-//Vehicle depot
-0 = [(position object), 0.0, call (compile (preprocessFileLineNumbers "Data\compositions\compositionname.sqf"))] call BIS_fnc_ObjectsMapper;
-
-
-//Populate airfields
+        };
+    };
+} forEach strategicArray;

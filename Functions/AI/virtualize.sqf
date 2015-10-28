@@ -5,8 +5,6 @@ params ["_units"];
 
 if((_units select 0) getVariable "JOC_caching_disabled")exitWith{};
 
-_pos = (getPos (_units select 0));
-
 cachedArray = cachedArray - [_units];
 
 _vehicles = [];
@@ -26,7 +24,7 @@ _vehiclesTemp = [];
 
 _unitClasses = [];
 {
-    _unitClasses pushBack (typeOf _x);
+    _unitClasses pushBack [(typeOf _x),getPos _x];
     deleteVehicle _x;
 } forEach _units;
 
@@ -34,6 +32,6 @@ _unitClasses = [];
     deleteVehicle _x;
 } forEach _vehiclesTemp;
 
-_array = [_pos,_unitClasses,_vehicles];
+_array = [_unitClasses,_vehicles];
 
 virtualizedArray pushBack _array;

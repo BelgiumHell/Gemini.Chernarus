@@ -17,5 +17,6 @@ _units = units _group;
 } forEach _units;
 
 _units joinSilent cacheGroup;
+deleteGroup _group;
 
 cachedArray pushBack _units;

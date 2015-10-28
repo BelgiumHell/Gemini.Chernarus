@@ -40,6 +40,7 @@ if(_dis > 5)then{hint "No vehicle spawned";}else{
 	_veh setVariable ["pad",_spawnObj,true];
 	_veh setPos getPos _spawnObj;
 	_veh setDir (getDir _spawnObj);
+	_veh allowDamage true;
 	if(_veh isKindOf "car")then{
 		_time = 60;
 	};

@@ -13,13 +13,13 @@ sleep 1;
 _vehicle setDamage 0;
 
 //Medical heli
-if(_vehicletype == "RHS_UH60M_MEV" or _vehicletype == "rhsusf_m113_usarmy_medical" or _vehicletype == "B_Truck_0")then{
+if(_vehicletype == "B_Truck_0")then{
     _vehicle setVariable ["ace_medical_medicClass", 1];
 };
 
 //Tank
 if(_vehicle isKindOf "Helicopter")then{
-    [_veh]call Zen_AddFastRope;
+    [_vehicle]call Zen_AddFastRope;
 };
 
 //Bulldozer

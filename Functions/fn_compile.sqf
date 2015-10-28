@@ -14,6 +14,7 @@ JOC_bftManager = compileFinal preprocessFileLineNumbers "Functions\BFT\manager.s
 //Commander
 #include "Commander\fn_commander_compile.sqf";
 JOC_cmdCreateLocations = compileFinal preprocessFileLineNumbers "Functions\Commander\createLocations.sqf";
+JOC_cmdCreateEnemy = compileFinal preprocessFileLineNumbers "Functions\Commander\createEnemy.sqf";
 
 //Core
 
@@ -31,6 +32,7 @@ JOC_crateInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\crat
 JOC_spawnComposition = compileFinal preprocessFileLineNumbers "Functions\Logistics\spawnComposition.sqf";
 
 //Misc
+JOC_findCenter = compileFinal preprocessFileLineNumbers "Functions\Misc\findCenter.sqf";
 
 //Performance
 JOC_perfLoop = compileFinal preprocessFileLineNumbers "Functions\Performance\loop.sqf";

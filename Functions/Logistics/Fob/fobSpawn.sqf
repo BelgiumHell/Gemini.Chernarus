@@ -18,7 +18,7 @@ if(fobCount < ((count bluTowns) + 1))then{
 	if((count _veh) >= 1 or (fobCount >= fobLimit))then{
 		hint "Pad not clear or max vehicles reached";
 	}else{
-		_truck = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy" createVehicle [16000,16000,0];
+		_truck = "B_Truck_01_box_F" createVehicle [16000,16000,0];
 		_truck setDir getDir fobSpawn;
 		_truck setPosASL getPosASL fobSpawn;
 		_truck setDamage 0;

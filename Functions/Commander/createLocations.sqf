@@ -1,40 +1,31 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-/*
-airfGraviaData = {
-    runwayStart = [];
-    runwayEnd = [];
-    runwayToService = [runwayEnd, [14954,16666],[14817,16783]];
-    serviceToRunway = [[14651,],[],runwayStart];
-    serviceToHangar = [];
-    servicePos = [[14716,16708],[14679,14678]];
-};*/
-
-/////////////////////////////////
-//First part: markers + objects//
-/////////////////////////////////
-//Towns
-[]call JOC_cmdInitTown;
-[]call JOC_cmdInitIndTown;
-
-//Bases
-[]call JOC_cmdInitBase;
-/*
-//Airfields
-[]call JOC_cmdInitAirfield;
-
 //AA
 []call JOC_cmdInitAA;
+
+//Airfield
+[]call JOC_cmdInitAirfield;
+
+//Arty
+[]call JOC_cmdInitArty;
+
+//Base
+[]call JOC_cmdInitBase;
+
+//Factory
+[]call JOC_cmdInitFactory;
+
+//Mines
+[]call JOC_cmdInitMine;
 
 //Radiotowers
 []call JOC_cmdInitRadio;
 
-//Mines
-[]call JOC_cmdInitMine;*/
+//Town
+[]call JOC_cmdInitTown;
 
-
-
-//////////////////////////////////
-//Second part: markers + objects//
-//////////////////////////////////
+{
+    _marker = _x select 3;
+    _marker setMarkerAlpha 0;
+} forEach strategicArray;

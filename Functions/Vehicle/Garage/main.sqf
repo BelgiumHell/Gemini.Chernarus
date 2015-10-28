@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_airA = ["B_Heli_Transport_03_F","B_Heli_Transport_01_F"];
+_airA = ["B_Heli_Transport_03_F","B_Heli_Transport_01_F","B_Heli_Light_01_F","B_Heli_Light_01_armed_F","B_Heli_Attack_01_F"];
 _carA = ["B_MRAP_01_F","B_MRAP_01_gmg_F","B_MRAP_01_hmg_F","B_Truck_01_covered_F","B_Truck_01_transport_F"];
 _armorA = ["B_MBT_01_TUSK_F","B_MBT_01_cannon_F","B_APC_Tracked_01_rcws_F","B_APC_Wheeled_01_cannon_F"];
 _suppA = ["B_Heli_Transport_03_unarmed_F","B_APC_Tracked_01_CRV_F","B_Truck_01_fuel_F","B_Truck_01_ammo_F","B_Truck_01_Repair_F"];
