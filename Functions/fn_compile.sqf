@@ -4,6 +4,7 @@
 //AI
 JOC_aiManager = compileFinal preprocessFileLineNumbers "Functions\AI\aiManager.sqf";
 JOC_cache = compileFinal preprocessFileLineNumbers "Functions\AI\cache.sqf";
+JOC_cacheUnits = compileFinal preprocessFileLineNumbers "Functions\AI\cacheUnits.sqf";
 JOC_virtualize = compileFinal preprocessFileLineNumbers "Functions\AI\virtualize.sqf";
 JOC_unCache = compileFinal preprocessFileLineNumbers "Functions\AI\unCache.sqf";
 JOC_unVirtualize = compileFinal preprocessFileLineNumbers "Functions\AI\unVirtualize.sqf";

@@ -2,24 +2,8 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-
-{
-	if(count (units _x) == 0)then{
-		deleteGroup _x
-	};
-} forEach allGroups;
-
 //[amount(SCALAR),patrol(BOOLEAN)] heli:[amount(SCALAR),patrol(BOOLEAN),type(STRING)]
 params["_location","_dimensions","_inf","_car","_apc","_ifv","_tank","_heli","_boat"];
-/*_location = _this select 0;
-_dimensions = _this select 1;
-_inf = _this select 2;
-_car = _this select 3;
-_apc = _this select 4;
-_ifv = _this select 5;
-_tank = _this select 6;
-_heli = _this select 7;
-_boat = _this select 8;*/
 
 if ((typeName _dimensions) == "SCALAR") then {
 	_var = _dimensions;
@@ -31,7 +15,7 @@ _spawnMarker = createMarker [_spawnMarkerName,_location];
 _spawnMarkerName setMarkerSize [(_dimensions select 0),(_dimensions select 1)];
 _spawnMarkerName setMarkerShape "RECTANGLE";
 _spawnMarkerName setMarkerDir (_dimensions select 2);
-//_spawnMarkerName setMarkerAlpha 0;
+_spawnMarkerName setMarkerAlpha 0;
 
 //Spawn infantry
 _j = 0;
@@ -58,8 +42,9 @@ if((_car select 0) > 0)then{
 		_count = (_veh emptyPositions "cargo");
 		_groupV = [[0,0,0], east, "infantry", (_count - 1),"Basic"] call Zen_SpawnInfantry;
 		_units = (units _groupV);
-		[_groupV]call JOC_cache;
 		[_units,_veh] spawn Zen_MoveInVehicle;
+		[_groupV]call JOC_cache;
+		[crew _veh]call JOC_cacheUnits;
 		if(_car select 1)then{
 			_veh setVariable ["patrol",[_spawnMarkerName, [], [0,360],"limited",true],true];
 		};
@@ -74,7 +59,7 @@ if((_apc select 0) > 0)then{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
 		_veh = [_locationS,(apcPool call BIS_fnc_selectRandom)] call Zen_SpawnVehicle;
     	createVehicleCrew _veh;
-		[group(driver _veh)]call JOC_cache;
+		[crew _veh]call JOC_cacheUnits;
 		if(_apc select 1)then{
 			_veh setVariable ["patrol",[_spawnMarkerName, [], [0,360],"limited",true],true];
 		};
@@ -89,7 +74,7 @@ if((_ifv select 0) > 0)then{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
 		_veh = [_locationS,(ifvPool call BIS_fnc_selectRandom)] call Zen_SpawnVehicle;
     	createVehicleCrew _veh;
-		[group(driver _veh)]call JOC_cache;
+		[crew _veh]call JOC_cacheUnits;
 		if(_ifv select 1)then{
 			_veh setVariable ["patrol",[_spawnMarkerName, [], [0,360],"limited",true],true];
 		};
@@ -104,7 +89,7 @@ if((_tank select 0) > 0)then{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
 		_veh = [_locationS,(tankPool call BIS_fnc_selectRandom)] call Zen_SpawnVehicle;
     	createVehicleCrew _veh;
-		[group(driver _veh)]call JOC_cache;
+		[crew _veh]call JOC_cacheUnits;
 		if(_tank select 1)then{
 			[_veh, _spawnMarkerName, [], [0,360],"limited",true] spawn Zen_OrderVehiclePatrol;
 			_veh setVariable ["patrol",[_spawnMarkerName, [], [0,360],"limited",true],true];
@@ -129,7 +114,7 @@ if(_heliCount > 0)then{
 			_pool = casPool
 		};
 		_heli = [_locationS,(_pool call BIS_fnc_selectRandom),50] call Zen_SpawnHelicopter;
-		[group(driver _heli)]call JOC_cache;
+		[group (driver _heli)]call JOC_cacheUnits;
 		_j = _j + 1;
 	};
 };
@@ -142,7 +127,7 @@ if(_boatCount > 0)then{
 	while{_j < _boatCount} do{
 		_locationS = [_spawnMarkerName,0,0,2] call Zen_FindGroundPosition;
 		_boatV = [_locationS,["O_Boat_Armed_01_hmg_F"]] call Zen_SpawnBoat;
-		[group(driver _boatV)]call JOC_cache;
+		[crew _boatV]call JOC_cacheUnits;
 		if(_boatPatrol)then{
 			[_boatV, _spawnMarkerName, []] spawn Zen_OrderBoatPatrol;
 		};

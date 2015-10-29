@@ -1,14 +1,6 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-
-cacheGroup = createGroup east;
-[cacheGroupLeader] joinSilent cacheGroup;
-cacheGroup selectLeader cacheGroupLeader;
-publicVariable "cacheGroupLeader";
-cachedArray = [];
-virtualizedArray = [];
-
 //For caching
 []spawn{
     while{true}do{

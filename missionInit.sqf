@@ -53,6 +53,14 @@ publicVariable "baseObjects";
 publicVariable "fobTrucks";
 publicVariable "airfieldMarkers";
 
+//Init caching vars
+cacheGroup = createGroup east;
+[cacheGroupLeader] joinSilent cacheGroup;
+cacheGroup selectLeader cacheGroupLeader;
+publicVariable "cacheGroupLeader";
+cachedArray = [];
+virtualizedArray = [];
+
 //Run init scripts
 //spawn -needs a seperate thread to work
 
