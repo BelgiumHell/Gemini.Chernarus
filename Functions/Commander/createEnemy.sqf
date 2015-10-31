@@ -57,3 +57,6 @@ hint "spawning";
     } forEach cachedArray;
 
 } forEach strategicArray;
+
+_return = true;
+_return

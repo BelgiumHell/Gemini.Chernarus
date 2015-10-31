@@ -48,7 +48,7 @@
 []spawn{
     while {true} do {
         {
-            _objects = nearestObjects [(((_x select 0) select 1) select 1),["Man","Car","Tank","Air"],2000];
+            _objects = nearestObjects [(((_x select 0) select 1) select 1),["Man","Car","Tank","Air"],5000];
 
             if((west countSide _objects) > 0)then{
                 [_x]call JOC_unVirtualize;

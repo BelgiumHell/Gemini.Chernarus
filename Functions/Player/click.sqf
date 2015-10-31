@@ -11,7 +11,7 @@ onMapSingleClick{
 	_markers = allMapMarkers;
 	{
 		_distance = ((getMarkerPos _x) distance _position);
-		if((_distance < 10) and (_distance < _prevDis))then{
+		if((_distance < 70) and (_distance < _prevDis))then{
 			_prevDis = _distance;
 			_groupIdG = _x;
 		};
@@ -27,7 +27,13 @@ onMapSingleClick{
 		_unitsG = (units _group);
 		_unitText = "";
 		{
-			_unitText = composeText [_unitText, lineBreak, (name _x)];
+			_veh = vehicle _x;
+			if(_veh isKindOf "man")then{
+				_vehText = "";
+			}else{
+				_vehText = format["(%1)",(typeOf _veh)]
+			};
+			_unitText = composeText [_unitText, lineBreak, (name _x) + ""];
 		}forEach _unitsG;
 		_text = parseText format["<t color='#0080FF' size='2'>%1</t>",_groupIdG];
 		_freq = 0;

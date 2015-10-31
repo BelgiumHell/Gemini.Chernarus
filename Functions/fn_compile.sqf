@@ -1,6 +1,8 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+JOC_missionInit = compileFinal preprocessFileLineNumbers "missionInit.sqf";
+
 //AI
 JOC_aiManager = compileFinal preprocessFileLineNumbers "Functions\AI\aiManager.sqf";
 JOC_cache = compileFinal preprocessFileLineNumbers "Functions\AI\cache.sqf";
@@ -11,6 +13,9 @@ JOC_unVirtualize = compileFinal preprocessFileLineNumbers "Functions\AI\unVirtua
 
 //Bluforce tracking
 JOC_bftManager = compileFinal preprocessFileLineNumbers "Functions\BFT\manager.sqf";
+
+//Client
+JOC_clientInit = compileFinal preprocessFileLineNumbers "Functions\Client\clientInit.sqf";
 
 //Commander
 #include "Commander\fn_commander_compile.sqf";

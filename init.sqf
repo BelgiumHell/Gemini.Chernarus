@@ -4,7 +4,6 @@
 
 #include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
 #include "Functions\fn_compile.sqf";
-#include "missionInit.sqf";
 call compile preprocessFile "Baked_AIS\Baked_AIS_init.sqf";
 
 // Gemini by Jochem
@@ -13,7 +12,11 @@ call compile preprocessFile "Baked_AIS\Baked_AIS_init.sqf";
 
 enableSaving [false, false];
 
-if(!isServer)exitWith{};
-
-// Execution stops until the mission begins (past briefing), do not delete this line
-sleep 1;
+if(isServer)then{
+    []call JOC_missionInit
+}else{
+    sleep 1;
+    startLoadingScreen ["Loading My Mission"];
+    sleep 1;
+    []call JOC_clientInit;
+};

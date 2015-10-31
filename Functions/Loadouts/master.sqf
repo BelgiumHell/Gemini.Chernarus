@@ -14,9 +14,9 @@ if(!(player in [r1,r2,r3,r4,s1,s2,v1,v2,rip1,rip2,cmd1,cmd2]))then{
 	removeHeadgear player;
 	removeGoggles player;
 
-	player forceAddUniform "BAF_Soldier_Base_L_M_Uniform_DG1";
-	player addVest "BAF_Soldier_Officer_Vest_M_DG1";
-	player addHeadgear "BAF_Soldier_Engineer_Headgear_M_DG1";
+	player forceAddUniform "rhs_uniform_cu_ocp";
+	player addVest "rhsusf_iotv_ocp_Rifleman";
+	player addHeadgear "rhsusf_ach_helmet_ocp";
 
 	player linkItem "ItemMap";
 	player linkItem "ItemCompass";

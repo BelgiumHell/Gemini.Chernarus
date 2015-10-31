@@ -6,6 +6,8 @@
 //Command
 
 //Defend
+JOC_cmdDefArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\arty.sqf";
+JOC_cmdDefConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\convoy.sqf";
 
 //Init
 JOC_cmdInitAA = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\aa.sqf";
@@ -20,6 +22,7 @@ JOC_cmdInitTown = compileFinal preprocessFileLineNumbers "Functions\Commander\In
 //Logistics
 
 //Misc
+JOC_monitorStrategic = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\monitorStrategic.sqf";
 
 //Patrol
 

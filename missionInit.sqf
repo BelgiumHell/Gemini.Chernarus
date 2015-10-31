@@ -68,7 +68,9 @@ virtualizedArray = [];
 []call JOC_cmdCreateEnemy;
 
 //End loading screen
-sleep 1;
+[[],{
+    endLoadingScreen;
+}] remoteExec ["BIS_fnc_spawn", 0, true];
 
 []call JOC_aiManager;
 []spawn JOC_fobManager;

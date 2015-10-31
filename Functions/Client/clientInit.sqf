@@ -16,6 +16,7 @@ _textDate = format["%3/%2/%1 - %4:%5",_year,_month,_day,_hour,_minute];
 _textName = format["%1 %2",_rank,_name];
 waitUntil {!isNull player};
 waitUntil {player == player};
+player setPosASL getPosASL respawn_obj;
 
 [
 	[
