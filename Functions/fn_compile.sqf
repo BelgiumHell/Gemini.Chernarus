@@ -22,7 +22,8 @@ JOC_clientInit = compileFinal preprocessFileLineNumbers "Functions\Client\client
 JOC_cmdCreateLocations = compileFinal preprocessFileLineNumbers "Functions\Commander\createLocations.sqf";
 JOC_cmdCreateEnemy = compileFinal preprocessFileLineNumbers "Functions\Commander\createEnemy.sqf";
 
-//Core
+//Diary
+JOC_createDiary = compileFinal preprocessFileLineNumbers "Functions\Diary\createDiary.sqf";
 
 //Init
 JOC_initDepot = compileFinal preprocessFileLineNumbers "Functions\Init\initDepot.sqf";

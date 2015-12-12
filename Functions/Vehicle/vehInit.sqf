@@ -17,13 +17,14 @@ if(_vehicletype == "B_Truck_0")then{
     _vehicle setVariable ["ace_medical_medicClass", 1];
 };
 
-//Tank
+//heli
 if(_vehicle isKindOf "Helicopter")then{
     [_vehicle]call Zen_AddFastRope;
+    _vehicle addEventHandler ["damaged", {[_this]spawn JOC_heliDamageHandler;}];
 };
 
 //Bulldozer
-if(_vehicletype == "B_APC_Tracked_01_CRV_F")then{
+if(_vehicletype in logisticsVehArray)then{
     [_vehicle]spawn JOC_tow;
 };
 

@@ -9,7 +9,7 @@ while{true}do{
 			[_groups, (count _groups), _x] call Zen_ArrayInsert;
 		};
 	}forEach allGroups;
-	
+
 	{
 		_id = (groupId _x);
 		_leader = (leader _x);
@@ -21,28 +21,28 @@ while{true}do{
 			}else{
 				_marker = createMarker [_id, (getPos _leader)];
 			};
-		
+
 			if((vehicle _leader) isKindOf "man")then{
 				_icon = "b_inf";
 			};
 			if((vehicle _leader) isKindOf "LandVehicle")then{
 				if((vehicle _leader) isKindOf "car")then{
-					_icon = "b_motor_inf";					
+					_icon = "b_motor_inf";
 				};
 				if((vehicle _leader) isKindOf "Truck_F")then{
-					_icon = "b_motor_inf";					
+					_icon = "b_motor_inf";
 				};
 				if((vehicle _leader) isKindOf "tank")then{
 					_icon = "b_armor";
 				};
 				if((typeOf (vehicle _leader)) in motorizedArray)then{
-					_icon = "b_mech_inf";					
+					_icon = "b_mech_inf";
 				};
 				if((typeOf (vehicle _leader)) in logisticsVehArray)then{
-					_icon = "b_maint";					
+					_icon = "b_maint";
 				};
 				if((typeOf (vehicle _leader)) == "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy")then{
-					_icon = "b_support";					
+					_icon = "b_support";
 				};
 			};
 			if((vehicle _leader) isKindOf "Air")then{
@@ -58,5 +58,5 @@ while{true}do{
 			deleteMarker _id;
 		};
 	}forEach _groups;
-	sleep 5;
+	sleep 0.3;
 };

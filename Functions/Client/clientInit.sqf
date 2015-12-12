@@ -14,10 +14,9 @@ _name = name player;
 
 _textDate = format["%3/%2/%1 - %4:%5",_year,_month,_day,_hour,_minute];
 _textName = format["%1 %2",_rank,_name];
-waitUntil {!isNull player};
-waitUntil {player == player};
 player setPosASL getPosASL respawn_obj;
 
+0.5 fadeSound 1;
 [
 	[
 		["Gemini","<t align = 'center' shadow = '1' size = '0.6'>%1</t><br/>"],
@@ -30,14 +29,21 @@ player setPosASL getPosASL respawn_obj;
     1,
     "<t align = 'center' shadow = '1' size = '1.0'>%1</t>"
 ] spawn BIS_fnc_typeText;
+sleep 10;
+titleText ["", "BLACK IN", 7];
 
 []spawn JOC_playerClick;
 []call JOC_garage;
+[]spawn JOC_playerLoop;
+[]call JOC_createDiary;
+//[]spawn JOC_loadoutMaster;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
+cduEnabled = false;
 
 //Ace interaction
 viewDistanceI = ["ViewDistance","View distance","",{[]spawn CHVD_fnc_openDialog},{true}] call ace_interact_menu_fnc_createAction;
 [player, 1, ["ACE_SelfActions"], viewDistanceI] call ace_interact_menu_fnc_addActionToObject;
 
+/*
 gridMarkersI = ["gridMarkers","Show/hide grid markers","",{},{true}] call ace_interact_menu_fnc_createAction;
-[player, 1, ["ACE_SelfActions"], gridMarkersI] call ace_interact_menu_fnc_addActionToObject;
+[player, 1, ["ACE_SelfActions"], gridMarkersI] call ace_interact_menu_fnc_addActionToObject;*/

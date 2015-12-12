@@ -1,8 +1,11 @@
-player createDiaryRecord ["Cahngelog",
+/////////////////////////
+//Script made by Jochem//
+/////////////////////////
+player createDiaryRecord ["Changelog",
 [
-"Current: v1.0",
+"Current: v2.0",
 "
 <br /><font size='16'>v1.0</font>
-<br />-Initial release
+<br />-Initial release of rewrite
 "
 ]];

@@ -4,10 +4,16 @@
 //Attack
 
 //Command
+JOC_cmdCmdreqSupport = compileFinal preprocessFileLineNumbers "Functions\Commander\Command\reqSupport.sqf";
 
 //Defend
+JOC_cmdDefArmor = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\armor.sqf";
 JOC_cmdDefArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\arty.sqf";
+JOC_cmdDefCas = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\cas.sqf";
 JOC_cmdDefConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\convoy.sqf";
+JOC_cmdDefHeli = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\heli.sqf";
+JOC_cmdDefNear = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\near.sqf";
+JOC_cmdDefRetreat = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\retreat.sqf";
 
 //Init
 JOC_cmdInitAA = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\aa.sqf";
@@ -27,6 +33,5 @@ JOC_monitorStrategic = compileFinal preprocessFileLineNumbers "Functions\Command
 //Patrol
 
 //Spawning
-JOC_cmdSpawnAirfield = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\airfield.sqf";
 JOC_cmdSpawnBase = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\base.sqf";
 JOC_cmdSpawnZone = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\zone.sqf";

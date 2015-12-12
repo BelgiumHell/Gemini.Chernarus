@@ -1,12 +1,13 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_pos","_aimPos"];
+params["_arg"];
 private["_array"];
+
+_pos = _arg select 0;
+_marker = _arg select 3;
+
 _prevPos = 99999;
-
-hint "start";
-
 {
     if(((_x select 2) == "arty") && (((_x select 0) distance _pos) < _prevPos))then{
         _prevPos = ((_x select 0) distance _pos);
@@ -16,12 +17,24 @@ hint "start";
 
 if(isNil{_array})exitWith{false};
 
-hint "shoot";
+_location = getMarkerPos _marker;
+_size = getMarkerSize _marker;
+_dir = markerDir _marker;
+_trg = createTrigger ["EmptyDetector",_location,true];
+_trg setTriggerArea [(_size select 0),(_size select 1),1200,false];
+_trg setTriggerActivation ["EAST","PRESENT", false];
+_trg setTriggerStatements ["this","",""];
+_trg setTriggerTimeout [5,5,5,true];
+_trg setDir _dir;
 
-_artyA =  nearestObjects [_array select 0,["O_MBT_02_arty_F"],500];
+_timeout = time + 1800;
+waitUntil {count (list _trg) == 0 || time > _timeout};
+deleteVehicle _trg;
+
+_artyA =  nearestObjects [_array select 0,[artyClass],500];
 
 {
-    [_x,_aimPos]spawn{
+    [_x,_pos]spawn{
         for [{_i=0}, {_i<4}, {_i=_i+1}] do{
             _shootPos = [((_this select 1) select 0) - 50 + (2 * random 50),((_this select 1) select 1) - 50 + (2 * random 50),0];
 

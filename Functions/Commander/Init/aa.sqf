@@ -35,10 +35,10 @@ while {_tank < 14} do{
 	_location = [];
 	while{count _location == 0}do{
 		_pos = ["mrk_area",0,[_tankBlacklist + blackMarkers,[],[]],1,0] call Zen_FindGroundPosition;
-		_location  = _pos findEmptyPosition [0,300,"O_APC_Tracked_02_AA_F"];
+		_location  = _pos findEmptyPosition [0,300,aaClass];
 	};
 
-	_aaTank = "O_APC_Tracked_02_AA_F" createVehicle _location;
+	_aaTank = aaClass createVehicle _location;
 	createVehicleCrew _aaTank;
 	_aaTank setFuel 0;
 	_aaTank addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];

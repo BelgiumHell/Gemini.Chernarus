@@ -1,8 +1,11 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-[{
+[[],{
 	_action = cmd_laptop addAction["Task overview",{
 		[]spawn JOC_setMainTask;
 	}];
-},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
+	{
+	    [_x]call JOC_arsenal;
+	} forEach arsenalBoxes;
+}] remoteExec ["BIS_fnc_spawn", 0, true];

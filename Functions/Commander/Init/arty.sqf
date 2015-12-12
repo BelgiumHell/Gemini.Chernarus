@@ -9,7 +9,7 @@ while{_s < 4}do{
 	_location = [];
 	while{count _location == 0}do{
 	    _pos = ["mrk_area",0,[airfieldMarkers + blackMarkers,[],[]],1,0] call Zen_FindGroundPosition;
-	    _location  = _pos findEmptyPosition [0,300,"O_MBT_02_arty_F"];
+	    _location  = _pos findEmptyPosition [0,300,artyClass];
 	};
 
 	//Create marker
@@ -30,7 +30,7 @@ while{_s < 4}do{
 	//Spawn arty
 	_dir = round random 360;
 	_locationS = [_location, random 60, random 60] call BIS_fnc_relPos;
-	_arty1 = [_locationS, "O_MBT_02_arty_F"] call Zen_SpawnVehicle;
+	_arty1 = [_locationS, artyClass] call Zen_SpawnVehicle;
 	createVehicleCrew _arty1;
 	_arty1 addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	_arty1 setFuel 0;
@@ -38,7 +38,7 @@ while{_s < 4}do{
 
 	_dir = round random 360;
 	_locationS = [_location, random 60, random 60] call BIS_fnc_relPos;
-	_arty2 = [_locationS, "O_MBT_02_arty_F"] call Zen_SpawnVehicle;
+	_arty2 = [_locationS, artyClass] call Zen_SpawnVehicle;
 	createVehicleCrew _arty2;
 	_arty2 addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	_arty2 setFuel 0;

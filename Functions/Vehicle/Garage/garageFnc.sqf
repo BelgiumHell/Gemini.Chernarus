@@ -22,7 +22,16 @@ sleep 1;
 _veh = nearestObject [_spawnObj, "AllVehicles"];
 _dis = _veh distance _spawnObj;
 
-if(_dis > 5)then{hint "No vehicle spawned";}else{
+if(_dis > 5)then{
+	hint "No vehicle spawned";
+	sleep 2;
+	_veh = nearestObjects [_spawnObj, ["AllVehicles"], 50];
+	{
+	    if(local _x && _x != player)then{
+			deleteVehicle _x;
+		};
+	} forEach _veh;
+}else{
 	{
 		deleteVehicle _x;
 	}forEach (crew _veh);
@@ -45,10 +54,10 @@ if(_dis > 5)then{hint "No vehicle spawned";}else{
 		_time = 60;
 	};
 	if(_veh isKindOf "tank")then{
-		_time = 600;
+		_time = 120;
 	};
 	if(_veh isKindOf "Air")then{
-		_time = 600;
+		_time = 120;
 	};
 	if(_veh isKindOf "Ship")then{
 		_time = 60;

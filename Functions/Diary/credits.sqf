@@ -1,3 +1,6 @@
+/////////////////////////
+//Script made by Jochem//
+/////////////////////////
 player createDiaryRecord ["Credits",
 [
 "Thanks to...",

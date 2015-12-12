@@ -14,6 +14,10 @@ supportPool  = ["O_Truck_02_ammo_F","O_Truck_02_fuel_F"];     //support classnam
 airPool      = ["O_Heli_Light_02_F","O_Heli_Light_02_unarmed_F"];     //transport helicopter classnames
 casPool      = ["O_Heli_Attack_02_F"];      //cas helicopters classnames
 jetPool      = ["O_Plane_CAS_02_F"];       //jet classnames
+crewClass    = "O_crew_F";    //Crewman classname
+pilotClass   = "O_Pilot_F";   //Pilot classname
+artyClass    = "O_MBT_02_arty_F";
+aaClass      = "O_APC_Tracked_02_AA_F";
 //Markers
 blackTowns = ["Sagonisi"];  //Blacklist towns
 blackMarkers = ["mrk_safeZone"];
@@ -24,12 +28,16 @@ airfieldMarkers = ["mrk_airfield_0","mrk_airfield_1","mrk_airfield_2","mrk_airfi
 "mrk_area" setMarkerAlpha 0;
 
 //Objects
-leaderArray = [cmd1,cmd2,a0_1,b0_1,c0_1,h1,r1,anv1,s1,v1,rip1];
-logisticsArray = ["l1","l2","l3","l4"];
-logisticsVehArray = ["B_APC_Tracked_01_CRV_F"];
-motorizedArray = ["rhsusf_m113_usarmy","RHS_M2A3_BUSKIII_wd","RHS_M6_wd"];
-medicalVehArray = ["RHS_UH60M_MEV"];
-jetArray = [];
+leaderArray = [cmd1,cmd2,a0_1,b0_1,c0_1,h1,r1,anv1,s1,v1,rip1]; //All leading elements
+arsenalBoxes = [arsenal1,arsenal2,arsenal3];    //All pre-placed boxes that need to be a virtual arsenal
+logisticsArray = ["l1","l2","l3","l4"]; //All units that will be able to use the building crate
+logisticsVehArray = ["B_APC_Tracked_01_CRV_F"]; //All vehicles that can tow
+motorizedArray = [];    //All vehicles that are classed as motorized
+medicalVehArray = [];   //All medical vehicles
+
+//Variables
+bftEnable = true;  //Enable blu force tracking
+bftRefresh = 0.3;  //Refresh rate for blu force tracking
 
 //Init variables *DONT CHANGE*
 //[towns,bases,airfields,grids]
@@ -54,6 +62,7 @@ publicVariable "fobTrucks";
 publicVariable "airfieldMarkers";
 
 //Init caching vars
+JOC_pauseCache = false;
 cacheGroup = createGroup east;
 [cacheGroupLeader] joinSilent cacheGroup;
 cacheGroup selectLeader cacheGroupLeader;
@@ -62,17 +71,18 @@ cachedArray = [];
 virtualizedArray = [];
 
 //Run init scripts
-//spawn -needs a seperate thread to work
-
 []call JOC_cmdCreateLocations;
-[]call JOC_cmdCreateEnemy;
+//[]call JOC_cmdCreateEnemy;
 
-//End loading screen
+//Display loaded message
 [[],{
-    endLoadingScreen;
+    hint "Mission loaded, have fun!"
 }] remoteExec ["BIS_fnc_spawn", 0, true];
 
 []call JOC_aiManager;
-[]spawn JOC_fobManager;
-[]spawn JOC_bftManager;
+if(bftEnable)then{
+    []spawn JOC_bftManager;
+};
 []spawn JOC_perfLoop;
+[]call JOC_initPlayerBase;
+[]call JOC_initPlayerBase;

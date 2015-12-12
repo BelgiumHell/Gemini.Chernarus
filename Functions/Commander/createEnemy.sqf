@@ -1,8 +1,6 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-hint "spawning";
-
 {
     _pos = _x select 0;
     _priority = _x select 1;
@@ -57,6 +55,3 @@ hint "spawning";
     } forEach cachedArray;
 
 } forEach strategicArray;
-
-_return = true;
-_return

@@ -4,6 +4,7 @@
 //For caching
 []spawn{
     while{true}do{
+        waitUntil {sleep 1; !JOC_pauseCache};
         {
             if(count (units _x) == 0)then{
                 deleteGroup _x;
@@ -20,6 +21,7 @@
             };
         } forEach allGroups;
         sleep 15;
+        waitUntil {sleep 1; !JOC_pauseCache};
     };
 };
 
@@ -48,7 +50,7 @@
 []spawn{
     while {true} do {
         {
-            _objects = nearestObjects [(((_x select 0) select 1) select 1),["Man","Car","Tank","Air"],5000];
+            _objects = nearestObjects [(((_x select 0) select 0) select 1),["Man","Car","Tank","Air"],5000];
 
             if((west countSide _objects) > 0)then{
                 [_x]call JOC_unVirtualize;
