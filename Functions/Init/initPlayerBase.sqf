@@ -6,6 +6,6 @@
 		[]spawn JOC_setMainTask;
 	}];
 	{
-	    [_x]call JOC_arsenal;
+		[_x]call JOC_arsenal;
 	} forEach arsenalBoxes;
 }] remoteExec ["BIS_fnc_spawn", 0, true];

@@ -1,9 +1,13 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-private ["_truck"];
+params["_truck"];
 
-_truck = _this select 0;
-_truck setVariable ["ace_medical_medicClass", 1];
-[["RespawnAdded",["DEPLOYMENT POINT","A new FOB is available at base","\A3\ui_f\data\map\markers\nato\b_hq.paa"]],"BIS_fnc_showNotification",west] call BIS_fnc_MP;	//Notification
-[[[_truck],{_action = (_this select 0) addAction["Deploy FOB",{[(_this select 0)] spawn JOC_fobDeploy;},"",1,true,true,"","(side _this == west) && (speed _target < 1)"];}],"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
+[[_truck],{
+    params["_truck"];
+    ["RespawnAdded",["DEPLOYMENT POINT","A new FOB is available at base","\A3\ui_f\data\map\markers\nato\b_hq.paa"]]call BIS_fnc_showNotification;
+
+    _action = ["deployFob", "Deploy FOB", "", {[(_this select 0)] spawn JOC_fobDeploy;}, {(side (_this select 1) == west) && (speed (_this select 0) < 1)}] call ace_interact_menu_fnc_createAction;
+    [_truck, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
+    _truck setVariable ["ace_medical_medicClass", 1];
+}] remoteExec ["BIS_fnc_spawn", 0, true];

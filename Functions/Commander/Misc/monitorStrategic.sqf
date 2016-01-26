@@ -4,8 +4,9 @@
 params["_marker","_id"];
 
 _array = (strategicArray select _id);
-_owner = 2;	//0 = BLUFOR|1 = OPFOR
+_owner = 1;	//0 = BLUFOR|1 = OPFOR
 _objects = [];
+_random = random(10);	//should spread load
 
 //Create object triggers
 _location = getMarkerPos _marker;
@@ -88,10 +89,10 @@ while{true}do{
 	};
 
     //Call for support
-    if((count list _trgB) > (count list _trgO) * 0.5)then{
-        [_array,(list _trgO),(list _trgB)]call JOC_cmdCmdreqSupport;
+    if((count list _trgB) > (count list _trgO) * 0.5 && _owner == 1)then{
+        [_array,(list _trgO),(list _trgB)]spawn JOC_cmdCmdreqSupport;
 		_owner = 2;
     };
 
-	sleep 10;
+	sleep (_random + 10);
 };

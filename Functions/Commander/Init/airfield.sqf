@@ -22,7 +22,7 @@
     } forEach _tentHangars;
 
     {
-        _heli = [getPos _x,(jetPool call BIS_fnc_selectRandom),1,(getDir _x) + 180] call Zen_SpawnVehicle;
+        _heli = [getPos _x,((jetPoolAA + jetPoolAG) call BIS_fnc_selectRandom),1,(getDir _x) + 180] call Zen_SpawnVehicle;
         _heli enableSimulationGlobal false;
         _heli allowDamage false;
         _heli enableSimulationGlobal true;

@@ -21,6 +21,8 @@ _radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Sm
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
+	[_x]spawn JOC_cmdMiscRadar;
+
 	strategicArray pushBack [_location,500,"radar",_nameS,east];
 
 	//[_x,_name] spawn JOC_radar;

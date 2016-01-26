@@ -36,11 +36,23 @@ onMapSingleClick{
 			_unitText = composeText [_unitText, lineBreak, (name _x) + ""];
 		}forEach _unitsG;
 		_text = parseText format["<t color='#0080FF' size='2'>%1</t>",_groupIdG];
+
 		_freq = 0;
+		_block = 1;
 		{
-			_freq = (call TFAR_fnc_ActiveSwRadio) call TFAR_fnc_getSwFrequency;
+			_freq = [[]call acre_api_fnc_getCurrentRadio]call acre_api_fnc_getRadioChannel;
 		}forEach [(leader _group)];
-		_freqText = format["SW freq: %1",_freq];
+		if(isNil {_freq})then{
+			_freq = "N/A";
+			_block = "N/A";
+		}else{
+			while{_freq > 16}do{
+				_block = _block + 1;
+				_freq = _freq - 16;
+			};
+		};
+
+		_freqText = format["Radio freq: block%1 ch%2",_block,_freq];
 		_text = composeText [_text, lineBreak, _unitText, lineBreak, lineBreak, _freqText];
 		hint _text;
 	};

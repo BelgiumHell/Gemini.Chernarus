@@ -3,7 +3,7 @@
 /////////////////////////
 {
 	_nearestPlayers = [];
-	_location = (getPos this);
+	_location = (getPos _x);
     {
         if (isPlayer _x && _x distance _location < 500) then {
             _nearestPlayers pushBack _x;

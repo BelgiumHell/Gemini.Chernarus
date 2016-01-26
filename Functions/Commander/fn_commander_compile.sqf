@@ -2,8 +2,10 @@
 //Script made by Jochem//
 /////////////////////////
 //Attack
+JOC_cmdAttackIntercept = compileFinal preprocessFileLineNumbers "Functions\Commander\Attack\intercept.sqf";
 
 //Command
+JOC_cmdCmdLoop = compileFinal preprocessFileLineNumbers "Functions\Commander\Command\loop.sqf";
 JOC_cmdCmdreqSupport = compileFinal preprocessFileLineNumbers "Functions\Commander\Command\reqSupport.sqf";
 
 //Defend
@@ -29,6 +31,7 @@ JOC_cmdInitTown = compileFinal preprocessFileLineNumbers "Functions\Commander\In
 
 //Misc
 JOC_monitorStrategic = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\monitorStrategic.sqf";
+JOC_cmdMiscRadar = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\radar.sqf";
 
 //Patrol
 

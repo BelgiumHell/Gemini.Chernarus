@@ -13,14 +13,13 @@ sleep 1;
 _vehicle setDamage 0;
 
 //Medical heli
-if(_vehicletype == "B_Truck_0")then{
+if(_vehicletype in ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"])then{
     _vehicle setVariable ["ace_medical_medicClass", 1];
 };
 
 //heli
 if(_vehicle isKindOf "Helicopter")then{
     [_vehicle]call Zen_AddFastRope;
-    _vehicle addEventHandler ["damaged", {[_this]spawn JOC_heliDamageHandler;}];
 };
 
 //Bulldozer

@@ -37,22 +37,8 @@ class CfgSounds
 		// how the sound is referred to in the editor (e.g. trigger effects)
 		name = "speakersForHeli";
 		// filename, volume, pitch
-		sound[] = {"Data\Sounds\heliSpeakerSound.wav", 1, 1};
+		sound[] = {"Data\Sounds\heliSpeakerSound.ogg", 5, 1};
 		// subtitle delay in seconds, subtitle text
 		titles[] = {};
 	};
 };
-
-class CfgORBAT
-{
-    class cmd
-    {
-        id = 1;
-        idType = 0;
-        side = "west";
-        size = "platoon";
-        type = "HQ";
-        commander = "";
-        commanderRank = "colonel";
-    }
-}

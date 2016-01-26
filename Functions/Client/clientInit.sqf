@@ -1,6 +1,20 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+/*while{!JOC_serverLoaded}do{
+	titleText ["Mission is loading", "BLACK FADED", 0];
+	sleep 0.5;
+	titleText ["Mission is loading.", "BLACK FADED", 0];
+	sleep 0.5;
+	titleText ["Mission is loading..", "BLACK FADED", 0];
+	sleep 0.5;
+	titleText ["Mission is loading...", "BLACK FADED", 0];
+	sleep 0.5;
+};*/
+//Don't mind this
+player enableSimulation true;
+player allowDamage true;
+
 //intro text
 _date = date;
 _year = _date select 0;
@@ -16,7 +30,9 @@ _textDate = format["%3/%2/%1 - %4:%5",_year,_month,_day,_hour,_minute];
 _textName = format["%1 %2",_rank,_name];
 player setPosASL getPosASL respawn_obj;
 
-0.5 fadeSound 1;
+["Preload"]call BIS_fnc_arsenal;
+
+titleText ["", "BLACK IN", 7];
 [
 	[
 		["Gemini","<t align = 'center' shadow = '1' size = '0.6'>%1</t><br/>"],
@@ -30,20 +46,24 @@ player setPosASL getPosASL respawn_obj;
     "<t align = 'center' shadow = '1' size = '1.0'>%1</t>"
 ] spawn BIS_fnc_typeText;
 sleep 10;
-titleText ["", "BLACK IN", 7];
+
 
 []spawn JOC_playerClick;
 []call JOC_garage;
 []spawn JOC_playerLoop;
-[]call JOC_createDiary;
-//[]spawn JOC_loadoutMaster;
+[]spawn JOC_vehMusic;
+//[]call JOC_createDiary;
+[]spawn JOC_loadoutMaster;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
 cduEnabled = false;
 
 //Ace interaction
-viewDistanceI = ["ViewDistance","View distance","",{[]spawn CHVD_fnc_openDialog},{true}] call ace_interact_menu_fnc_createAction;
-[player, 1, ["ACE_SelfActions"], viewDistanceI] call ace_interact_menu_fnc_addActionToObject;
-
-/*
-gridMarkersI = ["gridMarkers","Show/hide grid markers","",{},{true}] call ace_interact_menu_fnc_createAction;
-[player, 1, ["ACE_SelfActions"], gridMarkersI] call ace_interact_menu_fnc_addActionToObject;*/
+//View distance
+_viewDistanceI = ["ViewDistance","View distance","",{[]spawn CHVD_fnc_openDialog},{true}] call ace_interact_menu_fnc_createAction;
+[player, 1, ["ACE_SelfActions"], _viewDistanceI] call ace_interact_menu_fnc_addActionToObject;
+//MAT
+_actionMAT = ["loadMat", "Load MAT ammo", "", {[(_this select 0)]spawn JOC_crateMat;}, {((_this select 0) distance logiSpawner) < 50}] call ace_interact_menu_fnc_createAction;
+[typeOf "B_Slingload_01_Cargo_F", 0, ["ACE_MainActions"], _actionMAT] call ace_interact_menu_fnc_addActionToClass;
+//MMG
+_actionMMG = ["loadMmg", "Load MMG ammo", "", {[(_this select 0)]spawn JOC_crateMmg;}, {((_this select 0) distance logiSpawner) < 50}] call ace_interact_menu_fnc_createAction;
+[typeOf "B_Slingload_01_Cargo_F", 0, ["ACE_MainActions"], _actionMMG] call ace_interact_menu_fnc_addActionToClass;

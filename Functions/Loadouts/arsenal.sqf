@@ -2,27 +2,31 @@
 //Script made by Jochem//
 /////////////////////////
 private["_box","_unit","_uniforms","_vests","_helmets","_backpacks"];
-_box = _this select 0;
+params["_box"];
 
 _weapons = [
-	"rhs_weap_m4_carryhandle"
+	"rhs_weap_m4_carryhandle",
+	"rhs_weap_M136_hedp",
+	"RH_m9"
 ];
 
 _magazines = [
-	"30Rnd_556x45_Stanag",
-	"30Rnd_556x45_Stanag_Tracer_Red",
+	"rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer",
+	"30Rnd_556x45_Stanag_Tracer_Red"
 ];
 _uniforms = [
-	"rhs_uniform_cu_ocp"
+	"rhs_uniform_FROG01_d"
 ];
 _vests = [
-	"rhsusf_iotv_ocp_Rifleman"
+	"rhsusf_spc_rifleman"
 ];
 _helmets = [
-	"rhsusf_ach_helmet_ocp"
+	"rhsusf_lwh_helmet_marpatd",
+	"rhsusf_lwh_helmet_marpatd_ess",
+	"rhsusf_lwh_helmet_marpatd_headset"
 ];
 _backpacks = [
-	"rhsusf_assault_eagleaiii_ocp"
+	"rhsusf_assault_eagleaiii_coy"
 ];
 _items = [
 	"ACE_EarPlugs",
@@ -60,18 +64,18 @@ _items = [
 
 	"rhsusf_acc_ACOG2",
 	"rhsusf_acc_compm4",
-	"rhsusf_acc_eotech_552"
+	"rhsusf_acc_eotech_552",
+
+	"Binocular"
 ];
-weaponsT = _weapons;
-magazinesT = _magazines;
-backpacksT = _backpacks;
+
 //Tank
 if(player in [anv1,anv2,anv3])then{
 	_weapons = (_weapons + []);
 	_magazines = (_magazines + []);
 	_uniforms = (_uniforms + []);
-	_vests = (_vests + []);
-	_helmets = (_helmets + []);
+	_vests = [];
+	_helmets = [];
 	_backpacks = (_backpacks + []);
 	_items = (_items + []);
 };
@@ -103,18 +107,18 @@ if(player in [r1,r2,r3,r4])then{
 	_weapons = (_weapons + ["rhs_weap_m4a1_carryhandle_grip2"]);
 	_magazines = (_magazines + []);
 	_uniforms = [];
-	_vests = [];
-	_helmets = [];
+	_vests = ["V_Chestrig_khk"];
+	_helmets = ["rhs_Booniehat_marpatd"];
 	_backpacks = [];
-	_items = (_items + []);
+	_items = (_items + ["lerca_1200_tan"]);
 };
 
 //Autorifleman
 if(player in [a5,b5,c5])then{
-	_weapons = (_weapons + ["rhs_weap_m249_pip_S","RH_M27IAR"]);
-	_magazines = (_magazines + ["rhs_200rnd_556x45_M_SAW","rhs_200rnd_556x45_T_SAW","rhs_200rnd_556x45_B_SAW","RH_60Rnd_556x45_M855A1"]);
-	_uniforms = (_uniforms + []);
-	_vests = (_vests + []);
+	_weapons = (_weapons + ["rhs_weap_m249_pip_S","rhs_weap_m27iar"]);
+	_magazines = (_magazines + ["rhs_200rnd_556x45_M_SAW","rhs_200rnd_556x45_T_SAW","rhs_200rnd_556x45_B_SAW"]);
+	_uniforms = [(_uniforms + [])];
+	_vests = ["rhsusf_spc_mg"];
 	_helmets = (_helmets + []);
 	_backpacks = (_backpacks + []);
 	_items = (_items + ["rhsusf_acc_ELCAN"]);
@@ -123,16 +127,16 @@ if(player in [a5,b5,c5])then{
 //Marksman
 if(player in [a3,b3,c3,r2])then{
 	_weapons = (_weapons + ["rhs_weap_sr25_ec"]);
-	_magazines = (_magazines + ["rhsusf_20Rnd_762x51_m118_special_Mag"]);
+	_magazines = (_magazines + ["rhsusf_20Rnd_762x51_m118_special_Mag","rhsusf_20Rnd_762x51_m993_Mag"]);
 	_uniforms = (_uniforms + []);
-	_vests = (_vests + []);
+	_vests = ["rhsusf_spc_marksman"];
 	_helmets = (_helmets + []);
 	_backpacks = (_backpacks + []);
-	_items = (_items + ["rhsusf_acc_LEUPOLDMK4","optic_SOS","optic_DMS","optic_LRPS"]);
+	_items = (_items + ["optic_DMS","lerca_1200_tan"]);
 };
 
 //AT(rifleman)
-if(player in [r1,r2,r3,r4])then{
+if(player in [])then{
 	_weapons = (_weapons + ["tf47_m3maaws","tf47_at4_HE","tf47_at4_HEDP","tf47_at4_HEAT"]);
 	_magazines = (_magazines + ["tf47_m3maaws_HEDP"]);
 	_uniforms = (_uniforms + []);
@@ -155,7 +159,7 @@ if(player in [h2,h3])then{
 
 //Leader
 if(player in [a1,a2,b1,b2,c1,c2])then{
-	_weapons = (_weapons + ["RH_m4_ris_m203 ","RH_m4a1_ris_m203"]);
+	_weapons = (_weapons + ["RH_m4_ris_m203 "]);
 	_magazines = (_magazines + ["rhsusf_40mm_HE","rhsusf_40mm_HEDP"]);
 	_uniforms = (_uniforms + []);
 	_vests = (_vests + ["rhsusf_iotv_ocp_Teamleader"]);

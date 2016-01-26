@@ -35,7 +35,6 @@ JOC_loadoutMaster = compileFinal preprocessFileLineNumbers "Functions\Loadouts\m
 
 //Logistics
 #include "Logistics\fn_logistics_compile.sqf";
-JOC_crateInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\crateInit.sqf";
 JOC_spawnComposition = compileFinal preprocessFileLineNumbers "Functions\Logistics\spawnComposition.sqf";
 
 //Misc
@@ -67,3 +66,4 @@ JOC_setMainTask = compileFinal preprocessFileLineNumbers "Functions\Tasks\setMai
 JOC_vehInit = compileFinal preprocessFileLineNumbers "Functions\Vehicle\vehInit.sqf";
 JOC_service = compileFinal preprocessFileLineNumbers "Functions\Vehicle\service.sqf";
 JOC_vehCDU = compileFinal preprocessFileLineNumbers "Functions\Vehicle\cdu.sqf";
+JOC_vehMusic = compileFinal preprocessFileLineNumbers "Functions\Vehicle\music.sqf";

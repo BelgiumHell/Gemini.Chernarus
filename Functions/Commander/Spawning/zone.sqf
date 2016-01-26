@@ -20,7 +20,7 @@ _spawnMarkerName setMarkerAlpha 0;
 _j = 0;
 if((_inf select 0) > 0)then{
 	while{_j < (_inf select 0)} do{
-		_locationS = [_spawnMarkerName,0,0,1] call Zen_FindGroundPosition;
+		_locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 		_locationS = [_locationS,1,1] call Zen_ExtendPosition;
 		_array = [_locationS, east, "infantry", 4,"Basic"] call Zen_SpawnInfantryVirtual;
 		virtualizedArray pushBack [_array,[]];
@@ -34,12 +34,12 @@ if((_car select 0) > 0)then{
 	while{_j < (_car select 0)} do{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
 		_class = (carPool call BIS_fnc_selectRandom);
-		_arrayG = [[0,0,0], east, "infantry", getNumber(configFile >> "CfgVehicles" >> _class >> "transportSoldier"),"Basic"] call Zen_SpawnInfantryVirtual;
+		_arrayG = [_locationS, east, "infantry", getNumber(configFile >> "CfgVehicles" >> _class >> "transportSoldier"),"Basic"] call Zen_SpawnInfantryVirtual;
 		_arrayI = [];
 		{
 		    _arrayI pushBack _forEachIndex;
 		} forEach _arrayG;
-		_array = [_arrayG,[_locationS,_class,_arrayI]];
+		_array = [_arrayG,[[_locationS,_class,_arrayI]]];
 		virtualizedArray pushBack _array;
 		_j = _j + 1;
 	};
@@ -86,7 +86,7 @@ _j = 0;
 _pool = [];
 if(_heliCount > 0)then{
 	while{_j < _heliCount} do{
-		_locationS = [_spawnMarkerName,0,0,0] call Zen_FindGroundPosition;
+		_locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 		if(_heliType == "transport")then{
 			_pool = heliPool;
 		};

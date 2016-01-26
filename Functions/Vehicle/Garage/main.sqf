@@ -1,12 +1,12 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_airA = ["B_Heli_Transport_03_F","B_Heli_Transport_01_F","B_Heli_Light_01_F","B_Heli_Light_01_armed_F","B_Heli_Attack_01_F"];
-_carA = ["B_MRAP_01_F","B_MRAP_01_gmg_F","B_MRAP_01_hmg_F","B_Truck_01_covered_F","B_Truck_01_transport_F"];
-_armorA = ["B_MBT_01_TUSK_F","B_MBT_01_cannon_F","B_APC_Tracked_01_rcws_F","B_APC_Wheeled_01_cannon_F"];
+_airA = ["rhsusf_CH53E_USMC_D","RHS_UH1Y_FFAR_d","RHS_UH1Y_d","RHS_UH1Y_UNARMED_d","RHS_AH1Z_CS"];
+_carA = ["rhsusf_m1025_d_s_m2","rhsusf_m1025_d_s_Mk19","rhsusf_m1025_d_s","rhsusf_m998_d_s_2dr","rhsusf_m998_d_s_4dr","rhsusf_rg33_usmc_d","rhsusf_rg33_m2_usmc_d"];
+_armorA = ["rhsusf_m1a2sep1d_usarmy","rhsusf_m1a2sep1tuskid_usarmy","rhsusf_m1a2sep1tuskiid_usarmy","RHS_M2A3","RHS_M2A3_BUSKI","RHS_M2A3_BUSKIII","rhsusf_m113d_usarmy","rhsusf_m113d_usarmy_M240","rhsusf_m113d_usarmy_MK19"];
 _suppA = ["B_Heli_Transport_03_unarmed_F","B_APC_Tracked_01_CRV_F","B_Truck_01_fuel_F","B_Truck_01_ammo_F","B_Truck_01_Repair_F"];
-_medA = ["B_Truck_01_medical_F"];
-_jetA = ["B_Plane_CAS_01_F"];
+_medA = ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"];
+_jetA = ["rhsusf_f22","RHS_A10"];
 
 garage_spawn_0 setVariable["count",0];
 garage_spawner_0 addAction ["Request vehicle",{

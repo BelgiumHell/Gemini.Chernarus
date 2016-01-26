@@ -29,9 +29,10 @@ _groups = [];
 JOC_pauseCache = true;
 
 _x = 0;
+_locationS = [_startP,[0,400],0,1,[1,400]] call Zen_FindGroundPosition;
 //cars
 while{_x < _truckCount} do{
-    _locationS = [_startP,[0,400],0,1,[1,400]] call Zen_FindGroundPosition;
+    _locationS = [_locationS,[0,50],0,1,[1,400]] call Zen_FindGroundPosition;
     _class = (truckPool call BIS_fnc_selectRandom);
     _veh = [_locationS, _class] call Zen_SpawnVehicle;
     createVehicleCrew _veh;
@@ -41,12 +42,13 @@ while{_x < _truckCount} do{
     _groups pushBack _group;
     (crew _veh) join _groupConvoy;
     _x = _x + 1;
+    _locationS = [_locationS,50,(getDir _veh) - 180] call Zen_ExtendPosition;
 };
 
 _x = 0;
 //APC
 while{_x < _apcCount} do{
-    _locationS = [_startP,[0,400],0,1,[1,400]] call Zen_FindGroundPosition;
+    _locationS = [_locationS,[0,50],0,1,[1,400]] call Zen_FindGroundPosition;
     _class = (apcPool call BIS_fnc_selectRandom);
     _veh = [_locationS,_class] call Zen_SpawnVehicle;
     createVehicleCrew _veh;
@@ -57,6 +59,7 @@ while{_x < _apcCount} do{
     _groups pushBack _group;
     (crew _veh) join _groupConvoy;
     _x = _x + 1;
+    _locationS = [_locationS,50,(getDir _veh) - 180] call Zen_ExtendPosition;
 };
 
 (leader _groupConvoy) setVariable["JOC_caching_disabled",true];
@@ -67,7 +70,10 @@ while{_x < _apcCount} do{
 //Unpause caching
 JOC_pauseCache = false;
 
+sleep 5;
+
 _groupConvoy move (_arg select 0);
+_groupConvoy setBehaviour "SAFE";
 _groupConvoy setFormation "COLUMN";
 _groupConvoy setSpeedMode "normal";
 

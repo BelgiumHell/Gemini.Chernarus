@@ -6,7 +6,7 @@ while{true}do{
 	_groups = [];
 	{
 		if(side _x == west)then{
-			[_groups, (count _groups), _x] call Zen_ArrayInsert;
+			_groups pushBack _x;
 		};
 	}forEach allGroups;
 
@@ -58,5 +58,5 @@ while{true}do{
 			deleteMarker _id;
 		};
 	}forEach _groups;
-	sleep 0.3;
+	sleep bftRefresh;
 };

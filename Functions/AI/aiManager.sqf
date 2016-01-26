@@ -4,7 +4,7 @@
 //For caching
 []spawn{
     while{true}do{
-        waitUntil {sleep 1; !JOC_pauseCache};
+        waitUntil {sleep 1; (!JOC_pauseCache)};
         {
             if(count (units _x) == 0)then{
                 deleteGroup _x;
@@ -21,7 +21,7 @@
             };
         } forEach allGroups;
         sleep 15;
-        waitUntil {sleep 1; !JOC_pauseCache};
+        waitUntil {sleep 1; (!JOC_pauseCache)};
     };
 };
 
@@ -34,7 +34,7 @@
             if((west countSide _objects) > 0)then{
                 [_x]call JOC_unCache;
             }else{
-                _objects = nearestObjects [_x select 0,["Man","Car","Tank","Air"],5000];
+                _objects = nearestObjects [_x select 0,["Man","Car","Tank","Air"],3000];
 
                 if((west countSide _objects) == 0)then{
                     [_x]call JOC_virtualize;
@@ -49,13 +49,15 @@
 //Virtualizing/unvirtualizing
 []spawn{
     while {true} do {
+        JOC_pauseCache = true;
         {
-            _objects = nearestObjects [(((_x select 0) select 0) select 1),["Man","Car","Tank","Air"],5000];
+            _objects = nearestObjects [(((_x select 0) select 0) select 1),["Man","Car","Tank","Air"],3000];
 
             if((west countSide _objects) > 0)then{
                 [_x]call JOC_unVirtualize;
             };
         } forEach virtualizedArray;
+        JOC_pauseCache = false;
         sleep 30;
     };
 };

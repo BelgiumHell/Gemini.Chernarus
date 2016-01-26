@@ -1,12 +1,15 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+sleep 1;
+
 titleText ["", "BLACK FADED", 0];
-0.5 fadeSound 0;
+startLoadingScreen["Loading..."];
+
+JOC_serverLoaded = false;
 
 #include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
 #include "Functions\fn_compile.sqf"
-call compile preprocessFile "Baked_AIS\Baked_AIS_init.sqf";
 
 // Gemini by Jochem
 // Version = 0.6
@@ -15,7 +18,8 @@ call compile preprocessFile "Baked_AIS\Baked_AIS_init.sqf";
 enableSaving [false, false];
 
 if(isServer)then{
-    []call JOC_missionInit;
+    []spawn JOC_missionInit;
 }else{
-    []call JOC_clientInit;
+    player enableSimulation false;
+    player allowDamage false;
 };

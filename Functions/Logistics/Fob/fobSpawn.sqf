@@ -11,26 +11,19 @@ if(isNil{fobCount})then{
 		_fobArray = []call JOC_fobGetLocations;
 		[(findDisplay 46), getpos (_this select 1), _fobArray, [], [], [], 1, false, 2, true, "Select a location", false] call BIS_fnc_strategicMapOpen;
 	}];},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
-};
-if(fobCount < ((count bluTowns) + 1))then{
-	hint "lol";
+}else{
 	_veh = (nearestObjects [(getPos fobSpawn),["All"],3] - [fobSpawn]);
 	if((count _veh) >= 1 or (fobCount >= fobLimit))then{
 		hint "Pad not clear or max vehicles reached";
 	}else{
-		_truck = "B_Truck_01_box_F" createVehicle [16000,16000,0];
+		_truck = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy" createVehicle [16000,16000,0];
 		_truck setDir getDir fobSpawn;
 		_truck setPosASL getPosASL fobSpawn;
 		_truck setDamage 0;
 		zeusMod addCuratorEditableObjects [[_truck],false];
 		fobTrucks pushBack _truck;
 		publicVariable "fobTrucks";
-		[[[_truck],{(_this select 0) setVehicleLock "LOCKED";}],"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
 		fobCount = fobCount + 1;
-		hint "FOB will be ready in 5 minutes";
-		sleep 3;
-		hint "Fob is ready";
-		[[[_truck],{(_this select 0) setVehicleLock "UNLOCKED";}],"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
 		[_truck] call JOC_fobInit;
 		[_truck]spawn JOC_fobManager;
 	};

@@ -52,7 +52,8 @@ if (_vehClass == "") exitWith {
 };
 
 _veh = [_spawnPos, _vehClass, 0, _dir] call Zen_SpawnVehicle;
-0 = [_veh] call Zen_SpawnVehicleCrew;
+//0 = [_veh] call Zen_SpawnVehicleCrew;
+createVehicleCrew _veh;
 
 _veh allowCrewInImmobile true;
 

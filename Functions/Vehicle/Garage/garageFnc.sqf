@@ -2,8 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 private["_veh","_dis","_time","_codeE"];
-
-_spawnObj = _this select 0;
+params["_spawnObj"];
 _oldVeh = objNull;
 
 while{!(isNull(uiNamespace getVariable ["BIS_fnc_arsenal_cam",objNull]))}do{
@@ -22,7 +21,7 @@ sleep 1;
 _veh = nearestObject [_spawnObj, "AllVehicles"];
 _dis = _veh distance _spawnObj;
 
-if(_dis > 5)then{
+if(_dis > 10)then{
 	hint "No vehicle spawned";
 	sleep 2;
 	_veh = nearestObjects [_spawnObj, ["AllVehicles"], 50];
@@ -36,12 +35,18 @@ if(_dis > 5)then{
 		deleteVehicle _x;
 	}forEach (crew _veh);
 	_codeE = [_veh]call BIS_fnc_exportVehicle;
+	_class = typeOf _veh;
 	deleteVehicle _veh;
 
 	_codeS = [_codeE,"position player","(_this select 0)",true] call Zen_StringFindReplace;
 	_codeS = _codeS + "_veh allowDamage false; _veh";
 	_code = compile _codeS;
 	_veh = [(getPos _spawnObj)]call _code;
+
+	//Failsafe
+	if(isNull _veh)then{
+		_veh = _class createVehicle (getPos _spawnObj);
+	};
 
 	sleep 0.1;
 
