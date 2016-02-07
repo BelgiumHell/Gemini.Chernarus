@@ -3,8 +3,9 @@
 /////////////////////////
 [[],{
 	_action = cmd_laptop addAction["Task overview",{
-		[]spawn JOC_setMainTask;
+		//[]spawn JOC_setMainTask;
 	}];
+	
 	{
 		[_x]call JOC_arsenal;
 	} forEach arsenalBoxes;

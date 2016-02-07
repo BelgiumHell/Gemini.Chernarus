@@ -21,11 +21,9 @@ _radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Sm
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	[_x]spawn JOC_cmdMiscRadar;
-
 	strategicArray pushBack [_location,500,"radar",_nameS,east];
 
-	//[_x,_name] spawn JOC_radar;
+	//[_x] spawn JOC_cmdMiscRadar;
 } forEach _radars;
 
 
@@ -43,7 +41,8 @@ while {_tank < 14} do{
 	_aaTank = aaClass createVehicle _location;
 	createVehicleCrew _aaTank;
 	_aaTank setFuel 0;
-	_aaTank addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
+	_aaTank setSkill 1;
+	//_aaTank addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	(driver _aaTank) setVariable["JOC_caching_disabled",true];
 	(crew _aaTank) joinSilent aaGroup;
 
@@ -52,9 +51,6 @@ while {_tank < 14} do{
 	_name setMarkerType "n_art";
 	_name setMarkerSize [0.65, 0.65];
 	_name setMarkerColor "ColorOpfor";
-
-	_aaTank setVariable ["marker",_name];
-	_aaTank addEventHandler ["killed", {deleteMarker ((_this select 0) getVariable "marker");}];
 
 	_nameS = format ["mrk_strategic_aa_%1",_tank];
 	_marker = createMarker [_nameS, _location];

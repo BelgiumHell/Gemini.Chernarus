@@ -18,13 +18,14 @@ _jet setDir (direction (_list select 0));
 createVehicleCrew _jet;
 (driver _jet) setVariable["JOC_caching_disabled",true];
 [_jet]spawn{
-    airTargets = airTargets - [objNull];
-    if(count airTargets == 0)exitWith{
+    jetTargets = jetTargets - [objNull] - allDead;
+    heliTargets = heliTargets - [objNull] - allDead;
+    if(count (jetTargets + airTargets) == 0)exitWith{
         jetActive = false;
     };
 
-    _target = airTargets select 0;
+    _target = (jetTargets + airTargets) select 0;
     [(group _jet),_pos] call BIS_fnc_taskAttack;
-    
+
     sleep 5;
 };

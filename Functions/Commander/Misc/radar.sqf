@@ -6,12 +6,17 @@ params["_radar"];
 _pos = getPosASL _radar;
 
 while{alive _radar}do{
-    _objects = nearestObjects [_pos, ["Air"], radarRange];
+    _objects = _pos nearEntities [["Air"], radarRange];
 
     {
-        if(!(terrainIntersectASL [getPosASL _x, _pos]))then{
-            airTargets pushBack _x;
+        if((side _x) == west && !(terrainIntersectASL [getPosASL _x, _pos]))then{
+            if(_x isKindOf "Helicopter")then{
+                heliTargets pushBack _x;
+            }else{
+                jetTargets pushBack _x;
+            }
+            aaGroup reveal [_x, 4];
         };
     } forEach _objects;
-    sleep 10;
+    sleep 3;
 };

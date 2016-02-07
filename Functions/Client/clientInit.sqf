@@ -11,6 +11,7 @@
 	titleText ["Mission is loading...", "BLACK FADED", 0];
 	sleep 0.5;
 };*/
+sleep 0.1;
 //Don't mind this
 player enableSimulation true;
 player allowDamage true;
@@ -48,12 +49,11 @@ titleText ["", "BLACK IN", 7];
 sleep 10;
 
 
-[]spawn JOC_playerClick;
+[]call JOC_playerClick;
 []call JOC_garage;
 []spawn JOC_playerLoop;
-[]spawn JOC_vehMusic;
 //[]call JOC_createDiary;
-[]spawn JOC_loadoutMaster;
+[]call JOC_loadoutMaster;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
 cduEnabled = false;
 

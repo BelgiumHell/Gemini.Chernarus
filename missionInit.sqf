@@ -44,7 +44,8 @@ radarRange = 6000;  //Max range of radars
 
 //Init variables *DONT CHANGE*
 strategicArray = [];
-airTargets = [];
+jetTargets = [];
+heliTargets = [];
 activeTasks = [];
 fobTrucks = [];
 baseObjects = nearestObjects [(getMarkerPos "mrk_safeZone"), ["All"], 1200];
@@ -72,12 +73,12 @@ cachedArray = [];
 virtualizedArray = [];
 
 //Run init scripts
-[]call JOC_cmdCreateLocations;
+//[]call JOC_cmdCreateLocations;
 
 [[],{
     progressLoadingScreen 0.3;
 }] remoteExec ["BIS_fnc_spawn", 0, true];
-[]call JOC_cmdCreateEnemy;
+//[]call JOC_cmdCreateEnemy;
 
 //End loading screen
 [[],{
@@ -88,7 +89,7 @@ virtualizedArray = [];
     };
 }] remoteExec ["BIS_fnc_spawn", 0, true];;
 
-[]call JOC_aiManager;
+[]spawn JOC_aiManager;
 if(bftEnable)then{
     []spawn JOC_bftManager;
 };

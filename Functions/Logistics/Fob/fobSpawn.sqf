@@ -11,6 +11,8 @@ if(isNil{fobCount})then{
 		_fobArray = []call JOC_fobGetLocations;
 		[(findDisplay 46), getpos (_this select 1), _fobArray, [], [], [], 1, false, 2, true, "Select a location", false] call BIS_fnc_strategicMapOpen;
 	}];},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
+
+	[]spawn JOC_fobSpawn;
 }else{
 	_veh = (nearestObjects [(getPos fobSpawn),["All"],3] - [fobSpawn]);
 	if((count _veh) >= 1 or (fobCount >= fobLimit))then{

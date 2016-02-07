@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_items = nearestObjects [(getMarkerPos "mrk_area"), ["WeaponHolder","GroundWeaponHolder","WeaponHolderSimulated","SmokeShell","TimeBombCore"], 10000];
+_items = (getMarkerPos "mrk_area") nearEntities [["WeaponHolder","GroundWeaponHolder","WeaponHolderSimulated","SmokeShell","TimeBombCore"], worldSize*2.0^0.5];
 {
 	_nearestPlayers = [];
 	_location = (getPos this);
@@ -15,7 +15,7 @@ _items = nearestObjects [(getMarkerPos "mrk_area"), ["WeaponHolder","GroundWeapo
 	};
 }forEach _items;
 
-_items = nearestObjects [(getMarkerPos "mrk_base"), ["WeaponHolder","GroundWeaponHolder","WeaponHolderSimulated","SmokeShell","TimeBombCore"], 100];
+_items = (getMarkerPos "mrk_base") nearEntities [["WeaponHolder","GroundWeaponHolder","WeaponHolderSimulated","SmokeShell","TimeBombCore"], 100];
 {
 	deleteVehicle _x;
 }forEach _items;
