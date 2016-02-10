@@ -3,9 +3,7 @@
 /////////////////////////
 _driver = _this select 0;
 _vehicle = vehicle _driver;
-_target = (nearestObjects [_vehicle, towableObjects, 20]) select 0;
-
-vehicleT = _vehicle;
+_target = ((nearestObjects [_vehicle, ["car","truck","tank"], 15]) - [_vehicle]) select 0;
 
 _vehicle setVariable ["towing", true, true];
 removeAllActions _driver;

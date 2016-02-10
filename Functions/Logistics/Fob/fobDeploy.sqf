@@ -10,7 +10,7 @@ _unable = false;
 _objArray = [];
 _radius = 12;
 _isFlat = (getPosASL _truck) isFlatEmpty [
-	_radius,	//--- Minimal distance from another object
+	_radius,		//--- Minimal distance from another object
 	0,				//--- If 0, just check position. If >0, select new one
 	0.4,			//--- Max gradient
 	_radius max 5,	//--- Gradient area
@@ -28,6 +28,12 @@ if(!(count _isFlat isEqualTo 0))then{
 		_obj = createVehicle [_type, [0,0,0], [], 0, "CAN_COLLIDE"];
 		_obj allowDamage false;
 		[_truck,_obj,_offset,_newdir, true, true] call BIS_fnc_relPosObject;
+
+		//Arsenal
+		if(_type == "B_CargoNet_01_ammo_F")then{
+			[_obj]call JOC_arsenal;
+		};
+
 		_objArray pushBack _obj;
 	}forEach fobComposition;
 }else{

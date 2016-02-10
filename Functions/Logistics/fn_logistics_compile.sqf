@@ -5,7 +5,6 @@
 //Building
 JOC_buildCrateInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\Building\crateInit.sqf";
 JOC_buildPlaceObject = compileFinal preprocessFileLineNumbers "Functions\Logistics\Building\placeObject.sqf";
-JOC_buildKeypress = compileFinal preprocessFileLineNumbers "Functions\Logistics\Building\keypress.sqf";
 
 //Crate
 JOC_crateInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\Crate\crateInit.sqf";

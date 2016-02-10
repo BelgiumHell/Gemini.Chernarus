@@ -8,7 +8,6 @@ respawnVehicleDelay = 0;
 disabledAI = true;
 enableDebugConsole = 1;
 showGroupIndicator = 0;
-wreckManagerMode = 1;
 
 corpseManagerMode = 1;
 corpseLimit = 50;

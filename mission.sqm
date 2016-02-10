@@ -242,7 +242,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={26471.863,0.04750149,24757.506};
+					position[]={26471.863,0.0056542009,24757.506};
 					class args
 					{
 						items=13;
@@ -378,7 +378,7 @@ class Mission
 						};
 						class Item5
 						{
-							value="1";
+							value="1.5";
 							parentCls="ACE_moduleMedicalSettings";
 							typeName="playerDamageThreshold";
 						};
@@ -2181,13 +2181,13 @@ class Mission
 					offsetY=17;
 					id=81;
 					side="WEST";
-					vehicle="B_recon_F";
+					vehicle="B_recon_JTAC_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.60000002;
 					text="r3";
 					init="(group this) setGroupId[""Recon""];";
-					description="Recon scout";
+					description="Recon JTAC";
 				};
 				class Item3
 				{
@@ -6428,6 +6428,7 @@ class Mission
 			id=518;
 			side="EMPTY";
 			vehicle="B_Truck_01_ammo_F";
+			lock="LOCKED";
 			skill=0.60000002;
 			init="this allowDamage false; this enableSimulation false;";
 		};
@@ -6672,6 +6673,7 @@ class Mission
 			side="EMPTY";
 			vehicle="B_Truck_01_ammo_F";
 			leader=1;
+			lock="LOCKED";
 			skill=0.60000002;
 			init="this allowDamage false; this enableSimulation false;";
 		};
@@ -6683,6 +6685,7 @@ class Mission
 			side="EMPTY";
 			vehicle="B_Truck_01_fuel_F";
 			leader=1;
+			lock="LOCKED";
 			skill=0.60000002;
 			init="this allowDamage false; this enableSimulation false;";
 		};
@@ -6694,6 +6697,7 @@ class Mission
 			side="EMPTY";
 			vehicle="B_Truck_01_Repair_F";
 			leader=1;
+			lock="LOCKED";
 			skill=0.60000002;
 			init="this allowDamage false; this enableSimulation false;";
 		};
@@ -9140,9 +9144,9 @@ class Mission
 		};
 		class Item4
 		{
-			position[]={26870.51,21.673607,24679.086};
+			position[]={26868.629,21.62332,24683.182};
 			a=20;
-			b=10;
+			b=15;
 			angle=-20;
 			rectangular=1;
 			activationBy="WEST";

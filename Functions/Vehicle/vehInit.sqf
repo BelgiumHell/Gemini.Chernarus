@@ -3,14 +3,13 @@
 /////////////////////////
 private["_vehicle"];
 
-if(!isServer)exitWith{};
+//if(!isServer)exitWith{};
 
 _vehicle = _this select 0;
 _vehicletype = typeOf _vehicle;
 _time = 0;
 
 sleep 1;
-_vehicle setDamage 0;
 
 //Medical heli
 if(_vehicletype in ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"])then{
@@ -24,7 +23,7 @@ if(_vehicle isKindOf "Helicopter")then{
 
 //Bulldozer
 if(_vehicletype in logisticsVehArray)then{
-    [_vehicle]spawn JOC_tow;
+    //[_vehicle]spawn JOC_tow;
 };
 
 //Ammo container

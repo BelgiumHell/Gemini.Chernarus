@@ -10,7 +10,7 @@ while{true}do{
         };
         if(side _x != west)then{
             if(_x != cacheGroup)then{
-                _objects = (getPos (leader _x)) nearEntities [["Man","Car","Tank","Air"],1500];
+                _objects = (getPos (leader _x)) nearEntities [["Man","Car","Tank","Helicopter"],1200];
 
                 if ((west countSide _objects) == 0)then{
                     [_x]call JOC_cache;
@@ -32,7 +32,7 @@ while{true}do{
     //uncahcing + virtualizing
     cachedArray = cachedArray - [[]];
     {
-        _objects = _x select 0 nearEntities [["Man","Car","Tank","Air"],1500];
+        _objects = _x select 0 nearEntities [["Man","Car","Tank","Helicopter"],1500];
 
         if((west countSide _objects) > 0)then{
             [_x]call JOC_unCache;

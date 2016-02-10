@@ -6,7 +6,7 @@ _vehicle = objNull;
 _time = 0;
 musicPlay = false;
 
-while{alive player}do{
+while{true}do{
 	player setDamage 0;
 	player addRating 2000;
 
@@ -40,5 +40,5 @@ while{alive player}do{
 		}] remoteExec ["BIS_fnc_spawn", 2];
 
 	};
-	sleep 10;
+	sleep 5;
 };

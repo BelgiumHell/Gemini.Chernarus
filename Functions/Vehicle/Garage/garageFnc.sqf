@@ -39,14 +39,26 @@ if(_dis > 10)then{
 	_class = typeOf _veh;
 	deleteVehicle _veh;
 
-	_codeS = [_codeE,"position player","[0,0,0]",true] call Zen_StringFindReplace;
+	_codeS = [_codeE,"position player","(getPos player)",true] call Zen_StringFindReplace;
+	//Fix script errors in export, 'cause LOL, I really should be the one doing that
+	switch (_class) do {
+	    case ("RHS_M2A3"): {
+	        _codeS = [_codeS,"true",",0",true] call Zen_StringFindReplace;
+	    };
+		case ("RHS_M2A3_BUSKI"): {
+	        _codeS = [_codeS,"true",",0",true] call Zen_StringFindReplace;
+	    };
+		case ("RHS_M2A3_BUSKIII"): {
+	        _codeS = [_codeS,"true",",0",true] call Zen_StringFindReplace;
+	    };
+	};
 	_codeS = _codeS + "_veh allowDamage false; _veh";
 	_code = compile _codeS;
 	_veh = []call _code;
 
 	//Failsafe
-	if(isNull _veh)then{
-		hint "fail";
+	if(isNil{_veh})then{
+		hint "Error in loading vehicle, spawning standard one";
 		_veh = _class createVehicle [0,0,0];
 	};
 
@@ -62,16 +74,13 @@ if(_dis > 10)then{
 	if(_veh isKindOf "Ship")then{
 		_time = 60;
 	};
-	//Second failsafe
-	if(_time = 0)then{
-		_veh = _class createVehicle [0,0,0];
-	};
 
 	_spawnObj setVariable["count",((_spawnObj getVariable "count") + 1),true];
 	_veh setVariable ["pad",_spawnObj,true];
 	_veh setPos getPos _spawnObj;
 	_veh setDir (getDir _spawnObj);
 	_veh allowDamage true;
+	_veh enableSimulation true;
 
 	[_veh]spawn JOC_vehInit;
 	_spawnObj setVariable["unable",true,true];

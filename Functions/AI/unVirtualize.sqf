@@ -22,3 +22,5 @@ if(count (_array select 1) != 0)then{
         [_crew,_vehicle,"All"] spawn Zen_MoveInVehicle;
     } forEach (_array select 1);
 };
+
+[(units _group)]call JOC_cacheUnits;

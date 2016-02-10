@@ -23,7 +23,7 @@ _radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Sm
 
 	strategicArray pushBack [_location,500,"radar",_nameS,east];
 
-	//[_x] spawn JOC_cmdMiscRadar;
+	[_x] spawn JOC_cmdMiscRadar;
 } forEach _radars;
 
 
@@ -34,15 +34,16 @@ aaGroup = createGroup east;
 while {_tank < 14} do{
 	_location = [];
 	while{count _location == 0}do{
-		_pos = ["mrk_area",0,[_tankBlacklist + blackMarkers,[],[]],1,0] call Zen_FindGroundPosition;
-		_location  = _pos findEmptyPosition [0,300,aaClass];
+		_pos = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0] call Zen_FindGroundPosition;
+		_location  = _pos findEmptyPosition [0,300,emptyClass];
 	};
+
+	[_location,10,"rhs_KORD_high_VDV"]call Zen_SpawnFortification;
 
 	_aaTank = aaClass createVehicle _location;
 	createVehicleCrew _aaTank;
 	_aaTank setFuel 0;
 	_aaTank setSkill 1;
-	//_aaTank addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	(driver _aaTank) setVariable["JOC_caching_disabled",true];
 	(crew _aaTank) joinSilent aaGroup;
 
@@ -64,7 +65,7 @@ while {_tank < 14} do{
 	_nameM = [5] call Zen_StringGenerateRandom;
 	_marker = createMarker [_nameM, _location];
    	_nameM setMarkerShape "RECTANGLE";
-   	_nameM setMarkerSize [1500,1500];
+   	_nameM setMarkerSize [2000,2000];
     _nameM setMarkerBrush "Border";
     _nameM setMarkerAlpha 0;
 	_tankBlacklist pushBack _nameM;

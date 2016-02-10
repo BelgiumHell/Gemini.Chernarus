@@ -2,15 +2,18 @@
 //Script made by Jochem//
 /////////////////////////
 artyGroup = createGroup east;
+_tankBlacklist = [];
 
 _s = 0;
 while{_s < 4}do{
 	//Get position
 	_location = [];
 	while{count _location == 0}do{
-	    _pos = ["mrk_area",0,[airfieldMarkers + blackMarkers,[],[]],1,0] call Zen_FindGroundPosition;
-	    _location  = _pos findEmptyPosition [0,300,artyClass];
+		_pos = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0] call Zen_FindGroundPosition;
+		_location  = _pos findEmptyPosition [0,300,emptyClass];
 	};
+
+	[_location,100,"rhs_KORD_high_VDV"]call Zen_SpawnFortification;
 
 	//Create marker
 	_name = [5] call Zen_StringGenerateRandom;
@@ -25,7 +28,15 @@ while{_s < 4}do{
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	strategicArray pushBack [_location,100,"arty",_nameS,east];
+	strategicArray pushBack [_location,60,"arty",_nameS,east];
+
+	_nameM = [5] call Zen_StringGenerateRandom;
+	_marker = createMarker [_nameM, _location];
+   	_nameM setMarkerShape "RECTANGLE";
+   	_nameM setMarkerSize [2000,2000];
+    _nameM setMarkerBrush "Border";
+    _nameM setMarkerAlpha 0;
+	_tankBlacklist pushBack _nameM;
 
 	//Spawn arty
 	_dir = round random 360;

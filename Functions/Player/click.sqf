@@ -52,7 +52,7 @@ onMapSingleClick{
 			};
 		};
 
-		_freqText = format["Radio freq: block%1 ch%2",_block,_freq];
+		_freqText = format["Radio freq: block:%1 ch:%2",_block,_freq];
 		_text = composeText [_text, lineBreak, _unitText, lineBreak, lineBreak, _freqText];
 		hint _text;
 	};

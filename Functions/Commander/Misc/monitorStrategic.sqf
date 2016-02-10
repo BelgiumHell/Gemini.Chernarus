@@ -52,7 +52,7 @@ while{true}do{
 			};
         };
         case "radar": {
-			_objects = _location nearEntities [["Land_Radar_F","Land_Radar_Small_F"],10];
+			_objects = nearestObjects [_location,["Land_Radar_F","Land_Radar_Small_F"],10];
         };
         case "airfield":{
 			_objects = [objNull];
@@ -64,16 +64,16 @@ while{true}do{
 			};
         };
         case "base": {
-			_objects = _location nearEntities [["Land_Cargo_Tower_V1_F","Land_Cargo_Tower_V1_No1_F","Land_Cargo_Tower_V1_No2_F","Land_Cargo_Tower_V1_No3_F","Land_Cargo_Tower_V1_No4_F","Land_Cargo_Tower_V1_No5_F","Land_Cargo_Tower_V1_No6_F","Land_Cargo_Tower_V1_No7_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V3_F","Land_Dome_Big_F","Land_Dome_Small_F","Land_BagBunker_Large_F","Land_BagBunker_Tower_F","Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F"],300];
+			_objects = nearestObjects [_location,["Land_Cargo_Tower_V1_F","Land_Cargo_Tower_V1_No1_F","Land_Cargo_Tower_V1_No2_F","Land_Cargo_Tower_V1_No3_F","Land_Cargo_Tower_V1_No4_F","Land_Cargo_Tower_V1_No5_F","Land_Cargo_Tower_V1_No6_F","Land_Cargo_Tower_V1_No7_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V3_F","Land_Dome_Big_F","Land_Dome_Small_F","Land_BagBunker_Large_F","Land_BagBunker_Tower_F","Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F"],300];
         };
         case "outpost": {
-			_objects = _location nearEntities [["Land_Cargo_Patrol_V1_F","Land_Cargo_Patrol_V2_F","Land_Cargo_Patrol_V3_F","Land_BagBunker_Small_F","Land_Cargo_House_V1_F","Land_Cargo_House_V2_F","Land_Cargo_House_V3_F"],50];
+			_objects = nearestObjects [_location,["Land_Cargo_Patrol_V1_F","Land_Cargo_Patrol_V2_F","Land_Cargo_Patrol_V3_F","Land_BagBunker_Small_F","Land_Cargo_House_V1_F","Land_Cargo_House_V2_F","Land_Cargo_House_V3_F"],50];
         };
         case "factory": {
 			_objects = [objNull];
         };
         case "radio":{
-			_objects = _location nearEntities [["Land_TTowerBig_1_F","Land_TTowerBig_2_F"],10];
+			_objects = nearestObjects [_location,["Land_TTowerBig_1_F","Land_TTowerBig_2_F"],10];
         };
         case "town": {
 			_objects = [objNull];

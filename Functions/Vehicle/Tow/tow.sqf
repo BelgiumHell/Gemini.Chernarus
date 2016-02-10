@@ -10,11 +10,9 @@ if(!isServer)exitWith{};
 
 while{alive _vehicle}do{
     waitUntil{sleep 5;((count (crew _vehicle)) > 0)};    //You cant tow when not in the right vehicle(duh)
-    
+
     _targetC = ((nearestObjects [_vehicle, ["car","truck","tank"], 15]) - [_vehicle]) select 0;
-    
-    targetT = _targetC;
-    
+
     _positionT = getPosASL _targetC;
     _positionV = getPosASL _vehicle;
     _positionR = [];
@@ -26,7 +24,7 @@ while{alive _vehicle}do{
         (driver _vehicle) addAction ["Attach vehicle", {[_this select 1]spawn JOC_towAttach;}];
         waitUntil{_positionT = getPosASL _targetC;_positionV = getPosASL _vehicle;!((_positionV distance _positionR) < 2)};
     };
-    
+
     waitUntil{sleep 1;(!(_vehicle getVariable "towing"))};
     removeAllActions (driver _vehicle);
     sleep 1;

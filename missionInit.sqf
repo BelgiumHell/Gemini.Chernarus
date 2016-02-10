@@ -3,7 +3,7 @@
 /////////////////////////
 //Parameters *FREE TO EDIT*
 //Classnames
-infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_officer","rhs_vdv_officer_armored","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
+infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_aa","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
 sfPool       = [];
 carPool      = ["rhs_tigr_m_vdv","rhs_tigr_sts_vdv","rhs_tigr_vdv"];        //car classnames
 truckPool    = ["RHS_Ural_VDV_01","RHS_Ural_Open_VDV_01"];        //truck classnames
@@ -19,6 +19,8 @@ crewClass    = "rhs_vdv_combatcrew";    //Crewman classname
 pilotClass   = "rhs_pilot";   //Pilot classname
 artyClass    = "rhs_2s3_tv";
 aaClass      = "rhs_zsu234_aa";
+emptyClass   = "Land_Airport_center_F";  //Large object, don't change or delete
+
 //Markers
 blackTowns = ["Sagonisi"];  //Blacklist towns
 blackMarkers = ["mrk_safeZone"];
