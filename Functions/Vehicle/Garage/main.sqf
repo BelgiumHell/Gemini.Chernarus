@@ -1,9 +1,9 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_airA = ["rhsusf_CH53E_USMC_D","RHS_UH1Y_FFAR_d","RHS_UH1Y_d","RHS_UH1Y_UNARMED_d","RHS_AH1Z_CS","MELB_H6M","MELB_MH6M"];
+_airA = ["rhsusf_CH53E_USMC_D","RHS_UH1Y_FFAR_d","RHS_UH1Y_d","RHS_UH1Y_UNARMED_d","RHS_AH1Z_GS","MELB_H6M","MELB_MH6M"];
 _carA = ["rhsusf_m1025_w_s_m2","rhsusf_m1025_w_s_Mk19","rhsusf_m1025_w_s","rhsusf_m998_w_s_2dr","rhsusf_m998_w_s_4dr","rhsusf_rg33_usmc_w","rhsusf_rg33_m2_usmc_w","B_Truck_01_transport_F","B_Truck_01_covered_F","rhsusf_M1078A1P2_B_M2_wd_fmtv_usarmy","rhsusf_M1078A1P2_B_wd_fmtv_usarmy","rhsusf_M1083A1P2_B_M2_wd_fmtv_usarmy","rhsusf_M1083A1P2_B_wd_fmtv_usarmy"];
-_armorA = ["rhsusf_m1a2sep1d_usarmy","rhsusf_m1a2sep1tuskid_usarmy","rhsusf_m1a2sep1tuskiid_usarmy","RHS_M2A3","RHS_M2A3_BUSKI","RHS_M2A3_BUSKIII","rhsusf_m113d_usarmy","rhsusf_m113d_usarmy_M240","rhsusf_m113d_usarmy_MK19","B_MBT_01_cannon_F","B_MBT_01_TUSK_F","B_APC_Wheeled_01_cannon_F"];
+_armorA = ["rhsusf_m1a2sep1wd_usarmy","rhsusf_m1a2sep1tuskiwd_usarmy","rhsusf_m1a2sep1tuskiiwd_usarmy","RHS_M2A3_wd","RHS_M2A3_BUSKI_wd","RHS_M2A3_BUSKIII_wd","rhsusf_m113_usarmy","rhsusf_m113_usarmy_M240","rhsusf_m113_usarmy_MK19","B_MBT_01_cannon_F","B_MBT_01_TUSK_F","B_APC_Wheeled_01_cannon_F"];
 _suppA = ["B_Heli_Transport_03_unarmed_F","B_APC_Tracked_01_CRV_F","B_Truck_01_fuel_F","B_Truck_01_ammo_F","B_Truck_01_Repair_F"];
 _medA = ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical","RHS_UH60M_MEV"];
 _jetA = ["rhsusf_f22","RHS_A10"];

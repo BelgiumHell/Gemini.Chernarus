@@ -31,5 +31,5 @@
 {
     _marker = _x select 3;
     _marker setMarkerAlpha 0;
-    [_marker,_forEachIndex]spawn JOC_monitorStrategic;
+    [_marker,_forEachIndex]spawn JOC_cmdMiscMonitorStrategic;
 } forEach strategicArray;

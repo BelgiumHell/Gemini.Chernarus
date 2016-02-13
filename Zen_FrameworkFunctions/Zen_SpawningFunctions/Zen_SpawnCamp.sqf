@@ -25,11 +25,11 @@ _objectsArray = [];
 
 {
     if (["table", (typeOf _x)] call Zen_StringIsInString) then {
-        _weaponHolder = ([["GroundWeaponHolder"], [_x]] call Zen_SpawnItemsOnTable) select 0;
+        /*_weaponHolder = ([["GroundWeaponHolder"], [_x]] call Zen_SpawnItemsOnTable) select 0;
         _weaponHolder enableSimulation true;
-        _weapon = [["arifle_MX_F", "arifle_TRG21_F", "arifle_Katiba_F", "arifle_Mk20_plain_F", "srifle_EBR_F", "LMG_Zafir_F", "LMG_Mk200_F", "srifle_LRR_F", "SMG_01_F", "SMG_02_F", "hgun_ACPC2_F", "srifle_DMR_01_F", "srifle_GM6_F", "hgun_PDW2000_F", "hgun_Pistol_heavy_01_F", "hgun_Pistol_heavy_02_F"]] call Zen_ArrayGetRandom;
+        _weapon = [[]] call Zen_ArrayGetRandom;
         _weaponHolder addMagazineCargoGlobal [((getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines")) select 0), 5];
-        _weaponHolder addWeaponCargoGlobal [_weapon, 1];
+        _weaponHolder addWeaponCargoGlobal [_weapon, 1];*/
     };
 } forEach _objectsArray;
 

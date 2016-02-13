@@ -15,7 +15,24 @@ player setPosASL getPosASL respawn_obj;
 []call JOC_createDiary;
 []call JOC_loadoutMaster;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
+player addEventHandler ["Fired", {_this spawn JOC_playerSmkGren}];
 cduEnabled = false;
+[{
+	_nearestEntities = (getPos player) nearEntities [["Man"],600];
+	if(cameraOn isEqualTo player && {cameraView isEqualTo "EXTERNAL"})then{
+		{
+		    if(lineIntersects [eyePos player, aimPos _x, player, _x])then{
+				_x hideObject true;
+			}else{
+				_x hideObject false;
+			};
+		} forEach _nearestEntities;
+	}else{
+		{
+		    _x hideObject false;
+		} forEach _nearestEntities;
+	};
+}, 0, []] call CBA_fnc_addPerFrameHandler;
 
 //intro text
 _date = date;
@@ -68,20 +85,3 @@ _actionAH6M = ["changeMH6", "Replace with AH-6M", "", {_pos = getPosASL (_this s
 ["MELB_H6M", 0, ["ACE_MainActions"], _actionAH6M] call ace_interact_menu_fnc_addActionToClass;
 _actionAH6H = ["changeMH6", "Replace with AH-6H", "", {_pos = getPosASL (_this select 0); _dir = getDir (_this select 0); deleteVehicle (_this select 0); _veh = "MELB_AH6M_H" createVehicle [0,0,0]; _veh setPosASL _pos; _veh setDir _dir; _veh setDamage 0; _veh setFuel 1;}, {((_this select 0) distance (getMarkerPos "mrk_base_air")) < 50}] call ace_interact_menu_fnc_createAction;
 ["MELB_H6M", 0, ["ACE_MainActions"], _actionAH6H] call ace_interact_menu_fnc_addActionToClass;
-
-[{
-	_nearestEntities = (getPos player) nearEntities [["Man"],600];
-	if(cameraOn isEqualTo player && {cameraView isEqualTo "EXTERNAL"})then{
-		{
-		    if(lineIntersects [eyePos player, aimPos _x, player, _x])then{
-				_x hideObject true;
-			}else{
-				_x hideObject false;
-			};
-		} forEach _nearestEntities;
-	}else{
-		{
-		    _x hideObject false;
-		} forEach _nearestEntities;
-	};
-}, 1, []] call CBA_fnc_addPerFrameHandler;

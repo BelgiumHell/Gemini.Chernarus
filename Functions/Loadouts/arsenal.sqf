@@ -45,11 +45,15 @@ _items = [
 	"ACE_HandFlare_Yellow",
 	"ACE_M84",
 
+	"ItemMap",
+	"ItemCompass",
+	"ItemWatch",
+
 	"rhsusf_acc_ACOG2",
 	"rhsusf_acc_compm4",
 	"rhsusf_acc_eotech_552",
 
-	"Binocular"
+	"rhsusf_ANPVS_15"
 ];
 
 //Tank
@@ -112,7 +116,7 @@ if((vehicleVarName player) in ["a3","b3","c3","r2"])then{
 	_weapons = (_weapons + ["rhs_weap_sr25_ec","rhs_6b28_ess"]);
 	_magazines = (_magazines + ["rhsusf_20Rnd_762x51_m118_special_Mag","rhsusf_20Rnd_762x51_m993_Mag"]);
 	_uniforms = (_uniforms + []);
-	_vests = ["rhsusf_spc_marksman","V_Chestrig_rgr"];
+	_vests = ["rhsusf_spc_marksman"];
 	_helmets = (_helmets + []);
 	_backpacks = (_backpacks + []);
 	_items = (_items + ["optic_DMS","lerca_1200_tan"]);
@@ -142,13 +146,13 @@ if((vehicleVarName player) in ["h2"])then{
 
 //Teamleader
 if((vehicleVarName player) in ["a1_1","a2_1","b1_1","b2_1","c1_1","c2_1"])then{
-	_weapons = (_weapons + ["RH_m4_ris_m203"]);
+	_weapons = (_weapons + ["rhs_weap_m4a1_carryhandle_m203"]);
 	_magazines = (_magazines + ["rhsusf_40mm_HE","rhsusf_40mm_HEDP"]);
 	_uniforms = (_uniforms + []);
-	_vests = (_vests + ["rhsusf_spc_Teamleader"]);
+	_vests = ["rhsusf_spc_Teamleader"];
 	_helmets = (_helmets + []);
 	_backpacks = (_backpacks + []);
-	_items = (_items + []);
+	_items = (_items + ["Binocular"]);
 };
 
 //Sqaudleader
@@ -156,21 +160,21 @@ if((vehicleVarName player) in ["a0_1","b0_1","c0_1"])then{
 	_weapons = (_weapons + []);
 	_magazines = (_magazines + []);
 	_uniforms = (_uniforms + []);
-	_vests = (_vests + ["rhsusf_spc_squadleader"]);
+	_vests = ["rhsusf_spc_squadleader"];
 	_helmets = (_helmets + []);
 	_backpacks = (_backpacks + []);
-	_items = (_items + []);
+	_items = (_items + ["Binocular"]);
 };
 
 //Recon
 if((vehicleVarName player) in ["r1","r2","r3","r4","r5","r6"])then{
-	_weapons = (_weapons + []);
+	_weapons = (_weapons + ["rhs_weap_M590_5RD","rhs_weap_sr25_ec","rhs_6b28_ess","rhs_weap_m4a1_carryhandle_m203","",""]);
 	_magazines = (_magazines + []);
 	_uniforms = (_uniforms + []);
-	_vests = (_vests + []);
-	_helmets = (_helmets + []);
+	_vests = ["V_Chestrig_rgr","V_PlateCarrier1_rgr"];
+	_helmets = ["rhs_Booniehat_marpatwd","rhsusf_mich_bare_norotos_alt"];
 	_backpacks = (_backpacks + []);
-	_items = (_items + []);
+	_items = (_items + ["G_Bandanna_khk","ACE_NVG_Gen4","rhsusf_acc_nt4_black","rhsusf_acc_anpeq15A","optic_Hamr"]);
 };
 
 

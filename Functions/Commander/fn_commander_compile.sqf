@@ -31,11 +31,13 @@ JOC_cmdInitTown = compileFinal preprocessFileLineNumbers "Functions\Commander\In
 //Logistics
 
 //Misc
-JOC_monitorStrategic = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\monitorStrategic.sqf";
+JOC_cmdMiscGetNearestStrategic = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\getNearestStrategic.sqf";
+JOC_cmdMiscMonitorStrategic = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\monitorStrategic.sqf";
 JOC_cmdMiscRadar = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\radar.sqf";
 
 //Patrol
 
 //Spawning
 JOC_cmdSpawnBase = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\base.sqf";
+JOC_cmdSpawnConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\convoy.sqf";
 JOC_cmdSpawnZone = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\zone.sqf";

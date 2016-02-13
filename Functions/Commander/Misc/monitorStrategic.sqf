@@ -48,7 +48,7 @@ while{true}do{
 		case "aa": {
             _objects = _location nearEntities [[aaClass],100];
 			if(((_objects select 0) ammo (currentWeapon (_objects select 0))) < 0.3)then{
-				//[_array]call JOC_logSupply;
+				//[_array]call JOC_cmdLogSupply;
 			};
         };
         case "radar": {
@@ -60,7 +60,7 @@ while{true}do{
         case "arty": {
 			_objects = _location nearEntities [[artyClass],100];
 			if(((_objects select 0) ammo (currentWeapon (_objects select 0))) < 0.3)then{
-				//[_array]call JOC_logSupply;
+				//[_array]call JOC_cmdLogSupply;
 			};
         };
         case "base": {

@@ -1,6 +1,6 @@
 author = "Jochem";
 OnLoadName = "Gemini";
-OnLoadMission = "Please report any bugs to github";
+OnLoadMission = "A persistent mission aimed at simulating the invasion of Altis.";
 respawn = 3;
 respawndelay = 5;
 respawnOnStart = -1;
@@ -9,18 +9,13 @@ disabledAI = true;
 enableDebugConsole = 1;
 showGroupIndicator = 0;
 
-corpseManagerMode = 1;
-corpseLimit = 50;
-corpseRemovalMinTime = 180;
-corpseRemovalMaxTime = 600;
-
 #include "CHVD\dialog.hpp"
 
 class Header
 {
     gameType = Coop; // MP misison type
     minPlayers = 1; //min # of players the mission supports
-    maxPlayers = 50; //max # of players the mission supports
+    maxPlayers = 67; //max # of players the mission supports
 };
 
 class CfgFunctions
@@ -36,7 +31,16 @@ class CfgSounds
 		// how the sound is referred to in the editor (e.g. trigger effects)
 		name = "speakersForHeli";
 		// filename, volume, pitch
-		sound[] = {"Data\Sounds\heliSpeakerSound.ogg", 5, 1};
+		sound[] = {"Data\Sounds\heliSpeakerSound.ogg", 7, 1};
+		// subtitle delay in seconds, subtitle text
+		titles[] = {};
+	};
+    class rwrSound
+	{
+		// how the sound is referred to in the editor (e.g. trigger effects)
+		name = "soundRwr";
+		// filename, volume, pitch
+		sound[] = {"Data\Sounds\rwr.ogg", 5, 1};
 		// subtitle delay in seconds, subtitle text
 		titles[] = {};
 	};

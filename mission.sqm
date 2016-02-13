@@ -266,7 +266,7 @@ class Mission
 						};
 						class Item3
 						{
-							value="2";
+							value="1";
 							parentCls="ACE_moduleAdvancedMedicalSettings";
 							typeName="medicSetting_PAK";
 						};
@@ -378,7 +378,7 @@ class Mission
 						};
 						class Item5
 						{
-							value="1.5";
+							value="1";
 							parentCls="ACE_moduleMedicalSettings";
 							typeName="playerDamageThreshold";
 						};
@@ -402,7 +402,7 @@ class Mission
 						};
 						class Item9
 						{
-							value="0";
+							value="1";
 							parentCls="ACE_moduleMedicalSettings";
 							typeName="preventInstaDeath";
 						};
@@ -1300,7 +1300,7 @@ class Mission
 						items=2;
 						class Item0
 						{
-							value="l3";
+							value="l3,csar2";
 							parentCls="ACE_moduleAssignMedicRoles";
 							typeName="EnableList";
 						};
@@ -2437,8 +2437,8 @@ class Mission
 					leader=1;
 					rank="CAPTAIN";
 					skill=0.60000002;
-					text="rip1";
-					init="(group this) setGroupId[""CSAR""];";
+					text="csar1";
+					init="(group this) setGroupId[""CSARcsar""];";
 					description="CSAR pilot";
 				};
 				class Item1
@@ -2447,13 +2447,13 @@ class Mission
 					offsetY=17;
 					id=97;
 					side="WEST";
-					vehicle="B_Pilot_F";
+					vehicle="B_medic_F";
 					player="PLAY CDG";
 					rank="LIEUTENANT";
 					skill=0.60000002;
-					text="rip2";
+					text="csar2";
 					init="(group this) setGroupId[""CSAR""];";
-					description="CSAR co-pilot";
+					description="CSAR paramedic";
 				};
 			};
 		};
@@ -2581,7 +2581,7 @@ class Mission
 		};
 		class Item2
 		{
-			position[]={26853.795,22.974501,24627.014};
+			position[]={26855.82,22.946136,24629.613};
 			azimut=311;
 			id=102;
 			side="EMPTY";
@@ -2592,7 +2592,7 @@ class Mission
 		};
 		class Item3
 		{
-			position[]={26840.758,23.258154,24611.885};
+			position[]={26840.291,23.264248,24611.395};
 			azimut=311;
 			id=103;
 			side="EMPTY";
@@ -2603,7 +2603,7 @@ class Mission
 		};
 		class Item4
 		{
-			position[]={26814.207,23.667765,24580.438};
+			position[]={26808.408,23.701122,24574.754};
 			azimut=311;
 			id=104;
 			side="EMPTY";
@@ -2614,7 +2614,7 @@ class Mission
 		};
 		class Item5
 		{
-			position[]={26827.711,23.467793,24596.537};
+			position[]={26824.643,23.509939,24593.127};
 			azimut=311;
 			id=105;
 			side="EMPTY";
@@ -2657,7 +2657,7 @@ class Mission
 		};
 		class Item9
 		{
-			position[]={26851.818,22.539137,24635.105};
+			position[]={26853.844,22.450239,24637.705};
 			azimut=131;
 			id=109;
 			side="EMPTY";
@@ -2668,7 +2668,7 @@ class Mission
 		};
 		class Item10
 		{
-			position[]={26838.764,22.751152,24620.033};
+			position[]={26838.297,22.776461,24619.543};
 			azimut=131;
 			id=110;
 			side="EMPTY";
@@ -2679,7 +2679,7 @@ class Mission
 		};
 		class Item11
 		{
-			position[]={26825.6,23.232862,24604.789};
+			position[]={26822.531,23.312342,24601.379};
 			azimut=131;
 			id=111;
 			side="EMPTY";
@@ -2690,7 +2690,7 @@ class Mission
 		};
 		class Item12
 		{
-			position[]={26812.158,23.496078,24588.58};
+			position[]={26806.359,23.534901,24582.896};
 			azimut=131;
 			id=112;
 			side="EMPTY";
@@ -2712,7 +2712,7 @@ class Mission
 		};
 		class Item14
 		{
-			position[]={26697.639,21.706532,24557.914};
+			position[]={26697.906,21.717756,24557.678};
 			azimut=40;
 			id=114;
 			side="EMPTY";
@@ -7857,11 +7857,12 @@ class Mission
 		};
 		class Item570
 		{
-			position[]={26780.6,21.607943,24632.102};
+			position[]={26784.076,21.813208,24629.947};
 			azimut=131;
+			offsetY=0.1;
 			id=670;
 			side="EMPTY";
-			vehicle="Land_HelipadSquare_F";
+			vehicle="Land_HelipadEmpty_F";
 			leader=1;
 			skill=0.60000002;
 			text="garage_spawn_jet";
@@ -8549,7 +8550,7 @@ class Mission
 		};
 		class Item646
 		{
-			position[]={26979.885,21.206697,24740.254};
+			position[]={26980.115,21.212036,24740.072};
 			azimut=131;
 			id=746;
 			side="EMPTY";
@@ -8883,7 +8884,7 @@ class Mission
 		};
 		class Item18
 		{
-			position[]={26835.041,23.404406,24603.641};
+			position[]={26836.053,23.391836,24605.082};
 			name="mrk_base_air";
 			text="Helicopters";
 			type="b_air";

@@ -59,7 +59,7 @@ if(_dis > 10)then{
 	//Failsafe
 	if(isNil{_veh})then{
 		hint "Error in loading vehicle, spawning standard one";
-		_veh = _class createVehicle [0,0,0];
+		_veh = _class createVehicle [0,0,100];
 	};
 
 	if(_veh isKindOf "car")then{
@@ -79,6 +79,9 @@ if(_dis > 10)then{
 	_veh setVariable ["pad",_spawnObj,true];
 	_veh setPos getPos _spawnObj;
 	_veh setDir (getDir _spawnObj);
+
+	sleep 1;
+
 	_veh allowDamage true;
 	_veh enableSimulation true;
 

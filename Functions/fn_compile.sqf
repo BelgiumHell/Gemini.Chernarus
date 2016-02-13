@@ -49,6 +49,7 @@ JOC_itemRemove = compileFinal preprocessFileLineNumbers "Functions\Performance\i
 JOC_playerLoop = compileFinal preprocessFileLineNumbers "Functions\Player\loop.sqf";
 JOC_playerClick = compileFinal preprocessFileLineNumbers "Functions\Player\click.sqf";
 JOC_playerButton = compileFinal preprocessFileLineNumbers "Functions\Player\button.sqf";
+JOC_playerSmkGren = compileFinal preprocessFileLineNumbers "Functions\Player\smkGren.sqf";
 
 //Tasks
 /*#include "Tasks\fn_task_compile.sqf";

@@ -29,6 +29,11 @@ while{true}do{
         };
     };
 
+	//RWR
+	if(vehicle player in (jetTargets + heliTargets))then{
+		playSound ["rwrSound",true];
+	};
+
 	//Zeus
 	if(!isNull curatorCamera)then{
 		_curator = (getAssignedCuratorLogic player);
