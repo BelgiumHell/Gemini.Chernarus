@@ -54,7 +54,7 @@ if (_heliClass == "") exitWith {
 };
 
 _heli = [_spawnPos, _heliClass, _height, _dir, true] call Zen_SpawnVehicle;
-0 = [_heli] call Zen_SpawnVehicleCrew;
+createVehicleCrew _heli;
 
 call Zen_StackRemove;
 (_heli)

@@ -2,8 +2,8 @@
 //Script made by Jochem//
 /////////////////////////
 _usedCompounds = [];
-_diesel = nearestObjects [(getMarkerPos "mrk_area"),["Land_dp_mainFactory_F"],worldSize*2.0^0.5];
-_main = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"],worldSize*2.0^0.5];
+dieselFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_dp_mainFactory_F"],worldSize*2.0^0.5];
+mainFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"],worldSize*2.0^0.5];
 
 {
     if(!(_x in _usedCompounds))then{
@@ -20,7 +20,7 @@ _main = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"],worldS
 
         strategicArray pushBack [(getPos _x),800,"factory",_nameM,east];
     };
-} forEach _main;
+} forEach mainFactories;
 
 {
     if(!(_x in _usedCompounds))then{
@@ -37,4 +37,4 @@ _main = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"],worldS
 
         strategicArray pushBack [(getPos _x),600,"factory",_nameM,east];
     };
-} forEach _diesel;
+} forEach dieselFactories;

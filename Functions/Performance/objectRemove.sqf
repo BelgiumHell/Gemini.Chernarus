@@ -11,8 +11,6 @@
     } forEach (playableUnits + switchableUnits);
 
     if(count _nearestPlayers == 0 or (_x distance respawn_obj) < 100)then{
-		_pad = (_x getVariable "pad");
-		_pad setVariable["count",((_pad getVariable "count") - 1),true];
 		deleteVehicle _x;
 	};
 }forEach allDead;

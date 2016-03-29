@@ -5,9 +5,12 @@ _dummy = objNull;
 _vehicle = objNull;
 _time = 0;
 musicPlay = false;
+_radioHandle = scriptNull;
 
 while{true}do{
+	//Fix vanilla damage
 	player setDamage 0;
+	//Pardon TK'ing
 	player addRating 2000;
 
 	//Music
@@ -44,6 +47,22 @@ while{true}do{
 			_curator addCuratorEditableObjects [vehicles,false];
 		}] remoteExec ["BIS_fnc_spawn", 2];
 
+	};
+
+	//Radio jamming (experimental)
+	if((count (nearestObjects [player, ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"], 2000])) >= 1)then{
+		_radioHandle = []spawn{
+			while{true}do{
+				_radios = [] call acre_api_fnc_getCurrentRadioList;
+				//acre_sys_core_keyedMicRadios = (playableUnits + switchableUnits);
+				{
+				    [_x, round (random 14)] call acre_api_fnc_setRadioChannel;
+				} forEach _radios;
+				sleep 0.3;
+			};
+		};
+	}else{
+		terminate _radioHandle;
 	};
 	sleep 5;
 };

@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_array","oUnits","bUnits"];
+params["_array","_oUnits","_bUnits"];
 private["_category","_clearence","_types"];
 
 _pos = _array select 0;
@@ -69,7 +69,7 @@ _typeSupport = _typesSupport call BIS_fnc_selectRandom;
 //Execute
 switch (_typeDirect) do {
     case ("near"): {
-        [_array]call JOC_cmdDefNear;
+        [_array]spawn JOC_cmdDefNear;
     };
     default {
 
@@ -77,13 +77,13 @@ switch (_typeDirect) do {
 };
 switch (_typeMain) do {
     case ("convoy"): {
-        [_array,_category]call JOC_cmdDefConvoy;
+        [_array,_category]spawn JOC_cmdDefConvoy;
     };
     case ("heli"): {
-        [_array,_category]call JOC_cmdDefHeli;
+        [_array,_category]spawn JOC_cmdDefHeli;
     };
     case ("retreat"): {
-        [_array]call JOC_cmdDefRetreat;
+        [_array]spawn JOC_cmdDefRetreat;
     };
     default {
 
@@ -91,13 +91,13 @@ switch (_typeMain) do {
 };
 switch (_typeSupport) do {
     case ("armor"): {
-        [_array,_category]call JOC_cmdDefArmor;
+        [_array,_category]spawn JOC_cmdDefArmor;
     };
     case ("arty"): {
-        [_array]call JOC_cmdDefArty;
+        [_array]spawn JOC_cmdDefArty;
     };
     case ("cas"): {
-        [_array]call JOC_cmdDefCas;
+        [_array]spawn JOC_cmdDefCas;
     };
     default {
 

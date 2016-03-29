@@ -1,13 +1,14 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-private["_prevDis","_groupIdG","_group","_position"];
-
 onMapSingleClick{
+	hint "";
+	terminate bftHandle;
 	_prevDis = 999;
 	_groupIdG = "";
 	_group = 0;
 	_position = _pos;
+	_unitMarkers = [];
 	_markers = allMapMarkers;
 	{
 		_distance = ((getMarkerPos _x) distance _position);
@@ -55,5 +56,7 @@ onMapSingleClick{
 		_freqText = format["Radio freq: block:%1 ch:%2",_block,_freq];
 		_text = composeText [_text, lineBreak, _unitText, lineBreak, lineBreak, _freqText];
 		hint _text;
+
+		bftHandle = [_unitsG]spawn JOC_bftDrawUnits;
 	};
 };

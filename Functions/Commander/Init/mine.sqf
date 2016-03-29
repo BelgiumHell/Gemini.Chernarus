@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 _s = 0;
-while{_s < 30}do{
+while{_s < 80}do{
     _location = [0,0,airfieldMarkers + blackMarkers,1,[1,1400]] call Zen_FindGroundPosition;
 
     _mine = createMine ["ATMine", _location, [], 0];

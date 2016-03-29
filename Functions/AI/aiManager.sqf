@@ -22,7 +22,7 @@ while{true}do{
 
     //Unvirtualizing
     {
-        _objects = (((_x select 0) select 0) select 1) nearEntities [["Man","Car","Tank","Helicopter"],3000];
+        _objects = (((_x select 0) select 0) select 1) nearEntities [["Man","Car","Tank","Helicopter"],2000];
 
         if((west countSide _objects) > 0)then{
             [_x]call JOC_unVirtualize;
@@ -32,12 +32,12 @@ while{true}do{
     //uncahcing + virtualizing
     cachedArray = cachedArray - [[]];
     {
-        _objects = _x select 0 nearEntities [["Man","Car","Tank"],1500];
+        _objects = _x select 0 nearEntities [["Man","Car","Tank"],1200];
 
         if((west countSide _objects) > 0)then{
             [_x]call JOC_unCache;
         }else{
-            _objects = _x select 0 nearEntities [["Man","Car","Tank","Helicopter"],3000];
+            _objects = _x select 0 nearEntities [["Man","Car","Tank","Helicopter"],2000];
 
             if((west countSide _objects) == 0)then{
                 [_x]call JOC_virtualize;

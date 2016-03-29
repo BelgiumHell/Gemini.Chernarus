@@ -42,6 +42,10 @@ while{cduEnabled && (player == (commander _veh))}do{
 	//Misc
 	_miscText = "";
 
+	{
+	    _miscText = composeText [_miscText, format["%1: %2(%3)", ((assignedVehicleRole _x) select 0), name _x, (groupId (group _x))], lineBreak];
+	} forEach crew _veh;
+
 	_text = composeText [_ammoText, lineBreak, "-------------", _miscText];
 
 	hintSilent _text;

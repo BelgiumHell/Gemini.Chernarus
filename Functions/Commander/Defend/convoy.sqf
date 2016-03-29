@@ -5,6 +5,7 @@ params["_arg","_category"];
 
 //Get nearest base
 _startPos = [(_arg select 0),"base",1200]call JOC_cmdMiscGetNearestStrategic;
+if(count (_startPos - [0,0,0]) == 0)exitWith{false};
 
 //Generate composition
 _vehArr = [];
@@ -13,10 +14,12 @@ _apcCount = _category + random 1;
 _i = 0;
 while{_i < _apcCount}do{
     _vehArr pushBack (apcPool call BIS_fnc_selectRandom);
+    _i = _i + 1;
 };
 _i = 0;
 while{_i < _truckCount}do{
     _vehArr pushBack (truckPool call BIS_fnc_selectRandom);
+    _i = _i + 1;
 };
 
 //Spawn convoy

@@ -29,6 +29,9 @@ JOC_cmdInitRadio = compileFinal preprocessFileLineNumbers "Functions\Commander\I
 JOC_cmdInitTown = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\town.sqf";
 
 //Logistics
+JOC_cmdLogHeli = compileFinal preprocessFileLineNumbers "Functions\Commander\Logistics\heli.sqf";
+JOC_cmdLogSupply = compileFinal preprocessFileLineNumbers "Functions\Commander\Logistics\supply.sqf";
+JOC_cmdLogTruck = compileFinal preprocessFileLineNumbers "Functions\Commander\Logistics\truck.sqf";
 
 //Misc
 JOC_cmdMiscGetNearestStrategic = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\getNearestStrategic.sqf";

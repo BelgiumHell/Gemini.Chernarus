@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_towers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Land_TTowerBig_2_F"],worldSize*2.0^0.5];
+radioTowers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Land_TTowerBig_2_F"],worldSize*2.0^0.5];
 
 {
     _tower = _x;
@@ -22,4 +22,4 @@ _towers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Land_TT
     _nameM setMarkerColor "ColorOpfor";
 
     strategicArray pushBack [_location,500,"radio",_nameM,east];
-} forEach _towers;
+} forEach radioTowers;

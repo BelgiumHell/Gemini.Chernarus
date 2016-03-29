@@ -25,7 +25,7 @@ while{true}do{
 			if((vehicle _leader) isKindOf "man")then{
 				_icon = "b_inf";
 			};
-			if((vehicle _leader) isKindOf "LandVehicle")then{
+			if((vehicle _leader) isKindOf "LandVehicle" && (effectiveCommander (vehicle _leader)) in _unitsG)then{
 				if((vehicle _leader) isKindOf "car")then{
 					_icon = "b_motor_inf";
 				};
@@ -45,10 +45,10 @@ while{true}do{
 					_icon = "b_support";
 				};
 			};
-			if((vehicle _leader) isKindOf "Air")then{
+			if((vehicle _leader) isKindOf "Air" && (effectiveCommander (vehicle _leader)) in _unitsG)then{
 				_icon = "b_air";
 			};
-			if((vehicle _leader) isKindOf "Ship")then{
+			if((vehicle _leader) isKindOf "Ship" && (effectiveCommander (vehicle _leader)) in _unitsG)then{
 				_icon = "b_naval";
 			};
 			///////////////////////////////////////////////////

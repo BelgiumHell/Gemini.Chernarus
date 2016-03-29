@@ -34,12 +34,13 @@ airfieldMarkers = ["mrk_airfield_0","mrk_airfield_1","mrk_airfield_2","mrk_airfi
 leaderArray = ["cmd1","cmd2","a0_1","b0_1","c0_1","h1","r1","anv1","s1","v1","rip1"]; //All leading elements
 arsenalBoxes = [arsenal1,arsenal2,arsenal3];    //All pre-placed boxes that need to be a virtual arsenal
 logisticsArray = ["l1","l2","l3","l4"]; //All units that will be able to use the building crate
+publicVariable "logisticsArray";
 logisticsVehArray = ["B_APC_Tracked_01_CRV_F"]; //All vehicles that can tow
 motorizedArray = [];    //All vehicles that are classed as motorized
 medicalVehArray = [];   //All medical vehicles
 
 //Variables
-bftEnable = true;  //Enable blu force tracking
+bftEnable = false;  //Enable blu force tracking
 bftRefresh = 0.3;  //Refresh rate for blu force tracking
 fobLimit = 5;   //Max number of FOB's
 radarRange = 6000;  //Max range of radars
@@ -50,6 +51,7 @@ jetTargets = [];
 heliTargets = [];
 activeTasks = [];
 fobTrucks = [];
+radars = [];
 baseObjects = nearestObjects [(getMarkerPos "mrk_safeZone"), ["All"], 1200];
 jetActive = false;
 
@@ -74,26 +76,30 @@ publicVariable "cacheGroupLeader";
 cachedArray = [];
 virtualizedArray = [];
 
+//Get a list of all buildings to save damage
+buildings = nearestObjects [[worldSize/2,worldSize/2], ["house"], (worldSize*2^0.5)];
+
 //Run init scripts
-//[]call JOC_cmdCreateLocations;
+[]call JOC_cmdCreateLocations;
 
 [[],{
     progressLoadingScreen 0.3;
 }] remoteExec ["BIS_fnc_spawn", 0, true];
-//[]call JOC_cmdCreateEnemy;
+[]call JOC_cmdCreateEnemy;
 
 //End loading screen
 [[],{
     endLoadingScreen;
     JOC_serverLoaded = true;
     if(!isServer)then{
+        waitUntil{!isNil{JOC_clientInit}};
         []spawn JOC_clientInit;
     };
 }] remoteExec ["BIS_fnc_spawn", 0, true];;
 
 []spawn JOC_aiManager;
 if(bftEnable)then{
-    []spawn JOC_bftManager;
+    //[]spawn JOC_bftManager;
 };
 []spawn JOC_perfLoop;
 []call JOC_initPlayerBase;

@@ -9,7 +9,7 @@ switch (_this select 1) do
 		if((vehicle player)isKindOf "Tank")then{
 			[]spawn JOC_vehCDU;
 		};
-		if((vehicle player)isKindOf "Helicopter" && player == (driver(vehicle player)))then{
+		if((vehicle player)isKindOf "air" && player == (driver(vehicle player)))then{
 			if(musicPlay)then{
 				musicPlay = false;
 			}else{

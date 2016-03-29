@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderInfantryPatrolBuilding", _this] call Zen_StackAdd;
 private ["_units", "_centerPos", "_unitsRemove", "_patrolOutside", "_behavior", "_houseCount", "_positions", "_randHouseIndex", "_randPosArray", "_randHouse"];
@@ -19,7 +19,11 @@ ZEN_STD_Parse_GetArgumentDefault(_behavior, 3, "aware")
 ZEN_STD_Parse_GetArgumentDefault(_houseCount, 4, 1)
 
 _nearBuilding = nearestBuilding _centerPos;
-_housesArray = nearestObjects [getPosATL _nearBuilding, ["House"], 100];
+// _housesArray = nearestObjects [getPosATL _nearBuilding, ["House"], 100];
+_housesArray = nearestTerrainObjects[getPosATL _nearBuilding, ["Building", "House"], 100];
+// player sideChat str (nearestTerrainObjects[getPosATL player, ["BUILDING", "HOUSE"], 100]);
+// player sideChat str (nearestObjects [getPosATL player, ["House"], 100]);
+
 _housesArray resize _houseCount;
 
 _housePosArray = [];
@@ -41,7 +45,7 @@ _housePosArray = [];
 
 while {(count _units > 0)} do {
     {
-        if (isNull _x || {(alive _x)}) then {
+        if (isNull _x || {!(alive _x)}) then {
             _units set [_forEachIndex, 0];
         } else {
             (group _x) setBehaviour _behavior;

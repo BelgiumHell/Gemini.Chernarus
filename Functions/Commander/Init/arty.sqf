@@ -7,13 +7,13 @@ _tankBlacklist = [];
 _s = 0;
 while{_s < 4}do{
 	//Get position
-	_location = [];
-	while{count _location == 0}do{
-		_pos = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0] call Zen_FindGroundPosition;
-		_location  = _pos findEmptyPosition [0,300,emptyClass];
-	};
+	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0,[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]] call Zen_FindGroundPosition;
 
-	[_location,100,"rhs_KORD_high_VDV"]call Zen_SpawnFortification;
+	[_location,30,"rhs_KORD_high_VDV"]call Zen_SpawnFortification;
+	_static = _location nearestObject "rhs_KORD_high_VDV";
+	createVehicleCrew _static;
+	(gunner _static) setVariable["JOC_caching_disabled",true];
+	(crew _static) joinSilent artyGroup;
 
 	//Create marker
 	_name = [5] call Zen_StringGenerateRandom;
@@ -33,7 +33,7 @@ while{_s < 4}do{
 	_nameM = [5] call Zen_StringGenerateRandom;
 	_marker = createMarker [_nameM, _location];
    	_nameM setMarkerShape "RECTANGLE";
-   	_nameM setMarkerSize [2000,2000];
+   	_nameM setMarkerSize [6000,6000];
     _nameM setMarkerBrush "Border";
     _nameM setMarkerAlpha 0;
 	_tankBlacklist pushBack _nameM;
@@ -48,7 +48,7 @@ while{_s < 4}do{
 	(driver _arty1) setVariable["JOC_caching_disabled",true];
 
 	_dir = round random 360;
-	_locationS = [_location, random 60, random 60] call BIS_fnc_relPos;
+	_locationS = [_location, random 15, random 15] call BIS_fnc_relPos;
 	_arty2 = [_locationS, artyClass] call Zen_SpawnVehicle;
 	createVehicleCrew _arty2;
 	_arty2 addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];

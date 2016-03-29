@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 Zen_AreInArea = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_AreInArea.sqf";
 Zen_AreIndoors = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_AreIndoors.sqf";
@@ -12,6 +12,7 @@ Zen_AreNotInArea = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunction
 Zen_AreNotIndoors = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_AreNotIndoors.sqf";
 Zen_AreNotInVehicle = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_AreNotInVehicle.sqf";
 Zen_AreNotLocal = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_AreNotLocal.sqf";
+Zen_CreateTemplate = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_CreateTemplate.sqf";
 Zen_GetAllInArea = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_GetAllInArea.sqf";
 Zen_GetAllInBuilding = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_GetAllInBuilding.sqf";
 Zen_GetFreeSeats = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_ObjectFunctions\Zen_GetFreeSeats.sqf";

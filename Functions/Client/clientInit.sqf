@@ -17,8 +17,10 @@ player setPosASL getPosASL respawn_obj;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
 player addEventHandler ["Fired", {_this spawn JOC_playerSmkGren}];
 cduEnabled = false;
+
+//Thirs person restriction
 [{
-	_nearestEntities = (getPos player) nearEntities [["Man"],600];
+	_nearestEntities = (getPos player) nearEntities [["Man"],400];
 	if(cameraOn isEqualTo player && {cameraView isEqualTo "EXTERNAL"})then{
 		{
 		    if(lineIntersects [eyePos player, aimPos _x, player, _x])then{

@@ -8,8 +8,11 @@ respawnVehicleDelay = 0;
 disabledAI = true;
 enableDebugConsole = 1;
 showGroupIndicator = 0;
+disableChannels[]={0,1,2,3,4,5,6};
 
 #include "CHVD\dialog.hpp"
+#include "ASORVS\menu.hpp"
+#include "Zen_FrameworkFunctions\Zen_DialogSystem\Zen_Dialog.hpp"
 
 class Header
 {
@@ -21,6 +24,7 @@ class Header
 class CfgFunctions
 {
     #include "CHVD\CfgFunctions.hpp"
+    #include "ASORVS\cfgfunctions.hpp"
 };
 
 class CfgSounds

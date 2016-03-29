@@ -2,14 +2,14 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 #define RNG(ARR) ([(ARR select 0), (ARR select 1)] call Zen_FindInRange)
 
 _Zen_stack_Trace = ["Zen_InvokeFireSupport", _this] call Zen_StackAdd;
 private ["_firePosition", "_nameString", "_templateArray", "_roundType", "_round", "_guided", "_guidanceObject", "_guidanceType", "_artyVehicle", "_roundPosition", "_temp_roundsPerSalvo", "_temp_salvos", "_temp_timePerRound", "_temp_timePerSalvo", "_effectShapeData", "_temp_salvoDrift", "_artyVehicleClass", "_artyMuzzleClass", "_effectMarker", "_artyWeaponMag", "_artyFireMode"];
 
-if !([_this, [["VOID"], ["STRING"], ["OBJECT"], ["STRING"]], [], 2] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["STRING"], ["OBJECT", "STRING"], ["STRING"]], [], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 

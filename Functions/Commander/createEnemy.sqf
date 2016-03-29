@@ -58,3 +58,7 @@
     } forEach cachedArray;
 
 } forEach strategicArray;
+
+diag_log strategicArray;
+
+[]spawn JOC_cmdCmdLoop;

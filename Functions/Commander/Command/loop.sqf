@@ -3,8 +3,10 @@
 /////////////////////////
 while{true}do{
     //Check for AA intercept
-    if((count jetTargets > 0 || count airTargets > 1) && !jetActive)then{
+    if((count jetTargets > 0 || count heliTargets > 1) && !jetActive)then{
+        jetActive = true;
         []spawn JOC_cmdAttackIntercept;
     };
-    sleep 20;
+
+    sleep 60;
 };

@@ -7,15 +7,8 @@ private["_array"];
 _pos = _arg select 0;
 _marker = _arg select 3;
 
-_prevPos = 99999;
-{
-    if(((_x select 2) == "arty") && (((_x select 0) distance _pos) < _prevPos))then{
-        _prevPos = ((_x select 0) distance _pos);
-        _array = _x;
-    };
-} forEach strategicArray;
-
-if(isNil{_array})exitWith{false};
+_artyPos = [(_arg select 0),"arty",1200]call JOC_cmdMiscGetNearestStrategic;
+if(count (_artyPos - [0,0,0]) == 0)exitWith{false};
 
 _location = getMarkerPos _marker;
 _size = getMarkerSize _marker;
@@ -31,7 +24,7 @@ _timeout = time + 1800;
 waitUntil {count (list _trg) == 0 || time > _timeout};
 deleteVehicle _trg;
 
-_artyA =  nearestObjects [_array select 0,[artyClass],500];
+_artyA =  nearestObjects [_artyPos,[artyClass],500];
 
 {
     [_x,_pos]spawn{

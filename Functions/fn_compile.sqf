@@ -38,6 +38,7 @@ JOC_loadoutMaster = compileFinal preprocessFileLineNumbers "Functions\Loadouts\m
 JOC_spawnComposition = compileFinal preprocessFileLineNumbers "Functions\Logistics\spawnComposition.sqf";
 
 //Misc
+JOC_drawLine = compileFinal preprocessFileLineNumbers "Functions\Misc\drawLine.sqf";
 JOC_findCenter = compileFinal preprocessFileLineNumbers "Functions\Misc\findCenter.sqf";
 
 //Performance
