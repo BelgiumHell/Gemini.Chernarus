@@ -5,12 +5,10 @@ sleep 0.1;
 //Don't mind this
 player enableSimulation true;
 player allowDamage true;
-player setPosASL getPosASL respawn_obj;
 
 ["Preload"]call BIS_fnc_arsenal;
 
 []call JOC_playerClick;
-[]call JOC_garage;
 []spawn JOC_playerLoop;
 []call JOC_createDiary;
 []call JOC_loadoutMaster;
@@ -18,21 +16,25 @@ player setPosASL getPosASL respawn_obj;
 player addEventHandler ["Fired", {_this spawn JOC_playerSmkGren}];
 cduEnabled = false;
 
-//Thirs person restriction
+//Third person restriction
 [{
-	_nearestEntities = (getPos player) nearEntities [["Man"],400];
-	if(cameraOn isEqualTo player && {cameraView isEqualTo "EXTERNAL"})then{
-		{
-		    if(lineIntersects [eyePos player, aimPos _x, player, _x])then{
-				_x hideObject true;
-			}else{
-				_x hideObject false;
-			};
-		} forEach _nearestEntities;
+	if(cameraView isEqualTo "EXTERNAL")then{
+		if(vehicle player == player){
+			_nearestEntities = (getPos player) nearEntities [["Man"],400];
+			{
+			    if(lineIntersects [eyePos player, aimPos _x, player, _x])then{
+					_x hideObject true;
+				}else{
+					_x hideObject false;
+				};
+			} forEach _nearestEntities;
+		}else{
+			player switchCamera "INTERNAL";
+		};
 	}else{
 		{
 		    _x hideObject false;
-		} forEach _nearestEntities;
+		} forEach allUnits;
 	};
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
@@ -77,13 +79,3 @@ _actionMAT = ["loadMat", "Load MAT ammo", "", {[(_this select 0)]spawn JOC_crate
 //MMG
 _actionMMG = ["loadMmg", "Load MMG ammo", "", {[(_this select 0)]spawn JOC_crateMmg;}, {((_this select 0) distance logiSpawner) < 50}] call ace_interact_menu_fnc_createAction;
 ["B_CargoNet_01_ammo_F", 0, ["ACE_MainActions"], _actionMMG] call ace_interact_menu_fnc_addActionToClass;
-
-//Littlebird
-_actionMH6M = ["changeMH6", "Replace with MH-6M", "", {_pos = getPosASL (_this select 0); _dir = getDir (_this select 0); deleteVehicle (_this select 0); _veh = "MELB_MH6M" createVehicle [0,0,0]; _veh setPosASL _pos; _veh setDir _dir; _veh setDamage 0; _veh setFuel 1;}, {((_this select 0) distance (getMarkerPos "mrk_base_air")) < 50}] call ace_interact_menu_fnc_createAction;
-["MELB_H6M", 0, ["ACE_MainActions"], _actionMH6M] call ace_interact_menu_fnc_addActionToClass;
-_actionAH6L = ["changeMH6", "Replace with AH-6L", "", {_pos = getPosASL (_this select 0); _dir = getDir (_this select 0); deleteVehicle (_this select 0); _veh = "MELB_AH6M_L" createVehicle [0,0,0]; _veh setPosASL _pos; _veh setDir _dir; _veh setDamage 0; _veh setFuel 1;}, {((_this select 0) distance (getMarkerPos "mrk_base_air")) < 50}] call ace_interact_menu_fnc_createAction;
-["MELB_H6M", 0, ["ACE_MainActions"], _actionAH6L] call ace_interact_menu_fnc_addActionToClass;
-_actionAH6M = ["changeMH6", "Replace with AH-6M", "", {_pos = getPosASL (_this select 0); _dir = getDir (_this select 0); deleteVehicle (_this select 0); _veh = "MELB_AH6M_M" createVehicle [0,0,0]; _veh setPosASL _pos; _veh setDir _dir; _veh setDamage 0; _veh setFuel 1;}, {((_this select 0) distance (getMarkerPos "mrk_base_air")) < 50}] call ace_interact_menu_fnc_createAction;
-["MELB_H6M", 0, ["ACE_MainActions"], _actionAH6M] call ace_interact_menu_fnc_addActionToClass;
-_actionAH6H = ["changeMH6", "Replace with AH-6H", "", {_pos = getPosASL (_this select 0); _dir = getDir (_this select 0); deleteVehicle (_this select 0); _veh = "MELB_AH6M_H" createVehicle [0,0,0]; _veh setPosASL _pos; _veh setDir _dir; _veh setDamage 0; _veh setFuel 1;}, {((_this select 0) distance (getMarkerPos "mrk_base_air")) < 50}] call ace_interact_menu_fnc_createAction;
-["MELB_H6M", 0, ["ACE_MainActions"], _actionAH6H] call ace_interact_menu_fnc_addActionToClass;

@@ -52,7 +52,7 @@ heliTargets = [];
 activeTasks = [];
 fobTrucks = [];
 radars = [];
-baseObjects = nearestObjects [(getMarkerPos "mrk_safeZone"), ["All"], 1200];
+editorObjects = nearestObjects [[worldSize/2,worldSize/2], ["All"], (worldSize*2^0.5)];
 jetActive = false;
 
 //Script vars
@@ -62,7 +62,7 @@ CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)
 
 //Public var for local scripts
 publicVariable "logisticsArray";
-publicVariable "baseObjects";
+publicVariable "editorObjects";
 publicVariable "fobTrucks";
 publicVariable "airfieldMarkers";
 publicVariable "arsenalBoxes";

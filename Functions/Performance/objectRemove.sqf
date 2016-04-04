@@ -10,7 +10,7 @@
         };
     } forEach (playableUnits + switchableUnits);
 
-    if(count _nearestPlayers == 0 or (_x distance respawn_obj) < 100)then{
+    if(count _nearestPlayers == 0 or (_x distance respawn_obj_atlas) < 500)then{
 		deleteVehicle _x;
 	};
 }forEach allDead;

@@ -1,17 +1,17 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_type = _this select 0;
+params["_type"];
 _unable = true;
 
 //Get spawn obj
 {
-	_veh = (nearestObjects [(getPos _x),["All"],3] - [_x]);
+	_veh = (nearestObjects [(getPosWorld _x),["All"],3] - [_x]);
 	if((count _veh) >= 1)then{
 	}else{
 		_obj = _type createVehicle [99995,99995,0];
 		_obj setDir (getDir _x);
-		_obj setPos (getPos _x);
+		_obj setPosWorld (getPosWorld _x);
 		[_obj]spawn JOC_vehInit;
 		_unable = false;
 	};

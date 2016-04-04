@@ -3,7 +3,7 @@
 /////////////////////////
 params ["_group"];
 
-if((leader _group) getVariable "JOC_caching_disabled")exitWith{};
+if((leader _group) getVariable ["JOC_caching_disabled",false])exitWith{};
 
 _units = units _group;
 
