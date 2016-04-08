@@ -13,11 +13,12 @@ JOC_serverLoaded = false;
 
 // Gemini by Jochem
 // Version = 0.6
-// Tested with ArmA 3 <1.54>
+// Tested with ArmA 3 <1.56>
 
 enableSaving [false, false];
 
 if(isServer)then{
+    inidbi = ["new", "GEMINI"] call OO_INIDBI;
     []spawn JOC_missionInit;
 }else{
     player enableSimulation false;

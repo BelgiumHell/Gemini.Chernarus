@@ -42,11 +42,26 @@ while{true}do{
 		_curator = (getAssignedCuratorLogic player);
 		[[_curator],{
 			_curator = _this select 0;
-			_curator addCuratorEditableObjects [(allUnits - [cacheGroupLeader]),false];
+			_curator addCuratorEditableObjects [(allUnits - [cacheGroupLeader-placeHolderGroupWestLeader]),false];
 			_curator addCuratorEditableObjects [allDead,false];
-			_curator addCuratorEditableObjects [vehicles - editorObjects,false];
+			_curator addCuratorEditableObjects [vehicles - startObjects,false];
 		}] remoteExec ["BIS_fnc_spawn", 2];
 
+	};
+
+	//Captive and caching stuff
+	if(captive player)then{
+		_placeHolder = placeHolderGroupWest createUnit ["B_Soldier_F", [0,0,0], [], 0, "FORM"];
+		[[_placeHolder],{
+			params["_placeHolder"];
+			_placeHolder hideObjectGlobal true;
+			_placeHolder enableSimulationGlobal false;
+			_placeHolder allowDamage false;
+		}] remoteExec ["BIS_fnc_spawn", 2];
+		waitUntil{isObjectHidden _placeHolder};
+		_placeHolder setPosWorld (getPosWorld player);
+		waitUntil{sleep 1; !captive player};
+		deleteVehicle _placeHolder;
 	};
 
 	//Radio jamming (experimental)

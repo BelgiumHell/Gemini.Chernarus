@@ -23,4 +23,10 @@ if(count (_array select 1) != 0)then{
     } forEach (_array select 1);
 };
 
+if(isNil{_x select 3})then{
+    if(_x select 3 )then{
+        (leader _group) setVariable ["JOC_caching_disabled", true];
+    };
+}
+
 [(units _group)]call JOC_cacheUnits;
