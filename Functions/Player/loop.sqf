@@ -42,11 +42,10 @@ while{true}do{
 		_curator = (getAssignedCuratorLogic player);
 		[[_curator],{
 			_curator = _this select 0;
-			_curator addCuratorEditableObjects [(allUnits - [cacheGroupLeader-placeHolderGroupWestLeader]),false];
+			_curator addCuratorEditableObjects [(allUnits - [cacheGroupLeader, placeHolderGroupWestLeader]),false];
 			_curator addCuratorEditableObjects [allDead,false];
-			_curator addCuratorEditableObjects [vehicles - startObjects,false];
+			_curator addCuratorEditableObjects [vehicles - objectsStart,false];
 		}] remoteExec ["BIS_fnc_spawn", 2];
-
 	};
 
 	//Captive and caching stuff

@@ -29,7 +29,7 @@
         _heli allowDamage true;
     } forEach _hangars;
 
-    _priority = (_size select 0);
+    _priority = (_size select 0)*3;
 
     if(_priority < 500)then{
         _priority = 500;

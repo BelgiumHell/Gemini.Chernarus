@@ -61,6 +61,7 @@ jetTargets = [];
 heliTargets = [];
 activeTasks = [];   //Not being used
 fobTrucks = [];
+vehArray = [];
 radars = [];
 jetActive = false;
 
@@ -74,9 +75,15 @@ publicVariable "arsenalBoxes";
 //Init caching vars
 JOC_pauseCache = false;
 cacheGroup = createGroup east;
-cacheGroupLeader = cacheGroup createUnit ["O_soldier_F", [0,0,0]];
+cacheGroupLeader = cacheGroup createUnit ["O_soldier_F", [0,0,0], [], 0, "NONE"];
+cacheGroupLeader allowDamage false;
+cacheGroupLeader enableSimulation false;
+cacheGroupLeader hideObjectGlobal true;
 placeHolderGroupWest = createGroup west;
-placeHolderGroupWestLeader = cacheGroup createUnit ["B_soldier_F", [0,0,0]];
+placeHolderGroupWestLeader = cacheGroup createUnit ["B_soldier_F", [0,0,0], [], 0, "NONE"];
+placeHolderGroupWestLeader allowDamage false;
+placeHolderGroupWestLeader enableSimulation false;
+placeHolderGroupWestLeader hideObjectGlobal true;
 cachedArray = [];
 
 //Get a list of all objects placed in editor
@@ -94,7 +101,7 @@ if(typeName (["read", ["header", "empty",0]] call inidbi) != typeName 0)then{
     };
 
     //Spawn objects placed during mission
-    _objectsSpawned = ["read", ["main", "objectsSpawned"] call inidbi;
+    _objectsSpawned = ["read", ["main", "objectsSpawned"]] call inidbi;
     {
         (_x select 0) createVehicle (_x select 1);
         (_x select 0) setPosWorld (_x select 1);
@@ -102,26 +109,29 @@ if(typeName (["read", ["header", "empty",0]] call inidbi) != typeName 0)then{
     } forEach _objectsSpawned;
 
     //Object damage
-    _damageValues = ["read", ["main", "damageValues"] call inidbi;
+    _damageValues = ["read", ["main", "damageValues"]] call inidbi;
     _objects = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
     {
         _x setDamage (_damageValues select _forEachIndex);
     } forEach _objects;
 
     //get fobs and deploy them if applicable
-    _fobArray = ["read", ["main", "fobArray"] call inidbi;
+    _fobArray = ["read", ["main", "fobArray"]] call inidbi;
     {
         _truck = fobClass createVehicle (_x select 0);
         _truck setPosWorld (_x select 0);
         _truck setDir (_x select 1);
-        [_truck]spawn JOC_fobInit;
+        [_truck]call JOC_fobInit;
         fobTrucks pushBack _truck;
 
         if(_x select 2)then{
-            [_truck]spawn JOC_fobDeploy;
+            [_truck]call JOC_fobDeploy;
         };
     } forEach _fobArray;
-}else
+}else{
+    strategicArray = [];
+    virtualizedArray = [];
+
     []call JOC_cmdCreateLocations;
 
     [[],{
@@ -142,11 +152,18 @@ objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^
         []spawn JOC_clientInit;
     };
 }] remoteExec ["BIS_fnc_spawn", 0, true];;
-
+/*
 []spawn JOC_aiManager;
 if(bftEnable)then{
     //[]spawn JOC_bftManager;
 };
 []spawn JOC_perfLoop;
+[]spawn JOC_vehRespawn;*/
 []call JOC_initPlayerBase;
 []call JOC_initDepot;
+
+
+//EXP, should give better performance
+[JOC_aiManager, 5, []] call CBA_fnc_addPerFrameHandler;
+[JOC_perfLoop, 60, []] call CBA_fnc_addPerFrameHandler;
+[JOC_vehRespawn, 60, []] call CBA_fnc_addPerFrameHandler;

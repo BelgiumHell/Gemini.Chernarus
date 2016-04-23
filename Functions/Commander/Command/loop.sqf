@@ -8,5 +8,7 @@ while{true}do{
         []spawn JOC_cmdAttackIntercept;
     };
 
+    //Assault blufor positions
+
     sleep 60;
 };

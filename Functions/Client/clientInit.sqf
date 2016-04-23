@@ -19,7 +19,7 @@ cduEnabled = false;
 //Third person restriction
 [{
 	if(cameraView isEqualTo "EXTERNAL")then{
-		if(vehicle player == player){
+		if(vehicle player == player)then{
 			_nearestEntities = (getPos player) nearEntities [["Man"],400];
 			{
 			    if(lineIntersects [eyePos player, aimPos _x, player, _x])then{

@@ -2,6 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 //Attack
+JOC_cmdAttackArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Attack\arty.sqf";
 JOC_cmdAttackIntercept = compileFinal preprocessFileLineNumbers "Functions\Commander\Attack\intercept.sqf";
 
 //Command
@@ -10,7 +11,6 @@ JOC_cmdCmdreqSupport = compileFinal preprocessFileLineNumbers "Functions\Command
 
 //Defend
 JOC_cmdDefArmor = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\armor.sqf";
-JOC_cmdDefArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\arty.sqf";
 JOC_cmdDefCas = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\cas.sqf";
 JOC_cmdDefConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\convoy.sqf";
 JOC_cmdDefHeli = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\heli.sqf";

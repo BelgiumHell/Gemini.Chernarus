@@ -10,6 +10,12 @@
 		//[]spawn JOC_setMainTask;
 	}];
 
+	_action = fobSpawner addAction["Spawn FOB",{
+		[[],{
+			[]call JOC_fobSpawn;
+		}] remoteExec ["BIS_fnc_spawn", 2];
+	}];
+
 	{
 		[_x]call JOC_arsenal;
 	} forEach arsenalBoxes;

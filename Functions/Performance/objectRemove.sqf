@@ -10,7 +10,7 @@
         };
     } forEach (playableUnits + switchableUnits);
 
-    if(count _nearestPlayers == 0 or (_x distance respawn_obj_atlas) < 500)then{
+    if(count _nearestPlayers == 0 || [_x,"mrk_safeZone"]call Zen_AreInArea)then{
 		deleteVehicle _x;
 	};
 }forEach allDead;

@@ -23,13 +23,6 @@ if(_priority < 800 && _priority > 400)then{
     _category = 3;
 };
 
-//Get support types
-if(_type in ["radar","aa","arty","radio"])then{
-    _clearence = false;
-}else{
-    _clearence = true;
-};
-
 //Possible support types
 switch (_category) do {
     case 1: {
@@ -38,26 +31,14 @@ switch (_category) do {
         _typesSupport = ["cas","armor"];
     };
     case 2: {
-        if(_clearence)then{
-            _typesDirect = ["near"];
-            _typesMain = ["convoy"];
-            _typesSupport = ["armor","arty"];
-        }else{
-            _typesDirect = ["near"];
-            _typesMain = ["convoy"];
-            _typesSupport = ["armor"];
-        };
+        _typesDirect = ["near"];
+        _typesMain = ["convoy"];
+        _typesSupport = ["armor"];
     };
     case 3:{
-        if(_clearence)then{
-            _typesDirect = ["near"];
-            _typesMain = ["retreat"];
-            _typesSupport = ["arty"];
-        }else{
-            _typesDirect = ["near"];
-            _typesMain = ["retreat"];
-            _typesSupport = [];
-        };
+        _typesDirect = ["near"];
+        _typesMain = ["retreat"];
+        _typesSupport = [];
     };
 };
 
@@ -93,13 +74,15 @@ switch (_typeSupport) do {
     case ("armor"): {
         [_array,_category]spawn JOC_cmdDefArmor;
     };
-    case ("arty"): {
-        [_array]spawn JOC_cmdDefArty;
-    };
     case ("cas"): {
         [_array]spawn JOC_cmdDefCas;
     };
     default {
 
     };
+};
+
+//Chance for arty support
+if(random 1.5 * _category < 1)then{
+    [_pos]spawn JOC_cmdAttackArty;
 };

@@ -22,11 +22,10 @@ radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Sma
     _nameS setMarkerColor "ColorOpfor";
 
 	strategicArray pushBack [_location,500,"radar",_nameS,east];
-
 } forEach radars;
 
-[] spawn JOC_cmdMiscRadar;
-
+//[] spawn JOC_cmdMiscRadar; -disabled for performance testing
+[JOC_cmdMiscRadar, 7, []] call CBA_fnc_addPerFrameHandler;
 
 //Place AA-tanks
 _tank = 0;
