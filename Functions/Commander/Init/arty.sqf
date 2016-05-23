@@ -28,7 +28,7 @@ while{_s < 4}do{
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	strategicArray pushBack [_location,60,"arty",_nameS,east];
+	strategicArray pushBack [_location,60,"arty",_nameS,1];
 
 	_nameM = [5] call Zen_StringGenerateRandom;
 	_marker = createMarker [_nameM, _location];

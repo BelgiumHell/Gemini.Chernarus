@@ -21,7 +21,7 @@ _nameM = "";
             _nameM setMarkerBrush "SolidBorder";
             _nameM setMarkerColor "ColorOpfor";
 
-            strategicArray pushBack [_location,300,"town",_nameM,east];
+            strategicArray pushBack [_location,300,"town",_nameM,1];
         };
 
         if(_x in _towns)then{
@@ -31,7 +31,7 @@ _nameM = "";
             _nameM setMarkerBrush "SolidBorder";
             _nameM setMarkerColor "ColorOpfor";
 
-            strategicArray pushBack [_location,500,"town",_nameM,east];
+            strategicArray pushBack [_location,500,"town",_nameM,1];
         };
 
         if(_x in _capitals)then{
@@ -41,7 +41,7 @@ _nameM = "";
             _nameM setMarkerBrush "SolidBorder";
             _nameM setMarkerColor "ColorOpfor";
 
-            strategicArray pushBack [_location,900,"town",_nameM,east];
+            strategicArray pushBack [_location,900,"town",_nameM,1];
         };
     };
 } forEach (_capitals + _towns + _villages);

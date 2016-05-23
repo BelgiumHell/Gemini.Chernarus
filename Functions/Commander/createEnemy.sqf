@@ -40,25 +40,23 @@
         case "town": {
             switch (_priority) do {
                 case 300: {
-                    [_pos,((getMarkerSize _marker) + [markerDir _marker]),[4,true],[2,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+                    [_pos,((getMarkerSize _marker) + [markerDir _marker]),[2,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
                 case 500: {
-                    [_pos,((getMarkerSize _marker) + [markerDir _marker]),[9,true],[2,false],[0,false],[2,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+                    [_pos,((getMarkerSize _marker) + [markerDir _marker]),[7,true],[2,false],[0,false],[1,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
                 case 900: {
-                    [_pos,((getMarkerSize _marker) + [markerDir _marker]),[14,true],[4,false],[0,false],[3,false],[2,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+                    [_pos,((getMarkerSize _marker) + [markerDir _marker]),[16,true],[4,false],[0,false],[4,false],[2,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
             };
         };
     };
 
-    //Delete these lines and ArmA has a memory crash
+    //Delete these lines and ArmA has a memory crash(might not be true anymore, since I moved to virtual spawnng)
     {
         [_x]call JOC_virtualize;
     } forEach cachedArray;
 
 } forEach strategicArray;
 
-diag_log strategicArray;
-
-[]spawn JOC_cmdCmdLoop;
+//[]spawn JOC_cmdCmdLoop;-needs replacing with CBA_fnc_addPerFrameHandler

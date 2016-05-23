@@ -24,8 +24,15 @@ while{count _location == 0}do{
 _crate = "B_CargoNet_01_ammo_F" createVehicle _location;
 
 //Order slingload
-_handle = [_heli,_crate,(_array select 0),true]spawn Zen_OrderSlingLoad;
-waitUntil{sleep 20; scriptDone _handle};
+_wp1 = (group _heli) addWaypoint [getPosWorld _crate, 0];
+_wp1 setWaypointType "HOOK";
+_wp1 waypointAttachVehicle _crate;
+
+_wp2 = (group _heli) addWaypoint [(_array select 0), 0];
+_wp2 setWaypointType "UNHOOK";
+//_wp2 waypointAttachVehicle _crate;
+
+waitUntil{_crate distance2D (_array select 0 ) < 15};
 [_crate]spawn{
     params["_crate"];
     sleep 300;

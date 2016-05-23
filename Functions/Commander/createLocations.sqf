@@ -31,5 +31,12 @@
 {
     _marker = _x select 3;
     _marker setMarkerAlpha 0;
-    [_marker,_forEachIndex]spawn JOC_cmdMiscMonitorStrategic;
 } forEach strategicArray;
+
+[{
+    {
+        _marker = _x select 3;
+        _marker setMarkerAlpha 0;
+        [_x,_forEachIndex]call JOC_cmdMiscMonitorStrategic;
+    } forEach strategicArray;
+}, 5, []] call CBA_fnc_addPerFrameHandler;

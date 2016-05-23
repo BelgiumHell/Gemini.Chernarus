@@ -19,23 +19,23 @@ if (_size < 50) then {
 {
     _pos = getPos _x;
     _array = [_pos, east, "infantry", 6,"Basic"] call Zen_SpawnInfantryGarrisonVirtual;
-    virtualizedArray pushBack [_array,[]];
+    virtualizedArray pushBack [_array,[],false];
 } forEach _towersB;
 
 {
     _pos = getPos _x;
     _array = [_pos, east, "infantry", 2,"Basic"] call Zen_SpawnInfantryGarrisonVirtual;
-    virtualizedArray pushBack [_array,[]];
+    virtualizedArray pushBack [_array,[],false];
 } forEach _towersS;
 
 {
     _pos = getPos _x;
     _array = [_pos, east, "infantry", 5,"Basic"] call Zen_SpawnInfantryGarrisonVirtual;
-    virtualizedArray pushBack [_array,[]];
+    virtualizedArray pushBack [_array,[],false];
 } forEach _compoundsB;
 
 {
     _pos = getPos _x;
     _array = [_pos, east, "infantry", 2,"Basic"] call Zen_SpawnInfantryGarrisonVirtual;
-    virtualizedArray pushBack [_array,[]];
+    virtualizedArray pushBack [_array,[],false];
 } forEach _compoundsR;

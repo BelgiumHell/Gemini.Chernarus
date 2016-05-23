@@ -18,7 +18,7 @@ mainFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"
         _compounds = nearestObjects [(getPos _x),["Land_Factory_Main_F"],200];
         _usedCompounds append _compounds;
 
-        strategicArray pushBack [(getPos _x),800,"factory",_nameM,east];
+        strategicArray pushBack [(getPos _x),800,"factory",_nameM,1];
     };
 } forEach mainFactories;
 
@@ -35,6 +35,6 @@ mainFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"
         _compounds = nearestObjects [(getPos _x),["Land_dp_mainFactory_F"],200];
         _usedCompounds append _compounds;
 
-        strategicArray pushBack [(getPos _x),600,"factory",_nameM,east];
+        strategicArray pushBack [(getPos _x),600,"factory",_nameM,1];
     };
 } forEach dieselFactories;

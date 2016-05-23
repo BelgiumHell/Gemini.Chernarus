@@ -10,13 +10,4 @@ _grenades = ["1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_Smok
 
 if(!(_gren in _grenades))exitWith{};
 
-_projVelX = (velocity _proj) select 0;
-_projVelY = (velocity _proj) select 1;
-_projVel2 = velocity _proj;
-
-while{((getPosATL _proj) select 2) > 0.5 && _projVel2 select 0 == _projVelX && _projVel2 select 1 == _projVelY }do{
-    sleep 0.1;
-	_projVel2 = velocity _proj;
-};
-
-_proj setVelocity [0,0,0];
+_gren addEventHandler ["EpeContact",{(_this select 0) setVelocity [0,0,0];}];

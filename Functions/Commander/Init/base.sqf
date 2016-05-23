@@ -47,6 +47,6 @@ _compoundsS = nearestObjects [(getMarkerPos "mrk_area"),["Land_BagBunker_Small_F
 
         _usedCompounds append _compounds;
 
-        strategicArray pushBack [(getPos _x),_priority,"outpost",_nameM,east];
+        strategicArray pushBack [(getPos _x),_priority,"outpost",_nameM,1];
     };
 } forEach ((_towersS + _compoundsS) - _usedCompounds);

@@ -14,9 +14,6 @@ JOC_unVirtualize = compileFinal preprocessFileLineNumbers "Functions\AI\unVirtua
 //Bluforce tracking
 JOC_bftManager = compileFinal preprocessFileLineNumbers "Functions\BFT\manager.sqf";
 
-//Client
-JOC_clientInit = compileFinal preprocessFileLineNumbers "Functions\Client\clientInit.sqf";
-
 //Commander
 #include "Commander\fn_commander_compile.sqf";
 JOC_cmdCreateLocations = compileFinal preprocessFileLineNumbers "Functions\Commander\createLocations.sqf";
@@ -47,9 +44,10 @@ JOC_objectRemove = compileFinal preprocessFileLineNumbers "Functions\Performance
 JOC_itemRemove = compileFinal preprocessFileLineNumbers "Functions\Performance\itemRemove.sqf";
 
 //Player
-JOC_playerLoop = compileFinal preprocessFileLineNumbers "Functions\Player\loop.sqf";
-JOC_playerClick = compileFinal preprocessFileLineNumbers "Functions\Player\click.sqf";
 JOC_playerButton = compileFinal preprocessFileLineNumbers "Functions\Player\button.sqf";
+JOC_playerClick = compileFinal preprocessFileLineNumbers "Functions\Player\click.sqf";
+JOC_playerInit = compileFinal preprocessFileLineNumbers "Functions\Player\init.sqf";
+JOC_playerLoop = compileFinal preprocessFileLineNumbers "Functions\Player\loop.sqf";
 JOC_playerSmkGren = compileFinal preprocessFileLineNumbers "Functions\Player\smkGren.sqf";
 
 //Tasks
@@ -63,7 +61,11 @@ JOC_taskUav = compileFinal preprocessFileLineNumbers "Functions\Tasks\uav.sqf";
 JOC_getMainTasks = compileFinal preprocessFileLineNumbers "Functions\Tasks\getMainTasks.sqf";
 JOC_setMainTask = compileFinal preprocessFileLineNumbers "Functions\Tasks\setMainTask.sqf";*/
 
-//vehicle
+//Save
+JOC_saveMission = compileFinal preprocessFileLineNumbers "Functions\Save\save.sqf";
+JOC_saveVirtualize = compileFinal preprocessFileLineNumbers "Functions\Save\virtualize.sqf";
+
+//Vehicle
 #include "Vehicle\fn_vehicle_compile.sqf";
 JOC_vehInit = compileFinal preprocessFileLineNumbers "Functions\Vehicle\vehInit.sqf";
 JOC_service = compileFinal preprocessFileLineNumbers "Functions\Vehicle\service.sqf";

@@ -5,13 +5,14 @@ private["_box","_unit","_uniforms","_vests","_helmets","_backpacks"];
 params["_box"];
 
 _weapons = [
-	"rhs_weap_m4a1_carryhandle_grip",
-	"RH_m9"
+	"rhs_weap_m4a1_carryhandle",
+	"rhsusf_weap_m9"
 ];
 
 _magazines = [
 	"rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer",
-	"30Rnd_556x45_Stanag_Tracer_Red"
+	"rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red",
+	"rhsusf_mag_15Rnd_9x19_JHP"
 ];
 _uniforms = [
 	"rhs_uniform_FROG01_wd"
@@ -21,8 +22,7 @@ _vests = [
 ];
 _helmets = [
 	"rhsusf_lwh_helmet_marpatwd",
-	"rhsusf_lwh_helmet_marpatwd_ess",
-	"rhsusf_lwh_helmet_marpatwd_headset"
+	"rhsusf_lwh_helmet_marpatwd_ess"
 ];
 _backpacks = [
 	"rhsusf_assault_eagleaiii_coy"
@@ -48,6 +48,7 @@ _items = [
 	"ItemMap",
 	"ItemCompass",
 	"ItemWatch",
+	"ItemGps",
 
 	"rhsusf_acc_ACOG2",
 	"rhsusf_acc_compm4",
@@ -69,8 +70,8 @@ if((vehicleVarName player) in ["anv1","anv2","anv3"])then{
 
 //Pilot
 if((vehicleVarName player) in ["s1","s2","v1","v2","rip1","rip2"])then{
-	_weapons = ["hgun_PDW2000_F","hgun_Pistol_Signal_F"];
-	_magazines = ["30Rnd_9x21_Mag","6Rnd_GreenSignal_F"];
+	_weapons = ["rhsusf_weap_MP7A1_base_f","hgun_Pistol_Signal_F"];
+	_magazines = ["rhsusf_mag_40Rnd_46x30_FMJ","6Rnd_GreenSignal_F"];
 	_uniforms = ["U_B_PilotCoveralls","U_B_HeliPilotCoveralls"];
 	_vests = ["V_TacVest_oli"];
 	_helmets = ["H_PilotHelmetFighter_B","H_PilotHelmetHeli_B"];
@@ -150,36 +151,36 @@ if((vehicleVarName player) in ["a1_1","a2_1","b1_1","b2_1","c1_1","c2_1"])then{
 	_magazines = (_magazines + ["rhsusf_40mm_HE","rhsusf_40mm_HEDP"]);
 	_uniforms = (_uniforms + []);
 	_vests = ["rhsusf_spc_Teamleader"];
-	_helmets = (_helmets + []);
+	_helmets = (_helmets + ["rhsusf_lwh_helmet_marpatwd_headset"]);
 	_backpacks = (_backpacks + []);
 	_items = (_items + ["Binocular"]);
 };
 
-//Sqaudleader
+//Squadleader
 if((vehicleVarName player) in ["a0_1","b0_1","c0_1"])then{
 	_weapons = (_weapons + []);
 	_magazines = (_magazines + []);
 	_uniforms = (_uniforms + []);
 	_vests = ["rhsusf_spc_squadleader"];
-	_helmets = (_helmets + []);
+	_helmets = (_helmets + ["rhsusf_lwh_helmet_marpatwd_headset"]);
 	_backpacks = (_backpacks + []);
 	_items = (_items + ["Binocular"]);
 };
 
 //Recon
 if((vehicleVarName player) in ["r1","r2","r3","r4","r5","r6"])then{
-	_weapons = (_weapons + ["rhs_weap_M590_5RD","rhs_weap_sr25_ec","rhs_6b28_ess","rhs_weap_m4a1_carryhandle_m203","",""]);
-	_magazines = (_magazines + []);
+	_weapons = (_weapons + ["rhs_weap_M590_5RD","rhs_weap_sr25_ec","rhs_6b28_ess","rhs_weap_m4a1_carryhandle_m203","rhs_weap_M107","rhs_weap_mk18_KAC","rhs_weap_hk416d10_LMT","rhs_weap_m72a7"]);
+	_magazines = (_magazines + ["rhsusf_mag_10Rnd_STD_50BMG_M33"]);
 	_uniforms = (_uniforms + []);
 	_vests = ["V_Chestrig_rgr","V_PlateCarrier1_rgr"];
 	_helmets = ["rhs_Booniehat_marpatwd","rhsusf_mich_bare_norotos_alt"];
 	_backpacks = (_backpacks + []);
-	_items = (_items + ["G_Bandanna_khk","ACE_NVG_Gen4","rhsusf_acc_nt4_black","rhsusf_acc_anpeq15A","optic_Hamr"]);
+	_items = (_items + ["G_Bandanna_khk","ACE_NVG_Gen4","rhsusf_acc_rotex5_grey","rhsusf_acc_anpeq15side_bk","optic_Hamr","rhsusf_acc_SpecterDR_3d"]);
 };
 
 
 
-[_box,_weapons,false,true] call BIS_fnc_addVirtualWeaponCargo;
-[_box,_magazines,false,true] call BIS_fnc_addVirtualMagazineCargo;
-[_box,_backpacks,false,true] call BIS_fnc_addVirtualBackpackCargo;
-[_box,(_uniforms + _vests + _helmets + _items),false,true] call BIS_fnc_addVirtualItemCargo;
+[_box,_weapons,false,true] call XLA_fnc_addVirtualWeaponCargo;
+[_box,_magazines,false,true] call XLA_fnc_addVirtualMagazineCargo;
+[_box,_backpacks,false,true] call XLA_fnc_addVirtualBackpackCargo;
+[_box,(_uniforms + _vests + _helmets + _items),false,true] call XLA_fnc_addVirtualItemCargo;

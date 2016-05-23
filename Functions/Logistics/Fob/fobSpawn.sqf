@@ -20,7 +20,7 @@ if(isNil{fobCount})then{
 		_truck setDamage 0;
 		fobTrucks pushBack _truck;
 		publicVariable "fobTrucks";
-		[_truck] call JOC_fobInit;
+		[_truck]call JOC_fobInit;
 		[_truck]call JOC_fobManager;
 	};
 };

@@ -54,7 +54,8 @@ _marker setMarkerText "FOB";
 
 _truck setVariable ["assignedFob",[_objArray,_name],true];
 
-[["RespawnAdded",["DEPLOYMENT POINT",format ["HQ deployed at grid %1", mapGridPosition (getPos _truck)],"\A3\ui_f\data\map\markers\nato\b_hq.paa"]],"BIS_fnc_showNotification",west] call BIS_fnc_MP;	//Notification
+//Notification
+["RespawnAdded",["DEPLOYMENT POINT",format ["HQ deployed at grid %1", mapGridPosition (getPos _truck)],"\A3\ui_f\data\map\markers\nato\b_hq.paa"]] remoteExec ["BIS_fnc_showNotification", 0, true];
 
 //Lock truck
 [[_truck],{

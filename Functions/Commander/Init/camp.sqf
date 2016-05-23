@@ -15,7 +15,7 @@ while {_camp < 40} do{
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	strategicArray pushBack [_location,50,"camp",_nameS,east];
+	strategicArray pushBack [_location,50,"camp",_nameS,1];
 
 	_camp = _camp + 1;
 };

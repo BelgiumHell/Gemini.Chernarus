@@ -29,7 +29,7 @@ emptyClass   = "Land_Airport_center_F";  //Large object, don't change or delete
 
 //Markers
 blackTowns = ["Sagonisi"];  //Blacklist towns to not get any strategic value
-blackMarkers = ["mrk_safeZone"];    //Markers enemies will noet spawn in nor patrol
+blackMarkers = ["mrk_safeZone"];    //Markers enemies will not spawn in nor patrol
 airfieldMarkers = ["mrk_airfield_0","mrk_airfield_1","mrk_airfield_2","mrk_airfield_3"];   //Markers for airfields
 
 //Objects
@@ -44,7 +44,7 @@ medicalVehArray = [];   //All medical vehicles, mainly for proper display on BFT
 bftEnable = false;  //Enable blue force tracking (is currently being reworked, recommend disable, might still work)
 bftRefresh = 0.3;  //Refresh rate for blue force tracking (in seconds)
 fobLimit = 5;   //Max number of FOB trucks active
-radarRange = 6000;  //Max range of radars, after this distance radars won't chack for targets
+radarRange = 6000;  //Max range of radars, after this distance radars won't chack for targets (currently ignored, might be added back)
 CHVD_allowNoGrass = false; // Set 'false' if you want to disable "Low" option for terrain (default: true)
 CHVD_maxView = 12000; // Set maximum view distance (default: 12000)
 CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)
@@ -64,6 +64,7 @@ fobTrucks = [];
 vehArray = [];
 radars = [];
 jetActive = false;
+saveCount = 0;
 
 //Public var for local scripts
 publicVariable "logisticsArray";
@@ -71,6 +72,9 @@ publicVariable "logisticsVehArray";
 publicVariable "editorObjects";
 publicVariable "airfieldMarkers";
 publicVariable "arsenalBoxes";
+publicVariable "CHVD_allowNoGrass";
+publicVariable "CHVD_maxView";
+publicVariable "CHVD_maxObj";
 
 //Init caching vars
 JOC_pauseCache = false;
@@ -90,33 +94,67 @@ cachedArray = [];
 objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
 
 //Read database
-if(typeName (["read", ["header", "empty",0]] call inidbi) != typeName 0)then{
-    //Get strategic array
-    strategicArray = ["read", ["main", "strategicArray",0]] call inidbi;
+_inidbi = 0;
+_dbSaved = false;
+if(typeName (["read", ["header", "saved",false]] call inidbiDB1))then{
+    _inidbi = inidbiDB1;
+    _dbSaved = true;
+};
+if(typeName (["read", ["header", "saved",false]] call inidbiDB2))then{
+    _inidbi = inidbiDB2;
+    _dbSaved = true;
+};
 
+if(_dbSaved)then{
+    _index = 0;
+
+    //Get strategic array
     //Get virtualized array
-    while{typeName (["read", ["main", format["virtualizedArray_%1",_index],0]] call inidbi) != typeName 0}do{
-        virtualizedArray = virtualizedArray + [(["read", ["main", format["virtualizedArray_%1",_index]]] call inidbi)];
+    while{typeName (["read", ["main", format["virtualizedArray_%1",_index],0]] call _inidbi) != typeName 0}do{
+        strategicArray = strategicArray + [(["read", ["main", format["strategicArray_%1",_index]]] call _inidbi)];
         _index = _index + 1;
     };
 
-    //Spawn objects placed during mission
-    _objectsSpawned = ["read", ["main", "objectsSpawned"]] call inidbi;
     {
-        (_x select 0) createVehicle (_x select 1);
-        (_x select 0) setPosWorld (_x select 1);
-        (_x select 0) setDir (_x select 2);
-    } forEach _objectsSpawned;
+        _name = (_x select 0);
+        _marker = createMarker [_nameM, (_x select 1)];
+        _name setMarkerShape (_x select 2);
+        _name setMarkerSize (_x select 3);
+        _nameM setMarkerBrush (_x select 4);
+        _name setMarkerColor (_x select 5);
+        _x set [_x,_name];
+    } forEach strategicArray;
+
+    //Get virtualized array
+    while{typeName (["read", ["main", format["virtualizedArray_%1",_index],0]] call _inidbi) != typeName 0}do{
+        virtualizedArray pushBack [(["read", ["main", format["virtualizedArray_%1",_index]]] call _inidbi)];
+        _index = _index + 1;
+    };
 
     //Object damage
-    _damageValues = ["read", ["main", "damageValues"]] call inidbi;
-    _objects = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
+    _damageValues = [];
+    while{typeName (["read", ["main", format["damageValues_%1",_index],0]] call _inidbi) != typeName 0}do{
+        _damageValues pushBack [(["read", ["main", format["damageValues_%1",_index]]] call _inidbi)];
+        _index = _index + 1;
+    };
     {
         _x setDamage (_damageValues select _forEachIndex);
-    } forEach _objects;
+    } forEach objectsStart;
+
+    //Objects spawned on mission load
+    _objectsAdded = [];
+    while{typeName (["read", ["main", format["objectsAdded_%1",_index],0]] call _inidbi) != typeName 0}do{
+        _objectsAdded pushBack [(["read", ["main", format["objectsAdded_%1",_index]]] call _inidbi)];
+        _index = _index + 1;
+    };
+    {
+        _object = (_x select 0) createVehicle (_x select 1);
+        _object setPosWorld (_x select 1);
+        _object setDir (_x select 2);
+    } forEach _objectsAdded;
 
     //get fobs and deploy them if applicable
-    _fobArray = ["read", ["main", "fobArray"]] call inidbi;
+    _fobArray = ["read", ["main", "fobArray"]] call _inidbi;
     {
         _truck = fobClass createVehicle (_x select 0);
         _truck setPosWorld (_x select 0);
@@ -137,33 +175,32 @@ if(typeName (["read", ["header", "empty",0]] call inidbi) != typeName 0)then{
     [[],{
         progressLoadingScreen 0.3;
     }] remoteExec ["BIS_fnc_spawn", 0, true];
-    []call JOC_cmdCreateEnemy;
-};
 
-//Get a list of all objects placed in editor
-objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
+    []call JOC_cmdCreateEnemy;
+
+    {
+        ["write", ["main", format["objectsAdded_%1",_forEachIndex], [typeOf _x, getPosWorld _x, getDir _x]]] call _inidbi;
+    } forEach ((nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)]) - objectsStart);
+
+};
 
 //End loading screen
 [[],{
     endLoadingScreen;
     JOC_serverLoaded = true;
     if(!isServer)then{
-        waitUntil{!isNil{JOC_clientInit}};
-        []spawn JOC_clientInit;
+        waitUntil{!isNil{JOC_playerInit}};
+        []spawn JOC_playerInit;
     };
 }] remoteExec ["BIS_fnc_spawn", 0, true];;
-/*
-[]spawn JOC_aiManager;
-if(bftEnable)then{
-    //[]spawn JOC_bftManager;
-};
-[]spawn JOC_perfLoop;
-[]spawn JOC_vehRespawn;*/
+
 []call JOC_initPlayerBase;
 []call JOC_initDepot;
 
 
 //EXP, should give better performance
-[JOC_aiManager, 5, []] call CBA_fnc_addPerFrameHandler;
-[JOC_perfLoop, 60, []] call CBA_fnc_addPerFrameHandler;
+[JOC_aiManager, 3, []] call CBA_fnc_addPerFrameHandler;
+[JOC_perfLoop, 30, []] call CBA_fnc_addPerFrameHandler;
 [JOC_vehRespawn, 60, []] call CBA_fnc_addPerFrameHandler;
+[JOC_saveMission, 600, []] call CBA_fnc_addPerFrameHandler;
+//[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;

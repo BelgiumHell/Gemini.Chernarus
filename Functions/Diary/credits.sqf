@@ -10,8 +10,6 @@ player createDiaryRecord ["Credits",
 <br />ZEN for his amazing framework
 <br />code34 for iniDBi2, without his mod you would be starting over every time
 <br />Larow for his example on how to use the virtual garage
-<br />Ryko for his smoke grenade script
-<br />Yes
 <br />Everyone who helped me test this
 "
 ]];

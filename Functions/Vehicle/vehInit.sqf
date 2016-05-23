@@ -4,6 +4,8 @@
 params["_veh"];
 
 if(!isServer)exitWith{};
+waitUntil{!isNil{JOC_serverLoaded}};
+waitUntil{JOC_serverLoaded};
 
 _type = typeOf _veh;
 _pos = getPosWorld _veh;
@@ -15,9 +17,6 @@ _veh setDir _dir;
 _veh setPosWorld _pos;
 _veh setDamage 0;
 
-waitUntil{!isNil{JOC_serverLoaded}};
-waitUntil{JOC_serverLoaded};
-
 //Medical heli
 if(_type in ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"])then{
     _veh setVariable ["ace_medical_medicClass", 1];
@@ -25,7 +24,12 @@ if(_type in ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"])then{
 
 //heli
 if(_veh isKindOf "Helicopter")then{
-    [_veh]call ace_fastroping_fnc_equipFRIES
+    //[_veh]call ace_fastroping_fnc_equipFRIES;
+};
+
+//Spawn uav crew
+if(_veh isKindOf "UAV")then{
+    createVehicleCrew _veh;
 };
 
 //Bulldozer

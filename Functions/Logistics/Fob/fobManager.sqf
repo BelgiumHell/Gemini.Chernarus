@@ -1,10 +1,10 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_truck = _this select 0;
+params["_truck"];
 
 waitUntil {sleep 60;(!(alive _truck))};
+fobTrucks = fobtrucks - [_truck];
 deleteVehicle _truck;
 sleep 5;
 fobCount = fobCount - 1;
-fobCount = fobCount - [objNull];

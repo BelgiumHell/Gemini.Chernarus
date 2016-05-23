@@ -19,7 +19,7 @@ createVehicleCrew _jet;
         if(count (jetTargets + heliTargets) == 0 || (fuel _jet) < 0.15)exitWith{
             _airfieldArray = [];
             {
-                if((_x select 2) == "airfield" && (_x select 4) == east)then{
+                if((_x select 2) == "airfield" && (_x select 4) == 1)then{
                     _airfieldArray pushBack _x;
                 };
             } forEach strategicArray;

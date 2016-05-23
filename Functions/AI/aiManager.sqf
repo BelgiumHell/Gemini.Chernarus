@@ -9,7 +9,7 @@ if(JOC_pauseCache)exitWith{};
     };
     if(side _x != west)then{
         if(_x != cacheGroup)then{
-            _objects = (getPos (leader _x)) nearEntities [["Man","Car","Tank"],1200];
+            _objects = (getPos (leader _x)) nearEntities [["Man","Car","Tank"],1000];
 
             if ((west countSide _objects) == 0)then{
                 [_x]call JOC_cache;
@@ -20,7 +20,7 @@ if(JOC_pauseCache)exitWith{};
 
 //Unvirtualizing
 {
-    _objects = (((_x select 0) select 0) select 1) nearEntities [["Man","Car","Tank","Helicopter"],2000];
+    _objects = (((_x select 0) select 0) select 1) nearEntities [["Man","Car","Tank","Helicopter"],1200];
 
     if((west countSide _objects) > 0)then{
         [_x]call JOC_unVirtualize;
@@ -30,12 +30,12 @@ if(JOC_pauseCache)exitWith{};
 //uncahcing + virtualizing
 cachedArray = cachedArray - [[]];
 {
-    _objects = _x select 0 nearEntities [["Man","Car","Tank"],1200];
+    _objects = _x select 0 nearEntities [["Man","Car","Tank"],1000];
 
     if((west countSide _objects) > 0)then{
         [_x]call JOC_unCache;
     }else{
-        _objects = _x select 0 nearEntities [["Man","Car","Tank","Helicopter"],2000];
+        _objects = _x select 0 nearEntities [["Man","Car","Tank","Helicopter"],1200];
 
         if((west countSide _objects) == 0)then{
             [_x]call JOC_virtualize;

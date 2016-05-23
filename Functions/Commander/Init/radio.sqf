@@ -5,7 +5,7 @@ radioTowers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Lan
 
 {
     _tower = _x;
-    _location = getPos _tower;
+    _location = getPosWorld _tower;
 
     //Create marker
     _name = [5] call Zen_StringGenerateRandom;
@@ -21,5 +21,5 @@ radioTowers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Lan
     _nameM setMarkerBrush "SolidBorder";
     _nameM setMarkerColor "ColorOpfor";
 
-    strategicArray pushBack [_location,500,"radio",_nameM,east];
+    strategicArray pushBack [_location,500,"radio",_nameM,1];
 } forEach radioTowers;

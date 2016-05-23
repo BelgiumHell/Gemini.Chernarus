@@ -21,18 +21,16 @@ radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Sma
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	strategicArray pushBack [_location,500,"radar",_nameS,east];
+	strategicArray pushBack [_location,500,"radar",_nameS,1];
 } forEach radars;
-
-//[] spawn JOC_cmdMiscRadar; -disabled for performance testing
-[JOC_cmdMiscRadar, 7, []] call CBA_fnc_addPerFrameHandler;
+[JOC_cmdMiscRadar, 3, []] call CBA_fnc_addPerFrameHandler;
 
 //Place AA-tanks
 _tank = 0;
 _location = [];
 aaGroup = createGroup east;
-while {_tank < 14} do{
-	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0,[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]] call Zen_FindGroundPosition;
+while {_tank < 24} do{
+	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0,[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]]call Zen_FindGroundPosition;
 
 	[_location,10,"rhs_Igla_AA_pod_vdv"]call Zen_SpawnFortification;
 	_aaLauncher = _location nearestObject "rhs_Igla_AA_pod_vdv";
@@ -60,7 +58,7 @@ while {_tank < 14} do{
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	strategicArray pushBack [_location,100,"aa",_nameS,east];
+	strategicArray pushBack [_location,100,"aa",_nameS,1];
 
 	_nameM = [5] call Zen_StringGenerateRandom;
 	_marker = createMarker [_nameM, _location];

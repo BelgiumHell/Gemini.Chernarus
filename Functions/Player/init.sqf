@@ -1,23 +1,24 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-sleep 0.1;
 //Don't mind this
 player enableSimulation true;
 player allowDamage true;
 
-["Preload"]call BIS_fnc_arsenal;
+["Preload"]call XLA_fnc_arsenal;
 
 []call JOC_playerClick;
-[]spawn JOC_playerLoop;
 []call JOC_createDiary;
 []call JOC_loadoutMaster;
+[JOC_playerLoop, 10, []] call CBA_fnc_addPerFrameHandler;
 ["KeyDown", "_this call JOC_playerButton"] call CBA_fnc_addDisplayHandler;
-player addEventHandler ["Fired", {_this spawn JOC_playerSmkGren}];
+//player addEventHandler ["Fired", {_this spawn JOC_playerSmkGren}];
 cduEnabled = false;
+musicPlay = false;
+radioHandle = scriptNull;
 
 //Third person restriction
-[{
+/*[{
 	if(cameraView isEqualTo "EXTERNAL")then{
 		if(vehicle player == player)then{
 			_nearestEntities = (getPos player) nearEntities [["Man"],400];
@@ -36,7 +37,9 @@ cduEnabled = false;
 		    _x hideObject false;
 		} forEach allUnits;
 	};
-}, 0, []] call CBA_fnc_addPerFrameHandler;
+}, 0, []] call CBA_fnc_addPerFrameHandler;*/
+
+waitUntil{alive player};
 
 //intro text
 _date = date;

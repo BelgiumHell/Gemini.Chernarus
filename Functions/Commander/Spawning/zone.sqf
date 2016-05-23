@@ -23,7 +23,7 @@ if((_inf select 0) > 0)then{
 		_locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 		_locationS = [_locationS,1,1] call Zen_ExtendPosition;
 		_array = [_locationS, east, "infantry", 4,"Basic"] call Zen_SpawnInfantryVirtual;
-		virtualizedArray pushBack [_array,[]];
+		virtualizedArray pushBack [_array,[],false];
 		_j = _j + 1;
 	};
 };
@@ -39,7 +39,7 @@ if((_car select 0) > 0)then{
 		{
 		    _arrayI pushBack _forEachIndex;
 		} forEach _arrayG;
-		_array = [_arrayG,[[_locationS,_class,_arrayI]]];
+		_array = [_arrayG,[[_locationS,_class,_arrayI]],false];
 		virtualizedArray pushBack _array;
 		_j = _j + 1;
 	};
@@ -50,7 +50,7 @@ _j = 0;
 if((_apc select 0) > 0)then{
 	while{_j < (_apc select 0)} do{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
-		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,(apcPool call BIS_fnc_selectRandom),[0,1,2]]]];
+		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,(apcPool call BIS_fnc_selectRandom),[0,1,2]]],false];
 		virtualizedArray pushBack _array;
 		_j = _j + 1;
 	};
@@ -61,7 +61,7 @@ _j = 0;
 if((_ifv select 0) > 0)then{
 	while{_j < (_ifv select 0)} do{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
-		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,(ifvPool call BIS_fnc_selectRandom),[0,1,2]]]];
+		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,(ifvPool call BIS_fnc_selectRandom),[0,1,2]]],false];
 		virtualizedArray pushBack _array;
 		_j = _j + 1;
 	};
@@ -72,7 +72,7 @@ _j = 0;
 if((_tank select 0) > 0)then{
 	while{_j < (_tank select 0)} do{
 		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
-		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,(tankPool call BIS_fnc_selectRandom),[0,1,2]]]];
+		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,(tankPool call BIS_fnc_selectRandom),[0,1,2]]],false];
 		virtualizedArray pushBack _array;
 		_j = _j + 1;
 	};
@@ -93,7 +93,7 @@ if(_heliCount > 0)then{
 		if(_heliType == "cas")then{
 			_pool = casPool
 		};
-		_array = [[[pilotClass,_locationS],[pilotClass,_locationS]],[[_locationS,(_pool call BIS_fnc_selectRandom),[0,1,2]]]];
+		_array = [[[pilotClass,_locationS],[pilotClass,_locationS]],[[_locationS,(_pool call BIS_fnc_selectRandom),[0,1,2]]],false];
 		virtualizedArray pushBack _array;
 		_j = _j + 1;
 	};
@@ -106,8 +106,10 @@ _j = 0;
 if(_boatCount > 0)then{
 	while{_j < _boatCount} do{
 		_locationS = [_spawnMarkerName,0,0,2] call Zen_FindGroundPosition;
-		_boatV = [_locationS,["O_Boat_Armed_01_hmg_F"]] call Zen_SpawnBoat;
+		_boatV = [_locationS,["O_Boat_Armed_01_hmg_F"],false] call Zen_SpawnBoat;
 		[crew _boatV]call JOC_cacheUnits;
 		_j = _j + 1;
 	};
 };
+
+deleteMarker _spawnMarkerName;
