@@ -12,7 +12,7 @@ player createDiaryRecord ["wiki",
 player createDiaryRecord ["wiki",
 ["Saving",
 "
-<br />Mission is saved every 10 minutes
+<br />Mission is saved every 10 minutes. Threre are 2 DB's, one serves as backup, every 10 minutes main and backup get switched.
 "
 ]];
 

@@ -8,37 +8,20 @@ if(JOC_pauseCache)exitWith{};
         deleteGroup _x;
     };
     if(side _x != west)then{
-        if(_x != cacheGroup)then{
-            _objects = (getPos (leader _x)) nearEntities [["Man","Car","Tank"],1000];
-
-            if ((west countSide _objects) == 0)then{
-                [_x]call JOC_cache;
-            };
+        if(!([getPosASL (leader _x), 1100, ["plane"]]call JOC_playersNear))then{
+            [units _x]call JOC_virtualize;
         };
     };
 } forEach allGroups;
 
 //Unvirtualizing
 {
-    _objects = (((_x select 0) select 0) select 1) nearEntities [["Man","Car","Tank","Helicopter"],1200];
-
-    if((west countSide _objects) > 0)then{
-        [_x]call JOC_unVirtualize;
-    };
-} forEach virtualizedArray;
-
-//uncahcing + virtualizing
-cachedArray = cachedArray - [[]];
-{
-    _objects = _x select 0 nearEntities [["Man","Car","Tank"],1000];
-
-    if((west countSide _objects) > 0)then{
-        [_x]call JOC_unCache;
+    if(count (_x select 0) == 0)then{
+        _x deleteAt _forEachIndex;
     }else{
-        _objects = _x select 0 nearEntities [["Man","Car","Tank","Helicopter"],1200];
-
-        if((west countSide _objects) == 0)then{
-            [_x]call JOC_virtualize;
+        if([(((_x select 0) select 0) select 1), 1100, ["plane"]]call JOC_playersNear || (_x select 3))then{
+            [_x]call JOC_unVirtualize;
+            _x deleteAt _forEachIndex;
         };
     };
-} forEach cachedArray;
+} forEach virtualizedArray;

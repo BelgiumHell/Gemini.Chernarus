@@ -41,9 +41,10 @@ if(!isNull curatorCamera)then{
 	_curator = (getAssignedCuratorLogic player);
 	[[_curator],{
 		_curator = _this select 0;
-		_curator addCuratorEditableObjects [(allUnits - [cacheGroupLeader, placeHolderGroupWestLeader]),false];
+		_curator addCuratorEditableObjects [allUnits,false];
 		_curator addCuratorEditableObjects [allDead,false];
-		_curator addCuratorEditableObjects [vehicles - objectsStart,false];
+		_curator addCuratorEditableObjects [vehicles,false];
+		_curator removeCuratorEditableObjects [objectsStart,false];
 	}] remoteExec ["BIS_fnc_spawn", 2];
 };
 

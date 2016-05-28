@@ -16,7 +16,7 @@ while{_s < 4}do{
 	(crew _static) joinSilent artyGroup;
 
 	//Create marker
-	_name = [5] call Zen_StringGenerateRandom;
+	_name = format ["mrk_arty_%1",_s];
 	_marker = createMarker [_name, _location];
 	_name setMarkerType "o_art";
 	_name setMarkerSize [0.65, 0.65];

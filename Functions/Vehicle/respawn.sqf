@@ -7,11 +7,11 @@
         _veh = (_x select 0) createVehicle [0,0,1000];
         _veh allowDamage false;
         _veh setDir (_x select 2);
-        _veh setPosWorld (_x select 1);
+        _veh setPosASL (_x select 1);
         _veh allowDamage true;
         _veh setDamage 0;
         _x set [3,_veh];
-        
+
         //Medical heli
         if(_type in ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"])then{
             _veh setVariable ["ace_medical_medicClass", 1];

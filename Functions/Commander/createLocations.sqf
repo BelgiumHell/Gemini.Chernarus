@@ -27,16 +27,3 @@
 
 //Town
 []call JOC_cmdInitTown;
-
-{
-    _marker = _x select 3;
-    _marker setMarkerAlpha 0;
-} forEach strategicArray;
-
-[{
-    {
-        _marker = _x select 3;
-        _marker setMarkerAlpha 0;
-        [_x,_forEachIndex]call JOC_cmdMiscMonitorStrategic;
-    } forEach strategicArray;
-}, 5, []] call CBA_fnc_addPerFrameHandler;

@@ -9,7 +9,7 @@ radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Sma
 {
 	_location = getPos _x;
 
-	_name = [5] call Zen_StringGenerateRandom;
+	_name = format ["mrk_radar_%1",_forEachIndex];
 	_marker = createMarker [_name, _location];
 	_name setMarkerType "o_installation";
 	_name setMarkerSize [0.65, 0.65];
@@ -23,7 +23,6 @@ radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Sma
 
 	strategicArray pushBack [_location,500,"radar",_nameS,1];
 } forEach radars;
-[JOC_cmdMiscRadar, 3, []] call CBA_fnc_addPerFrameHandler;
 
 //Place AA-tanks
 _tank = 0;
@@ -45,7 +44,7 @@ while {_tank < 24} do{
 	(driver _aaTank) setVariable["JOC_caching_disabled",true];
 	(crew _aaTank) joinSilent aaGroup;
 
-	_name = [5] call Zen_StringGenerateRandom;
+	_name = format ["mrk_aa_%1",_tank];
 	_marker = createMarker [_name, _location];
 	_name setMarkerType "n_art";
 	_name setMarkerSize [0.65, 0.65];

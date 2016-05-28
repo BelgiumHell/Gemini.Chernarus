@@ -64,7 +64,6 @@ fobTrucks = [];
 vehArray = [];
 radars = [];
 jetActive = false;
-saveCount = 0;
 
 //Public var for local scripts
 publicVariable "logisticsArray";
@@ -78,17 +77,10 @@ publicVariable "CHVD_maxObj";
 
 //Init caching vars
 JOC_pauseCache = false;
-cacheGroup = createGroup east;
-cacheGroupLeader = cacheGroup createUnit ["O_soldier_F", [0,0,0], [], 0, "NONE"];
-cacheGroupLeader allowDamage false;
-cacheGroupLeader enableSimulation false;
-cacheGroupLeader hideObjectGlobal true;
-placeHolderGroupWest = createGroup west;
-placeHolderGroupWestLeader = cacheGroup createUnit ["B_soldier_F", [0,0,0], [], 0, "NONE"];
-placeHolderGroupWestLeader allowDamage false;
-placeHolderGroupWestLeader enableSimulation false;
-placeHolderGroupWestLeader hideObjectGlobal true;
-cachedArray = [];
+
+//Most important arrays
+strategicArray = [];
+virtualizedArray = [];
 
 //Get a list of all objects placed in editor
 objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
@@ -96,13 +88,15 @@ objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^
 //Read database
 _inidbi = 0;
 _dbSaved = false;
-if(typeName (["read", ["header", "saved",false]] call inidbiDB1))then{
+if(["read", ["header", "saved",false]] call inidbiDB1)then{
     _inidbi = inidbiDB1;
     _dbSaved = true;
+    saveCount = 1;
 };
-if(typeName (["read", ["header", "saved",false]] call inidbiDB2))then{
+if(["read", ["header", "saved",false]] call inidbiDB2)then{
     _inidbi = inidbiDB2;
     _dbSaved = true;
+    saveCount = 0;
 };
 
 if(_dbSaved)then{
@@ -110,54 +104,65 @@ if(_dbSaved)then{
 
     //Get strategic array
     //Get virtualized array
-    while{typeName (["read", ["main", format["virtualizedArray_%1",_index],0]] call _inidbi) != typeName 0}do{
-        strategicArray = strategicArray + [(["read", ["main", format["strategicArray_%1",_index]]] call _inidbi)];
+    while{typeName (["read", ["main", format["strategicArray_%1",_index],0]] call _inidbi) != typeName 0}do{
+        strategicArray pushBack (["read", ["main", format["strategicArray_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
 
     {
-        _name = (_x select 0);
-        _marker = createMarker [_nameM, (_x select 1)];
-        _name setMarkerShape (_x select 2);
-        _name setMarkerSize (_x select 3);
-        _nameM setMarkerBrush (_x select 4);
-        _name setMarkerColor (_x select 5);
-        _x set [_x,_name];
+        _array = (_x select 3);
+        _name = (_array select 0);
+        _marker = createMarker [_name, (_array select 1)];
+        _name setMarkerShape (_array select 2);
+        _name setMarkerSize (_array select 3);
+        _name setMarkerBrush (_array select 4);
+        _name setMarkerColor (_array select 5);
+        _x set [3,_name];
     } forEach strategicArray;
 
     //Get virtualized array
+    _index = 0;
     while{typeName (["read", ["main", format["virtualizedArray_%1",_index],0]] call _inidbi) != typeName 0}do{
-        virtualizedArray pushBack [(["read", ["main", format["virtualizedArray_%1",_index]]] call _inidbi)];
+        virtualizedArray pushBack (["read", ["main", format["virtualizedArray_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
 
+    {
+        if(_x select 3)then{
+            [_x]call JOC_unVirtualize;
+        };
+    } forEach virtualizedArray;
+
     //Object damage
     _damageValues = [];
-    while{typeName (["read", ["main", format["damageValues_%1",_index],0]] call _inidbi) != typeName 0}do{
-        _damageValues pushBack [(["read", ["main", format["damageValues_%1",_index]]] call _inidbi)];
+    _index = 0;
+    while{typeName (["read", ["main", format["damageValues_%1",_index],"0"]] call _inidbi) != typeName "0"}do{
+        _damageValues append (["read", ["main", format["damageValues_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
+    diag_log _damageValues;
     {
         _x setDamage (_damageValues select _forEachIndex);
     } forEach objectsStart;
 
     //Objects spawned on mission load
     _objectsAdded = [];
+    _index = 0;
     while{typeName (["read", ["main", format["objectsAdded_%1",_index],0]] call _inidbi) != typeName 0}do{
-        _objectsAdded pushBack [(["read", ["main", format["objectsAdded_%1",_index]]] call _inidbi)];
+        _objectsAdded pushBack (["read", ["main", format["objectsAdded_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
     {
         _object = (_x select 0) createVehicle (_x select 1);
-        _object setPosWorld (_x select 1);
+        _object setPosASL (_x select 1);
         _object setDir (_x select 2);
     } forEach _objectsAdded;
 
     //get fobs and deploy them if applicable
-    _fobArray = ["read", ["main", "fobArray"]] call _inidbi;
+    _fobArray = ["read", ["main", "fobArray",[]]] call _inidbi;
     {
         _truck = fobClass createVehicle (_x select 0);
-        _truck setPosWorld (_x select 0);
+        _truck setPosASL (_x select 0);
         _truck setDir (_x select 1);
         [_truck]call JOC_fobInit;
         fobTrucks pushBack _truck;
@@ -167,8 +172,6 @@ if(_dbSaved)then{
         };
     } forEach _fobArray;
 }else{
-    strategicArray = [];
-    virtualizedArray = [];
 
     []call JOC_cmdCreateLocations;
 
@@ -178,10 +181,11 @@ if(_dbSaved)then{
 
     []call JOC_cmdCreateEnemy;
 
+    //This is saved in the beginning because it would kill the server trying to do it every 10 minutes
     {
-        ["write", ["main", format["objectsAdded_%1",_forEachIndex], [typeOf _x, getPosWorld _x, getDir _x]]] call _inidbi;
-    } forEach ((nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)]) - objectsStart);
-
+        ["write", ["header", format["objectsAdded_%1",_forEachIndex], [typeOf _x, getPosASL _x, getDir _x]]] call inidbiDB1;
+        ["write", ["header", format["objectsAdded_%1",_forEachIndex], [typeOf _x, getPosASL _x, getDir _x]]] call inidbiDB2;
+    } forEach ((nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)]) - objectsStart - ([worldSize/2,worldSize/2] nearEntities [["all"],(worldSize*2^0.5)]));
 };
 
 //End loading screen
@@ -199,8 +203,17 @@ if(_dbSaved)then{
 
 
 //EXP, should give better performance
-[JOC_aiManager, 3, []] call CBA_fnc_addPerFrameHandler;
-[JOC_perfLoop, 30, []] call CBA_fnc_addPerFrameHandler;
-[JOC_vehRespawn, 60, []] call CBA_fnc_addPerFrameHandler;
+[JOC_aiManager, 5, []] call CBA_fnc_addPerFrameHandler;
+[JOC_perfLoop, 60, []] call CBA_fnc_addPerFrameHandler;
 [JOC_saveMission, 600, []] call CBA_fnc_addPerFrameHandler;
+[JOC_cmdMiscRadar, 6, []] call CBA_fnc_addPerFrameHandler;
+{
+    _marker = _x select 3;
+    _marker setMarkerAlpha 0;
+} forEach strategicArray;
+[{
+    {
+        [_x,_forEachIndex]call JOC_cmdMiscMonitorStrategic;
+    } forEach strategicArray;
+}, 15, []] call CBA_fnc_addPerFrameHandler;
 //[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;

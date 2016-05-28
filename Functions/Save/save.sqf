@@ -2,8 +2,9 @@
 //Script made by Jochem//
 /////////////////////////
 [[],{
-/*Notes: jetActive is not saved due to techical limitations, all special behaviour scripts are also interrupted. Need to find a way to handle support scripts like convoy/heli insertion*/
+/*Notes: jetActive is not saved due to techical limitations, all special behaviour scripts are also interrupted. Need to find a way to handle support scripts like convoy/heli insertion (I disabled all AI features until I can save them)*/
     _inidbi = 0;
+    _inidbiBack = 0;
     if(saveCount/2 == round(saveCount/2))then{
         _inidbi = inidbiDB1;
         _inidbiBack = inidbiDB2;
@@ -43,9 +44,9 @@
     _fobArray = [];
     {
         if(locked _x == 2)then{
-            _fobArray pushBack [getPosWorld _x, getDir _x, true];
+            _fobArray pushBack [getPosASL _x, getDir _x, true];
         }else{
-            _fobArray pushBack [getPosWorld _x, getDir _x, false];
+            _fobArray pushBack [getPosASL _x, getDir _x, false];
         };
     } forEach fobTrucks;
     ["write", ["main", "fobArray", _fobArray]] call _inidbi;
@@ -63,12 +64,15 @@
             _count = 0;
         };
     } forEach objectsStart;
+    _damageValues pushBack _arrayD;
     {
         ["write", ["main", format["damageValues_%1",_forEachIndex], _x]] call _inidbi;
     } forEach _damageValues;
 
     ["write", ["header", "saved", true]] call _inidbi;
-    ["write", ["header", "saved", true]] call _inidbiBack;
+    ["write", ["header", "saved", false]] call _inidbiBack;
+
+    saveCount = saveCount + 1;
 
     diag_log format["Saved mission at %1 since mission load", diag_tickTime];
     [[],{

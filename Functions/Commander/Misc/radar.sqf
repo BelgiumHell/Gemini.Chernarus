@@ -3,7 +3,7 @@
 /////////////////////////
 {
     _radar = _x;
-    _pos = getPosWorld _x;
+    _pos = getPosASL _x;
     _heliAdd = [];
     _jetAdd = [];
     _remove = [];
@@ -17,14 +17,16 @@
 
     {
         if((side _x) == west && !(terrainIntersectASL [getPosWorld _x, _pos]))then{
-            if(_x isKindOf "Helicopter")then{
-                _heliAdd pushBack _x;
+            if(count (lineIntersectsSurfaces [getPosASL _x, _pos, _x, _radar, true, 1]) == 0)then{
+                if(_x isKindOf "Helicopter")then{
+                    _heliAdd pushBack _x;
+                }else{
+                    _jetAdd pushBack _x;
+                };
+                aaGroup reveal [_x, 4];
             }else{
-                _jetAdd pushBack _x;
+                _remove pushBack _x;
             };
-            aaGroup reveal [_x, 4];
-        }else{
-            _remove pushBack _x;
         };
     } forEach _objects;
 

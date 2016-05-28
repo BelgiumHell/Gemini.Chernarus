@@ -16,7 +16,7 @@ if(isNil{fobCount})then{
 	}else{
 		_truck = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy" createVehicle [16000,16000,0];
 		_truck setDir getDir fobSpawn;
-		_truck setPosworld getPosworld fobSpawn;
+		_truck setPosASL getPosASL fobSpawn;
 		_truck setDamage 0;
 		fobTrucks pushBack _truck;
 		publicVariable "fobTrucks";

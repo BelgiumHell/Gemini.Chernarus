@@ -8,13 +8,13 @@ waitUntil{!isNil{JOC_serverLoaded}};
 waitUntil{JOC_serverLoaded};
 
 _type = typeOf _veh;
-_pos = getPosWorld _veh;
+_pos = getPosASL _veh;
 _dir = getDir _veh;
 
 deleteVehicle _veh;
 _veh = _type createVehicle [0,0,1000];
 _veh setDir _dir;
-_veh setPosWorld _pos;
+_veh setPosASL _pos;
 _veh setDamage 0;
 
 //Medical heli

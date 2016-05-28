@@ -20,6 +20,6 @@ switch (_trgID) do {
     };
 };
 
-_id = _bord addAction["Scrap vehicle",{_veh = _this select 3; _pad = (_veh getVariable "pad"); _pad setVariable["count",((_pad getVariable "count") - 1),true]; deleteVehicle _veh},_veh];
+_id = _bord addAction["Scrap vehicle",{_veh = _this select 3; deleteVehicle _veh},_veh];
 waitUntil{sleep 0.3;((_veh distance _trg) > 10)};
 _bord removeAction _id;

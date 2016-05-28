@@ -8,7 +8,7 @@ radioTowers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Lan
     _location = getPosWorld _tower;
 
     //Create marker
-    _name = [5] call Zen_StringGenerateRandom;
+    _name = format["mrk_radio_%1",_forEachIndex];
     _marker = createMarker [_name, _location];
     _name setMarkerType "loc_Transmitter";
     _name setMarkerColor "ColorOPFOR";

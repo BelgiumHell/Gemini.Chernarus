@@ -4,7 +4,7 @@
 _camp = 0;
 _location = [];
 while {_camp < 40} do{
-	_location = ["mrk_area",0,[blackMarkers + airfieldMarkers,[],[]],1,0,[0,360],[1,0,5],[0,0,0],[1,100],[1,10,5],[1,[0,0,0],5]] call Zen_FindGroundPosition;
+	_location = ["mrk_area",0,[blackMarkers + airfieldMarkers,[],[]],1,[3,15],[0,360],[1,0,5],[0,0,0],[1,100],[1,10,5],[1,[0,0,0],5]] call Zen_FindGroundPosition;
 
     [_location]call Zen_SpawnCamp;
 

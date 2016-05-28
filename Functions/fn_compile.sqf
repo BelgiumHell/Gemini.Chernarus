@@ -37,6 +37,8 @@ JOC_spawnComposition = compileFinal preprocessFileLineNumbers "Functions\Logisti
 //Misc
 JOC_drawLine = compileFinal preprocessFileLineNumbers "Functions\Misc\drawLine.sqf";
 JOC_findCenter = compileFinal preprocessFileLineNumbers "Functions\Misc\findCenter.sqf";
+JOC_nearestPlayers = compileFinal preprocessFileLineNumbers "Functions\Misc\nearestPlayers.sqf";
+JOC_playersNear = compileFinal preprocessFileLineNumbers "Functions\Misc\playersNear.sqf";
 
 //Performance
 JOC_perfLoop = compileFinal preprocessFileLineNumbers "Functions\Performance\loop.sqf";

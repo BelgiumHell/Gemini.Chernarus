@@ -5,14 +5,12 @@ params ["_units"];
 
 if((_units select 0) getVariable "JOC_caching_disabled")exitWith{};
 
-cachedArray = cachedArray - [_units];
-
 _vehicles = [];
 _vehiclesTemp = [];
 {
     if(!(isNull objectParent _x))then{
         if(!((vehicle _x) in _vehiclesTemp))then{
-            _vehicles pushBack [(getPosWorld (vehicle _x)),(typeOf (vehicle _x)),[_forEachIndex]];
+            _vehicles pushBack [(getPos (vehicle _x)),(typeOf (vehicle _x)),[_forEachIndex]];
             _vehiclesTemp pushBack (vehicle _x);
         }else{
             _index = _vehiclesTemp find (vehicle _x);
@@ -24,7 +22,7 @@ _vehiclesTemp = [];
 
 _unitClasses = [];
 {
-    _unitClasses pushBack [(typeOf _x),getPosWorld _x];
+    _unitClasses pushBack [(typeOf _x),getPos _x];
     deleteVehicle _x;
 } forEach _units;
 
