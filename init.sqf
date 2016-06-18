@@ -20,7 +20,7 @@ enableSaving [false, false];
 if(isServer)then{
     inidbiDB1 = ["new", "GEMINI1"] call OO_INIDBI;
     inidbiDB2 = ["new", "GEMINI2"] call OO_INIDBI;
-    []spawn JOC_missionInit;
+    []call JOC_missionInit;
 }else{
     player enableSimulation false;
     player allowDamage false;

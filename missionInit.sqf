@@ -66,6 +66,7 @@ radars = [];
 jetActive = false;
 
 //Public var for local scripts
+publicVariable "leaderArray";
 publicVariable "logisticsArray";
 publicVariable "logisticsVehArray";
 publicVariable "editorObjects";
@@ -77,6 +78,7 @@ publicVariable "CHVD_maxObj";
 
 //Init caching vars
 JOC_pauseCache = false;
+currentGroupID = 0;
 
 //Most important arrays
 strategicArray = [];
@@ -86,6 +88,7 @@ virtualizedArray = [];
 objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
 
 //Read database
+saveCount = 0;
 _inidbi = 0;
 _dbSaved = false;
 if(["read", ["header", "saved",false]] call inidbiDB1)then{
@@ -119,6 +122,7 @@ if(_dbSaved)then{
         _name setMarkerColor (_array select 5);
         _x set [3,_name];
     } forEach strategicArray;
+    strategicCount = count strategicArray;
 
     //Get virtualized array
     _index = 0;
@@ -128,7 +132,7 @@ if(_dbSaved)then{
     };
 
     {
-        if(_x select 3)then{
+        if(_x select 2)then{
             [_x]call JOC_unVirtualize;
         };
     } forEach virtualizedArray;
@@ -140,16 +144,17 @@ if(_dbSaved)then{
         _damageValues append (["read", ["main", format["damageValues_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
-    diag_log _damageValues;
     {
-        _x setDamage (_damageValues select _forEachIndex);
+        if(!isNil{(_damageValues select _forEachIndex)})then{
+            _x setDamage (_damageValues select _forEachIndex);
+        };
     } forEach objectsStart;
 
     //Objects spawned on mission load
     _objectsAdded = [];
     _index = 0;
-    while{typeName (["read", ["main", format["objectsAdded_%1",_index],0]] call _inidbi) != typeName 0}do{
-        _objectsAdded pushBack (["read", ["main", format["objectsAdded_%1",_index]]] call _inidbi);
+    while{typeName (["read", ["header", format["objectsAdded_%1",_index],0]] call _inidbi) != typeName 0}do{
+        _objectsAdded pushBack (["read", ["header", format["objectsAdded_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
     {
@@ -172,6 +177,8 @@ if(_dbSaved)then{
         };
     } forEach _fobArray;
 }else{
+    "delete" call inidbiDB1;
+    "delete" call inidbiDB2;
 
     []call JOC_cmdCreateLocations;
 
@@ -181,7 +188,7 @@ if(_dbSaved)then{
 
     []call JOC_cmdCreateEnemy;
 
-    //This is saved in the beginning because it would kill the server trying to do it every 10 minutes
+    //This is saved in the beginning because it would kill the server trying to do it every 5 minutes
     {
         ["write", ["header", format["objectsAdded_%1",_forEachIndex], [typeOf _x, getPosASL _x, getDir _x]]] call inidbiDB1;
         ["write", ["header", format["objectsAdded_%1",_forEachIndex], [typeOf _x, getPosASL _x, getDir _x]]] call inidbiDB2;
@@ -202,11 +209,12 @@ if(_dbSaved)then{
 []call JOC_initDepot;
 
 
-//EXP, should give better performance
+//Using CBA EH should be faster than using spawn
 [JOC_aiManager, 5, []] call CBA_fnc_addPerFrameHandler;
 [JOC_perfLoop, 60, []] call CBA_fnc_addPerFrameHandler;
-[JOC_saveMission, 600, []] call CBA_fnc_addPerFrameHandler;
+[JOC_saveMission, 300, []] call CBA_fnc_addPerFrameHandler;
 [JOC_cmdMiscRadar, 6, []] call CBA_fnc_addPerFrameHandler;
+[JOC_vehRespawn, 3600, []] call CBA_fnc_addPerFrameHandler;
 {
     _marker = _x select 3;
     _marker setMarkerAlpha 0;

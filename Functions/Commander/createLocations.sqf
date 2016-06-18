@@ -25,5 +25,8 @@
 //Radiotowers
 []call JOC_cmdInitRadio;
 
+//Roadblocks
+[]call JOC_cmdInitRoadblock;
+
 //Town
 []call JOC_cmdInitTown;

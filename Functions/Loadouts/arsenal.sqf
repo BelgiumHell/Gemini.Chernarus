@@ -1,4 +1,4 @@
-/////////////////////////
+	/////////////////////////
 //Script made by Jochem//
 /////////////////////////
 private["_box","_unit","_uniforms","_vests","_helmets","_backpacks"];
@@ -12,7 +12,15 @@ _weapons = [
 _magazines = [
 	"rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer",
 	"rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red",
-	"rhsusf_mag_15Rnd_9x19_JHP"
+	"rhsusf_mag_15Rnd_9x19_JHP",
+
+	"rhs_mag_m18_green",
+    "rhs_mag_m18_purple",
+    "rhs_mag_m18_red",
+    "rhs_mag_m18_yellow",
+    "rhs_mag_m67",
+    "rhs_mag_an_m8hc",
+    "rhs_mag_an_m14_th3"
 ];
 _uniforms = [
 	"rhs_uniform_FROG01_wd"
@@ -43,7 +51,18 @@ _items = [
 	"ACE_HandFlare_Red",
 	"ACE_HandFlare_Green",
 	"ACE_HandFlare_Yellow",
-	"ACE_M84",
+	"ACE_wirecutter",
+	"ACE_Tripod",
+	"ACE_SpottingScope",
+	"ACE_Sandbag_empty",
+	"ACE_EntrenchingTool",
+	"ACE_SpraypaintBlue",
+    "ACE_SpraypaintGreen",
+    "ACE_SpraypaintRed",
+    "ACE_RangeTable_82mm",
+    "ACE_Flashlight_MX991",
+    "ACE_Flashlight_XL50",
+	"ACE_MapTools",
 
 	"ItemMap",
 	"ItemCompass",

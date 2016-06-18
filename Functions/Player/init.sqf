@@ -1,6 +1,9 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+//Whitelisting needs to go here
+//endMission "NotWhitelisted";
+
 //Don't mind this
 player enableSimulation true;
 player allowDamage true;
@@ -16,28 +19,6 @@ player allowDamage true;
 cduEnabled = false;
 musicPlay = false;
 radioHandle = scriptNull;
-
-//Third person restriction
-/*[{
-	if(cameraView isEqualTo "EXTERNAL")then{
-		if(vehicle player == player)then{
-			_nearestEntities = (getPos player) nearEntities [["Man"],400];
-			{
-			    if(lineIntersects [eyePos player, aimPos _x, player, _x])then{
-					_x hideObject true;
-				}else{
-					_x hideObject false;
-				};
-			} forEach _nearestEntities;
-		}else{
-			player switchCamera "INTERNAL";
-		};
-	}else{
-		{
-		    _x hideObject false;
-		} forEach allUnits;
-	};
-}, 0, []] call CBA_fnc_addPerFrameHandler;*/
 
 waitUntil{alive player};
 

@@ -9,19 +9,23 @@ if(JOC_pauseCache)exitWith{};
     };
     if(side _x != west)then{
         if(!([getPosASL (leader _x), 1100, ["plane"]]call JOC_playersNear))then{
-            [units _x]call JOC_virtualize;
+            [_x]call JOC_virtualize;
         };
     };
 } forEach allGroups;
 
 //Unvirtualizing
 {
+    if(isNil{_x select 3})then{
+        _x pushBack currentGroupID;
+        currentGroupID = currentGroupID + 1;
+    };
     if(count (_x select 0) == 0)then{
-        _x deleteAt _forEachIndex;
+        virtualizedArray deleteAt _forEachIndex;
     }else{
-        if([(((_x select 0) select 0) select 1), 1100, ["plane"]]call JOC_playersNear || (_x select 3))then{
+        if([(((_x select 0) select 0) select 1), 1100, ["plane"]]call JOC_playersNear || (_x select 2))then{
             [_x]call JOC_unVirtualize;
-            _x deleteAt _forEachIndex;
+            virtualizedArray deleteAt _forEachIndex;
         };
     };
 } forEach virtualizedArray;

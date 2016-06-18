@@ -56,7 +56,8 @@ if(count _objects == 0)then{
 };
 
 //Check if point is under attack
-_nearWest = count [_pos , _size, ["air"]]call JOC_nearestPlayers;
+_players = [_pos , _size, ["air"]]call JOC_nearestPlayers;
+_nearWest = count _players;
 
 if(_nearWest == 0)exitWith{};
 

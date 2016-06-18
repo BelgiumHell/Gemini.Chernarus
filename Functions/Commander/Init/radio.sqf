@@ -7,13 +7,6 @@ radioTowers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Lan
     _tower = _x;
     _location = getPosWorld _tower;
 
-    //Create marker
-    _name = format["mrk_radio_%1",_forEachIndex];
-    _marker = createMarker [_name, _location];
-    _name setMarkerType "loc_Transmitter";
-    _name setMarkerColor "ColorOPFOR";
-    _name setMarkerSize [0.65, 0.65];
-
     _nameM = format["mrk_strategic_radio_%1",_forEachIndex];
     _marker = createMarker [_nameM, _location];
     _nameM setMarkerShape "ELLIPSE";

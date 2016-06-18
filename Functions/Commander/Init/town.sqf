@@ -27,7 +27,7 @@ _nameM = "";
         if(_x in _towns)then{
             _marker = createMarker [_nameM, _location];
             _nameM setMarkerShape "ELLIPSE";
-            _nameM setMarkerSize [300,300];
+            _nameM setMarkerSize [200,200];
             _nameM setMarkerBrush "SolidBorder";
             _nameM setMarkerColor "ColorOpfor";
 
@@ -37,7 +37,7 @@ _nameM = "";
         if(_x in _capitals)then{
             _marker = createMarker [_nameM, _location];
             _nameM setMarkerShape "ELLIPSE";
-            _nameM setMarkerSize [500,500];
+            _nameM setMarkerSize [400,400];
             _nameM setMarkerBrush "SolidBorder";
             _nameM setMarkerColor "ColorOpfor";
 

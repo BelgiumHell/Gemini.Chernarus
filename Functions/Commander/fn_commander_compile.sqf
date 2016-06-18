@@ -26,6 +26,7 @@ JOC_cmdInitCamp = compileFinal preprocessFileLineNumbers "Functions\Commander\In
 JOC_cmdInitFactory = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\factory.sqf";
 JOC_cmdInitMine = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\mine.sqf";
 JOC_cmdInitRadio = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\radio.sqf";
+JOC_cmdInitRoadblock = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\roadblock.sqf";
 JOC_cmdInitTown = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\town.sqf";
 
 //Logistics

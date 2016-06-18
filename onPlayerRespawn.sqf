@@ -2,4 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 cduEnabled = false;
-[]spawn JOC_loadoutMaster;
+[]call JOC_loadoutMaster;
+if(!JOC_serverloaded)then{
+    startLoadingScreen["Loading..."];
+};

@@ -1,15 +1,22 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_pos","_radius","_blacklist"];
+params["_pos","_radius","_blacklist","_knows"];
+
+if(isNil{_knows})then{
+    _knows = false;
+};
 
 _nearestPlayers = [];
 {
-    diag_log (getPosASL _x);
-    diag_log _pos;
-    diag_log (getPosASL _x) distance _pos;
     if((getPosASL _x) distance _pos <= _radius && !(typeOf (vehicle _x) in _blacklist))then{
-        _nearestPlayers pushBack _x;
+        if(_knows)then{
+            if(east knowsAbout _x)then{
+                _nearestPlayers pushBack _x;
+            };
+        }else{
+            _nearestPlayers pushBack _x;
+        };
     };
 } forEach allPlayers;
 

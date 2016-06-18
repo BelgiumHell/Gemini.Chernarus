@@ -2,13 +2,8 @@
 //Script made by Jochem//
 /////////////////////////
 _s = 0;
-while{_s < 80}do{
+while{_s < 120}do{
     _location = [0,0,airfieldMarkers + blackMarkers,1,[1,1400]] call Zen_FindGroundPosition;
-
-    _name = [5] call Zen_StringGenerateRandom;
-	_marker = createMarker [_name, _location];
-	_name setMarkerType "Minefield";
-	_name setMarkerSize [0.65, 0.65];
 
     _mine = createMine ["ATMine", _location, [], 0];
     east revealMine _mine;

@@ -37,10 +37,14 @@
         case "radio":{
             [_pos,((getMarkerSize _marker) + [markerDir _marker]),[3,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
         };
+        case "roadblock":{
+            [_pos,50]call JOC_cmdSpawnBase;
+            [_pos,((getMarkerSize _marker) + [markerDir _marker]),[1,true],[0,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+        };
         case "town": {
             switch (_priority) do {
                 case 300: {
-                    [_pos,((getMarkerSize _marker) + [markerDir _marker]),[2,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+                    [_pos,((getMarkerSize _marker) + [markerDir _marker]),[0,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
                 case 500: {
                     [_pos,((getMarkerSize _marker) + [markerDir _marker]),[7,true],[2,false],[0,false],[1,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
@@ -52,11 +56,7 @@
         };
     };
 
-    //Delete these lines and ArmA has a memory crash(might not be true anymore, since I moved to virtual spawnng)
-    {
-        [_x]call JOC_virtualize;
-    } forEach cachedArray;
-
 } forEach strategicArray;
 
+strategicCount = count strategicArray;
 //[]spawn JOC_cmdCmdLoop;-needs replacing with CBA_fnc_addPerFrameHandler

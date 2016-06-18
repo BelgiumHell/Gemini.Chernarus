@@ -3,7 +3,7 @@
 /////////////////////////
 {
     _radar = _x;
-    _pos = getPosASL _x;
+    _pos = [(getPosASL _x) select 0, (getPosASL _x) select 1, ((getPosASL _x) select 2) + 10];
     _heliAdd = [];
     _jetAdd = [];
     _remove = [];

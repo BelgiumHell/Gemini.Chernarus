@@ -34,7 +34,7 @@
     _unitArray = [];
     {
         if(side _x != west)then{
-            _unitArray pushBack ([units _x]call JOC_saveVirtualize);
+            _unitArray pushBack ([_x]call JOC_saveVirtualize);
         };
     } forEach allGroups;
     {

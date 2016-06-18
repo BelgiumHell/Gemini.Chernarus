@@ -32,6 +32,13 @@ _wp2 = (group _heli) addWaypoint [(_array select 0), 0];
 _wp2 setWaypointType "UNHOOK";
 //_wp2 waypointAttachVehicle _crate;
 
+[_thisScript,_heli]spawn{
+    params["_script","_group"]
+    waitUntil{sleep 24; (!alive _heli)};
+    terminate _script;
+    terminate _thisScript;
+};
+
 waitUntil{_crate distance2D (_array select 0 ) < 15};
 [_crate]spawn{
     params["_crate"];
@@ -46,8 +53,8 @@ waitUntil{_crate distance2D (_array select 0 ) < 15};
 };
 
 //Heli rtb
-_handle = [_heli,_posHeli]spawn Zen_OrderHelicopterLand;
-waitUntil{sleep 20; scriptDone _handle};
+_heli land "LAND";
+waitUntil{(getPosATL _heli) select 2 < 0.5};
 
 //Delete heli
 waitUntil{west countSide (_posHeli nearEntities [["Man","Car","Tank","Helicopter"],1200]) == 0};

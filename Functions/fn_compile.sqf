@@ -68,8 +68,8 @@ JOC_saveMission = compileFinal preprocessFileLineNumbers "Functions\Save\save.sq
 JOC_saveVirtualize = compileFinal preprocessFileLineNumbers "Functions\Save\virtualize.sqf";
 
 //Vehicle
-#include "Vehicle\fn_vehicle_compile.sqf";
 JOC_vehInit = compileFinal preprocessFileLineNumbers "Functions\Vehicle\vehInit.sqf";
 JOC_service = compileFinal preprocessFileLineNumbers "Functions\Vehicle\service.sqf";
 JOC_vehCDU = compileFinal preprocessFileLineNumbers "Functions\Vehicle\cdu.sqf";
 JOC_vehRespawn = compileFinal preprocessFileLineNumbers "Functions\Vehicle\respawn.sqf";
+JOC_vehScrap = compileFinal preprocessFileLineNumbers "Functions\Vehicle\scrap.sqf";

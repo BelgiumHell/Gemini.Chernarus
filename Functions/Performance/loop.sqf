@@ -3,4 +3,3 @@
 /////////////////////////
 []call JOC_objectRemove;
 []call JOC_itemRemove;
-[]call JOC_vehRespawn;

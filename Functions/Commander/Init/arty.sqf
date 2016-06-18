@@ -2,6 +2,9 @@
 //Script made by Jochem//
 /////////////////////////
 artyGroup = createGroup east;
+artyGroup setVariable["JOC_caching_disabled",true];
+artyGroup setVariable ["groupID", currentGroupID];
+currentGroupID = currentGroupID + 1;
 _tankBlacklist = [];
 
 _s = 0;
@@ -14,12 +17,6 @@ while{_s < 4}do{
 	createVehicleCrew _static;
 	(gunner _static) setVariable["JOC_caching_disabled",true];
 	(crew _static) joinSilent artyGroup;
-
-	//Create marker
-	_name = format ["mrk_arty_%1",_s];
-	_marker = createMarker [_name, _location];
-	_name setMarkerType "o_art";
-	_name setMarkerSize [0.65, 0.65];
 
 	_nameS = format ["mrk_strategic_arty_%1",_s];
 	_marker = createMarker [_nameS, _location];
@@ -40,12 +37,11 @@ while{_s < 4}do{
 
 	//Spawn arty
 	_dir = round random 360;
-	_locationS = [_location, random 60, random 60] call BIS_fnc_relPos;
+	_locationS = [_location, random 15, random 15] call BIS_fnc_relPos;
 	_arty1 = [_locationS, artyClass] call Zen_SpawnVehicle;
 	createVehicleCrew _arty1;
 	_arty1 addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	_arty1 setFuel 0;
-	(driver _arty1) setVariable["JOC_caching_disabled",true];
 
 	_dir = round random 360;
 	_locationS = [_location, random 15, random 15] call BIS_fnc_relPos;
@@ -53,8 +49,11 @@ while{_s < 4}do{
 	createVehicleCrew _arty2;
 	_arty2 addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	_arty2 setFuel 0;
-	(driver _arty2) setVariable["JOC_caching_disabled",true];
 
 	((crew _arty1) + (crew _arty2)) joinSilent artyGroup;
    	_s = _s + 1;
 };
+
+{
+    deleteMarker _x;
+} forEach _tankBlacklist;
