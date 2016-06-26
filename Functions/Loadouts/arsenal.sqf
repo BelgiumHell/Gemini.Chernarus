@@ -188,13 +188,13 @@ if((vehicleVarName player) in ["a0_1","b0_1","c0_1"])then{
 
 //Recon
 if((vehicleVarName player) in ["r1","r2","r3","r4","r5","r6"])then{
-	_weapons = (_weapons + ["rhs_weap_M590_5RD","rhs_weap_sr25_ec","rhs_6b28_ess","rhs_weap_m4a1_carryhandle_m203","rhs_weap_M107","rhs_weap_mk18_KAC","rhs_weap_hk416d10_LMT","rhs_weap_m72a7"]);
+	_weapons = (_weapons + ["rhs_weap_M590_5RD","rhs_weap_sr25_ec","rhs_6b28_ess","rhs_weap_m4a1_carryhandle_m203","rhs_weap_M107","rhs_weap_mk18_KAC","rhs_weap_hk416d10_LMT","rhs_weap_mk18_KAC","rhs_weap_m72a7"]);
 	_magazines = (_magazines + ["rhsusf_mag_10Rnd_STD_50BMG_M33"]);
 	_uniforms = (_uniforms + []);
-	_vests = ["V_Chestrig_rgr","V_PlateCarrier1_rgr"];
+	_vests = ["V_Chestrig_rgr","rhsusf_spc_patchless"];
 	_helmets = ["rhs_Booniehat_marpatwd","rhsusf_mich_bare_norotos_alt"];
 	_backpacks = (_backpacks + []);
-	_items = (_items + ["G_Bandanna_khk","ACE_NVG_Gen4","rhsusf_acc_rotex5_grey","rhsusf_acc_anpeq15side_bk","optic_Hamr","rhsusf_acc_SpecterDR_3d"]);
+	_items = (_items + ["G_Bandanna_khk","ACE_NVG_Gen4","rhsusf_acc_rotex5_grey","rhsusf_acc_anpeq15side_bk","optic_Hamr","rhsusf_acc_SpecterDR_3d","rhsusf_acc_anpeq15A"]);
 };
 
 

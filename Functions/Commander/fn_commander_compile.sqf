@@ -2,8 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 //Attack
-JOC_cmdAttackArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Attack\arty.sqf";
-JOC_cmdAttackIntercept = compileFinal preprocessFileLineNumbers "Functions\Commander\Attack\intercept.sqf";
+
 
 //Command
 JOC_cmdCmdLoop = compileFinal preprocessFileLineNumbers "Functions\Commander\Command\loop.sqf";
@@ -45,3 +44,7 @@ JOC_cmdMiscRadar = compileFinal preprocessFileLineNumbers "Functions\Commander\M
 JOC_cmdSpawnBase = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\base.sqf";
 JOC_cmdSpawnConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\convoy.sqf";
 JOC_cmdSpawnZone = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\zone.sqf";
+
+Support
+JOC_cmdSupportArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\arty.sqf";
+JOC_cmdSupportIntercept = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\intercept.sqf";

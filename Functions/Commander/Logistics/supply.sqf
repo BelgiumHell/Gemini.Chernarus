@@ -1,15 +1,10 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_array"];
+params["_group","_array"];
 
-_pos = _array select 0;
-
-_objects = _pos nearEntities [["Man","Car","Tank","Helicopter"],3000];
-_enemyCount = west countSide _objects;
-
-if(_enemyCount < 0)then{
-    [_array]spawn JOC_cmdLogTruck;
+if(vehicle (leader _group) isKindOf "air")then{
+    [vehicle (leader _group), _array]spawn JOC_cmdLogHeli;
 }else{
-    [_array]spawn JOC_cmdLogHeli;
+    [_group, _array]spawn JOC_cmdLogTruck;
 };

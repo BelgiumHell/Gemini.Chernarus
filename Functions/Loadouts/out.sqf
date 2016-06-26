@@ -46,22 +46,47 @@ this addBackpack "B_Carryall_mcamo";
  "rhs_mag_an_m14_th3";
 this addHeadgear "H_HelmetSpecB";
 
+comment "Exported from Arsenal by Jochem";
+
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
+
+comment "Add containers";
+this forceAddUniform "rhs_uniform_g3_m81";
+this addItemToUniform "FirstAidKit";
+this addItemToUniform "rhsusf_ANPVS_15";
+this addItemToUniform "rhs_mag_30Rnd_556x45_Mk318_Stanag";
+this addVest "rhsusf_spc_patchless";
+for "_i" from 1 to 4 do {this addItemToVest "rhsusf_mag_15Rnd_9x19_JHP";};
+this addItemToVest "Chemlight_red";
+this addItemToVest "rhs_mag_m18_red";
+this addItemToVest "rhs_mag_m18_green";
+this addItemToVest "rhs_mag_m18_yellow";
+for "_i" from 1 to 2 do {this addItemToVest "rhs_mag_30Rnd_556x45_Mk318_Stanag";};
+this addHeadgear "rhsusf_mich_bare_norotos_arc_alt_headset";
+this addGoggles "rhs_googles_black";
+
 comment "Add weapons";
 this addWeapon "rhs_weap_mk18_KAC";
 this addPrimaryWeaponItem "rhsusf_acc_rotex5_grey";
-this addPrimaryWeaponItem "rhsusf_acc_anpeq15side_bk";
-this addPrimaryWeaponItem "rhsusf_acc_SpecterDR_3d";
-this addWeapon "rhs_weap_m72a7";
+this addPrimaryWeaponItem "rhsusf_acc_anpeq15A";
+this addPrimaryWeaponItem "rhsusf_acc_eotech_552";
 this addWeapon "rhsusf_weap_m9";
 
 comment "Add items";
 this linkItem "ItemMap";
 this linkItem "ItemCompass";
 this linkItem "ItemWatch";
-this linkItem "ItemRadioAcreFlagged";
-this linkItem "ItemGPS";
+this linkItem "ItemRadio";
 this linkItem "rhsusf_ANPVS_15";
 
 comment "Set identity";
-this setFace "WhiteHead_15";
-this setSpeaker "ACE_NoVoice";
+this setFace "WhiteHead_20";
+this setSpeaker "Male10ENG";

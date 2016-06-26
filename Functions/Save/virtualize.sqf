@@ -42,6 +42,11 @@ if((_units select 0) getVariable "JOC_caching_disabled")then{
     _caching = true;
 };
 
-_array = [_unitClasses,_vehicles,_caching,_group getVariable "groupID"];
+_waypoints = [];
+{
+    _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x];
+} forEach waypoints _group;
+
+_array = [_unitClasses,_vehicles,_caching,_group getVariable "groupID", _waypoints];
 
 _array

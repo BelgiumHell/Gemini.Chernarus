@@ -65,6 +65,10 @@ vehArray = [];
 radars = [];
 jetActive = false;
 
+//vars for AI commander
+orderArray = [];
+requestArray = [];
+
 //Public var for local scripts
 publicVariable "leaderArray";
 publicVariable "logisticsArray";
@@ -102,7 +106,7 @@ if(["read", ["header", "saved",false]] call inidbiDB2)then{
     saveCount = 0;
 };
 
-if(_dbSaved)then{
+if(_dbSaved && (paramsArray select 0) == 1)then{
     _index = 0;
 
     //Get strategic array

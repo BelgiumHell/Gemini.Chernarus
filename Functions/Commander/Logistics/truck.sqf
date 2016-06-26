@@ -1,29 +1,8 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_array"];
-
-//Get nearest base
-_startPos = [(_array select 0),"base",1200]call JOC_cmdMiscGetNearestStrategic;
-if(count (_startPos - [0,0,0]) == 0)exitWith{false};
-
-//Generate composition
-_vehArr = [];
-_vehArr pushBack (apcPool call BIS_fnc_selectRandom);
-{
-    _vehArr pushBack _x;
-} forEach supportPool;
-
-//Spawn convoy
-_groupConvoy = [_startPos,_vehArr]call JOC_cmdSpawnConvoy;
-_groupConvoy move (_array select 0);
-
-[_thisScript,_groupConvoy]spawn{
-    params["_script","_group"]
-    waitUntil{sleep 24; (count (units _group) == 0)};
-    terminate _script;
-    terminate _thisScript;
-};
+params["_groupConvoy","_array"];
+_startPos = getPos (leader _groupConvoy);
 
 waitUntil{sleep 20; ((leader _groupConvoy) distance2D (_array select 0) < 20) || (count (units _groupConvoy) == 0)};
 

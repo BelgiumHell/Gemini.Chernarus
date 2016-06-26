@@ -26,7 +26,7 @@
 []call JOC_cmdInitRadio;
 
 //Roadblocks
-[]call JOC_cmdInitRoadblock;
+//[]call JOC_cmdInitRoadblock; -doesn't work very well
 
 //Town
 []call JOC_cmdInitTown;

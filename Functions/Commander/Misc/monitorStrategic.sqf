@@ -28,7 +28,7 @@ switch (_array select 2) do {
     case "arty": {
 		_objects = _pos nearEntities [[artyClass],100];
 		if(((_objects select 0) ammo (currentWeapon (_objects select 0))) < 0.3)then{
-			//[_array]call JOC_cmdLogSupply;
+			requestArray pushBack [2,[0,_array],true];
 		};
     };
     case "camp": {

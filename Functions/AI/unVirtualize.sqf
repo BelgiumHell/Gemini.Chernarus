@@ -48,3 +48,10 @@ if(isNil{_array select 3})then{
 }else{
     _group setVariable ["groupID", (_array select 3)];
 };
+
+{
+    _wp = _group addWaypoint [(_x select 1), 0];
+    _wp setWaypointType (_x select 0);
+    _wp setWaypointFormation (_x select 2);
+    _wp setWaypointSpeed (_x select 3);
+} forEach (_array select 3);

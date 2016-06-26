@@ -1,19 +1,11 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_array"];
+params["_heli","_array"];
 
-//Get locations
-_airfieldPos = [(_array select 0),"airfield",500]call JOC_cmdMiscGetNearestStrategic;
-if(count (_airfieldPos - [0,0,0]) == 0)exitWith{false};
+//Get location
 _basePos = [(_array select 0),"base",500]call JOC_cmdMiscGetNearestStrategic;
 if(count (_basePos - [0,0,0]) == 0)exitWith{false};
-
-//Spawn helicopter
-_list = nearestObjects [_airfieldPos, ["LocationRespawnPoint_F"], 2000];
-_posHeli = getPos (_list select 0);
-_heli = [_posHeli,(airPool call BIS_fnc_selectRandom),0] call Zen_SpawnHelicopter;
-(leader (group _heli)) setVariable["JOC_caching_disabled",true];
 
 //Spawn crate
 _location = [];
@@ -31,13 +23,6 @@ _wp1 waypointAttachVehicle _crate;
 _wp2 = (group _heli) addWaypoint [(_array select 0), 0];
 _wp2 setWaypointType "UNHOOK";
 //_wp2 waypointAttachVehicle _crate;
-
-[_thisScript,_heli]spawn{
-    params["_script","_group"]
-    waitUntil{sleep 24; (!alive _heli)};
-    terminate _script;
-    terminate _thisScript;
-};
 
 waitUntil{_crate distance2D (_array select 0 ) < 15};
 [_crate]spawn{

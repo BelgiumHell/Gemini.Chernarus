@@ -3,8 +3,8 @@
 /////////////////////////
 params ["_group"];
 
-_units = units _group;
 if(_group getVariable "JOC_caching_disabled")exitWith{};
+_units = units _group;
 
 _vehicles = [];
 _vehiclesTemp = [];
@@ -43,5 +43,10 @@ _unitClasses = [];
     deleteVehicle _x;
 } forEach _vehiclesTemp;
 
-_array = [_unitClasses,_vehicles,false,_group getVariable "groupID"];
+_waypoints = [];
+{
+    _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x];
+} forEach waypoints _group;
+
+_array = [_unitClasses,_vehicles,false,_group getVariable "groupID",_waypoints];
 virtualizedArray pushBack _array;
