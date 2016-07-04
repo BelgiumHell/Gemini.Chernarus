@@ -8,6 +8,7 @@ _size = _array select 1;
 _marker = _array select 3;
 _owner = _array select 4;	//0 = BLUFOR|1 = OPFOR|2 = contested by BLUFOR|3 = contested by OPFOR|4 = no value
 _objects = [];
+_ammo = false;
 
 if(_owner == 4)exitWith{};
 
@@ -28,7 +29,14 @@ switch (_array select 2) do {
     case "arty": {
 		_objects = _pos nearEntities [[artyClass],100];
 		if(((_objects select 0) ammo (currentWeapon (_objects select 0))) < 0.3)then{
-			requestArray pushBack [2,[0,_array],true];
+			if(!_ammo)then{
+				requestArray pushBack [[2,0],_array,true,true];
+				_ammo = true;
+			};
+		}else{
+			if(_ammo)then{
+				_ammo = false;
+			};
 		};
     };
     case "camp": {

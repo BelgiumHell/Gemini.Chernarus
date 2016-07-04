@@ -41,6 +41,18 @@
         ["write", ["main", format["virtualizedArray_%1",_forEachIndex], _x]] call _inidbi;
     } forEach (_unitArray + virtualizedArray);
 
+    {
+        ["write", ["main", format["orderArray_%1",_forEachIndex], _x]] call _inidbi;
+    } forEach orderArray;
+
+    {
+        ["write", ["main", format["requestArray_%1",_forEachIndex], _x]] call _inidbi;
+    } forEach requestArray;
+
+    {
+        ["write", ["main", format["assignedArray_%1",_forEachIndex], _x]] call _inidbi;
+    } forEach assignedArray;
+
     _fobArray = [];
     {
         if(locked _x == 2)then{

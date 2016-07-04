@@ -12,34 +12,5 @@ _pos = getPosASL _veh;
 _dir = getDir _veh;
 
 deleteVehicle _veh;
-_veh = _type createVehicle [0,0,1000];
-_veh setDir _dir;
-_veh setPosASL _pos;
-_veh setDamage 0;
 
-//Medical heli
-if(_type in ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"])then{
-    _veh setVariable ["ace_medical_medicClass", 1];
-};
-
-//heli
-if(_veh isKindOf "Helicopter")then{
-    //[_veh]call ace_fastroping_fnc_equipFRIES;
-};
-
-//Spawn uav crew
-if(_veh isKindOf "UAV")then{
-    createVehicleCrew _veh;
-};
-
-//Bulldozer
-if(_type in logisticsVehArray)then{
-    //[_veh]spawn JOC_tow;
-};
-
-//Ammo container
-if(_type in ["B_Slingload_01_Ammo_F","B_Slingload_01_Fuel_F","B_Slingload_01_Medevac_F","B_Slingload_01_Cargo_F","B_Slingload_01_Repair_F","B_CargoNet_01_ammo_F"])then{
-    [_veh]spawn JOC_crateInit;
-};
-
-vehArray pushBack [_type, _pos, _dir, _veh];
+vehArray pushBack [_type, _pos, _dir, objNull];

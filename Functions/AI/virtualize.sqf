@@ -9,7 +9,7 @@ _units = units _group;
 _vehicles = [];
 _vehiclesTemp = [];
 {
-    if(!(isNull objectParent _x))then{
+    if(!(isNull (objectParent _x)))then{
         if(!((vehicle _x) in _vehiclesTemp))then{
             _vehicle = (vehicle _x);
             //Damage values
@@ -43,10 +43,15 @@ _unitClasses = [];
     deleteVehicle _x;
 } forEach _vehiclesTemp;
 
+if((_x getVariable ["groupID", -1]) == -1)then{
+    [_x]call JOC_setGroupID;
+};
+
 _waypoints = [];
 {
     _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x];
 } forEach waypoints _group;
+_waypoints deleteAt 0;
 
 _array = [_unitClasses,_vehicles,false,_group getVariable "groupID",_waypoints];
 virtualizedArray pushBack _array;

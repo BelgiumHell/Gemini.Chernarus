@@ -10,7 +10,8 @@ _group = createGroup east;
 
 if(count (_array select 1) != 0)then{
     {
-        _vehicle = (_x select 1) createVehicle (_x select 0);
+        _vehicle = createVehicle [(_x select 1), (_x select 0), [], 0, "FLY"];
+        //_vehicle = (_x select 1) createVehicle (_x select 0);
         _vehicle setDamage 0;
         _vehicle setFuel (_x select 4);
         _damageArray = (_x select 3);
@@ -43,8 +44,7 @@ if(!isNil{_array select 2})then{
 };
 
 if(isNil{_array select 3})then{
-    _group setVariable ["groupID", currentGroupID];
-    currentGroupID = currentGroupID + 1;
+    [_group]call JOC_setGroupID;
 }else{
     _group setVariable ["groupID", (_array select 3)];
 };
@@ -54,4 +54,4 @@ if(isNil{_array select 3})then{
     _wp setWaypointType (_x select 0);
     _wp setWaypointFormation (_x select 2);
     _wp setWaypointSpeed (_x select 3);
-} forEach (_array select 3);
+} forEach (_array select 4);

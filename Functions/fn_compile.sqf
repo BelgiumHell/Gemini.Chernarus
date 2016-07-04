@@ -40,6 +40,7 @@ JOC_findCenter = compileFinal preprocessFileLineNumbers "Functions\Misc\findCent
 JOC_getGroup = compileFinal preprocessFileLineNumbers "Functions\Misc\getGroup.sqf";
 JOC_nearestPlayers = compileFinal preprocessFileLineNumbers "Functions\Misc\nearestPlayers.sqf";
 JOC_playersNear = compileFinal preprocessFileLineNumbers "Functions\Misc\playersNear.sqf";
+JOC_setGroupID = compileFinal preprocessFileLineNumbers "Functions\Misc\setGroupID.sqf";
 
 //Performance
 JOC_perfLoop = compileFinal preprocessFileLineNumbers "Functions\Performance\loop.sqf";

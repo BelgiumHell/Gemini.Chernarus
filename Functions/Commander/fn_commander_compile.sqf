@@ -29,6 +29,7 @@ JOC_cmdInitRoadblock = compileFinal preprocessFileLineNumbers "Functions\Command
 JOC_cmdInitTown = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\town.sqf";
 
 //Logistics
+JOC_cmdLogAmmo = compileFinal preprocessFileLineNumbers "Functions\Commander\Logistics\ammo.sqf";
 JOC_cmdLogHeli = compileFinal preprocessFileLineNumbers "Functions\Commander\Logistics\heli.sqf";
 JOC_cmdLogSupply = compileFinal preprocessFileLineNumbers "Functions\Commander\Logistics\supply.sqf";
 JOC_cmdLogTruck = compileFinal preprocessFileLineNumbers "Functions\Commander\Logistics\truck.sqf";
@@ -45,6 +46,6 @@ JOC_cmdSpawnBase = compileFinal preprocessFileLineNumbers "Functions\Commander\S
 JOC_cmdSpawnConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\convoy.sqf";
 JOC_cmdSpawnZone = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\zone.sqf";
 
-Support
+//Support
 JOC_cmdSupportArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\arty.sqf";
 JOC_cmdSupportIntercept = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\intercept.sqf";

@@ -2,6 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 params["_location","_size"];
+_groups = [];
 
 //Get amount of military structures
 _towersB = nearestObjects [_location,["Land_Cargo_Tower_V1_F","Land_Cargo_Tower_V1_No1_F","Land_Cargo_Tower_V1_No2_F","Land_Cargo_Tower_V1_No3_F","Land_Cargo_Tower_V1_No4_F","Land_Cargo_Tower_V1_No5_F","Land_Cargo_Tower_V1_No6_F","Land_Cargo_Tower_V1_No7_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V3_F"],_size];
@@ -19,23 +20,29 @@ if (_size < 50) then {
 {
     _pos = getPos _x;
     _array = [_pos, east, "infantry", 6,"Basic"]call Zen_SpawnInfantryGarrisonVirtual;
-    virtualizedArray pushBack [_array,[],false];
+    virtualizedArray pushBack [_array,[],false,-1,[[]]];
+    _groups pushBack ((count virtualizedArray) - 1);
 } forEach _towersB;
 
 {
     _pos = getPos _x;
     _array = [_pos, east, "infantry", 2,"Basic"]call Zen_SpawnInfantryGarrisonVirtual;
-    virtualizedArray pushBack [_array,[],false];
+    virtualizedArray pushBack [_array,[],false,-1,[[]]];
+    _groups pushBack ((count virtualizedArray) - 1);
 } forEach _towersS;
 
 {
     _pos = getPos _x;
     _array = [_pos, east, "infantry", 5,"Basic"]call Zen_SpawnInfantryGarrisonVirtual;
-    virtualizedArray pushBack [_array,[],false];
+    virtualizedArray pushBack [_array,[],false,-1,[[]]];
+    _groups pushBack ((count virtualizedArray) - 1);
 } forEach _compoundsB;
 
 {
     _pos = getPos _x;
     _array = [_pos, east, "infantry", 2,"Basic"]call Zen_SpawnInfantryGarrisonVirtual;
-    virtualizedArray pushBack [_array,[],false];
+    virtualizedArray pushBack [_array,[],false,-1,[[]]];
+    _groups pushBack ((count virtualizedArray) - 1);
 } forEach _compoundsR;
+
+_groups

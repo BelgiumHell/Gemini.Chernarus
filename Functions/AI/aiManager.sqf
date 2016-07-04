@@ -7,6 +7,9 @@ if(JOC_pauseCache)exitWith{};
     if(count (units _x) == 0)then{
         deleteGroup _x;
     };
+    if((_x getVariable ["groupID", -1]) == -1)then{
+        [_x]call JOC_setGroupID;
+    };
     if(side _x != west)then{
         if(!([getPosASL (leader _x), 1100, ["plane"]]call JOC_playersNear))then{
             [_x]call JOC_virtualize;
@@ -16,7 +19,7 @@ if(JOC_pauseCache)exitWith{};
 
 //Unvirtualizing
 {
-    if(isNil{_x select 3})then{
+    if(isNil{_x select 3} || (_x select 3 == -1))then{
         _x pushBack currentGroupID;
         currentGroupID = currentGroupID + 1;
     };

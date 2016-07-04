@@ -10,6 +10,7 @@
 //Classnames
 infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_aa","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
 sfPool       = []; //currently not in use, do to RHS not having any Russian SF
+staticPool   = [];
 carPool      = ["rhs_tigr_m_vdv","rhs_tigr_sts_vdv","rhs_tigr_vdv"];        //car classnames
 truckPool    = ["RHS_Ural_VDV_01","RHS_Ural_Open_VDV_01"];        //truck classnames
 apcPool      = ["rhs_btr80a_vdv","rhs_btr80_vdv"];       //apc classnames
@@ -87,6 +88,9 @@ currentGroupID = 0;
 //Most important arrays
 strategicArray = [];
 virtualizedArray = [];
+orderArray = [];
+requestArray = [];
+assignedArray = [];
 
 //Get a list of all objects placed in editor
 objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
@@ -140,6 +144,24 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
             [_x]call JOC_unVirtualize;
         };
     } forEach virtualizedArray;
+
+    //Orderarray
+    while{typeName (["read", ["main", format["orderArray_%1",_index],0]] call _inidbi) != typeName 0}do{
+        orderArray pushBack (["read", ["main", format["orderArray_%1",_index]]] call _inidbi);
+        _index = _index + 1;
+    };
+
+    //RequestArray
+    while{typeName (["read", ["main", format["requestArray_%1",_index],0]] call _inidbi) != typeName 0}do{
+        requestArray pushBack (["read", ["main", format["requestArray_%1",_index]]] call _inidbi);
+        _index = _index + 1;
+    };
+
+    //assignedArray
+    while{typeName (["read", ["main", format["assignedArray_%1",_index],0]] call _inidbi) != typeName 0}do{
+        assignedArray pushBack (["read", ["main", format["assignedArray_%1",_index]]] call _inidbi);
+        _index = _index + 1;
+    };
 
     //Object damage
     _damageValues = [];
@@ -217,7 +239,7 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
 [JOC_aiManager, 5, []] call CBA_fnc_addPerFrameHandler;
 [JOC_perfLoop, 60, []] call CBA_fnc_addPerFrameHandler;
 [JOC_saveMission, 300, []] call CBA_fnc_addPerFrameHandler;
-[JOC_cmdMiscRadar, 6, []] call CBA_fnc_addPerFrameHandler;
+[JOC_cmdMiscRadar, 10, []] call CBA_fnc_addPerFrameHandler;
 [JOC_vehRespawn, 3600, []] call CBA_fnc_addPerFrameHandler;
 {
     _marker = _x select 3;
@@ -228,4 +250,5 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         [_x,_forEachIndex]call JOC_cmdMiscMonitorStrategic;
     } forEach strategicArray;
 }, 15, []] call CBA_fnc_addPerFrameHandler;
+[JOC_vehRespawn, [], 10] call CBA_fnc_waitAndExecute;
 //[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;

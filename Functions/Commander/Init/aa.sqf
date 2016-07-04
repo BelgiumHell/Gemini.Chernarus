@@ -22,10 +22,12 @@ radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Sma
 //Place AA-tanks
 _tank = 0;
 _location = [];
-aaGroup = createGroup east;
-aaGroup setVariable["JOC_caching_disabled",true];
-aaGroup setVariable ["groupID", currentGroupID];
-currentGroupID = currentGroupID + 1;
+_aaGroup1 = createGroup east;
+_aaGroup1 setVariable["JOC_caching_disabled",true];
+[_aaGroup1]call JOC_setGroupID;
+_aaGroup2 = createGroup east;
+_aaGroup2 setVariable["JOC_caching_disabled",true];
+[_aaGroup2]call JOC_setGroupID;
 
 while {_tank < 24} do{
 	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0,[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]]call Zen_FindGroundPosition;
@@ -34,12 +36,12 @@ while {_tank < 24} do{
 	_aaLauncher = _location nearestObject "rhs_Igla_AA_pod_vdv";
 	createVehicleCrew _aaLauncher;
 
-	(crew _aaLauncher) joinSilent aaGroup;
+	(crew _aaLauncher) joinSilent _aaGroup2;
 	_aaTank = aaClass createVehicle _location;
 	createVehicleCrew _aaTank;
 	_aaTank setFuel 0;
 	_aaTank setSkill 1;
-	(crew _aaTank) joinSilent aaGroup;
+	(crew _aaTank) joinSilent _aaGroup1;
 
 	_nameS = format ["mrk_strategic_aa_%1",_tank];
 	_marker = createMarker [_nameS, _location];

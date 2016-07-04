@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 {
-    if((!canMove (_x select 3) || !alive (_x select 3)) || !([getPosASL (_x select 3), 2000, ["plane"]]call JOC_playersNear) && ((west countSide nearestObjects [getPosWorld (_x select 3), ["men","car","air"], 1000]) == 0) && ((civilian countSide nearestObjects [getPosWorld (_x select 3), ["men","car","air"], 1000]) == 0))then{
+    if((!canMove (_x select 3) || !alive (_x select 3)) || !([getPosASL (_x select 3), 2000, ["plane"]]call JOC_playersNear))then{
         deleteVehicle (_x select 3);
         _veh = (_x select 0) createVehicle [0,0,1000];
         _veh allowDamage false;

@@ -16,29 +16,20 @@
     //_objects = _pos nearEntities [["Air"], radarRange];
 
     {
-        if((side _x) == west && !(terrainIntersectASL [getPosWorld _x, _pos]))then{
-            if(count (lineIntersectsSurfaces [getPosASL _x, _pos, _x, _radar, true, 1]) == 0)then{
-                if(_x isKindOf "Helicopter")then{
-                    _heliAdd pushBack _x;
-                }else{
-                    _jetAdd pushBack _x;
-                };
-                aaGroup reveal [_x, 4];
+        if((side _x) == west && !(terrainIntersectASL [getPosASL _x, _pos]))then{
+            if(_x isKindOf "Helicopter")then{
+                heliTargets pushBackUnique _x;
             }else{
-                _remove pushBack _x;
+                jetTargets  pushBackUnique _x;
             };
+            east reveal [_x, 4];
+        }else{
+            _remove pushBack _x;
         };
     } forEach _objects;
 
-    heliTargets = heliTargets - (_remove - (_heliAdd + _jetAdd));
-    jetTargets = jetTargets - (_remove - (_heliAdd + _jetAdd));
-
-    {
-        heliTargets pushBackUnique _x;
-    } forEach _heliAdd;
-    {
-        jetTargets  pushBackUnique _x;
-    } forEach _jetAdd;
+    heliTargets = heliTargets - _remove;
+    jetTargets = jetTargets - _remove;
 } forEach radars;
 
 publicVariable "jetTargets";

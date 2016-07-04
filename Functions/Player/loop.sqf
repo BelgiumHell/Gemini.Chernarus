@@ -32,9 +32,9 @@ if(musicPlay && (vehicle player) != player && _time < time)then{
 */
 
 //RWR
-if(vehicle player in (jetTargets + heliTargets))then{
+/*if(vehicle player in (jetTargets + heliTargets))then{
 	playSound ["rwrSound",true];
-};
+};*/
 
 //Zeus
 if(!isNull curatorCamera)then{

@@ -8,8 +8,8 @@ _units = units _group;
 _vehicles = [];
 _vehiclesTemp = [];
 {
-    if(!(isNull objectParent _x))then{
-        if(!((vehicle _x); in _vehiclesTemp))then{
+    if(!(isNull (objectParent _x)))then{
+        if(!((vehicle _x) in _vehiclesTemp))then{
             _vehicle = (vehicle _x);
             //Damage values
             _damageArray = [[],[]];
@@ -46,7 +46,8 @@ _waypoints = [];
 {
     _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x];
 } forEach waypoints _group;
+_waypoints deleteAt 0;
 
-_array = [_unitClasses,_vehicles,_caching,_group getVariable "groupID", _waypoints];
+_array = [_unitClasses,_vehicles,_caching,_group getVariable "groupID",_waypoints];
 
 _array

@@ -3,8 +3,7 @@
 /////////////////////////
 artyGroup = createGroup east;
 artyGroup setVariable["JOC_caching_disabled",true];
-artyGroup setVariable ["groupID", currentGroupID];
-currentGroupID = currentGroupID + 1;
+[artyGroup]call JOC_setGroupID;
 _tankBlacklist = [];
 
 _s = 0;
