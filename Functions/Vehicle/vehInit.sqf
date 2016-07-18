@@ -4,8 +4,7 @@
 params["_veh"];
 
 if(!isServer)exitWith{};
-waitUntil{!isNil{JOC_serverLoaded}};
-waitUntil{JOC_serverLoaded};
+waitUntil{!isNil{vehArray}};
 
 _type = typeOf _veh;
 _pos = getPosASL _veh;

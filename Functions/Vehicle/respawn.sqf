@@ -13,7 +13,7 @@
         _x set [3,_veh];
 
         //Medical heli
-        if(_type in ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"])then{
+        if((_x select 0) in ["B_Truck_01_medical_F","rhsusf_m113d_usarmy_medical"])then{
             _veh setVariable ["ace_medical_medicClass", 1];
         };
 
@@ -28,12 +28,12 @@
         };
 
         //Bulldozer
-        if(_type in logisticsVehArray)then{
+        if((_x select 0) in logisticsVehArray)then{
             //[_veh]spawn JOC_tow;
         };
 
         //Ammo container
-        if(_type in ["B_Slingload_01_Ammo_F","B_Slingload_01_Fuel_F","B_Slingload_01_Medevac_F","B_Slingload_01_Cargo_F","B_Slingload_01_Repair_F","B_CargoNet_01_ammo_F"])then{
+        if((_x select 0) in ["B_Slingload_01_Ammo_F","B_Slingload_01_Fuel_F","B_Slingload_01_Medevac_F","B_Slingload_01_Cargo_F","B_Slingload_01_Repair_F","B_CargoNet_01_ammo_F"])then{
             [_veh]spawn JOC_crateInit;
         };
     };

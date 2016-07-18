@@ -20,7 +20,7 @@
             if(_x isKindOf "Helicopter")then{
                 heliTargets pushBackUnique _x;
             }else{
-                jetTargets  pushBackUnique _x;
+                jetTargets pushBackUnique _x;
             };
             east reveal [_x, 4];
         }else{

@@ -37,7 +37,7 @@ if(musicPlay && (vehicle player) != player && _time < time)then{
 };*/
 
 //Zeus
-if(!isNull curatorCamera)then{
+/*if(!isNull curatorCamera)then{
 	_curator = (getAssignedCuratorLogic player);
 	[[_curator],{
 		_curator = _this select 0;
@@ -46,19 +46,19 @@ if(!isNull curatorCamera)then{
 		_curator addCuratorEditableObjects [vehicles,false];
 		_curator removeCuratorEditableObjects [objectsStart,false];
 	}] remoteExec ["BIS_fnc_spawn", 2];
-};
+};*/
 
 //Radio jamming (experimental)
-if((count (nearestObjects [player, ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"], 2000])) >= 1)then{
+if((count (nearestObjects [player, ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"], 2000])) > 0)then{
 	if(isNull radioHandle)then{
 		radioHandle = [{
-			_radios = [] call acre_api_fnc_getCurrentRadioList;
+			_radios = []call acre_api_fnc_getCurrentRadioList;
 			{
-		    	[_x, round (random 14)] call acre_api_fnc_setRadioChannel;
+		    	[_x, round (random 14)]call acre_api_fnc_setRadioChannel;
 			} forEach _radios;
-		}, 1, []] call CBA_fnc_addPerFrameHandler;
+		}, 1, []]call CBA_fnc_addPerFrameHandler;
 	};
 }else{
-	[radioHandle] call CBA_fnc_removePerFrameHandler;
+	[radioHandle]call CBA_fnc_removePerFrameHandler;
     radioHandle = scriptNull;
 };

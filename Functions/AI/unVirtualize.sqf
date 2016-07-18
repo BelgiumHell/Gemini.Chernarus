@@ -6,9 +6,10 @@ params ["_array"];
 _group = createGroup east;
 {
     _unit = _group createUnit [(_x select 0), (_x select 1), [], 0, "FORM"];
+    _unit setSkill (_x select 2);
 } forEach (_array select 0);
 
-if(count (_array select 1) != 0)then{
+if(count (_array select 1) > 0)then{
     {
         _vehicle = createVehicle [(_x select 1), (_x select 0), [], 0, "FLY"];
         //_vehicle = (_x select 1) createVehicle (_x select 0);
@@ -55,3 +56,7 @@ if(isNil{_array select 3})then{
     _wp setWaypointFormation (_x select 2);
     _wp setWaypointSpeed (_x select 3);
 } forEach (_array select 4);
+
+if(!isNil{(_array select 5)})then{
+    _group setFormation (_array select 5);
+};

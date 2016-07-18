@@ -35,7 +35,7 @@ _vehiclesTemp = [];
 
 _unitClasses = [];
 {
-    _unitClasses pushBack [(typeOf _x),getPos _x];
+    _unitClasses pushBack [typeOf _x,getPos _x,skill _x];
     deleteVehicle _x;
 } forEach _units;
 
@@ -53,5 +53,5 @@ _waypoints = [];
 } forEach waypoints _group;
 _waypoints deleteAt 0;
 
-_array = [_unitClasses,_vehicles,false,_group getVariable "groupID",_waypoints];
+_array = [_unitClasses,_vehicles,false,_group getVariable "groupID",_waypoints,formation _group];
 virtualizedArray pushBack _array;

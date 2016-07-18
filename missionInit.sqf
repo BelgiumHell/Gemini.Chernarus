@@ -9,7 +9,7 @@
 //Parameters *FREE TO EDIT*
 //Classnames
 infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_aa","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
-sfPool       = []; //currently not in use, do to RHS not having any Russian SF
+sfPool       = ["rhs_vdv_recon_marksman_vss","rhs_vdv_recon_marksman_asval","rhs_vdv_recon_grenadier_scout","rhs_vdv_recon_rifleman_scout","rhs_vdv_recon_rifleman_scout_akm"];
 staticPool   = [];
 carPool      = ["rhs_tigr_m_vdv","rhs_tigr_sts_vdv","rhs_tigr_vdv"];        //car classnames
 truckPool    = ["RHS_Ural_VDV_01","RHS_Ural_Open_VDV_01"];        //truck classnames
@@ -42,8 +42,7 @@ motorizedArray = [];    //All vehicles that are classed as motorized, mainly for
 medicalVehArray = [];   //All medical vehicles, mainly for proper display on BFT (will otherwise be displayed as their vehicle type, i.e. car)
 
 //Variables
-bftEnable = false;  //Enable blue force tracking (is currently being reworked, recommend disable, might still work)
-bftRefresh = 0.3;  //Refresh rate for blue force tracking (in seconds)
+bftRefresh = 1;  //Refresh rate for blue force tracking (in seconds)
 fobLimit = 5;   //Max number of FOB trucks active
 radarRange = 6000;  //Max range of radars, after this distance radars won't chack for targets (currently ignored, might be added back)
 CHVD_allowNoGrass = false; // Set 'false' if you want to disable "Low" option for terrain (default: true)
@@ -94,6 +93,9 @@ assignedArray = [];
 
 //Get a list of all objects placed in editor
 objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
+{
+    _x enableSimulationGlobal false;
+} forEach objectsStart;
 
 //Read database
 saveCount = 0;
@@ -233,22 +235,22 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
 
 []call JOC_initPlayerBase;
 []call JOC_initDepot;
+[]call JOC_vehRespawn;
 
 
 //Using CBA EH should be faster than using spawn
-[JOC_aiManager, 5, []] call CBA_fnc_addPerFrameHandler;
-[JOC_perfLoop, 60, []] call CBA_fnc_addPerFrameHandler;
-[JOC_saveMission, 300, []] call CBA_fnc_addPerFrameHandler;
-[JOC_cmdMiscRadar, 10, []] call CBA_fnc_addPerFrameHandler;
-[JOC_vehRespawn, 3600, []] call CBA_fnc_addPerFrameHandler;
+[JOC_aiManager, 5, []]call CBA_fnc_addPerFrameHandler;
+[JOC_perfLoop, 60, []]call CBA_fnc_addPerFrameHandler;
+[JOC_saveMission, 300, []]call CBA_fnc_addPerFrameHandler;
+[JOC_cmdMiscRadar, 10, []]call CBA_fnc_addPerFrameHandler;
+[JOC_vehRespawn, 3600, []]call CBA_fnc_addPerFrameHandler;
+[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
 {
     _marker = _x select 3;
     _marker setMarkerAlpha 0;
 } forEach strategicArray;
-[{
+/*[{
     {
         [_x,_forEachIndex]call JOC_cmdMiscMonitorStrategic;
     } forEach strategicArray;
-}, 15, []] call CBA_fnc_addPerFrameHandler;
-[JOC_vehRespawn, [], 10] call CBA_fnc_waitAndExecute;
-//[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
+}, 15, []]call CBA_fnc_addPerFrameHandler;*/

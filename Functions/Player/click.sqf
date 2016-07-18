@@ -2,6 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 onMapSingleClick{
+	if(!(isNull objectParent player) && ("ItemGPS" in (assigneditems player)))exitWith{};
 	hint "";
 	terminate bftHandle;
 	_prevDis = 999;
