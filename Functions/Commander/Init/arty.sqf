@@ -1,9 +1,9 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-artyGroup = createGroup east;
-artyGroup setVariable["JOC_caching_disabled",true];
-[artyGroup]call JOC_setGroupID;
+_artyGroup = createGroup east;
+_artyGroup setVariable["JOC_caching_disabled",true];
+[_artyGroup]call JOC_setGroupID;
 _tankBlacklist = [];
 
 _s = 0;
@@ -15,7 +15,7 @@ while{_s < 4}do{
 	_static = _location nearestObject "rhs_KORD_high_VDV";
 	createVehicleCrew _static;
 	(gunner _static) setVariable["JOC_caching_disabled",true];
-	(crew _static) joinSilent artyGroup;
+	(crew _static) joinSilent _artyGroup;
 
 	_nameS = format ["mrk_strategic_arty_%1",_s];
 	_marker = createMarker [_nameS, _location];
@@ -49,7 +49,7 @@ while{_s < 4}do{
 	_arty2 addEventHandler["fired", {(_this select 0) setVehicleAmmo 1}];
 	_arty2 setFuel 0;
 
-	((crew _arty1) + (crew _arty2)) joinSilent artyGroup;
+	((crew _arty1) + (crew _arty2)) joinSilent _artyGroup;
    	_s = _s + 1;
 };
 

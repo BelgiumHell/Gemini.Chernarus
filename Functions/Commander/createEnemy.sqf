@@ -2,6 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 {
+    _index = _forEachIndex;
     _pos = _x select 0;
     _priority = _x select 1;
     _type = _x select 2;
@@ -60,11 +61,11 @@
     };
 
     {
-        virtualizedArray select _x set [3,currentGroupID];
-        assignedArray pushBack [currentGroupID,_forEachIndex];
+        (virtualizedArray select _x) set [3,currentGroupID];
+        assignedArray pushBack [currentGroupID,_index];
         currentGroupID = currentGroupID + 1;
     } forEach (_groups + _groupsB);
 
-} forEach strategicArray;
+    //(strategicArray select _forEachIndex) set [5,_index];
 
-//[]spawn JOC_cmdCmdLoop;-needs replacing with CBA_fnc_addPerFrameHandler
+} forEach strategicArray;

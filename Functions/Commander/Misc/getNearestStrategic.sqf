@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_pos","_type","_minDistance","_playerA"];
+params["_pos","_type","_distance","_playerA"];
 
 if(isNil{_playerA})then{
     _playerA = [false,0];
@@ -23,7 +23,7 @@ _posArray = [];
 _prevDis = 999999;
 _closeP = [0,0,0];
 {
-    if((_pos distance2D _x) < _prevDis && (_pos distance2D _x) > _minDistance)then{
+    if((_pos distance2D _x) < _prevDis && (_pos distance2D _x) > (_distance select 0) && (_pos distance2D _x) < (_distance select 1))then{
         _prevDis = (_pos distance2D _x);
         _closeP = _x;
     };

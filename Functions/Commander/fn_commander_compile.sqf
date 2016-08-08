@@ -26,6 +26,7 @@ JOC_cmdInitFactory = compileFinal preprocessFileLineNumbers "Functions\Commander
 JOC_cmdInitMine = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\mine.sqf";
 JOC_cmdInitRadio = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\radio.sqf";
 JOC_cmdInitRoadblock = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\roadblock.sqf";
+JOC_cmdInitStatic = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\static.sqf";
 JOC_cmdInitTown = compileFinal preprocessFileLineNumbers "Functions\Commander\Init\town.sqf";
 
 //Logistics
@@ -40,6 +41,8 @@ JOC_cmdMiscMonitorStrategic = compileFinal preprocessFileLineNumbers "Functions\
 JOC_cmdMiscRadar = compileFinal preprocessFileLineNumbers "Functions\Commander\Misc\radar.sqf";
 
 //Patrol
+JOC_cmdPatrolArea= compileFinal preprocessFileLineNumbers "Functions\Commander\Patrol\Area.sqf";
+JOC_cmdPatrolStrategic = compileFinal preprocessFileLineNumbers "Functions\Commander\Patrol\Strategic.sqf";
 
 //Spawning
 JOC_cmdSpawnBase = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\base.sqf";

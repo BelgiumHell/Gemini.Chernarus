@@ -2,7 +2,6 @@
 //Script made by Jochem//
 /////////////////////////
 [[],{
-/*Notes: jetActive is not saved due to techical limitations, all special behaviour scripts are also interrupted. Need to find a way to handle support scripts like convoy/heli insertion (I disabled all AI features until I can save them)*/
     _inidbi = 0;
     _inidbiBack = 0;
     if(saveCount/2 == round(saveCount/2))then{
@@ -13,9 +12,7 @@
         _inidbiBack = inidbiDB1;
     };
 
-    [[],{
-        hint "Mission is being saved, you may experience some desync and framedrops";
-    }] remoteExec ["BIS_fnc_spawn", 0, true];
+    diag_log format["Starting save #%1 at %2 since mission load", saveCount + 1, diag_tickTime];
 
     //Delete existing main database content
     ["deleteSection", "main"] call _inidbi;
@@ -27,7 +24,11 @@
     //StrategicArray
     {
         _array = [(_x select 0),(_x select 1),(_x select 2),[format["%1",(_x select 3)], getMarkerPos (_x select 3), markerShape (_x select 3), getMarkerSize (_x select 3), markerBrush (_x select 3), getMarkerColor (_x select 3)],(_x select 4)];
-        ["write", ["main",format["strategicArray_%1",_forEachIndex], _array]] call _inidbi;
+        _success = ["write", ["main",format["strategicArray_%1",_forEachIndex], _array]] call _inidbi;
+
+        if(!_success)then{
+            diag_log format["Failed to save %1 at %2 (strategicArray)", _array, diag_tickTime];
+        };
     } forEach strategicArray;
 
     //Units
@@ -38,19 +39,35 @@
         };
     } forEach allGroups;
     {
-        ["write", ["main", format["virtualizedArray_%1",_forEachIndex], _x]] call _inidbi;
+        _success = ["write", ["main", format["virtualizedArray_%1",_forEachIndex], _x]] call _inidbi;
+
+        if(!_success)then{
+            diag_log format["Failed to save %1 at %2 (virtualizedArray)", _x, diag_tickTime];
+        };
     } forEach (_unitArray + virtualizedArray);
 
     {
-        ["write", ["main", format["orderArray_%1",_forEachIndex], _x]] call _inidbi;
+        _success = ["write", ["main", format["orderArray_%1",_forEachIndex], _x]] call _inidbi;
+
+        if(!_success)then{
+            diag_log format["Failed to save %1 at %2 (orderArray)", _x, diag_tickTime];
+        };
     } forEach orderArray;
 
     {
-        ["write", ["main", format["requestArray_%1",_forEachIndex], _x]] call _inidbi;
+        _success = ["write", ["main", format["requestArray_%1",_forEachIndex], _x]] call _inidbi;
+
+        if(!_success)then{
+            diag_log format["Failed to save %1 at %2 (requestArray)", _x, diag_tickTime];
+        };
     } forEach requestArray;
 
     {
-        ["write", ["main", format["assignedArray_%1",_forEachIndex], _x]] call _inidbi;
+        _success = ["write", ["main", format["assignedArray_%1",_forEachIndex], _x]] call _inidbi;
+
+        if(!_success)then{
+            diag_log format["Failed to save %1 at %2 (assignedArray)", _x, diag_tickTime];
+        };
     } forEach assignedArray;
 
     _fobArray = [];
@@ -81,13 +98,12 @@
         ["write", ["main", format["damageValues_%1",_forEachIndex], _x]] call _inidbi;
     } forEach _damageValues;
 
+    ["write", ["main", "currentGroupID", currentGroupID]] call _inidbi;
+
     ["write", ["header", "saved", true]] call _inidbi;
     ["write", ["header", "saved", false]] call _inidbiBack;
 
     saveCount = saveCount + 1;
 
-    diag_log format["Saved mission at %1 since mission load", diag_tickTime];
-    [[],{
-        hint "Mission saved";
-    }] remoteExec ["BIS_fnc_spawn", 0, true];
+    diag_log format["Finished save #%1 at %2 since mission load", saveCount, diag_tickTime];
 }] remoteExec ["BIS_fnc_spawn", 2];

@@ -1,24 +1,43 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_class = _this select 0;
+params["_class"];
 
-_object = _class createVehicle getPos player;
+_posH = player modelToWorld [0,5,0];
+_pos = [_posH select 0,_posH select 0,0];
+_object = _class createVehicleLocal _pos;
 
-_object attachTo [player,[0,5,0]];
-player setVariable["building",true,true];
-_object setVariable ["buildHeight",0];
-player setVariable ["buildObject",_object];
+[_object]spawn{
+    params["_object"];
+    while{alive _object}do{
+        _posH = player modelToWorld [0,5,0];
+        _pos = [_posH select 0,_posH select 0,0];
+        _object setVehiclePosition [_pos, [], 0, "CAN_COLLIDE"];
+    };
+};
 
-player addAction ["<t color='#0000ff'>Place</t>", {
-    _object = (attachedObjects player select 0);
-    detach _object; removeAllActions player;
-    [[_object],{
-        params["_object"];
+_id1 = player addAction["<t color='#0000ff'>Place object</t>",{
+    player removeAction (_this select 2);
+    player removeAction ((_this select 2) + 1);
 
-        _action = _object addAction["<t color='#ff1111'>Remove</t>",{deleteVehicle (_this select 0)},"",1,true,true,"","(vehicleVarName _this) in logisticsArray"];
-    }] remoteExec ["BIS_fnc_spawn", 0, true];
+    [30, [(_this select 3)], {
+        _type = typeOf (_this select 0);
+        _pos = getPosASL (_this select 0);
+        deleteVehicle (_this select 0);
+        _object = _class createVehicle _pos;
+        _object setPosASL _pos;
 
-    [[[_object],{_action = (_this select 0) addAction["<t color='#ff1111'>Remove</t>",{deleteVehicle (_this select 0)},"",1,true,true,"","(format[""%1"",_this]) in logisticsArray"];}],"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
-}];
-player addAction ["<t color='#ff1111'>Cancel</t>", {_object = player getVariable "buildObject"; detach _object; deleteVehicle _object; removeAllActions player; player setVariable ["buildObject",objNull];}];
+        [[_object],{
+            params["_object"];
+            _actionR = ["removeObject", "Remove object", "", {deleteVehicle (_this select 0)}, {true}]call ace_interact_menu_fnc_createAction;
+            [_object, 0, ["ACE_MainActions"], _actionR]call ace_interact_menu_fnc_addActionToObject;
+        }] remoteExec ["BIS_fnc_spawn", 2, true];
+    }, {
+        deleteVehicle (_this select 0);
+    }, "Building"] call ace_common_fnc_progressBar
+},_object,8];
+_id2 = player addAction["<t color='#ff1111'>Cancel placement</t>",{
+    deleteVehicle (_this select 3);
+    player removeAction ((_this select 2) - 1);
+    player removeAction (_this select 2);
+},_object,7];

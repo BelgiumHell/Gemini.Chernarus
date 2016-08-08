@@ -5,10 +5,8 @@ JOC_missionInit = compileFinal preprocessFileLineNumbers "missionInit.sqf";
 
 //AI
 JOC_aiManager = compileFinal preprocessFileLineNumbers "Functions\AI\aiManager.sqf";
-JOC_cache = compileFinal preprocessFileLineNumbers "Functions\AI\cache.sqf";
-JOC_cacheUnits = compileFinal preprocessFileLineNumbers "Functions\AI\cacheUnits.sqf";
+JOC_cleanUp = compileFinal preprocessFileLineNumbers "Functions\AI\cleanUp.sqf";
 JOC_virtualize = compileFinal preprocessFileLineNumbers "Functions\AI\virtualize.sqf";
-JOC_unCache = compileFinal preprocessFileLineNumbers "Functions\AI\unCache.sqf";
 JOC_unVirtualize = compileFinal preprocessFileLineNumbers "Functions\AI\unVirtualize.sqf";
 
 //Bluforce tracking
@@ -54,23 +52,12 @@ JOC_playerInit = compileFinal preprocessFileLineNumbers "Functions\Player\init.s
 JOC_playerLoop = compileFinal preprocessFileLineNumbers "Functions\Player\loop.sqf";
 JOC_playerSmkGren = compileFinal preprocessFileLineNumbers "Functions\Player\smkGren.sqf";
 
-//Tasks
-/*#include "Tasks\fn_task_compile.sqf";
-JOC_taskManager = compileFinal preprocessFileLineNumbers "Functions\Tasks\taskManager.sqf";
-JOC_task_boat = compileFinal preprocessFileLineNumbers "Functions\Tasks\boat.sqf";
-JOC_taskCrash = compileFinal preprocessFileLineNumbers "Functions\Tasks\crashedChopper.sqf";
-JOC_taskKill = compileFinal preprocessFileLineNumbers "Functions\Tasks\kill.sqf";
-JOC_taskRescue = compileFinal preprocessFileLineNumbers "Functions\Tasks\rescue.sqf";
-JOC_taskUav = compileFinal preprocessFileLineNumbers "Functions\Tasks\uav.sqf";
-JOC_getMainTasks = compileFinal preprocessFileLineNumbers "Functions\Tasks\getMainTasks.sqf";
-JOC_setMainTask = compileFinal preprocessFileLineNumbers "Functions\Tasks\setMainTask.sqf";*/
-
 //Save
 JOC_saveMission = compileFinal preprocessFileLineNumbers "Functions\Save\save.sqf";
 JOC_saveVirtualize = compileFinal preprocessFileLineNumbers "Functions\Save\virtualize.sqf";
 
 //Vehicle
-JOC_vehInit = compileFinal preprocessFileLineNumbers "Functions\Vehicle\vehInit.sqf";
+JOC_vehInit = compileFinal preprocessFileLineNumbers "Functions\Vehicle\init.sqf";
 JOC_service = compileFinal preprocessFileLineNumbers "Functions\Vehicle\service.sqf";
 JOC_vehCDU = compileFinal preprocessFileLineNumbers "Functions\Vehicle\cdu.sqf";
 JOC_vehRespawn = compileFinal preprocessFileLineNumbers "Functions\Vehicle\respawn.sqf";

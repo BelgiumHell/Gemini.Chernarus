@@ -37,20 +37,25 @@ if(musicPlay && (vehicle player) != player && _time < time)then{
 };*/
 
 //Zeus
-/*if(!isNull curatorCamera)then{
+if(!isNull curatorCamera)then{
 	_curator = (getAssignedCuratorLogic player);
 	[[_curator],{
 		_curator = _this select 0;
 		_curator addCuratorEditableObjects [allUnits,false];
 		_curator addCuratorEditableObjects [allDead,false];
 		_curator addCuratorEditableObjects [vehicles,false];
-		_curator removeCuratorEditableObjects [objectsStart,false];
+		//_curator removeCuratorEditableObjects [objectsStart,false];
 	}] remoteExec ["BIS_fnc_spawn", 2];
-};*/
+};
 
 //Radio jamming (experimental)
 if((count (nearestObjects [player, ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"], 2000])) > 0)then{
 	if(isNull radioHandle)then{
+		{
+		    orgChannel pushBack [_x,[_x]call acre_api_fnc_getRadioChannel];
+		} forEach ([]call acre_api_fnc_getCurrentRadioList);
+
+		orgChannel = [[]call acre_api_fnc_getCurrentRadio]call acre_api_fnc_getRadioChannel;
 		radioHandle = [{
 			_radios = []call acre_api_fnc_getCurrentRadioList;
 			{
@@ -60,5 +65,11 @@ if((count (nearestObjects [player, ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"], 
 	};
 }else{
 	[radioHandle]call CBA_fnc_removePerFrameHandler;
+
+	{
+	    [_x select 0, _x select 1]call acre_api_fnc_setRadioChannel;
+	} forEach orgChannel;
+	orgChannel = [];
+
     radioHandle = scriptNull;
 };

@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_array","_oUnits","_bUnits"];
+params["_array"];
 private["_category","_clearence","_types"];
 
 _pos = _array select 0;
@@ -36,21 +36,21 @@ switch (_category) do {
         _typesSupport = ["armor"];
     };
     case 3:{
-        _typesDirect = ["near"];
+        _typesDirect = [];
         _typesMain = ["retreat"];
         _typesSupport = [];
     };
 };
 
 //Select types
-_typeDirect = _typesDirect call BIS_fnc_selectRandom;
-_typeMain = _typesMain call BIS_fnc_selectRandom;
-_typeSupport = _typesSupport call BIS_fnc_selectRandom;
+_typeDirect = selectRandom _typesDirect;
+_typeMain = selectRandom _typesMain;
+_typeSupport = selectRandom _typesSupport;
 
 //Execute
 switch (_typeDirect) do {
     case ("near"): {
-        [_array]spawn JOC_cmdDefNear;
+        requestArray pushBack [[1,5],_array,_category != 1];
     };
     default {
 
@@ -58,13 +58,13 @@ switch (_typeDirect) do {
 };
 switch (_typeMain) do {
     case ("convoy"): {
-        [_array,_category]spawn JOC_cmdDefConvoy;
+        requestArray pushBack [[1,2],_array,_category != 1];
     };
     case ("heli"): {
-        [_array,_category]spawn JOC_cmdDefHeli;
+        requestArray pushBack [[1,3],_array,_category != 1];
     };
     case ("retreat"): {
-        [_array]spawn JOC_cmdDefRetreat;
+        requestArray pushBack [[1,4],_array,_category != 1];
     };
     default {
 
@@ -72,10 +72,10 @@ switch (_typeMain) do {
 };
 switch (_typeSupport) do {
     case ("armor"): {
-        [_array,_category]spawn JOC_cmdDefArmor;
+        requestArray pushBack [[1,0],_array,_category != 1];
     };
     case ("cas"): {
-        [_array]spawn JOC_cmdDefCas;
+        requestArray pushBack [[1,1],_array,_category != 1];
     };
     default {
 
@@ -83,6 +83,6 @@ switch (_typeSupport) do {
 };
 
 //Chance for arty support
-if(random 1.5 * _category < 1)then{
-    [_pos]spawn JOC_cmdAttackArty;
+if(-_category + 2.5 + (random 1) < 1)then{
+    requestArray pushBack [[1,1],_array,_category != 1];
 };

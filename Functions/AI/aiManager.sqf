@@ -12,7 +12,11 @@ if(JOC_pauseCache)exitWith{};
     };
     if(side _x != west)then{
         if(!([getPosASL (leader _x), 1100, ["plane"]]call JOC_playersNear))then{
-            [_x]call JOC_virtualize;
+            if(_x getVariable ["JOC_cleanUp",false])then{
+                [_x]call JOC_cleanUp;
+            }else{
+                [_x]call JOC_virtualize;
+            };
         };
     };
 } forEach allGroups;
@@ -20,7 +24,7 @@ if(JOC_pauseCache)exitWith{};
 //Unvirtualizing
 {
     if(isNil{_x select 3} || (_x select 3 == -1))then{
-        _x pushBack currentGroupID;
+        _x set [3,currentGroupID];
         currentGroupID = currentGroupID + 1;
     };
     if(count (_x select 0) == 0)then{

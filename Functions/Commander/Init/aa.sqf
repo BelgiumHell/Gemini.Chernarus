@@ -4,8 +4,6 @@
 _tankBlacklist = [];
 
 //"Activate" radars
-radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
-
 {
 	_location = getPos _x;
 

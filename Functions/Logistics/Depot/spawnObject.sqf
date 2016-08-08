@@ -6,13 +6,12 @@ _unable = true;
 
 //Get spawn obj
 {
-	_veh = (nearestObjects [(getPosWorld _x),["All"],3] - [_x]);
-	if((count _veh) >= 1)then{
-	}else{
-		_obj = _type createVehicle [99995,99995,0];
+	_veh = (nearestObjects [(getPosASL _x),["All"],3] - [_x]);
+	if((count _veh) == 0)then{
+		_obj = _type createVehicle [99995,99995,10];
 		_obj setDir (getDir _x);
-		_obj setPosWorld (getPosWorld _x);
-		[_obj]spawn JOC_vehInit;
+		_obj setPosASL (getPosASL _x);
+		[_obj]spawn JOC_crateInit;
 		_unable = false;
 	};
 	if((count _veh) == 0)exitWith{};

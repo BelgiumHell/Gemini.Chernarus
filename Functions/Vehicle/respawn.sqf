@@ -17,9 +17,23 @@
             _veh setVariable ["ace_medical_medicClass", 1];
         };
 
+        //Custom abrams settings
+        if((_x select 0) == "rhsusf_m1a1fep_wd")then{
+            _veh animate ["DUKE_Hide",0,true];
+            _veh animate ["IFF_Panels_Hide",1,true];
+
+            _veh setVariable ["rhs_ammoslot_1_type", "rhs_mag_M829A3"];
+            _veh setVariable ["rhs_ammoslot_2_type", "rhs_mag_M830"];
+            _veh setVariable ["rhs_ammoslot_3_type", "rhs_mag_M1069"];
+
+            [_veh,19,"rhs_ammoslot_1"]spawn rhs_fnc_m1_defineLoadout;
+            [_veh,8,"rhs_ammoslot_2"]spawn rhs_fnc_m1_defineLoadout;
+            [_veh,7,"rhs_ammoslot_3"]spawn rhs_fnc_m1_defineLoadout;
+        };
+
         //heli
         if(_veh isKindOf "Helicopter")then{
-            //[_veh]call ace_fastroping_fnc_equipFRIES;
+            [_veh]call ace_fastroping_fnc_equipFRIES;
         };
 
         //Spawn uav crew

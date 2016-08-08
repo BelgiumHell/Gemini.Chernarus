@@ -30,7 +30,7 @@ switch (_array select 2) do {
 		_objects = _pos nearEntities [[artyClass],100];
 		if(((_objects select 0) ammo (currentWeapon (_objects select 0))) < 0.3)then{
 			if(!_ammo)then{
-				requestArray pushBack [[2,0],_array,true,true];
+				requestArray pushBack [[2,0],_array,true];
 				_ammo = true;
 			};
 		}else{
@@ -72,11 +72,14 @@ if(_nearWest == 0)exitWith{};
 _nearEast = east countSide (_pos nearEntities [["Man","Car","Tank"],_size]);
 
 //Set blufor owner
-if(_nearEast == 0 && _nearWest > 0 && _owner == 1)then{
+if(_nearEast == 0 && _nearWest > 0 && _owner in [1,2])then{
     (strategicArray select _id) set [4, 0];
 };
 
 //Set opfor owner
+if(_nearWest == 0 && _nearEast >= 0 && _owner == 3)then{
+    (strategicArray select _id) set [4, 1];
+};
 if(_nearWest == 0 && _nearEast > 0 && _owner == 0)then{
     (strategicArray select _id) set [4, 1];
 };
@@ -85,8 +88,7 @@ if(_nearEast > 0 && _nearWest > 0)then{
     if(_owner == 1)then{
         (strategicArray select _id) set [4, 2];
         if(_nearWest > (_nearEast * 0.5))then{
-            //[_array,(list _trgO),(list _trgB)]spawn JOC_cmdCmdreqSupport;
-        	//[]call JOC_
+            [_array]spawn JOC_cmdCmdreqSupport;
         };
     };
     if(_owner == 0)then{

@@ -3,8 +3,18 @@
 /////////////////////////
 params ["_group"];
 
-if(_group getVariable "JOC_caching_disabled")exitWith{};
+if(_group getVariable ["JOC_caching_disabled",false])exitWith{};
 _units = units _group;
+
+_waypoints = [];
+{
+    _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x, waypointStatements _x, waypointBehaviour _x, waypointCompletionRadius _x];
+} forEach waypoints _group;
+_waypoints deleteAt 0;
+
+_formation = formation _group;
+_behaviour = behaviour (leader _group);
+_speed = speedMode _group;
 
 _vehicles = [];
 _vehiclesTemp = [];
@@ -47,11 +57,5 @@ if((_x getVariable ["groupID", -1]) == -1)then{
     [_x]call JOC_setGroupID;
 };
 
-_waypoints = [];
-{
-    _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x];
-} forEach waypoints _group;
-_waypoints deleteAt 0;
-
-_array = [_unitClasses,_vehicles,false,_group getVariable "groupID",_waypoints,formation _group];
+_array = [_unitClasses,_vehicles,false,_group getVariable "groupID",_waypoints,_formation,_behaviour,_speed];
 virtualizedArray pushBack _array;

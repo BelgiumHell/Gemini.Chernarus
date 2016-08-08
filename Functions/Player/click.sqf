@@ -2,9 +2,9 @@
 //Script made by Jochem//
 /////////////////////////
 onMapSingleClick{
-	if(!(isNull objectParent player) && ("ItemGPS" in (assigneditems player)))exitWith{};
+	if(!(isNull objectParent player) || ("ItemGPS" in (assigneditems player)))exitWith{};
 	hint "";
-	terminate bftHandle;
+	//terminate bftHandle;
 	_prevDis = 999;
 	_groupIdG = "";
 	_group = 0;
@@ -41,6 +41,7 @@ onMapSingleClick{
 
 		_freq = 0;
 		_block = 1;
+		{player setAmmo [primaryWeapon player, 1];} remoteExec ["bis_fnc_call", 0];
 		{
 			_freq = [[]call acre_api_fnc_getCurrentRadio]call acre_api_fnc_getRadioChannel;
 		}forEach [(leader _group)];
@@ -58,6 +59,6 @@ onMapSingleClick{
 		_text = composeText [_text, lineBreak, _unitText, lineBreak, lineBreak, _freqText];
 		hint _text;
 
-		bftHandle = [_unitsG]spawn JOC_bftDrawUnits;
+		//bftHandle = [_unitsG]spawn JOC_bftDrawUnits;
 	};
 };

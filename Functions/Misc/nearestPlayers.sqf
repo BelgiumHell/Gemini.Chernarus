@@ -4,14 +4,14 @@
 params["_pos","_radius","_blacklist","_knows"];
 
 if(isNil{_knows})then{
-    _knows = false;
+    _knows = [false,objNull];
 };
 
 _nearestPlayers = [];
 {
     if((getPosASL _x) distance _pos <= _radius && !(typeOf (vehicle _x) in _blacklist))then{
-        if(_knows)then{
-            if(east knowsAbout _x)then{
+        if(_knows select 0)then{
+            if((_knows select 1) knowsAbout _x)then{
                 _nearestPlayers pushBack _x;
             };
         }else{

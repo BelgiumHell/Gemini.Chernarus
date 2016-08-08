@@ -67,4 +67,4 @@ _groups = [];
 		    _x setMarkerAlphaLocal 1;
 		} forEach _bftMarkers;
 	};
-} forEach allPlayers;
+} remoteExec ["bis_fnc_call", -2]; 

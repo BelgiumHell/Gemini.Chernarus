@@ -10,7 +10,7 @@ player allowDamage true;
 
 ["Preload"]call XLA_fnc_arsenal;
 
-[]call JOC_playerClick;
+//[]call JOC_playerClick;
 []call JOC_createDiary;
 []call JOC_loadoutMaster;
 [JOC_playerLoop, 10, []]call CBA_fnc_addPerFrameHandler;
@@ -19,6 +19,7 @@ player allowDamage true;
 //cduEnabled = false;
 //musicPlay = false;
 radioHandle = scriptNull;
+orgChannel = [];
 
 waitUntil{alive player};
 

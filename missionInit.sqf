@@ -3,14 +3,15 @@
 /////////////////////////
 
 //Note to user:
-//This is the only file in the mission meant to be edited, also the only one containing good commenting on user variables.
+//This is the only file in the mission meant to be edited, also the only one containing good commenting on variables.
 //Do not edit below 'do not edit' mark or an other file in this mission without knowledge of ArmA SQF scripting.
 
 //Parameters *FREE TO EDIT*
 //Classnames
 infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_aa","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
 sfPool       = ["rhs_vdv_recon_marksman_vss","rhs_vdv_recon_marksman_asval","rhs_vdv_recon_grenadier_scout","rhs_vdv_recon_rifleman_scout","rhs_vdv_recon_rifleman_scout_akm"];
-staticPool   = [];
+staticPoolAA = ["RHS_ZU23_VDV"];
+staticPoolMG = [];
 carPool      = ["rhs_tigr_m_vdv","rhs_tigr_sts_vdv","rhs_tigr_vdv"];        //car classnames
 truckPool    = ["RHS_Ural_VDV_01","RHS_Ural_Open_VDV_01"];        //truck classnames
 apcPool      = ["rhs_btr80a_vdv","rhs_btr80_vdv"];       //apc classnames
@@ -27,6 +28,7 @@ artyClass    = "rhs_2s3_tv";    //Arty classname
 aaClass      = "rhs_zsu234_aa"; //AA classname
 fobClass     = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"; //Fob classname
 emptyClass   = "Land_Airport_center_F";  //Large object, don't change or delete
+roofPool     = ["Land_Offices_01_V1_F"];
 
 //Markers
 blackTowns = ["Sagonisi"];  //Blacklist towns to not get any strategic value
@@ -62,7 +64,7 @@ heliTargets = [];
 activeTasks = [];   //Not being used
 fobTrucks = [];
 vehArray = [];
-radars = [];
+radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
 jetActive = false;
 
 //vars for AI commander
@@ -141,25 +143,22 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         _index = _index + 1;
     };
 
-    {
-        if(_x select 2)then{
-            [_x]call JOC_unVirtualize;
-        };
-    } forEach virtualizedArray;
-
     //Orderarray
+    _index = 0;
     while{typeName (["read", ["main", format["orderArray_%1",_index],0]] call _inidbi) != typeName 0}do{
         orderArray pushBack (["read", ["main", format["orderArray_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
 
     //RequestArray
+    _index = 0;
     while{typeName (["read", ["main", format["requestArray_%1",_index],0]] call _inidbi) != typeName 0}do{
         requestArray pushBack (["read", ["main", format["requestArray_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
 
     //assignedArray
+    _index = 0;
     while{typeName (["read", ["main", format["assignedArray_%1",_index],0]] call _inidbi) != typeName 0}do{
         assignedArray pushBack (["read", ["main", format["assignedArray_%1",_index]]] call _inidbi);
         _index = _index + 1;
@@ -204,6 +203,8 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
             [_truck]call JOC_fobDeploy;
         };
     } forEach _fobArray;
+
+    currentGroupID = ["read", ["main", "currentGroupID",[]]] call _inidbi;
 }else{
     "delete" call inidbiDB1;
     "delete" call inidbiDB2;
@@ -231,7 +232,7 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         waitUntil{!isNil{JOC_playerInit}};
         []spawn JOC_playerInit;
     };
-}] remoteExec ["BIS_fnc_spawn", 0, true];;
+}] remoteExec ["BIS_fnc_spawn", 0, true];
 
 []call JOC_initPlayerBase;
 []call JOC_initDepot;
@@ -244,13 +245,14 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
 [JOC_saveMission, 300, []]call CBA_fnc_addPerFrameHandler;
 [JOC_cmdMiscRadar, 10, []]call CBA_fnc_addPerFrameHandler;
 [JOC_vehRespawn, 3600, []]call CBA_fnc_addPerFrameHandler;
-[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
+[JOC_cmdCmdLoop, 12, []]call CBA_fnc_addPerFrameHandler;
+//[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
 {
     _marker = _x select 3;
     _marker setMarkerAlpha 0;
 } forEach strategicArray;
-/*[{
+[{
     {
         [_x,_forEachIndex]call JOC_cmdMiscMonitorStrategic;
     } forEach strategicArray;
-}, 15, []]call CBA_fnc_addPerFrameHandler;*/
+}, 15, []]call CBA_fnc_addPerFrameHandler;

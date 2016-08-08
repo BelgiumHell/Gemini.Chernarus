@@ -38,25 +38,38 @@ if(count (_array select 1) > 0)then{
     } forEach (_array select 1);
 };
 
-if(!isNil{_array select 2})then{
+if(count _array > 2)then{
     if(_array select 2)then{
         _group setVariable ["JOC_caching_disabled", true];
     };
 };
 
-if(isNil{_array select 3})then{
+if(count _array > 3)then{
     [_group]call JOC_setGroupID;
 }else{
     _group setVariable ["groupID", (_array select 3)];
 };
 
-{
-    _wp = _group addWaypoint [(_x select 1), 0];
-    _wp setWaypointType (_x select 0);
-    _wp setWaypointFormation (_x select 2);
-    _wp setWaypointSpeed (_x select 3);
-} forEach (_array select 4);
+if(count _array > 4)then{
+    {
+        _wp = _group addWaypoint [(_x select 1), 0];
+        _wp setWaypointType (_x select 0);
+        _wp setWaypointFormation (_x select 2);
+        _wp setWaypointSpeed (_x select 3);
+        _wp setWaypointStatements (_x select 4);
+        _wp setWaypointBehaviour (_x select 5);
+        _wp setWaypointCompletionRadius (_x select 6);
+    } forEach (_array select 4);
+};
 
-if(!isNil{(_array select 5)})then{
+if(count _array > 5)then{
     _group setFormation (_array select 5);
+};
+
+if(count _array > 6)then{
+    _group setBehaviour (_array select 6);
+};
+
+if(count _array > 7)then{
+    _group setSpeedMode (_array select 7);
 };

@@ -28,5 +28,8 @@
 //Roadblocks
 //[]call JOC_cmdInitRoadblock; -doesn't work very well
 
+//Static AA on rooftops
+[]call JOC_cmdInitStatic;
+
 //Town
 []call JOC_cmdInitTown;

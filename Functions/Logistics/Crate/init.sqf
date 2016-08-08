@@ -11,5 +11,5 @@ clearItemCargoGlobal _crate;
 
 //FOB crate
 if(_cratetype == "B_Slingload_01_Cargo_F")then{
-	[_crate]spawn JOC_buildCrateInit;
+	[_crate]call JOC_buildInit;
 };

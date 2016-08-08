@@ -3,6 +3,8 @@
 /////////////////////////
 params ["_group"];
 
+if(_group getVariable ["JOC_cleanUp",false])exitWith{_array = []; _array};
+
 _units = units _group;
 
 _vehicles = [];
@@ -38,16 +40,20 @@ _unitClasses = [];
 } forEach _units;
 
 _caching = false;
-if((_units select 0) getVariable "JOC_caching_disabled")then{
+if(_group getVariable ["JOC_caching_disabled",false])then{
     _caching = true;
 };
 
 _waypoints = [];
 {
-    _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x];
+    _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x, waypointStatements _x, waypointBehaviour _x, waypointCompletionRadius _x];
 } forEach waypoints _group;
 _waypoints deleteAt 0;
 
-_array = [_unitClasses,_vehicles,_caching,_group getVariable "groupID",_waypoints];
+_formation = formation _group;
+_behaviour = behaviour (leader _group);
+_speed = speedMode _group;
+
+_array = [_unitClasses,_vehicles,_caching,_group getVariable "groupID",_waypoints,_formation,_behaviour,_speed];
 
 _array
