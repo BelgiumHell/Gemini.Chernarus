@@ -88,7 +88,7 @@ if((vehicleVarName player) in ["s_1","s_1_1","s_2_1"])then{
 };
 
 //Medic
-if((vehicleVarName player) in ["s_2","s_1_2","s_1_2","s_1_1_2","s_1_2_2","s_2_1_2","s_2_2_2"])then{
+if((vehicleVarName player) in ["s_2","s_1_2","s_1_2"])then{
 	_weapons = (_weapons + []);
 	_magazines = (_magazines + []);
 	_uniforms = [(_uniforms + [])];

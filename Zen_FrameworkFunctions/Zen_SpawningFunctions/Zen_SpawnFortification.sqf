@@ -22,7 +22,7 @@ _hasMG = false;
 _staticWeapon = objNull;
 
 while {_i < 352} do {
-    _class = "Land_HBarrierBig_F";
+    _class = [FORT_CLASSES] call Zen_ArrayGetRandom;
     _distanceError = [-2, 2] call Zen_FindInRange;
     _spawnPos = [_center, _distance + _distanceError, _i] call Zen_ExtendPosition;
 

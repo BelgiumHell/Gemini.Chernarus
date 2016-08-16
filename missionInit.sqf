@@ -24,7 +24,6 @@ jetPoolAG    = ["RHS_Su25SM_KH29_vvs"];       //jet classnames (anti-ground)
 jetPoolAA    = ["RHS_T50_vvs_blueonblue"];       //jet classnames (anti-air)
 crewClass    = "rhs_vdv_combatcrew";    //Crewman classname
 pilotClass   = "rhs_pilot";   //Pilot classname
-officerClass = ""; //Officer classname
 artyClass    = "rhs_2s3_tv";    //Arty classname
 aaClass      = "rhs_zsu234_aa"; //AA classname
 fobClass     = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"; //Fob classname
@@ -65,10 +64,8 @@ heliTargets = [];
 activeTasks = [];   //Not being used
 fobTrucks = [];
 vehArray = [];
-radarsEast = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
-radarsWest = [];
+radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
 jetActive = false;
-jetReady = true;
 
 //vars for AI commander
 orderArray = [];
@@ -88,7 +85,6 @@ publicVariable "CHVD_maxObj";
 //Init caching vars
 JOC_pauseCache = false;
 currentGroupID = 0;
-currentRequestID = 0;
 
 //Most important arrays
 strategicArray = [];
@@ -208,10 +204,7 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         };
     } forEach _fobArray;
 
-    currentGroupID = ["read", ["main", "currentGroupID", -1]] call _inidbi;
-    currentRequestID = ["read", ["main", "currentRequestID", -1]] call _inidbi;
-    jetActive = ["read", ["main", "jetActive", false]] call _inidbi;
-    jetReady = ["read", ["main", "jetReady", false]] call _inidbi;
+    currentGroupID = ["read", ["main", "currentGroupID",[]]] call _inidbi;
 }else{
     "delete" call inidbiDB1;
     "delete" call inidbiDB2;
@@ -223,10 +216,6 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
     }] remoteExec ["BIS_fnc_spawn", 0, true];
 
     []call JOC_cmdCreateEnemy;
-
-    [[],{
-            progressLoadingScreen 0.9;
-        }] remoteExec ["BIS_fnc_spawn", 0, true];
 
     //This is saved in the beginning because it would kill the server trying to do it every 5 minutes
     {
@@ -241,7 +230,7 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
     JOC_serverLoaded = true;
     if(!isServer)then{
         waitUntil{!isNil{JOC_playerInit}};
-        []call JOC_playerInit;
+        []spawn JOC_playerInit;
     };
 }] remoteExec ["BIS_fnc_spawn", 0, true];
 
@@ -256,14 +245,14 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
 [JOC_saveMission, 300, []]call CBA_fnc_addPerFrameHandler;
 [JOC_cmdMiscRadar, 10, []]call CBA_fnc_addPerFrameHandler;
 [JOC_vehRespawn, 3600, []]call CBA_fnc_addPerFrameHandler;
-[JOC_cmdCmdLoop, 30, []]call CBA_fnc_addPerFrameHandler;
+[JOC_cmdCmdLoop, 12, []]call CBA_fnc_addPerFrameHandler;
 //[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
 {
     _marker = _x select 3;
     _marker setMarkerAlpha 0;
 } forEach strategicArray;
-/*[{
+[{
     {
         [_x,_forEachIndex]call JOC_cmdMiscMonitorStrategic;
     } forEach strategicArray;
-}, 15, []]call CBA_fnc_addPerFrameHandler;*/
+}, 15, []]call CBA_fnc_addPerFrameHandler;

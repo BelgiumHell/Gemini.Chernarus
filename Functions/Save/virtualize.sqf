@@ -3,18 +3,9 @@
 /////////////////////////
 params ["_group"];
 
-if(_group getVariable ["JOC_caching_disabled",false])exitWith{};
+if(_group getVariable ["JOC_cleanUp",false])exitWith{_array = []; _array};
+
 _units = units _group;
-
-_waypoints = [];
-{
-    _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x, waypointStatements _x, waypointBehaviour _x, waypointCompletionRadius _x];
-} forEach waypoints _group;
-_waypoints deleteAt 0;
-
-_formation = formation _group;
-_behaviour = behaviour (leader _group);
-_speed = speedMode _group;
 
 _vehicles = [];
 _vehiclesTemp = [];
@@ -45,17 +36,24 @@ _vehiclesTemp = [];
 
 _unitClasses = [];
 {
-    _unitClasses pushBack [typeOf _x,getPos _x,skill _x];
-    deleteVehicle _x;
+    _unitClasses pushBack [(typeOf _x),getPos _x];
 } forEach _units;
 
-{
-    deleteVehicle _x;
-} forEach _vehiclesTemp;
-
-if((_x getVariable ["groupID", -1]) == -1)then{
-    [_x]call JOC_setGroupID;
+_caching = false;
+if(_group getVariable ["JOC_caching_disabled",false])then{
+    _caching = true;
 };
 
-_array = [_unitClasses,_vehicles,false,_group getVariable "groupID",_waypoints,_formation,_behaviour,_speed];
-virtualizedArray pushBack _array;
+_waypoints = [];
+{
+    _waypoints pushBack[waypointType _x, waypointPosition _x, waypointFormation _x, waypointSpeed _x, waypointStatements _x, waypointBehaviour _x, waypointCompletionRadius _x];
+} forEach waypoints _group;
+_waypoints deleteAt 0;
+
+_formation = formation _group;
+_behaviour = behaviour (leader _group);
+_speed = speedMode _group;
+
+_array = [_unitClasses,_vehicles,_caching,_group getVariable "groupID",_waypoints,_formation,_behaviour,_speed];
+
+_array

@@ -15,28 +15,25 @@
                 _objects pushBackUnique (vehicle _x);
             };
         } forEach allPlayers;
+        //_objects = _pos nearEntities [["Air"], radarRange];
 
         {
-            _object = _x;
-            if((side _object) == west && !(terrainIntersectASL [getPosASL _object, _pos]))then{
-                if(_object isKindOf "Helicopter")then{
-                    heliTargets pushBackUnique _object;
+            if((side _x) == west && !(terrainIntersectASL [getPosASL _x, _pos]))then{
+                if(_x isKindOf "Helicopter")then{
+                    heliTargets pushBackUnique _x;
                 }else{
-                    jetTargets pushBackUnique _object;
+                    jetTargets pushBackUnique _x;
                 };
-
-                {
-                    _x reveal [_object,4];
-                }forEach (allGroups select {side _x == east});
+                east reveal [_x, 4];
             }else{
-                _remove pushBack _object;
+                _remove pushBack _x;
             };
         } forEach _objects;
 
         heliTargets = heliTargets - _remove;
         jetTargets = jetTargets - _remove;
     };
-} forEach radarsEast;
+} forEach radars;
 
 publicVariable "jetTargets";
 publicVariable "heliTargets";

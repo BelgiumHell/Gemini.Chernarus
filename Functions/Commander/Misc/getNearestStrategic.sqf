@@ -4,7 +4,7 @@
 params["_pos","_type","_distance","_playerA"];
 
 if(isNil{_playerA})then{
-    _playerA = [true,1100];
+    _playerA = [false,0];
 };
 
 _posArray = [];

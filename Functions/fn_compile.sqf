@@ -54,6 +54,7 @@ JOC_playerSmkGren = compileFinal preprocessFileLineNumbers "Functions\Player\smk
 
 //Save
 JOC_saveMission = compileFinal preprocessFileLineNumbers "Functions\Save\save.sqf";
+JOC_saveVirtualize = compileFinal preprocessFileLineNumbers "Functions\Save\virtualize.sqf";
 
 //Vehicle
 JOC_vehInit = compileFinal preprocessFileLineNumbers "Functions\Vehicle\init.sqf";

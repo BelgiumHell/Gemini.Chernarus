@@ -3,7 +3,7 @@
 /////////////////////////
 switch (_this select 1) do
 {
-	//Open CDU or play music
+	//Open CDU
 	case 210:
 	{
 		if((vehicle player)isKindOf "Tank")then{
@@ -18,17 +18,21 @@ switch (_this select 1) do
 		};
 	};
 
-	//LEFT
-	case 203:
+	//UP -> increase height
+	case 200:
 	{
-		_object = player getVariable ["buildObject",objNull];
-        _object setDir ((getDir _object) - 10);
+		_object = player getVariable "buildObject";
+		detach _object;
+		_object attachTo [player,[0,5,((_object getVariable "buildHeight") + 0.125)]];
+		_object setVariable ["buildHeight",((_object getVariable "buildHeight") + 0.125)];
 	};
-	//RIGHT
-	case 205:
+	//DOWN -> decrease height
+	case 208:
 	{
-		_object = player getVariable ["buildObject",objNull];
-        _object setDir ((getDir _object) + 10);
+		_object = player getVariable "buildObject";
+		detach _object;
+		_object attachTo [player,[0,5,((_object getVariable "buildHeight") - 0.125)]];
+		_object setVariable ["buildHeight",((_object getVariable "buildHeight") - 0.125)];
 	};
 
 	//Ignore all others

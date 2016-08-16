@@ -11,33 +11,37 @@ _compoundsB = nearestObjects [_location,["Land_BagBunker_Large_F","Land_BagBunke
 _compoundsS = nearestObjects [_location,["Land_BagBunker_Small_F","Land_Cargo_House_V1_F","Land_Cargo_House_V2_F","Land_Cargo_House_V3_F"],_size];
 
 //Get random sequence for small compounds
-_compoundsR = [_compoundsS, ((count _compoundsS)/1.5)]call Zen_ArrayGetRandomSequence;
+_compoundsR = [_compoundsS, ((count _compoundsS)/2)]call Zen_ArrayGetRandomSequence;
 if (_size < 50) then {
     _compoundsR = _compoundsS;
 };
 
 //Spawn garrisoned infantry
 {
-    _array = [[0,0,0],6,0,[true,_x],0.6]call JOC_cmdSpawnGroupVirtual;
-    virtualizedArray pushBack [_array,[],false,[-1,true]];
+    _pos = getPos _x;
+    _array = [_pos, east, "infantry", 6,"Basic"]call Zen_SpawnInfantryGarrisonVirtual;
+    virtualizedArray pushBack [_array,[],false,-1,[[]]];
     _groups pushBack ((count virtualizedArray) - 1);
 } forEach _towersB;
 
 {
-    _array = [[0,0,0],2,0,[true,_x],0.6]call JOC_cmdSpawnGroupVirtual;
-    virtualizedArray pushBack [_array,[],false,[-1,true]];
+    _pos = getPos _x;
+    _array = [_pos, east, "infantry", 2,"Basic"]call Zen_SpawnInfantryGarrisonVirtual;
+    virtualizedArray pushBack [_array,[],false,-1,[[]]];
     _groups pushBack ((count virtualizedArray) - 1);
 } forEach _towersS;
 
 {
-    _array = [[0,0,0],5,0,[true,_x],0.6]call JOC_cmdSpawnGroupVirtual;
-    virtualizedArray pushBack [_array,[],false,[-1,true]];
+    _pos = getPos _x;
+    _array = [_pos, east, "infantry", 5,"Basic"]call Zen_SpawnInfantryGarrisonVirtual;
+    virtualizedArray pushBack [_array,[],false,-1,[[]]];
     _groups pushBack ((count virtualizedArray) - 1);
 } forEach _compoundsB;
 
 {
-    _array = [[0,0,0],2,0,[true,_x],0.6]call JOC_cmdSpawnGroupVirtual;
-    virtualizedArray pushBack [_array,[],false,[-1,true]];
+    _pos = getPos _x;
+    _array = [_pos, east, "infantry", 2,"Basic"]call Zen_SpawnInfantryGarrisonVirtual;
+    virtualizedArray pushBack [_array,[],false,-1,[[]]];
     _groups pushBack ((count virtualizedArray) - 1);
 } forEach _compoundsR;
 

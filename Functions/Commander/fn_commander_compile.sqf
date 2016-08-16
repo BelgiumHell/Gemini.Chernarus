@@ -47,7 +47,6 @@ JOC_cmdPatrolStrategic = compileFinal preprocessFileLineNumbers "Functions\Comma
 //Spawning
 JOC_cmdSpawnBase = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\base.sqf";
 JOC_cmdSpawnConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\convoy.sqf";
-JOC_cmdSpawnGroupVirtual = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\groupVirtual.sqf";
 JOC_cmdSpawnZone = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\zone.sqf";
 
 //Support

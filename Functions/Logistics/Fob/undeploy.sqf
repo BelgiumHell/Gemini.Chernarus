@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_truck","_objArray","_respawn"];
+params["_truck","_objArray"];
 
 {
 	deleteVehicle _x;
@@ -11,8 +11,6 @@ params["_truck","_objArray","_respawn"];
 	params["_truck"];
 	_truck lock 0;
 }] remoteExec ["BIS_fnc_spawn", 0, true];
-
-_respawn call BIS_fnc_removeRespawnPosition;
 
 [[_truck],{
 	params["_truck"];
