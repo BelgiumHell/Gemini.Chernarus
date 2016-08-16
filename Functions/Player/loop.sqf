@@ -10,7 +10,7 @@ player setDamage 0;
 //Pardon TK'ing
 player addRating 2000;
 
-/*
+
 //Music
 if(musicPlay && (vehicle player) != player && _time < time)then{
     detach _dummy;
@@ -29,12 +29,12 @@ if(musicPlay && (vehicle player) != player && _time < time)then{
         deleteVehicle _dummy;
     };
 };
-*/
+
 
 //RWR
-/*if(vehicle player in (jetTargets + heliTargets))then{
+if(vehicle player in (jetTargets + heliTargets))then{
 	playSound ["rwrSound",true];
-};*/
+};
 
 //Zeus
 if(!isNull curatorCamera)then{
@@ -46,11 +46,19 @@ if(!isNull curatorCamera)then{
 		_curator addCuratorEditableObjects [vehicles,false];
 		//_curator removeCuratorEditableObjects [objectsStart,false];
 	}] remoteExec ["BIS_fnc_spawn", 2];
+}else{
+    if(!isNull (getAssignedCuratorLogic player))then{
+        _curator = (getAssignedCuratorLogic player);
+    	[[_curator],{
+    		_curator = _this select 0;
+    		_curator removeCuratorEditableObjects [curatorEditableObjects _curator,false];
+    	}] remoteExec ["BIS_fnc_spawn", 2];
+    };
 };
 
 //Radio jamming (experimental)
 if((count (nearestObjects [player, ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"], 2000])) > 0)then{
-	if(isNull radioHandle)then{
+	if(radioHandle == -1)then{
 		{
 		    orgChannel pushBack [_x,[_x]call acre_api_fnc_getRadioChannel];
 		} forEach ([]call acre_api_fnc_getCurrentRadioList);
@@ -64,12 +72,14 @@ if((count (nearestObjects [player, ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"], 
 		}, 1, []]call CBA_fnc_addPerFrameHandler;
 	};
 }else{
-	[radioHandle]call CBA_fnc_removePerFrameHandler;
+    if(radioHandle != -1)then{
+	    [radioHandle]call CBA_fnc_removePerFrameHandler;
 
-	{
-	    [_x select 0, _x select 1]call acre_api_fnc_setRadioChannel;
-	} forEach orgChannel;
-	orgChannel = [];
+	    {
+	        [_x select 0, _x select 1]call acre_api_fnc_setRadioChannel;
+	    } forEach orgChannel;
+	    orgChannel = [];
 
-    radioHandle = scriptNull;
+        radioHandle = -1;
+    };
 };

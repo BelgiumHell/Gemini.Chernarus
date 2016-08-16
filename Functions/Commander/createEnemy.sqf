@@ -26,7 +26,7 @@
         };
         case "base": {
             _groupsB = [_pos,300]call JOC_cmdSpawnBase;
-            _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[(_priority / 300),true],[(_priority / 600),false],[0,false],[(_priority / 800),false],[(_priority / 1000),false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+            _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[8,true],[2,false],[0,false],[2,false],[1,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
         };
         case "camp": {
             _groups = [_pos,([5,5] + [markerDir _marker]),[1,true],[0,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
@@ -54,18 +54,18 @@
                     _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[7,true],[2,false],[0,false],[1,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
                 case 900: {
-                    _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[16,true],[4,false],[0,false],[4,false],[2,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+                    _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[13,true],[3,false],[0,false],[3,false],[2,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
             };
         };
     };
 
     {
-        (virtualizedArray select _x) set [3,currentGroupID];
+        ((virtualizedArray select _x) select 3) set [0,currentGroupID];
         assignedArray pushBack [currentGroupID,_index];
         currentGroupID = currentGroupID + 1;
     } forEach (_groups + _groupsB);
 
-    //(strategicArray select _forEachIndex) set [5,_index];
+    (strategicArray select _forEachIndex) set [5,_index];
 
 } forEach strategicArray;

@@ -5,7 +5,8 @@ params["_pos","_radius","_blacklist"];
 
 _near = false;
 {
-    if((getPosASL _x) distance _pos <= _radius && !(typeOf (vehicle _x) in _blacklist))exitWith{_near = true};
+    _player = _x;
+    if((getPosASL _player) distance _pos <= _radius && count (_blacklist select {(vehicle _player) isKindOf _x}) == 0)then{_near = true;};
 } forEach allPlayers;
 
 _near

@@ -2,6 +2,9 @@
 //Script made by Jochem//
 /////////////////////////
 [[],{
+    if(isServer)exitWith{};
+    waitUntil{!isNil{JOC_playerInit}};
+
 	_action = cmd_laptop addAction["Gather leaders",{
 		{
 		    if([_x,"mrk_safeZone"]call Zen_AreInArea && _x in leaderArray)then{

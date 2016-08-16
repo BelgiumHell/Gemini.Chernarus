@@ -23,7 +23,7 @@ _compoundsS = nearestObjects [(getMarkerPos "mrk_area"),["Land_BagBunker_Small_F
         _nameM = format["mrk_strategic_base_%1",_forEachIndex];
         _marker = createMarker [_nameM, _pos];
         _nameM setMarkerShape "ELLIPSE";
-        _nameM setMarkerSize [150,150];
+        _nameM setMarkerSize [200,200];
         _nameM setMarkerBrush "SolidBorder";
         _nameM setMarkerColor "ColorOpfor";
 

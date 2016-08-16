@@ -14,11 +14,11 @@ player allowDamage true;
 []call JOC_createDiary;
 []call JOC_loadoutMaster;
 [JOC_playerLoop, 10, []]call CBA_fnc_addPerFrameHandler;
-//["KeyDown", "_this call JOC_playerButton"]call CBA_fnc_addDisplayHandler;
-//player addEventHandler ["Fired", {_this spawn JOC_playerSmkGren}];
-//cduEnabled = false;
-//musicPlay = false;
-radioHandle = scriptNull;
+["KeyDown", "_this call JOC_playerButton"]call CBA_fnc_addDisplayHandler;
+player addEventHandler ["Fired", {_this spawn JOC_playerSmkGren}];
+cduEnabled = false;
+musicPlay = false;
+radioHandle = -1;
 orgChannel = [];
 
 waitUntil{alive player};
