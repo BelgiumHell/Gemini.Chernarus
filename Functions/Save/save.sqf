@@ -12,7 +12,7 @@
         _inidbiBack = inidbiDB1;
     };
 
-    diag_log format["Starting save #%1 at %2 since mission load", saveCount + 1, diag_tickTime];
+    diag_log format["Starting save at %1 since mission load",diag_tickTime];
 
     //Delete existing main database content
     ["deleteSection", "main"] call _inidbi;
@@ -20,6 +20,8 @@
     //Start writing
     //Indicate database is being written
     ["write", ["header", "saved", false]] call _inidbi;
+
+    diag_log "strategic";
 
     //StrategicArray
     {
@@ -31,11 +33,13 @@
         };
     } forEach strategicArray;
 
+    diag_log "virtulaized";
+
     //Units
     _unitArray = [];
     {
         if(side _x != west)then{
-            _unitArray pushBack ([_x]call JOC_saveVirtualize);
+            _unitArray pushBack ([_x,false]call JOC_virtualize);
         };
     } forEach allGroups;
     {
@@ -46,6 +50,8 @@
         };
     } forEach (_unitArray + virtualizedArray);
 
+    diag_log "order";
+
     {
         _success = ["write", ["main", format["orderArray_%1",_forEachIndex], _x]] call _inidbi;
 
@@ -54,6 +60,8 @@
         };
     } forEach orderArray;
 
+    diag_log "request";
+
     {
         _success = ["write", ["main", format["requestArray_%1",_forEachIndex], _x]] call _inidbi;
 
@@ -61,6 +69,8 @@
             diag_log format["Failed to save %1 at %2 (requestArray)", _x, diag_tickTime];
         };
     } forEach requestArray;
+
+    diag_log "assigned";
 
     {
         _success = ["write", ["main", format["assignedArray_%1",_forEachIndex], _x]] call _inidbi;
@@ -99,11 +109,14 @@
     } forEach _damageValues;
 
     ["write", ["main", "currentGroupID", currentGroupID]] call _inidbi;
+    ["write", ["main", "currentRequestID", currentRequestID]] call _inidbi;
+    ["write", ["main", "jetActive", jetActive]] call _inidbi;
+    ["write", ["main", "jetReady", jetReady]] call _inidbi;
 
     ["write", ["header", "saved", true]] call _inidbi;
     ["write", ["header", "saved", false]] call _inidbiBack;
 
     saveCount = saveCount + 1;
 
-    diag_log format["Finished save #%1 at %2 since mission load", saveCount, diag_tickTime];
+    diag_log format["Finished save at %1 since mission load", diag_tickTime];
 }] remoteExec ["BIS_fnc_spawn", 2];
