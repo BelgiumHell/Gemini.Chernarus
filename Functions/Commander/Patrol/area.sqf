@@ -3,7 +3,7 @@
 /////////////////////////
 params["_group","_pos","_radius","_behaviour"];
 
-if(!local _group)exitWith{};
+if(!isServer)exitWith{};
 
 _group setBehaviour _behaviour;
 _group setSpeedMode "LIMITED";

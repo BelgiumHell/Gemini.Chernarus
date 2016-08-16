@@ -12,7 +12,7 @@ player createDiaryRecord ["wiki",
 player createDiaryRecord ["wiki",
 ["Saving",
 "
-<br />Mission is saved every 10 minutes. Threre are 2 DB's, one serves as backup, every 10 minutes main and backup get switched.
+<br />Mission is saved every 5 minutes. Threre are 2 DB's, one serves as backup, every 10 minutes main and backup get switched.
 "
 ]];
 
@@ -20,7 +20,7 @@ player createDiaryRecord ["wiki",
 ["Anti-Air",
 "
 <br />Radars are functional in this mission: they take into account terrain interception,
-meaning you can use hills and objects to shield you from being detected. If you are detected, there might me a chance (not really based around chance, more a threshold)
+meaning you can use hills and objects to shield you from being detected. If you are detected, you'll be revealed to all AA on the map and there might me a chance
 that an enemy jet will scramble to intercept you. If you are being painted by a radar, a sound will play to notify you.
 There's currently no option to disable the sound, but this is planned for a future version.
 "

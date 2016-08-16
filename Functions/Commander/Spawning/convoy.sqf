@@ -28,7 +28,7 @@ _dir = [_pos] call Zen_FindRoadDirection;
     }forEach (units _group);
     (units _group) joinSilent (group _veh);
 
-    (units (group _veh)) joinSilent _groupConvoy;
+    (crew _veh) joinSilent _groupConvoy;
 } forEach _vehArr;
 
 _groupConvoy setBehaviour "SAFE";

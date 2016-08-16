@@ -10,7 +10,7 @@ if(count (_startPos - [0,0,0]) == 0)exitWith{_order};
 
 //Generate composition
 _vehArr = [];
-_vehArr pushBack (apcPool call BIS_fnc_selectRandom);
+_vehArr pushBack (selectRandom apcPool);
 {
     _vehArr pushBack _x;
 } forEach supportPool;

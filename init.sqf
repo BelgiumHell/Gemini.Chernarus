@@ -1,15 +1,15 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+#include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
+#include "Functions\fn_compile.sqf"
+
 sleep 1;
 
 titleText ["", "BLACK FADED", 0];
 startLoadingScreen["Loading..."];
 
 JOC_serverLoaded = false;
-
-#include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
-#include "Functions\fn_compile.sqf"
 
 // Gemini by Jochem
 // Version = 0.6

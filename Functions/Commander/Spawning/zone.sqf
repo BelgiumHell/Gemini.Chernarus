@@ -18,14 +18,23 @@ _spawnMarkerName setMarkerShape "RECTANGLE";
 _spawnMarkerName setMarkerDir (_dimensions select 2);
 _spawnMarkerName setMarkerAlpha 0;
 
+_roadArr = _location nearRoads (_dimensions select 0 * 2);
+_roadPos = [];
+{
+    if([_x,_spawnMarkerName]call Zen_AreInArea)then{
+        _roadPos pushBack (getPosASL _x);
+    };
+} forEach _roadArr;
+_roadPos call BIS_fnc_arrayShuffle;
+_roadCount = 0;
+
 //Spawn infantry
 _j = 0;
 if((_inf select 0) > 0)then{
 	while{_j < (_inf select 0)} do{
-		_locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
-		_locationS = [_locationS,1,1] call Zen_ExtendPosition;
-		_array = [_locationS, east, "infantry", 4,"Basic"] call Zen_SpawnInfantryVirtual;
-		virtualizedArray pushBack [_array,[],false,-1];
+		_locationS = [_spawnMarkerName]call Zen_FindGroundPosition;
+		_array = [_locationS,4,0,[false,objNull],0.6]call JOC_cmdSpawnGroupVirtual;
+		virtualizedArray pushBack [_array,[],false,[-1,false]];
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
 	};
@@ -35,14 +44,22 @@ if((_inf select 0) > 0)then{
 _j = 0;
 if((_car select 0) > 0)then{
 	while{_j < (_car select 0)} do{
-		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
-		_class = selectRandom carPool;
-		_arrayG = [_locationS, east, "infantry", getNumber(configFile >> "CfgVehicles" >> _class >> "transportSoldier"),"Basic"] call Zen_SpawnInfantryVirtual;
+	    _class = selectRandom carPool;
+
+	    _locationS = [_spawnMarkerName]call Zen_FindGroundPosition;
+	    if(count _roadPos > _roadCount)then{
+		    _locationS = _roadPos select _roadCount;
+		    _roadCount = _roadCount + 1;
+		}else{
+		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
+		};
+
+		_arrayG = [_locationS,getNumber(configFile >> "CfgVehicles" >> _class >> "transportSoldier"),0,[false,objNull],0.6]call JOC_cmdSpawnGroupVirtual;
 		_arrayI = [];
 		{
 		    _arrayI pushBack _forEachIndex;
 		} forEach _arrayG;
-		_array = [_arrayG,[[_locationS,_class,_arrayI,[[],[]],1]],false,-1];
+		_array = [_arrayG,[[_class,_locationS,_arrayI,[[],[]],1]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
@@ -53,8 +70,17 @@ if((_car select 0) > 0)then{
 _j = 0;
 if((_apc select 0) > 0)then{
 	while{_j < (_apc select 0)} do{
-		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
-		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,selectRandom apcPool,[0,1,2],[[],[]],1]],false,-1];
+	    _class = selectRandom apcPool;
+
+	    _locationS = [_spawnMarkerName]call Zen_FindGroundPosition;
+	    if(count _roadPos > _roadCount)then{
+		    _locationS = _roadPos select _roadCount;
+		    _roadCount = _roadCount + 1;
+		}else{
+		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
+		};
+
+		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],[[],[]],1]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
@@ -65,8 +91,16 @@ if((_apc select 0) > 0)then{
 _j = 0;
 if((_ifv select 0) > 0)then{
 	while{_j < (_ifv select 0)} do{
-		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
-		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,selectRandom ifvPool,[0,1,2],[[],[]],1]],false,-1];
+	    _class = selectRandom ifvPool;
+
+	    _locationS = [_spawnMarkerName]call Zen_FindGroundPosition;
+	    if(count _roadPos > _roadCount)then{
+		    _locationS = _roadPos select _roadCount;
+		    _roadCount = _roadCount + 1;
+		}else{
+		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
+		};
+		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],[[],[]],1]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
@@ -77,8 +111,17 @@ if((_ifv select 0) > 0)then{
 _j = 0;
 if((_tank select 0) > 0)then{
 	while{_j < (_tank select 0)} do{
-		_locationS = [_spawnMarkerName,0,0,1,[1,100]] call Zen_FindGroundPosition;
-		_array = [[[crewClass,_locationS],[crewClass,_locationS],[crewClass,_locationS]],[[_locationS,selectRandom tankPool,[0,1,2],[[],[]],1]],false,-1];
+	    _class = selectRandom tankPool;
+
+	    _locationS = [_spawnMarkerName]call Zen_FindGroundPosition;
+	    if(count _roadPos > _roadCount)then{
+		    _locationS = _roadPos select _roadCount;
+		    _roadCount = _roadCount + 1;
+		}else{
+		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
+		};
+
+		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],[[],[]],1]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
@@ -100,7 +143,7 @@ if(_heliCount > 0)then{
 		if(_heliType == "cas")then{
 			_pool = casPool;
 		};
-		_array = [[[pilotClass,_locationS],[pilotClass,_locationS]],[[_locationS,selectRandom _pool,[0,1,2]]],false,-1];
+		_array = [[[pilotClass,_locationS],[pilotClass,_locationS]],[[selectRandom _pool,_locationS,[0,1,2]]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;

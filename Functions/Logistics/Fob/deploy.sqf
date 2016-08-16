@@ -52,7 +52,12 @@ _marker = createMarker [_name, (getPos _truck)];
 _marker setMarkerType "b_support";
 _marker setMarkerText "FOB";
 
-_truck setVariable ["assignedFob",[_objArray,_name],true];
+_posH = player modelToWorld [2,0,0];
+_pos = _object setPosATL [_posH select 0, _posH select 1, 0];
+
+_respawn = [west,[(_truck modelToWorld [2,0,0]) select 0,(_truck modelToWorld [2,0,0]) select 1],format["FOB grid %1",mapGridPosition (getPos _truck)]] call BIS_fnc_addRespawnPosition;
+
+_truck setVariable ["assignedFob",[_objArray,_name,_respawn],true];
 
 //Notification
 ["RespawnAdded",["DEPLOYMENT POINT",format ["HQ deployed at grid %1", mapGridPosition (getPos _truck)],"\A3\ui_f\data\map\markers\nato\b_hq.paa"]] remoteExec ["BIS_fnc_showNotification", 0, true];
