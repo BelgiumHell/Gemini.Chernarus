@@ -1,9 +1,6 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-//AA
-[]call JOC_cmdInitAA;
-
 //Airfield
 []call JOC_cmdInitAirfield;
 
@@ -33,3 +30,6 @@
 
 //Town
 []call JOC_cmdInitTown;
+
+//AA - leave as last in order
+[]call JOC_cmdInitAA;

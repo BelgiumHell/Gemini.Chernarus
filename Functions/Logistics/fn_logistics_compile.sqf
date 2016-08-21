@@ -3,6 +3,7 @@
 /////////////////////////
 
 //Building
+JOC_buildBuild = compileFinal preprocessFileLineNumbers "Functions\Logistics\Building\build.sqf";
 JOC_buildInit = compileFinal preprocessFileLineNumbers "Functions\Logistics\Building\init.sqf";
 JOC_buildPlaceObject = compileFinal preprocessFileLineNumbers "Functions\Logistics\Building\placeObject.sqf";
 

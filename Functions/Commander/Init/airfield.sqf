@@ -1,7 +1,6 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-
 {
     _marker = _x;
     _location = getMarkerPos _marker;

@@ -21,8 +21,6 @@
     //Indicate database is being written
     ["write", ["header", "saved", false]] call _inidbi;
 
-    diag_log "strategic";
-
     //StrategicArray
     {
         _array = [(_x select 0),(_x select 1),(_x select 2),[format["%1",(_x select 3)], getMarkerPos (_x select 3), markerShape (_x select 3), getMarkerSize (_x select 3), markerBrush (_x select 3), getMarkerColor (_x select 3)],(_x select 4)];
@@ -32,8 +30,6 @@
             diag_log format["Failed to save %1 at %2 (strategicArray)", _array, diag_tickTime];
         };
     } forEach strategicArray;
-
-    diag_log "virtulaized";
 
     //Units
     _unitArray = [];
@@ -50,8 +46,6 @@
         };
     } forEach (_unitArray + virtualizedArray);
 
-    diag_log "order";
-
     {
         _success = ["write", ["main", format["orderArray_%1",_forEachIndex], _x]] call _inidbi;
 
@@ -60,8 +54,6 @@
         };
     } forEach orderArray;
 
-    diag_log "request";
-
     {
         _success = ["write", ["main", format["requestArray_%1",_forEachIndex], _x]] call _inidbi;
 
@@ -69,8 +61,6 @@
             diag_log format["Failed to save %1 at %2 (requestArray)", _x, diag_tickTime];
         };
     } forEach requestArray;
-
-    diag_log "assigned";
 
     {
         _success = ["write", ["main", format["assignedArray_%1",_forEachIndex], _x]] call _inidbi;

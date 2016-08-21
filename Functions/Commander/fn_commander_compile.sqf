@@ -7,6 +7,7 @@
 //Command
 JOC_cmdCmdLoop = compileFinal preprocessFileLineNumbers "Functions\Commander\Command\loop.sqf";
 JOC_cmdCmdreqSupport = compileFinal preprocessFileLineNumbers "Functions\Commander\Command\reqSupport.sqf";
+JOC_cmdCmdRequest = compileFinal preprocessFileLineNumbers "Functions\Commander\Command\request.sqf";
 
 //Defend
 JOC_cmdDefArmor = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\armor.sqf";

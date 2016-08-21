@@ -18,6 +18,9 @@ player allowDamage true;
 player addEventHandler ["Fired", {_this spawn JOC_playerSmkGren}];
 cduEnabled = false;
 musicPlay = false;
+musicDummy = objNull;
+musicVehicle = objNull;
+musicTime = 0;
 radioHandle = -1;
 orgChannel = [];
 

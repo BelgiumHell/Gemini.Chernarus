@@ -1,10 +1,6 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-_dummy = objNull;
-_vehicle = objNull;
-_time = 0;
-
 //Fix vanilla damage
 player setDamage 0;
 //Pardon TK'ing
@@ -12,21 +8,21 @@ player addRating 2000;
 
 
 //Music
-if(musicPlay && (vehicle player) != player && _time < time)then{
-    detach _dummy;
-    deleteVehicle _dummy;
-    _time = time + 57;
-    _dummy = "Land_HelipadEmpty_F" createVehicle [0,0,0];
-    _dummy attachTo [(vehicle player),[0,0,0]];
-    [[_dummy],{
+if(musicPlay && (vehicle player) != player && musicTime < time)then{
+    detach musicDummy;
+    deleteVehicle musicDummy;
+    musicTime = time + 57;
+    musicDummy = "Land_HelipadEmpty_F" createVehicle [0,0,0];
+    musicDummy attachTo [(vehicle player),[0,0,0]];
+    [[musicDummy],{
         (_this select 0) say3D "heliSpeakerSound";
     }] remoteExec ["BIS_fnc_spawn", 0, true];
-    _vehicle = (vehicle player);
+    musicVehicle = (vehicle player);
 }else{
-    if(!musicPlay || (vehicle player) != _vehicle)then{
-        _time = 0;
-        detach _dummy;
-        deleteVehicle _dummy;
+    if(!musicPlay || (vehicle player) != musicVehicle)then{
+        musicTime = 0;
+        detach musicDummy;
+        deleteVehicle musicDummy;
     };
 };
 
@@ -39,21 +35,19 @@ if(vehicle player in (jetTargets + heliTargets))then{
 //Zeus
 if(!isNull curatorCamera)then{
 	_curator = (getAssignedCuratorLogic player);
-	[[_curator],{
-		_curator = _this select 0;
-		_curator addCuratorEditableObjects [allUnits,false];
-		_curator addCuratorEditableObjects [allDead,false];
-		_curator addCuratorEditableObjects [vehicles,false];
-		//_curator removeCuratorEditableObjects [objectsStart,false];
-	}] remoteExec ["BIS_fnc_spawn", 2];
-}else{
-    if(!isNull (getAssignedCuratorLogic player))then{
-        _curator = (getAssignedCuratorLogic player);
-    	[[_curator],{
-    		_curator = _this select 0;
-    		_curator removeCuratorEditableObjects [curatorEditableObjects _curator,false];
-    	}] remoteExec ["BIS_fnc_spawn", 2];
-    };
+	if(count (curatorCameraArea _curator ) == 0)then{
+	    _curator removeAllEventHandlers "CuratorObjectPlaced";
+	    _curator addEventHandler ["CuratorObjectPlaced", {
+    		(_this select 1) setVariable["JOC_caching_disabled",true,true];
+    	}];
+	    [[_curator],{
+		    _curator = _this select 0;
+		    _curator addCuratorEditableObjects [allUnits,false];
+		    _curator addCuratorEditableObjects [allDead,false];
+		    _curator addCuratorEditableObjects [vehicles,false];
+		    //_curator removeCuratorEditableObjects [objectsStart,false];
+	    }] remoteExec ["BIS_fnc_spawn", 2];
+	};
 };
 
 //Radio jamming (experimental)

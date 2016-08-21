@@ -16,6 +16,7 @@ _group = createGroup east;
 if(count (_array select 1) > 0)then{
     {
         _vehicle = createVehicle [(_x select 0), (_x select 1), [], 0, "FLY"];
+        _vehicle setDir (_x select 5);
         _vehicle setDamage 0;
         _vehicle setPosASL (_x select 1);
         _damageArray = (_x select 3);

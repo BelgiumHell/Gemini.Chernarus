@@ -11,30 +11,50 @@ if((count jetTargets > 0 || count heliTargets > 1) && !jetActive)then{
 if(!jetReady && !jetActive)then{
     [{jetReady = true;}, [], 7200] call CBA_fnc_waitAndExecute;
 };
-/*
+
+{
+    switch(_x select 4)do{
+        case 0:{
+            if(_x select 2 in ["aa","arty","camp"])then{
+                (strategicArray select _forEachIndex) set [4,4];
+            }else{
+                if(_x select 2 in ["radar","radio"])then{
+
+                };
+            };
+        };
+        case 1:{
+            //Check if under attack
+            if([(_x select 0),(_x select 1),["air"],[true,east]]call JOC_nearestPlayers)then{
+                (strategicArray select _forEachIndex) set [4,2];
+            }else{
+                //Check if vehicles need ammo
+                if(_x select 2 in ["aa","arty"])then{
+                    _vehicles = (_x select 0) nearEntities [[aaClass,artyClass],(_x select 1)];
+                    _ammo = _vehicles select {_x ammo (currentWeapon _x) < 0.3};
+                    if(count _ammo > 0)then{
+                        [[2,0],_x,_forEachIndex,false]call JOC_cmdCmdRequest;
+                    };
+                };
+            };
+        };
+    };
+}forEach strategicArray;
+
+
 _strategicWest = strategicArray select {(_x select 4) == 0};
 _strategicEast = strategicArray select {(_x select 4) == 1};
-_strategicContested = strategicArray select {(_x select 4) == 2};
-_strategicDefend = [];
+_strategicDefend = strategicArray select {(_x select 4) == 2};
+_strategicAttack = strategicArray select {(_x select 4) == 3};
 
 _strengthEast = (count _strategicEast) / (count strategicArray);
 _strenghtWest = (count _strategicWest) / (count strategicArray);
-
-{
-    _array = _x;
-    _index = _array select 5;
-} forEach _strategicWest;
-
-{
-    _array = _x;
-    _index = _array select 5;
-} forEach _strategicEast;
-
+/*
 {
     _array = _x;
     _index = _array select 5;
     switch(true)do{
-        case(_array select 1 >= 1000): {
+        case(_array select 1 >= 1000):{
             requestArray pushBack [[1,0],_array,format["(strategicArray select %1) select 4 == 1",_index]];
             requestArray pushBack [[1,1],_array,format["(strategicArray select %1) select 4 == 1",_index]];
             if(random 2 >= 1)then{
@@ -43,7 +63,7 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
                 requestArray pushBack [[1,3],_array,format["(strategicArray select %1) select 4 == 1",_index]];
             };
         };
-        case(_array select 1 >= 800 && _array select 1 < 1000): {
+        case(_array select 1 >= 800 && _array select 1 < 1000):{
             if(random 2 >= 1)then{
                 requestArray pushBack [[1,0],_array,format["(strategicArray select %1) select 4 == 1",_index]];
             }else{
@@ -55,7 +75,7 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
                 requestArray pushBack [[1,3],_array,format["(strategicArray select %1) select 4 == 1",_index]];
             };
         };
-        case(_array select 1 >= 600 && _array select 1 < 800): {
+        case(_array select 1 >= 600 && _array select 1 < 800):{
             if(_strengthEast > 0.2)then{
                 if(_strengthEast > 0.4)then{
                     requestArray pushBack [[1,2],[_array,2.5],format["(strategicArray select %1) select 4 == 1",_index]];
@@ -64,7 +84,7 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
                 };
             };
         };
-        case(_array select 1 >= 400 && _array select 1 < 600): {
+        case(_array select 1 >= 400 && _array select 1 < 600):{
             if(_strengthEast > 0.25)then{
                 if(_strengthEast > 0.5)then{
                     requestArray pushBack [[1,2],[_array,2],format["(strategicArray select %1) select 4 == 1",_index]];
@@ -73,7 +93,7 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
                 };
             };
         };
-        case(_array select 1 >= 200 && _array select 1 < 400): {
+        case(_array select 1 >= 200 && _array select 1 < 400):{
             if(_strengthEast > 0.3)then{
                 if(_strengthEast > 0.6)then{
                     requestArray pushBack [[1,2],[_array,1.5],format["(strategicArray select %1) select 4 == 1",_index]];
@@ -82,7 +102,7 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
                 };
             };
         };
-        case(_array select 1 >= 100 && _array select 1 < 200): {
+        case(_array select 1 >= 100 && _array select 1 < 200):{
             if(_strengthEast > 0.6)then{
                 requestArray pushBack [[1,2],[_array,1],format["(strategicArray select %1) select 4 == 1",_index]];
             };
@@ -120,8 +140,8 @@ _usedGroups = [];
     _request = _x;
     _order = [];
 
-
-    if(!((_request select 4) select 1))then{
+    //If request hasn't been processed yet, do that
+    if(!((_request select 3) select 1))then{
         switch((_request select 0) select 0)do{
             //Attack
             case (0): {
@@ -184,16 +204,18 @@ _usedGroups = [];
             };
         };
 
+        //If order didn't fail to start, start execution of order
         if(count _order != 0)then{
             {
                 orderArray pushBack [_order,currentRequestID];
             } forEach _order;
 
-            requestArray select _forEachIndex set[4,[currentRequestID,true]];
+            (requestArray select _forEachIndex) set [3,[currentRequestID,true]];
             currentRequestID = currentRequestID + 1;
         };
     }else{
-        _existArr = orderArray select {_x select 1 == ((_request select 4) select 0)};
+        //If order that was activated by request is complete, delete request
+        _existArr = orderArray select {_x select 1 == ((_request select 3) select 0)};
         if(count _existArr == 0)then{
             requestArray deleteAt _forEachIndex;
         };
@@ -204,13 +226,15 @@ _usedGroups = [];
 {
     _order = _x select 0;
 
-    //If condition is met, execute code
-    if(isNil{(((_order select 3) select 0) select 0)} || isNull ([_order select 2]call JOC_getGroup))then{
+    //If no more conditions or group is destoyed, delete from orderarray
+    if(isNil{(((_order select 3) select 0) select 0)} || !([_order select 2]call JOC_groupExists))then{
         orderArray deleteAt _forEachIndex;
     }else{
+        //If group isn't virtuaized, evaluate condition
         if(_order select 2 in _realGroups)then{
             _usedGroups pushBack (_order select 2);
             _group = [_order select 2]call JOC_getGroup;
+            //If condition is true, execute code and delete part from order
             if([_order select 1, _group]call (compile (((_order select 3) select 0) select 0)))then{
                 [_order select 1, _group]call (compile (((_order select 3) select 0) select 1));
                 ((_order select 3) select 0) deleteAt 0;

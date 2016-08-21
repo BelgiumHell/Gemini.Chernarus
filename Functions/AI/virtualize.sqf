@@ -38,7 +38,7 @@ _vehiclesTemp = [];
                 } forEach ((getAllHitPointsDamage _vehicle) select 2);
             };
 
-            _vehicles pushBack [(typeOf _vehicle),(getPosASL _vehicle),[_forEachIndex],_damageArray, fuel _vehicle];
+            _vehicles pushBack [(typeOf _vehicle),(getPosASL _vehicle),[_forEachIndex],_damageArray, fuel _vehicle, getDir _vehicle];
             _vehiclesTemp pushBack _vehicle;
         }else{
             _index = _vehiclesTemp find (vehicle _x);

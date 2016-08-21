@@ -65,6 +65,7 @@ heliTargets = [];
 activeTasks = [];   //Not being used
 fobTrucks = [];
 vehArray = [];
+buildObjects = [];
 radarsEast = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
 radarsWest = [];
 jetActive = false;
