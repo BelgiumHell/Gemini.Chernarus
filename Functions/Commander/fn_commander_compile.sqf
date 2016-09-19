@@ -10,8 +10,6 @@ JOC_cmdCmdreqSupport = compileFinal preprocessFileLineNumbers "Functions\Command
 JOC_cmdCmdRequest = compileFinal preprocessFileLineNumbers "Functions\Commander\Command\request.sqf";
 
 //Defend
-JOC_cmdDefArmor = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\armor.sqf";
-JOC_cmdDefCas = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\cas.sqf";
 JOC_cmdDefConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\convoy.sqf";
 JOC_cmdDefHeli = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\heli.sqf";
 JOC_cmdDefNear = compileFinal preprocessFileLineNumbers "Functions\Commander\Defend\near.sqf";
@@ -52,5 +50,7 @@ JOC_cmdSpawnGroupVirtual = compileFinal preprocessFileLineNumbers "Functions\Com
 JOC_cmdSpawnZone = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\zone.sqf";
 
 //Support
+JOC_cmdDefArmor = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\armor.sqf";
 JOC_cmdSupportArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\arty.sqf";
+JOC_cmdDefCas = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\cas.sqf";
 JOC_cmdSupportIntercept = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\intercept.sqf";

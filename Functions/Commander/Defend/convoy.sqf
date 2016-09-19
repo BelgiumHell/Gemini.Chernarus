@@ -1,16 +1,16 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_array","_category"];
+params["_array","_force"];
 
 //Get nearest base
 _startPos = [(_array select 0),"base",[1200,5000]]call JOC_cmdMiscGetNearestStrategic;
-if(count (_startPos - [0,0,0]) == 0)exitWith{false};
+if(count (_startPos - [0,0,0]) == 0)exitWith{[]};
 
 //Generate composition
 _vehArr = [];
-_truckCount = _category * 2 - random 2;
-_apcCount = _category + random 1;
+_truckCount = _force * 2 - random 2;
+_apcCount = _force + random 1;
 _i = 0;
 while{_i < _apcCount}do{
     _vehArr pushBack (selectRandom apcPool);
@@ -23,12 +23,19 @@ while{_i < _truckCount}do{
 };
 
 //Spawn convoy
-_groupConvoy = [_startPos,_vehArr]call JOC_cmdSpawnConvoy;
+_convoyReturn = [_startPos,_vehArr]call JOC_cmdSpawnConvoy;
+_groupConvoy = _convoyReturn select 0;
+_groupsInf = _convoyReturn select 1;
 _groupConvoy setVariable["JOC_caching_disabled",true];
 
+{
+    _x setVariable["JOC_caching_disabled",true];
+}forEach _groupsInf;
+
 //Move to target
+_movePos = selectRandom ((_array select 0) nearRoads 400);
 _wp1 = _groupConvoy addWaypoint [(_array select 0), 0];
-_wp1 setWaypointType "UNLOAD";
+_wp1 setWaypointType "TR UNLOAD";
 _wp1 setWaypointCompletionRadius 400;
 
 _scriptArray = [

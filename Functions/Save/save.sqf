@@ -98,6 +98,14 @@
         ["write", ["main", format["damageValues_%1",_forEachIndex], _x]] call _inidbi;
     } forEach _damageValues;
 
+    {
+        _success = ["write", ["main", format["buildObjects_%1",_forEachIndex], _x]] call _inidbi;
+
+        if(!_success)then{
+            diag_log format["Failed to save %1 at %2 (buildObjects)", _x, diag_tickTime];
+        };
+    } forEach buildObjects;
+
     ["write", ["main", "currentGroupID", currentGroupID]] call _inidbi;
     ["write", ["main", "currentRequestID", currentRequestID]] call _inidbi;
     ["write", ["main", "jetActive", jetActive]] call _inidbi;

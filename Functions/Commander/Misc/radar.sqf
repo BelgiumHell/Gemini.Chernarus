@@ -27,8 +27,11 @@
 
                 {
                     _x reveal [_object,4];
-                }forEach (allGroups select {side _x == east});
+                } forEach (allGroups select {side _x == east});
             }else{
+                {
+                    _x reveal [_object,0];
+                } forEach (allGroups select {side _x == east});
                 _remove pushBack _object;
             };
         } forEach _objects;
@@ -36,7 +39,7 @@
         heliTargets = heliTargets - _remove;
         jetTargets = jetTargets - _remove;
     };
-} forEach radarsEast;
+} forEach radars;
 
 publicVariable "jetTargets";
 publicVariable "heliTargets";

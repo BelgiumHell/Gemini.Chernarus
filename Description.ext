@@ -1,6 +1,7 @@
 author = "Jochem";
 OnLoadName = "Gemini";
 OnLoadMission = "A persistent mission aimed at simulating the invasion of Altis.";
+loadScreen = "Data\gemini.paa";
 respawn = 3;
 respawndelay = 5;
 respawnTemplatesWest[] = {"MenuPosition","Spectator"};

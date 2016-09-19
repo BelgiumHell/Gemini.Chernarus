@@ -35,7 +35,7 @@ if(count (_array select 1) > 0)then{
             }else{
                 _x moveInCommander _vehicle;
                 if(!(_x in _vehicle))then{
-                    _x moveInCargo _vehicle
+                    _x moveInAny _vehicle
                 };
             };
         } forEach _crew;
@@ -82,5 +82,5 @@ if(count _array > 7)then{
 if(!(_group getVariable["garrisoned",false]))then{
     {
         _x doMove getPosASL (leader (group _x));
-    }forEach (units _group);
+    } forEach (units _group);
 };

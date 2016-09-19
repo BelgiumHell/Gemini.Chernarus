@@ -26,7 +26,7 @@ _dir = [_pos] call Zen_FindRoadDirection;
     {
         _x moveInAny _veh;
     }forEach (units _group);
-    (units _group) joinSilent (group _veh);
+    _groups pushBack _group;
 
     (crew _veh) joinSilent _groupConvoy;
 } forEach _vehArr;
@@ -35,6 +35,8 @@ _groupConvoy setBehaviour "SAFE";
 _groupConvoy setFormation "COLUMN";
 _groupConvoy setSpeedMode "normal";
 
+_return = [_groupConvoy,_groups];
+
 JOC_pauseCache = false;
 
-_groupConvoy
+_return

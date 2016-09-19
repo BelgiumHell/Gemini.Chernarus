@@ -47,6 +47,11 @@ if(!isNull curatorCamera)then{
 		    _curator addCuratorEditableObjects [vehicles,false];
 		    //_curator removeCuratorEditableObjects [objectsStart,false];
 	    }] remoteExec ["BIS_fnc_spawn", 2];
+	}else{
+	    [[_curator],{
+            _curator = _this select 0;
+            _curator addCuratorEditableObjects [buildObjects,false];
+        }] remoteExec ["BIS_fnc_spawn", 2];
 	};
 };
 

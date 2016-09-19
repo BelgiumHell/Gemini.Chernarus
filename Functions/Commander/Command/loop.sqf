@@ -5,27 +5,89 @@
 if((count jetTargets > 0 || count heliTargets > 1) && !jetActive)then{
     jetActive = true;
     jetReady = false;
-    requestArray pushBack [[3,1],_array,"true"];
+    [[3,3],_pos,-1,true]call JOC_cmdCmdRequest;
 };
 
 if(!jetReady && !jetActive)then{
     [{jetReady = true;}, [], 7200] call CBA_fnc_waitAndExecute;
 };
 
+//Find concentration of known blufor
+_playersKnown = [];
+{
+    if(east knowsAbout _x > 2)then{
+        _playersKnown pushBack _x;
+    };
+} forEach allPlayers;
+
+_motor = [];
+_armor = [];
+_groups = [];
+_newGroup = [];
+_refPlayer = _playersKnown select 0;
+{
+
+    if(_x distance2D _refPlayer < 100)then{
+        _newGroup pushBackUnique _x;
+    }else{
+        _newGroup call BIS_fnc_arrayShuffle;
+        if(count _newGroup > 4)then{
+            _groups pushBack _newGroup;
+        };
+        _refPlayer = _x;
+        _newGroup = [_x];
+    };
+} forEach _playersKnown;
+
+{
+    //Call in arty
+    if(count _x > 10)then{
+
+        _absDir = 0;
+        _absSpeed = 0;
+        {
+            _dir = getDir _x;
+            if(_dir > 180)then{
+                _dir = _dir - 360;
+            };
+            _absDir = _absDir + _dir;
+            _absSpeed = _absSpeed + getDir _x;
+        } forEach _x;
+
+        _positions = [];
+        {
+            _positions pushBack (getPos _x);
+        } forEach _x;
+
+        _pos = [_positions]call JOC_findCenter;
+
+        _dir = _absDir / (count _x);
+        _speed = _absSpeed / (count _x);
+        _pos = [_pos,_speed / 70,_dir] call Zen_ExtendPosition;
+        [[3,1],_pos,_forEachIndex,false]call JOC_cmdCmdRequest;
+    };
+} forEach _groups;
+
+//Check strategicarray
 {
     switch(_x select 4)do{
+        //No side cheking
+        if(_x select 2 in ["radar","radio"])then{
+            _objects = nearestObjects [(_x select 0),["Land_Radar_F","Land_Radar_Small_F","Land_TTowerBig_1_F","Land_TTowerBig_2_F"],20];
+            if(count _objects == 0)then{
+                (strategicArray select _forEachIndex) set [4,4];
+            };
+        };
+
+        //Side cheking
         case 0:{
             if(_x select 2 in ["aa","arty","camp"])then{
                 (strategicArray select _forEachIndex) set [4,4];
-            }else{
-                if(_x select 2 in ["radar","radio"])then{
-
-                };
             };
         };
         case 1:{
             //Check if under attack
-            if([(_x select 0),(_x select 1),["air"],[true,east]]call JOC_nearestPlayers)then{
+            if(count ([(_x select 0),(_x select 1),["air"],[true,west]]call JOC_nearestPlayers) > 0)then{
                 (strategicArray select _forEachIndex) set [4,2];
             }else{
                 //Check if vehicles need ammo
@@ -39,7 +101,7 @@ if(!jetReady && !jetActive)then{
             };
         };
     };
-}forEach strategicArray;
+} forEach strategicArray;
 
 
 _strategicWest = strategicArray select {(_x select 4) == 0};
@@ -49,70 +111,65 @@ _strategicAttack = strategicArray select {(_x select 4) == 3};
 
 _strengthEast = (count _strategicEast) / (count strategicArray);
 _strenghtWest = (count _strategicWest) / (count strategicArray);
-/*
+
 {
     _array = _x;
     _index = _array select 5;
     switch(true)do{
         case(_array select 1 >= 1000):{
-            requestArray pushBack [[1,0],_array,format["(strategicArray select %1) select 4 == 1",_index]];
-            requestArray pushBack [[1,1],_array,format["(strategicArray select %1) select 4 == 1",_index]];
+            [[3,2],_array,_index,false]call JOC_cmdCmdRequest;
             if(random 2 >= 1)then{
-                requestArray pushBack [[1,2],[_array,4],format["(strategicArray select %1) select 4 == 1",_index]];
+                [[1,0],[_array,4],_index,false]call JOC_cmdCmdRequest;
             }else{
-                requestArray pushBack [[1,3],_array,format["(strategicArray select %1) select 4 == 1",_index]];
+                [[1,1],[_array,4],_index,false]call JOC_cmdCmdRequest;
             };
         };
         case(_array select 1 >= 800 && _array select 1 < 1000):{
+            [[3,2],_array,_index,false]call JOC_cmdCmdRequest;
             if(random 2 >= 1)then{
-                requestArray pushBack [[1,0],_array,format["(strategicArray select %1) select 4 == 1",_index]];
+                [[1,0],[_array,3],_index,false]call JOC_cmdCmdRequest;
             }else{
-                requestArray pushBack [[1,1],_array,format["(strategicArray select %1) select 4 == 1",_index]];
-            };
-            if(random 2 >= 1)then{
-                requestArray pushBack [[1,2],[_array,3],format["(strategicArray select %1) select 4 == 1",_index]];
-            }else{
-                requestArray pushBack [[1,3],_array,format["(strategicArray select %1) select 4 == 1",_index]];
+                [[1,1],[_array,3],_index,false]call JOC_cmdCmdRequest;
             };
         };
         case(_array select 1 >= 600 && _array select 1 < 800):{
             if(_strengthEast > 0.2)then{
                 if(_strengthEast > 0.4)then{
-                    requestArray pushBack [[1,2],[_array,2.5],format["(strategicArray select %1) select 4 == 1",_index]];
+                    [[1,0],[_array,2.5],_index,false]call JOC_cmdCmdRequest;
                 }else{
-                    requestArray pushBack [[1,2],[_array,1.5],format["(strategicArray select %1) select 4 == 1",_index]];
+                    [[1,0],[_array,1.5],_index,false]call JOC_cmdCmdRequest;
                 };
             };
         };
         case(_array select 1 >= 400 && _array select 1 < 600):{
             if(_strengthEast > 0.25)then{
                 if(_strengthEast > 0.5)then{
-                    requestArray pushBack [[1,2],[_array,2],format["(strategicArray select %1) select 4 == 1",_index]];
+                    [[1,0],[_array,2],_index,false]call JOC_cmdCmdRequest;
                 }else{
-                    requestArray pushBack [[1,2],[_array,1],format["(strategicArray select %1) select 4 == 1",_index]];
+                    [[1,0],[_array,1],_index,false]call JOC_cmdCmdRequest;
                 };
             };
         };
         case(_array select 1 >= 200 && _array select 1 < 400):{
             if(_strengthEast > 0.3)then{
                 if(_strengthEast > 0.6)then{
-                    requestArray pushBack [[1,2],[_array,1.5],format["(strategicArray select %1) select 4 == 1",_index]];
+                    [[1,0],[_array,1.5],_index,false]call JOC_cmdCmdRequest;
                 }else{
-                    requestArray pushBack [[1,2],[_array,0.5],format["(strategicArray select %1) select 4 == 1",_index]];
+                    [[1,0],[_array,0.5],_index,false]call JOC_cmdCmdRequest;
                 };
             };
         };
         case(_array select 1 >= 100 && _array select 1 < 200):{
             if(_strengthEast > 0.6)then{
-                requestArray pushBack [[1,2],[_array,1],format["(strategicArray select %1) select 4 == 1",_index]];
+                [[1,0],[_array,1],_index,false]call JOC_cmdCmdRequest;
             };
         };
         case(_array select 1 >= 0 && _array select 1 < 100): {
-            //requestArray pushBack [[1,5],_array,format["(strategicArray select %1) select 4 == 1",_index]];
+
         };
     };
 } forEach _strategicDefend;
-*/
+
 
 //new
 //request = [categoryArray,params,canIgnore]
@@ -150,29 +207,21 @@ _usedGroups = [];
             //Defend
             case (1): {
                 switch((_request select 0) select 1)do{
-                    //Armor
-                    case (0): {
-                        _order = [(_task select 1)]call JOC_cmdDefArmor;
-                    };
-                    //Cas
-                    case (1): {
-                        _order = [(_task select 1)]call JOC_cmdDefCas;
-                    };
                     //Convoy
-                    case (2): {
-                        _order = [(_task select 1)]call JOC_cmdDefConvoy;
+                    case (0): {
+                        _order = (_request select 1)call JOC_cmdDefConvoy;
                     };
                     //Heli
-                    case (3): {
-                        _order = [(_task select 1)]call JOC_cmdDefHeli;
+                    case (1): {
+                        _order = (_request select 1)call JOC_cmdDefHeli;
                     };
                     //Near
-                    case (4): {
-                        //_order = [(_task select 1)]call JOC_cmdDefNear;
+                    case (2): {
+                        //_order = (_request select 1)call JOC_cmdDefNear;
                     };
                     //Retreat
-                    case (5): {
-                        //_order = [(_task select 1)]call JOC_cmdDefRetreat;
+                    case (3): {
+                        //_order = (_request select 1)call JOC_cmdDefRetreat;
                     };
                 };
             };
@@ -181,11 +230,11 @@ _usedGroups = [];
                 switch((_request select 0) select 1)do{
                     //Ammo supply
                     case (0): {
-                        _order = [(_task select 1)]call JOC_cmdLogAmmo;
+                        _order = (_request select 1)call JOC_cmdLogAmmo;
                     };
                     //Repair
                     case (1): {
-                        //_order = [(_task select 1)]call JOC_cmdLogRepair;
+                        //_order = (_request select 1)call JOC_cmdLogRepair;
                     };
                 };
             };
@@ -193,12 +242,12 @@ _usedGroups = [];
             case (3): {
                 switch((_request select 0) select 1)do{
                     //Arty support
-                    case (0): {
-                        //_order = [(_task select 1)]call JOC_cmdLogAmmo;
+                    case (1): {
+                        //_order = (_request select 1)call JOC_cmdLogAmmo;
                     };
                     //Intercept
-                    case (1): {
-                        _order = [(_task select 1)]call JOC_cmdSupportIntercept;
+                    case (3): {
+                        _order = (_request select 1)call JOC_cmdSupportIntercept;
                     };
                 };
             };

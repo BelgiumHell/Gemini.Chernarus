@@ -63,8 +63,6 @@ while{_s < 4}do{
         _obj setSkill 1;
     }forEach _objects;
 
-    [_group]call JOC_virtualize;
-
 	_nameS = format ["mrk_strategic_arty_%1",_s];
 	_marker = createMarker [_nameS, _location];
    	_nameS setMarkerShape "ELLIPSE";

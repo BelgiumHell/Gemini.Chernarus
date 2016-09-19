@@ -18,14 +18,14 @@ _spawnMarkerName setMarkerShape "RECTANGLE";
 _spawnMarkerName setMarkerDir (_dimensions select 2);
 _spawnMarkerName setMarkerAlpha 0;
 
-_roadArr = _location nearRoads (_dimensions select 0 * 2);
+_roadArr = _location nearRoads (_dimensions select 0);
 _roadPos = [];
 {
     if([_x,_spawnMarkerName]call Zen_AreInArea)then{
         _roadPos pushBack (getPosASL _x);
     };
 } forEach _roadArr;
-_roadPos call BIS_fnc_arrayShuffle;
+[_roadPos] call Zen_ArrayShuffle;
 _roadCount = 0;
 
 //Spawn infantry

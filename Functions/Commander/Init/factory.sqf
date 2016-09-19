@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 _usedCompounds = [];
-dieselFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_dp_mainFactory_F"],worldSize*2.0^0.5];
+dieselFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_dp_mainFactory_F","Land_spp_Tower_F"],worldSize*2.0^0.5];
 mainFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"],worldSize*2.0^0.5];
 
 {

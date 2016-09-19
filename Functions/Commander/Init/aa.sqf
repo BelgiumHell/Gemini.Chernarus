@@ -54,8 +54,6 @@ while {_tank < 24} do{
         _obj setSkill 1;
     }forEach _objects;
 
-    [_group]call JOC_virtualize;
-
 	_nameS = format ["mrk_strategic_aa_%1",_tank];
 	_marker = createMarker [_nameS, _location];
    	_nameS setMarkerShape "ELLIPSE";

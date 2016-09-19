@@ -9,7 +9,7 @@
 //Parameters *FREE TO EDIT*
 //Classnames
 infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_aa","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
-sfPool       = ["rhs_vdv_recon_marksman_vss","rhs_vdv_recon_marksman_asval","rhs_vdv_recon_grenadier_scout","rhs_vdv_recon_rifleman_scout","rhs_vdv_recon_rifleman_scout_akm"];
+sfPool       = ["rhs_vdv_recon_marksman_vss","rhs_vdv_recon_marksman_asval","rhs_vdv_recon_grenadier_scout","rhs_vdv_recon_rifleman_scout","rhs_vdv_recon_rifleman_scout_akm"]; //Special forces classnames (#getRekt)
 staticPoolAA = ["RHS_ZU23_VDV"];
 staticPoolMG = [];
 carPool      = ["rhs_tigr_m_vdv","rhs_tigr_sts_vdv","rhs_tigr_vdv"];        //car classnames
@@ -29,7 +29,7 @@ artyClass    = "rhs_2s3_tv";    //Arty classname
 aaClass      = "rhs_zsu234_aa"; //AA classname
 fobClass     = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"; //Fob classname
 emptyClass   = "Land_Airport_center_F";  //Large object, don't change or delete
-roofPool     = ["Land_Offices_01_V1_F"];
+roofPool     = ["Land_Offices_01_V1_F","Land_WIP_F"];
 
 //Markers
 blackTowns = ["Sagonisi"];  //Blacklist towns to not get any strategic value
@@ -66,8 +66,8 @@ activeTasks = [];   //Not being used
 fobTrucks = [];
 vehArray = [];
 buildObjects = [];
-radarsEast = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
-radarsWest = [];
+radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
+radiotowers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Land_TTowerBig_2_F"],worldSize*2.0^0.5];
 jetActive = false;
 jetReady = true;
 
@@ -181,6 +181,13 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
             _x setDamage (_damageValues select _forEachIndex);
         };
     } forEach objectsStart;
+
+    //buildObjects
+    _index = 0;
+    while{typeName (["read", ["main", format["buildObjects_%1",_index],0]] call _inidbi) != typeName 0}do{
+        buildObjects pushBack (["read", ["main", format["buildObjects_%1",_index]]] call _inidbi);
+        _index = _index + 1;
+    };
 
     //Objects spawned on mission load
     _objectsAdded = [];

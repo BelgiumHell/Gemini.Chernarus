@@ -1,10 +1,17 @@
 params["_crate"];
 
+if([_crate,"mrk_safeZone"]call Zen_AreInArea)exitWith{hint "Can't build in base area";};
+
+_orgCurator = getAssignedCuratorLogic player;
+
 [[_crate,player],{
     params["_crate","_player"];
     //Can't build near enemy positions
     _stratPos = [getPos _crate,"",[0,300]]call JOC_cmdMiscGetNearestStrategic;
     if(count (_stratPos - [0,0,0]) != 0)exitWith{hint "Can't build here"};
+
+    //Remove current curator
+    unassignCurator (getAssignedCuratorLogic _player);
 
     //Create curator
     _curatorGroup = creategroup sideLogic;
@@ -16,6 +23,8 @@ params["_crate"];
     _curator addCuratorAddons ["A3_Structures_F_Mil_BagBunker","A3_Structures_F_Mil_BagFence","A3_Structures_F_Mil_Bunker","A3_Structures_F_Mil_Cargo","A3_Structures_F_Mil_Fortification","A3_Structures_F_Mil_Helipads","A3_Structures_F_Mil_Shelters","rhsusf_c_statics"];
     _player assignCurator _curator;
 }] remoteExecCall ["BIS_fnc_call", 2];
+
+waitUntil{sleep 1; !isNull(getAssignedCuratorLogic player)};
 
 (getAssignedCuratorLogic player) addEventHandler ["CuratorObjectPlaced", {
     [[(_this select 1)],{
@@ -31,10 +40,11 @@ params["_crate"];
 openCuratorInterface;
 waitUntil{sleep 1; isNull curatorCamera || player distance2D _crate > 7};
 
-[[(getAssignedCuratorLogic player)],{
-    params["_curator"];
+[[(getAssignedCuratorLogic player),_orgCurator],{
+    params["_curator","_orgCurator"];
     unassignCurator _curator;
     objNull assignCurator _curator;
     deleteVehicle _curator;
-}] remoteExec ["BIS_fnc_spawn", 2]
+    player assignCurator _orgCurator;
+}] remoteExec ["BIS_fnc_spawn", 2];
 

@@ -73,7 +73,11 @@ _items = [
 	"rhsusf_acc_compm4",
 	"rhsusf_acc_eotech_552",
 
-	"rhsusf_ANPVS_15"
+	"rhsusf_ANPVS_15",
+
+	"ACRE_PRC343",
+	"ACRE_PRC152",
+	"ACRE_PRC117F"
 ];
 
 //Command

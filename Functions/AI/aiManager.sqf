@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-//caching
+//virtualizing
 if(JOC_pauseCache)exitWith{};
 {
     if(count (units _x) == 0)then{
@@ -34,12 +34,14 @@ if(JOC_pauseCache)exitWith{};
                 virtualizedArray deleteAt _forEachIndex;
         }else{
             if(isNil{(_x select 3) select 0} || ((_x select 3) select 0 == -1))then{
-                _x set [3,currentGroupID];
+                (_x select 3) set [0,currentGroupID];
                 currentGroupID = currentGroupID + 1;
             };
             if([(((_x select 0) select 0) select 1), 1100, ["plane"]]call JOC_playersNear || (_x select 2))then{
                 [_x]call JOC_unVirtualize;
                 virtualizedArray deleteAt _forEachIndex;
+            }else{
+
             };
         };
     };
