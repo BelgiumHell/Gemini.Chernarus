@@ -27,18 +27,7 @@ _vehiclesTemp = [];
     if(!(isNull (objectParent _x)))then{
         if(!((vehicle _x) in _vehiclesTemp))then{
             _vehicle = (vehicle _x);
-            //Damage values
-            _damageArray = [[],[]];
-            if(count getAllHitPointsDamage (vehicle _x) == 3)then{
-                {
-                    if(_x != 0)then{
-                        _damageArray select 0 pushBack (((getAllHitPointsDamage _vehicle) select 0) select _forEachIndex);
-                        _damageArray select 1 pushBack _x;
-                    };
-                } forEach ((getAllHitPointsDamage _vehicle) select 2);
-            };
-
-            _vehicles pushBack [(typeOf _vehicle),(getPosASL _vehicle),[_forEachIndex],_damageArray, fuel _vehicle, getDir _vehicle];
+            _vehicles pushBack [(typeOf _vehicle),(getPosASL _vehicle),[_forEachIndex],damage _vehicle, fuel _vehicle, getDir _vehicle];
             _vehiclesTemp pushBack _vehicle;
         }else{
             _index = _vehiclesTemp find (vehicle _x);
@@ -62,7 +51,6 @@ if(_delete)then{
     } forEach _vehiclesTemp;
 };
 
-_array = [_unitClasses,_vehicles,false,[_group getVariable ["groupID",-1],_group getVariable ["garrisoned",false]],_waypoints,_formation,_behaviour,_speed];
+_array = [_unitClasses,_vehicles,_group getVariable ["JOC_caching_disabled",false],[_group getVariable ["groupID",-1],_group getVariable ["garrisoned",false]],_waypoints,_formation,_behaviour,_speed];
 
 _array
-

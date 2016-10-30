@@ -19,25 +19,14 @@ if(count (_array select 1) > 0)then{
         _vehicle setDir (_x select 5);
         _vehicle setDamage 0;
         _vehicle setPosASL (_x select 1);
-        _damageArray = (_x select 3);
-        {
-            _vehicle setHitPointDamage [_x, ((_damageArray select 1) select _forEachIndex)];
-        } forEach (_damageArray select 0);
+        _vehicle setDamage (_x select 3);
         _crew = [];
         {
             _crew pushBack ((units _group) select _x);
         } forEach (_x select 2);
 
         {
-            _x moveInDriver _vehicle;
-            if(!(_x in _vehicle))then{
-                _x moveInGunner _vehicle;
-            }else{
-                _x moveInCommander _vehicle;
-                if(!(_x in _vehicle))then{
-                    _x moveInAny _vehicle
-                };
-            };
+            _x moveInAny _vehicle;
         } forEach _crew;
 
         _vehicle setFuel (_x select 4);
@@ -45,12 +34,12 @@ if(count (_array select 1) > 0)then{
 };
 
 if(count _array > 2)then{
-    _group setVariable ["JOC_caching_disabled", (_array select 2)];
+    _group setVariable ["JOC_caching_disabled", (_array select 2), true];
 };
 
 if(count _array > 3)then{
-    _group setVariable ["groupID", (_array select 3 select 0)];
-    _group setVariable ["garrisoned", (_array select 3 select 1)];
+    _group setVariable ["groupID", (_array select 3 select 0), true];
+    _group setVariable ["garrisoned", (_array select 3 select 1), true];
 }else{
     [_group]call JOC_setGroupID;
 };

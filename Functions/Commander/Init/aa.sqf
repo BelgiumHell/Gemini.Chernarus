@@ -40,7 +40,7 @@ _tank = 0;
 _location = [];
 
 while {_tank < 24} do{
-	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0,[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]]call Zen_FindGroundPosition;
+	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,[3,75],[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]]call Zen_FindGroundPosition;
 
 	_objects = [_location,random 360,_aaComp]call BIS_fnc_ObjectsMapper;
 	_group = createGroup east;

@@ -25,7 +25,7 @@ _wp1 setWaypointType "SAD";
 
 _scriptArray = [
 ["fuel (vehicle (leader (_this select 1))) < 0.1 || damage (vehicle (leader (_this select 1))) > 0.5 || (strategicArray select ((_this select ) select 5)) select 4 == 1","_airfieldPos = [getPos ((_this select 1) select 0),""airfield"",[1000,99999]]call JOC_cmdMiscGetNearestStrategic; _wp1 = (_this select 1) addWaypoint [_airfieldPos, 0];_wp1 setWaypointType ""GETOUT"";"],
-["(count (waypoints (_this select 1)) <= currentWaypoint (_this select 1))","(_this select 1) setVariable[""JOC_cleanUp"",true]"]
+["(count (waypoints (_this select 1)) <= currentWaypoint (_this select 1))","(_this select 1) setVariable[""JOC_caching_disabled"", false, true];(_this select 1) setVariable[""JOC_cleanUp"", true , true]"]
 ];
 
 _order = [[[1,1],_array,(_groupConvoy getVariable ["groupID", -1]),_scriptArray]];

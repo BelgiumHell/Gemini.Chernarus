@@ -99,7 +99,7 @@
     } forEach _damageValues;
 
     {
-        _success = ["write", ["main", format["buildObjects_%1",_forEachIndex], _x]] call _inidbi;
+        _success = ["write", ["header", format["buildObjects_%1",_forEachIndex], [typeOf _x, getPosASL _x, getDir _x]]] call _inidbi;
 
         if(!_success)then{
             diag_log format["Failed to save %1 at %2 (buildObjects)", _x, diag_tickTime];

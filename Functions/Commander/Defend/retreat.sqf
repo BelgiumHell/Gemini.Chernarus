@@ -3,7 +3,7 @@
 /////////////////////////
 params["_arg"];
 
-_nearPos = [(_arg select 0),"",0]call JOC_cmdMiscGetNearestStrategic;
+_nearPos = [(_arg select 0),"",[100,99999]]call JOC_cmdMiscGetNearestStrategic;
 
 _entities = _nearPos nearEntities [["Man","Car","Tank"],((getMarkerSize (_arg select 3)) select 0)];
 

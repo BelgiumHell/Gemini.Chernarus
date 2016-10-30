@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 _artyGroup = createGroup east;
-_artyGroup setVariable["JOC_caching_disabled",true];
+_artyGroup setVariable["JOC_caching_disabled", true , true];
 [_artyGroup]call JOC_setGroupID;
 _tankBlacklist = [];
 _artyComp = [
@@ -45,7 +45,7 @@ _artyComp = [
 _s = 0;
 while{_s < 4}do{
 	//Get position
-	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,0,[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]] call Zen_FindGroundPosition;
+	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,[3,75],[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]] call Zen_FindGroundPosition;
 
 	_objects = [_location,0,_artyComp]call BIS_fnc_ObjectsMapper;
 	_group = createGroup east;

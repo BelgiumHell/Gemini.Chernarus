@@ -1,8 +1,12 @@
+/////////////////////////
+//Script made by Jochem//
+/////////////////////////
 params["_crate"];
 
 if([_crate,"mrk_safeZone"]call Zen_AreInArea)exitWith{hint "Can't build in base area";};
 
 _orgCurator = getAssignedCuratorLogic player;
+if(!isNull _orgCurator)exitWith{hint "Logout as admin/zeus";};
 
 [[_crate,player],{
     params["_crate","_player"];
@@ -47,4 +51,3 @@ waitUntil{sleep 1; isNull curatorCamera || player distance2D _crate > 7};
     deleteVehicle _curator;
     player assignCurator _orgCurator;
 }] remoteExec ["BIS_fnc_spawn", 2];
-

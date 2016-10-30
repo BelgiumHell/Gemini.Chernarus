@@ -13,30 +13,42 @@ if(!jetReady && !jetActive)then{
 };
 
 //Find concentration of known blufor
-_playersKnown = [];
-{
-    if(east knowsAbout _x > 2)then{
-        _playersKnown pushBack _x;
-    };
-} forEach allPlayers;
+_playersKnown = allPlayers select {east knowsAbout _x > 2};
 
+_infantry = [];
 _motor = [];
 _armor = [];
+_ship = [];
 _groups = [];
 _newGroup = [];
 _refPlayer = _playersKnown select 0;
 {
-
-    if(_x distance2D _refPlayer < 100)then{
-        _newGroup pushBackUnique _x;
-    }else{
-        _newGroup call BIS_fnc_arrayShuffle;
-        if(count _newGroup > 4)then{
-            _groups pushBack _newGroup;
+    if(isNull (objectParent player))then{
+        if(_x distance2D _refPlayer < 100)then{
+            _newGroup pushBackUnique _x;
+        }else{
+            _newGroup call BIS_fnc_arrayShuffle;
+            if(count _newGroup > 4)then{
+                _groups pushBack _newGroup;
+            };
+            _refPlayer = _x;
+            _newGroup = [_x];
         };
-        _refPlayer = _x;
-        _newGroup = [_x];
     };
+
+    if(vehicle player isKindOf "man")then{
+        _infantry pushBackUnique (vehicle player);
+    }else{
+        if(vehicle player isKindOf "car")then{
+            _motor pushBackUnique (vehicle player);
+        }else{
+            if(vehicle player isKindOf "tank")then{
+                _armor pushBackUnique (vehicle player);
+            }else{
+                _ship pushBackUnique (vehicle player);
+            }
+        }
+    }
 } forEach _playersKnown;
 
 {
@@ -63,20 +75,38 @@ _refPlayer = _playersKnown select 0;
 
         _dir = _absDir / (count _x);
         _speed = _absSpeed / (count _x);
-        _pos = [_pos,_speed / 70,_dir] call Zen_ExtendPosition;
-        [[3,1],_pos,_forEachIndex,false]call JOC_cmdCmdRequest;
+        _pos = [_pos, _speed / 70, _dir] call BIS_fnc_relPos;
+        [[3,1],[_pos],-1,false]call JOC_cmdCmdRequest;
     };
 } forEach _groups;
+
+switch (count _armor + (count _motor) * 0.5) do {
+    case 0:{
+
+    };
+    case 1:{
+
+    };
+    case 2:{
+
+    };
+    case 3:{
+
+    };
+    case 4:{
+
+    };
+};
 
 //Check strategicarray
 {
     switch(_x select 4)do{
         //No side cheking
         if(_x select 2 in ["radar","radio"])then{
-            _objects = nearestObjects [(_x select 0),["Land_Radar_F","Land_Radar_Small_F","Land_TTowerBig_1_F","Land_TTowerBig_2_F"],20];
+            /*_objects = nearestObjects [(_x select 0),["Land_Radar_F","Land_Radar_Small_F","Land_TTowerBig_1_F","Land_TTowerBig_2_F"],20];
             if(count _objects == 0)then{
                 (strategicArray select _forEachIndex) set [4,4];
-            };
+            };*/
         };
 
         //Side cheking
@@ -87,17 +117,8 @@ _refPlayer = _playersKnown select 0;
         };
         case 1:{
             //Check if under attack
-            if(count ([(_x select 0),(_x select 1),["air"],[true,west]]call JOC_nearestPlayers) > 0)then{
+            if(count ([(_x select 0),(_x select 1),["air"],[true,east]]call JOC_nearestPlayers) > 0)then{
                 (strategicArray select _forEachIndex) set [4,2];
-            }else{
-                //Check if vehicles need ammo
-                if(_x select 2 in ["aa","arty"])then{
-                    _vehicles = (_x select 0) nearEntities [[aaClass,artyClass],(_x select 1)];
-                    _ammo = _vehicles select {_x ammo (currentWeapon _x) < 0.3};
-                    if(count _ammo > 0)then{
-                        [[2,0],_x,_forEachIndex,false]call JOC_cmdCmdRequest;
-                    };
-                };
             };
         };
     };
@@ -241,9 +262,17 @@ _usedGroups = [];
             //Support
             case (3): {
                 switch((_request select 0) select 1)do{
+                    //Armor support
+                    case (1): {
+                        _order = (_request select 1)call JOC_cmdSupportArmor;
+                    };
                     //Arty support
                     case (1): {
-                        //_order = (_request select 1)call JOC_cmdLogAmmo;
+                        _order = (_request select 1)call JOC_cmdSupportArty;
+                    };
+                    //Cas support
+                    case (2): {
+                        _order = (_request select 1)call JOC_cmdSupportCas;
                     };
                     //Intercept
                     case (3): {
@@ -256,7 +285,7 @@ _usedGroups = [];
         //If order didn't fail to start, start execution of order
         if(count _order != 0)then{
             {
-                orderArray pushBack [_order,currentRequestID];
+                orderArray pushBack [_x,currentRequestID];
             } forEach _order;
 
             (requestArray select _forEachIndex) set [3,[currentRequestID,true]];
@@ -275,18 +304,20 @@ _usedGroups = [];
 {
     _order = _x select 0;
 
-    //If no more conditions or group is destoyed, delete from orderarray
-    if(isNil{(((_order select 3) select 0) select 0)} || !([_order select 2]call JOC_groupExists))then{
+    //If group doesn't exist anymore, delete from orderarray
+    if(!([_order select 2]call JOC_groupExists))then{
         orderArray deleteAt _forEachIndex;
     }else{
-        //If group isn't virtuaized, evaluate condition
-        if(_order select 2 in _realGroups)then{
-            _usedGroups pushBack (_order select 2);
-            _group = [_order select 2]call JOC_getGroup;
-            //If condition is true, execute code and delete part from order
-            if([_order select 1, _group]call (compile (((_order select 3) select 0) select 0)))then{
-                [_order select 1, _group]call (compile (((_order select 3) select 0) select 1));
-                ((_order select 3) select 0) deleteAt 0;
+        if(!isNil{(((_order select 3) select 0))})then{
+            //If group isn't virtuaized, evaluate condition
+            if(_order select 2 in _realGroups)then{
+                _usedGroups pushBack (_order select 2);
+                _group = [_order select 2]call JOC_getGroup;
+                //If condition is true, execute code and delete part from order
+                if([_order select 1, _group]call (compile (((_order select 3) select 0) select 0)))then{
+                    [_order select 1, _group]call (compile (((_order select 3) select 0) select 1));
+                    (_order select 3) deleteAt 0;
+                };
             };
         };
     };

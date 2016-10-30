@@ -26,7 +26,7 @@ _wp setWaypointStatements ["count (jetTargets + heliTargets) != 0", "if(isServer
 
 _scriptArray = [
 ["fuel (vehicle (leader (_this select 1))) < 0.1 || damage (vehicle (leader (_this select 1))) > 0.5 || count (jetTargets + heliTargets) == 0","_airfieldPos = [getPos ((_this select 1) select 0),""airfield"",[1000,99999]]call JOC_cmdMiscGetNearestStrategic; _wp1 = (_this select 1) addWaypoint [_airfieldPos, 0];_wp1 setWaypointType ""GETOUT"";"],
-["(count (waypoints (_this select 1)) < 2)","(_this select 1) setVariable[""JOC_cleanUp"",true]"]
+["(count (waypoints (_this select 1)) < 2)","(_this select 1) setVariable[""JOC_caching_disabled"", false, true];(_this select 1) setVariable[""JOC_cleanUp"", true, true]"]
 ];
 
 _order = [[[3,1],0,((group _jet) getVariable ["groupID", -1]),_scriptArray]];

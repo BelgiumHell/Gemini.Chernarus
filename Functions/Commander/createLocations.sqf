@@ -17,7 +17,7 @@
 []call JOC_cmdInitFactory;
 
 //Mines
-[]call JOC_cmdInitMine;
+//[]call JOC_cmdInitMine; -not persistant + AI is too stupid to not get killed by them, even if they know they're there
 
 //Radiotowers
 []call JOC_cmdInitRadio;

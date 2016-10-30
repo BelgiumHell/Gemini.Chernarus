@@ -11,7 +11,7 @@ if(JOC_pauseCache)exitWith{};
         [_x]call JOC_setGroupID;
     };
     if(side _x != west)then{
-        if(!([getPosASL (leader _x), 1100, []]call JOC_playersNear))then{
+        if(!([getPosASL (leader _x), 1100, ["plane"]]call JOC_playersNear))then{
             if(_x getVariable ["JOC_cleanUp",false])then{
                 [_x]call JOC_cleanUp;
             }else{
@@ -46,3 +46,5 @@ if(JOC_pauseCache)exitWith{};
         };
     };
 } forEach virtualizedArray;
+
+[false]call acex_headless_fnc_rebalance;

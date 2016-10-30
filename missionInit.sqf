@@ -37,7 +37,7 @@ blackMarkers = ["mrk_safeZone"];    //Markers enemies will not spawn in nor patr
 airfieldMarkers = ["mrk_airfield_0","mrk_airfield_1","mrk_airfield_2","mrk_airfield_3"];   //Markers for airfields
 
 //Objects
-leaderArray = ["cmd1","cmd2","a0_1","b0_1","c0_1","h1","r1","anv1","s1","v1","rip1"]; //All leading elements, this is also used for chain of command
+leaderArray = []; //All leading elements, this is also used for chain of command
 arsenalBoxes = [arsenal1,arsenal2];    //All pre-placed boxes that need to be a virtual arsenal
 logisticsArray = ["l1","l2","l3","l4"]; //All units that will be able to use the building crate
 logisticsVehArray = ["B_APC_Tracked_01_CRV_F"]; //All vehicles that can tow (might be broken atm, do not expect this to work properly)
@@ -202,6 +202,19 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         _object setDir (_x select 2);
     } forEach _objectsAdded;
 
+    //Buildobjects
+    _buildAdded = [];
+    _index = 0;
+    while{typeName (["read", ["header", format["buildObjects_%1",_index],0]] call _inidbi) != typeName 0}do{
+        _buildAdded pushBack (["read", ["header", format["buildObjects_%1",_index]]] call _inidbi);
+        _index = _index + 1;
+    };
+    {
+        _object = (_x select 0) createVehicle (_x select 1);
+        _object setPosASL (_x select 1);
+        _object setDir (_x select 2);
+    } forEach _buildAdded;
+
     //get fobs and deploy them if applicable
     _fobArray = ["read", ["main", "fobArray",[]]] call _inidbi;
     {
@@ -234,7 +247,7 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
 
     [[],{
             progressLoadingScreen 0.9;
-        }] remoteExec ["BIS_fnc_spawn", 0, true];
+    }] remoteExec ["BIS_fnc_spawn", 0, true];
 
     //This is saved in the beginning because it would kill the server trying to do it every 5 minutes
     {
@@ -270,8 +283,3 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
     _marker = _x select 3;
     _marker setMarkerAlpha 0;
 } forEach strategicArray;
-/*[{
-    {
-        [_x,_forEachIndex]call JOC_cmdMiscMonitorStrategic;
-    } forEach strategicArray;
-}, 15, []]call CBA_fnc_addPerFrameHandler;*/

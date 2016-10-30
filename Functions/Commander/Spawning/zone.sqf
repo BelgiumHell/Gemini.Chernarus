@@ -4,6 +4,9 @@
 //[amount(SCALAR),patrol(BOOLEAN)] heli:[amount(SCALAR),patrol(BOOLEAN),type(STRING)]
 params["_location","_dimensions","_inf","_car","_apc","_ifv","_tank","_heli","_boat"];
 
+//Pause caching
+JOC_pauseCache = true;
+
 _groups = [];
 
 if((typeName _dimensions) == "SCALAR")then{
@@ -59,7 +62,7 @@ if((_car select 0) > 0)then{
 		{
 		    _arrayI pushBack _forEachIndex;
 		} forEach _arrayG;
-		_array = [_arrayG,[[_class,_locationS,_arrayI,[[],[]],1]],false,[-1,false]];
+		_array = [_arrayG,[[_class,_locationS,_arrayI,0,1]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
@@ -80,7 +83,7 @@ if((_apc select 0) > 0)then{
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
 		};
 
-		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],[[],[]],1]],false,[-1,false]];
+		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],0,1]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
@@ -100,7 +103,7 @@ if((_ifv select 0) > 0)then{
 		}else{
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
 		};
-		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],[[],[]],1]],false,[-1,false]];
+		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],0,1]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
@@ -121,7 +124,7 @@ if((_tank select 0) > 0)then{
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
 		};
 
-		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],[[],[]],1]],false,[-1,false]];
+		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],0,1]],false,[-1,false]];
 		virtualizedArray pushBack _array;
 		_groups pushBack ((count virtualizedArray) - 1);
 		_j = _j + 1;
@@ -161,6 +164,8 @@ if(_boatCount > 0)then{
 		_j = _j + 1;
 	};
 };
+
+JOC_pauseCache = false;
 
 deleteMarker _spawnMarkerName;
 _groups

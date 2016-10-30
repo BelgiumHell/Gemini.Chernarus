@@ -21,19 +21,23 @@ _dir = [_pos] call Zen_FindRoadDirection;
     _veh setDir _dir;
     _veh setDamage 0;
     createVehicleCrew _veh;
+    (crew _veh) joinSilent _groupConvoy;
 
     _group = [[0,0,0], east, "infantry", getNumber(configFile >> "CfgVehicles" >> _x >> "transportSoldier"),"Basic"]call Zen_SpawnInfantry;
     {
-        _x moveInAny _veh;
+        _x moveInCargo _veh;
     }forEach (units _group);
     _groups pushBack _group;
-
-    (crew _veh) joinSilent _groupConvoy;
 } forEach _vehArr;
 
 _groupConvoy setBehaviour "SAFE";
 _groupConvoy setFormation "COLUMN";
 _groupConvoy setSpeedMode "normal";
+
+//Give all groups an ID
+{
+    [_x]call JOC_setGroupID;
+} forEach _groups;
 
 _return = [_groupConvoy,_groups];
 

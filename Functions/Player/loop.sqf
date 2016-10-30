@@ -8,10 +8,10 @@ player addRating 2000;
 
 
 //Music
-if(musicPlay && (vehicle player) != player && musicTime < time)then{
+if(musicPlay && (vehicle player) != player && musicTime < serverTime)then{
     detach musicDummy;
     deleteVehicle musicDummy;
-    musicTime = time + 57;
+    musicTime = serverTime + 57;
     musicDummy = "Land_HelipadEmpty_F" createVehicle [0,0,0];
     musicDummy attachTo [(vehicle player),[0,0,0]];
     [[musicDummy],{

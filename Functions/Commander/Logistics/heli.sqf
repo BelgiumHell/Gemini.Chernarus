@@ -4,7 +4,7 @@
 params["_heli","_array"];
 
 //Get location
-_basePos = [(_array select 0),"base",500]call JOC_cmdMiscGetNearestStrategic;
+_basePos = [(_array select 0),"base",[500,99999]]call JOC_cmdMiscGetNearestStrategic;
 if(count (_basePos - [0,0,0]) == 0)exitWith{false};
 
 //Spawn crate

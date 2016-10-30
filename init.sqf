@@ -12,8 +12,8 @@ startLoadingScreen["Loading..."];
 JOC_serverLoaded = false;
 
 // Gemini by Jochem
-// Version = 0.6
-// Tested with ArmA 3 <1.58>
+// Version = DEV
+// Tested with ArmA 3 <1.64>
 
 enableSaving [false, false];
 

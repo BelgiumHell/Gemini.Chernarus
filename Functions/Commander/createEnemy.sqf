@@ -22,7 +22,7 @@
             _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[11,true],[4,false],[0,false],[3,false],[2,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
         };
         case "arty": {
-            _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[3,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+            _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[4,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
         };
         case "base": {
             _groupsB = [_pos,300]call JOC_cmdSpawnBase;
@@ -48,13 +48,13 @@
         case "town": {
             switch (_priority) do {
                 case 300: {
-                    _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[0,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+                    _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[2,true],[1,false],[0,false],[0,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
                 case 500: {
-                    _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[7,true],[2,false],[0,false],[1,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+                    _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[7,true],[3,false],[0,false],[1,false],[0,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
                 case 900: {
-                    _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[13,true],[3,false],[0,false],[3,false],[2,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
+                    _groups = [_pos,((getMarkerSize _marker) + [markerDir _marker]),[13,true],[6,false],[0,false],[3,false],[2,false],[0,false,"cas"],[0,false]] call JOC_cmdSpawnZone;
                 };
             };
         };
@@ -66,6 +66,6 @@
         currentGroupID = currentGroupID + 1;
     } forEach (_groups + _groupsB);
 
-    (strategicArray select _forEachIndex) set [5,_index];
+    _x set [5,_index];
 
 } forEach strategicArray;
