@@ -33,18 +33,22 @@ if(vehicle player in (jetTargets + heliTargets))then{
 };
 
 //Zeus
+/*
 if(!isNull curatorCamera)then{
 	_curator = (getAssignedCuratorLogic player);
 	if(count (curatorCameraArea _curator ) == 0)then{
 	    _curator removeAllEventHandlers "CuratorObjectPlaced";
-	    _curator addEventHandler ["CuratorObjectPlaced", {
+	    _curator addEventHandler ["CuratorGroupPlaced", {
     		(_this select 1) setVariable["JOC_caching_disabled",true,true];
+    	}];
+        _curator addEventHandler ["CuratorObjectPlaced", {
+    		(group (_this select 1)) setVariable["JOC_caching_disabled",true,true];
     	}];
 	    [[_curator],{
 		    _curator = _this select 0;
-		    _curator addCuratorEditableObjects [allUnits,false];
-		    _curator addCuratorEditableObjects [allDead,false];
-		    _curator addCuratorEditableObjects [vehicles,false];
+		    _curator addCuratorEditableObjects [allUnits,true];
+		    _curator addCuratorEditableObjects [allDead,true];
+		    _curator addCuratorEditableObjects [vehicles,true];
 		    //_curator removeCuratorEditableObjects [objectsStart,false];
 	    }] remoteExec ["BIS_fnc_spawn", 2];
 	}else{
@@ -53,7 +57,7 @@ if(!isNull curatorCamera)then{
             _curator addCuratorEditableObjects [buildObjects,false];
         }] remoteExec ["BIS_fnc_spawn", 2];
 	};
-};
+};*/
 
 //Radio jamming (experimental)
 if((count (nearestObjects [player, ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"], 2000])) > 0)then{

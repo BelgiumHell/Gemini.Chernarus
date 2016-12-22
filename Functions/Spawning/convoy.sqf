@@ -2,7 +2,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_startPos","_vehArr"];
+params["_startPos","_vehArr","_prefDir"];
 
 
 _groupConvoy = createGroup east;
@@ -14,16 +14,32 @@ JOC_pauseCache = true;
 
 //Spawn all vehicles
 _pos = getPos ((_startPos nearRoads 200) select 0);
-_dir = [_pos] call Zen_FindRoadDirection;
+_dir = ([_pos] call Zen_FindRoadDirection) + 90;
+
+
 {
-    _veh = _x createVehicle _pos;
-    _pos = [_pos, -15, _dir, "trig"]call Zen_ExtendPosition;
+    _nearRoad = [_pos, _pos nearRoads 15]call JOC_getNearest;
+    if(!isNull _nearRoad)then{
+        _pos = getPos _nearRoad;
+        _dir = ([_pos] call Zen_FindRoadDirection) + 90;
+    };
+    
+    if(_dir < 0)then{
+        _dir = 360 + _dir;
+    };
+
+    if(_dir - _prefDir > (360 - _dir) - _prefDir)then{
+        _dir = (360 - _dir);
+    };
+
+    _veh = createVehicle[_x, _pos, [], 0, "CAN_COLLIDE"];
+    _pos = [_pos, -15, _dir]call Zen_ExtendPosition;
     _veh setDir _dir;
     _veh setDamage 0;
     createVehicleCrew _veh;
     (crew _veh) joinSilent _groupConvoy;
 
-    _group = [[0,0,0], east, "infantry", getNumber(configFile >> "CfgVehicles" >> _x >> "transportSoldier"),"Basic"]call Zen_SpawnInfantry;
+    _group = [[0,0,0], east, "infantry", count(getArray(configFile >> "CfgVehicles" >> _x >> "getInProxyOrder")) - (count (crew _veh)),"Basic"]call Zen_SpawnInfantry;
     {
         _x moveInCargo _veh;
     }forEach (units _group);

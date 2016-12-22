@@ -26,8 +26,7 @@ _chance = 0.75;
         {
             if(random 1 < _chance)then{
                 _building = _x;
-                _array = [[0,0,0],ceil((count (_building buildingPos - 1)) * 0.5),0,[true,_building],0.6]call JOC_cmdSpawnGroupVirtual;
-                virtualizedArray pushBack [_array,[],false,[-1,true]];
+                [[0,0,0],ceil((count (_building buildingPos - 1)) * 0.5),0,[true,_building],0.6]call JOC_spawnGroup;
                 _posArr = _building buildingPos -1;
                 _static = createVehicle [selectRandom staticPoolAA,_posArr select (count _posArr - 1), [], 0, "CAN_COLLIDE"];
                 _static setPosATL (_posArr select (count _posArr - 1));
@@ -38,8 +37,7 @@ _chance = 0.75;
         _i = 0;
         while{_i < _amount}do{
             _building = _x select _i;
-            _array = [[0,0,0],ceil((count (_building buildingPos - 1)) * 0.5),0,[true,_building],0.6]call JOC_cmdSpawnGroupVirtual;
-             virtualizedArray pushBack [_array,[],false,[-1,true]];
+            [[0,0,0],ceil((count (_building buildingPos - 1)) * 0.5),0,[true,_building],0.6]call JOC_spawnGroup;
             _posArr = _building buildingPos -1;
             _static = createVehicle [selectRandom staticPoolAA,_posArr select (count _posArr - 1), [], 0, "CAN_COLLIDE"];
             _static setPosATL (_posArr select (count _posArr - 1));

@@ -1,4 +1,4 @@
-	/////////////////////////
+/////////////////////////
 //Script made by Jochem//
 /////////////////////////
 private["_box","_unit","_uniforms","_vests","_helmets","_backpacks"];
@@ -30,7 +30,7 @@ _vests = [
 ];
 _helmets = [
 	"rhsusf_lwh_helmet_marpatwd",
-	"rhsusf_lwh_helmet_marpatwd_ess"
+	"rhsusf_lwh_helmet_marpatwd_blk_ess"
 ];
 _backpacks = [
 	"rhsusf_assault_eagleaiii_coy"
@@ -72,12 +72,15 @@ _items = [
 	"rhsusf_acc_ACOG2",
 	"rhsusf_acc_compm4",
 	"rhsusf_acc_eotech_552",
+	"rhs_weap_optic_smaw",
 
 	"rhsusf_ANPVS_15",
 
 	"ACRE_PRC343",
 	"ACRE_PRC152",
-	"ACRE_PRC117F"
+	"ACRE_PRC117F",
+
+	"rhs_googles_black"
 ];
 
 //Command
@@ -119,7 +122,7 @@ if((vehicleVarName player) in ["s_1_1_1","s_1_2_1","s_2_1_1","s_2_2_1"])then{
 	_magazines = (_magazines + []);
 	_uniforms = (_uniforms + []);
 	_vests = ["rhsusf_spc_squadleader"];
-	_helmets = (_helmets + ["rhsusf_lwh_helmet_marpatwd_headset"]);
+	_helmets = (_helmets + ["rhsusf_lwh_helmet_marpatwd_headset_blk"]);
 	_backpacks = (_backpacks + []);
 	_items = (_items + ["Binocular"]);
 };
@@ -130,7 +133,7 @@ if((vehicleVarName player) in ["s_1_1_a_1","s_1_1_b_1","s_1_2_a_1","s_1_2_b_1","
 	_magazines = (_magazines + ["rhsusf_40mm_HE","rhsusf_40mm_HEDP"]);
 	_uniforms = (_uniforms + []);
 	_vests = ["rhsusf_spc_Teamleader"];
-	_helmets = (_helmets + ["rhsusf_lwh_helmet_marpatwd_headset"]);
+	_helmets = (_helmets + ["rhsusf_lwh_helmet_marpatwd_headset_blk"]);
 	_backpacks = (_backpacks + []);
 	_items = (_items + ["Binocular"]);
 };
@@ -168,21 +171,19 @@ if((vehicleVarName player) in ["s_1_1_a_4","s_1_1_b_4","s_1_2_a_4","s_1_2_b_4","
 	_items = (_items + []);
 };
 
-//HAT
+//MAT
 if((vehicleVarName player) in ["h2"])then{
 	_weapons = (_weapons + ["tf47_m3maaws","rhs_weap_fgm148"]);
-	_magazines = (_magazines + ["tf47_m3maaws_ILLUM","tf47_m3maaws_SMOKE","tf47_m3maaws_HE","tf47_m3maaws_HEDP","tf47_m3maaws_HEAT","rhs_fgm148_magazine_AT"]);
+	_magazines = (_magazines + ["rhs_mag_smaw_HEDP","rhs_mag_smaw_HEAA","rhs_mag_smaw_SR","rhs_fgm148_magazine_AT"]);
 	_uniforms = (_uniforms + []);
 	_vests = (_vests + []);
 	_helmets = (_helmets + []);
 	_backpacks = (_backpacks + []);
-	_items = (_items + ["tf47_optic_m3maaws"]);
+	_items = (_items + ["rhs_weap_smaw_green"]);
 };
 
-
-
-
-[_box,_weapons,false,true] call XLA_fnc_addVirtualWeaponCargo;
-[_box,_magazines,false,true] call XLA_fnc_addVirtualMagazineCargo;
-[_box,_backpacks,false,true] call XLA_fnc_addVirtualBackpackCargo;
-[_box,(_uniforms + _vests + _helmets + _items),false,true] call XLA_fnc_addVirtualItemCargo;
+//Replace XLA with BIS if you're not using XLA fixed arsenal
+[_box,_weapons,false,true]call XLA_fnc_addVirtualWeaponCargo;
+[_box,_magazines,false,true]call XLA_fnc_addVirtualMagazineCargo;
+[_box,_backpacks,false,true]call XLA_fnc_addVirtualBackpackCargo;
+[_box,(_uniforms + _vests + _helmets + _items),false,true]call XLA_fnc_addVirtualItemCargo;

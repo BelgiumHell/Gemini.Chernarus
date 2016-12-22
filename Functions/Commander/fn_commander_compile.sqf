@@ -43,12 +43,6 @@ JOC_cmdMiscRadar = compileFinal preprocessFileLineNumbers "Functions\Commander\M
 JOC_cmdPatrolArea= compileFinal preprocessFileLineNumbers "Functions\Commander\Patrol\Area.sqf";
 JOC_cmdPatrolStrategic = compileFinal preprocessFileLineNumbers "Functions\Commander\Patrol\Strategic.sqf";
 
-//Spawning
-JOC_cmdSpawnBase = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\base.sqf";
-JOC_cmdSpawnConvoy = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\convoy.sqf";
-JOC_cmdSpawnGroupVirtual = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\groupVirtual.sqf";
-JOC_cmdSpawnZone = compileFinal preprocessFileLineNumbers "Functions\Commander\Spawning\zone.sqf";
-
 //Support
 JOC_cmdDefArmor = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\armor.sqf";
 JOC_cmdSupportArty = compileFinal preprocessFileLineNumbers "Functions\Commander\Support\arty.sqf";

@@ -1,7 +1,45 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 params ["_group",["_delete",false]];
+
+
+
+
+
+
+
+
+
+
 
 if(_group getVariable ["JOC_caching_disabled",false] && _delete)exitWith{[]};
 _units = units _group;

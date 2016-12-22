@@ -9,6 +9,7 @@
 	};
 }forEach allDead;
 
+/*
 {
 	_nearestPlayers = [getPosASL _x, 2000, []]call JOC_nearestPlayers;
 
@@ -16,3 +17,4 @@
 		deleteVehicle _x;
 	};
 }forEach vehicles;
+*/

@@ -23,7 +23,7 @@
 
     //StrategicArray
     {
-        _array = [(_x select 0),(_x select 1),(_x select 2),[format["%1",(_x select 3)], getMarkerPos (_x select 3), markerShape (_x select 3), getMarkerSize (_x select 3), markerBrush (_x select 3), getMarkerColor (_x select 3)],(_x select 4)];
+        _array = [(_x select 0),(_x select 1),(_x select 2),[format["%1",(_x select 3)], getMarkerPos (_x select 3), markerShape (_x select 3), getMarkerSize (_x select 3), markerBrush (_x select 3), getMarkerColor (_x select 3)],(_x select 4),(_x select 5)];
         _success = ["write", ["main",format["strategicArray_%1",_forEachIndex], _array]] call _inidbi;
 
         if(!_success)then{
@@ -32,19 +32,25 @@
     } forEach strategicArray;
 
     //Units
-    _unitArray = [];
     {
-        if(side _x != west)then{
-            _unitArray pushBack ([_x,false]call JOC_virtualize);
-        };
-    } forEach allGroups;
-    {
-        _success = ["write", ["main", format["virtualizedArray_%1",_forEachIndex], _x]] call _inidbi;
+        _array = [_x]call JOC_savePrepUnit;
+
+        _success = ["write", ["main", format["unitArray_%1",_forEachIndex], _array]] call _inidbi;
 
         if(!_success)then{
-            diag_log format["Failed to save %1 at %2 (virtualizedArray)", _x, diag_tickTime];
+            diag_log format["Failed to save %1 at %2 (unitArray)", _x, diag_tickTime];
         };
-    } forEach (_unitArray + virtualizedArray);
+    } forEach unitArray;
+
+    {
+        _array = [_x]call JOC_savePrepVehicle;
+        
+        _success = ["write", ["main", format["vehicleArray_%1",_forEachIndex], _array]] call _inidbi;
+
+        if(!_success)then{
+            diag_log format["Failed to save %1 at %2 (vehicleArray)", _x, diag_tickTime];
+        };
+    } forEach vehicleArray;
 
     {
         _success = ["write", ["main", format["orderArray_%1",_forEachIndex], _x]] call _inidbi;
@@ -106,6 +112,8 @@
         };
     } forEach buildObjects;
 
+    ["write", ["main", "currentUnitID", currentUnitID]] call _inidbi;
+    ["write", ["main", "currentVehicleID", currentVehicleID]] call _inidbi;
     ["write", ["main", "currentGroupID", currentGroupID]] call _inidbi;
     ["write", ["main", "currentRequestID", currentRequestID]] call _inidbi;
     ["write", ["main", "jetActive", jetActive]] call _inidbi;

@@ -13,7 +13,7 @@ _vehicle = false;
 
 if(_vehicle)exitWith{};
 
-_id = _group getVariable["groupID",-1];
+_id = [_group]call JOC_coreGetId;
 _assignedArr = assignedArray select {(_x select 0) == _id};
 if(count _assignedArr == 0)exitWith{};
 _assigned = _assignedArr select 0;

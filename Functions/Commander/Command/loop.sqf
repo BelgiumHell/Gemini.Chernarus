@@ -76,7 +76,10 @@ _refPlayer = _playersKnown select 0;
         _dir = _absDir / (count _x);
         _speed = _absSpeed / (count _x);
         _pos = [_pos, _speed / 70, _dir] call BIS_fnc_relPos;
-        [[3,1],[_pos],-1,false]call JOC_cmdCmdRequest;
+        
+        if(east countSide (_pos nearEntities [["men","car","tank"], 75]) == 0)then{
+            [[3,1],[_pos],-1,false]call JOC_cmdCmdRequest;
+        };
     };
 } forEach _groups;
 
@@ -100,15 +103,15 @@ switch (count _armor + (count _motor) * 0.5) do {
 
 //Check strategicarray
 {
-    switch(_x select 4)do{
-        //No side cheking
-        if(_x select 2 in ["radar","radio"])then{
+    //No side cheking
+    if(_x select 2 in ["radar","radio"])then{
             /*_objects = nearestObjects [(_x select 0),["Land_Radar_F","Land_Radar_Small_F","Land_TTowerBig_1_F","Land_TTowerBig_2_F"],20];
             if(count _objects == 0)then{
                 (strategicArray select _forEachIndex) set [4,4];
             };*/
-        };
-
+    };
+    
+    switch(_x select 4)do{
         //Side cheking
         case 0:{
             if(_x select 2 in ["aa","arty","camp"])then{
@@ -203,12 +206,7 @@ _realGroups = [];
 _usedGroups = [];
 {
     if((side _x) != west)then{
-        //Another failsafe for groupID
-        if((_x getVariable ["groupID", -1]) == -1)then{
-            [_x]call JOC_setGroupID;
-        };
-
-        _id = (_x getVariable ["groupID", -1]);
+        _id = [_x]call JOC_coreGetId;
         _realGroups pushBack _id;
     };
 } forEach allGroups;
@@ -325,7 +323,7 @@ _usedGroups = [];
 
 //Patrol
 {
-    _group = [_x]call JOC_getGroup;
+    _group = [_x]call JOC_coreGetGroup;
     if((count (waypoints _group) <= currentWaypoint _group) && !(_x in _usedGroups) && !(_group getVariable["JOC_caching_disabled",false]) && !(_group getVariable["garrisoned",false]) && (combatMode _group != "COMBAT"))then{
         [_group]call JOC_cmdPatrolStrategic;
     };

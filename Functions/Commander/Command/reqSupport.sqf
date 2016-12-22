@@ -83,6 +83,6 @@ switch (_typeSupport) do {
 };
 
 //Chance for arty support
-if(-_category + 2.5 + (random 1) < 1)then{
+if((-1*_category) + 2.5 + (random 1) < 1)then{
     requestArray pushBack [[1,1],_array,_category != 1];
 };

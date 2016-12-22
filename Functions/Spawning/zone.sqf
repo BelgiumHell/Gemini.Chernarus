@@ -4,9 +4,6 @@
 //[amount(SCALAR),patrol(BOOLEAN)] heli:[amount(SCALAR),patrol(BOOLEAN),type(STRING)]
 params["_location","_dimensions","_inf","_car","_apc","_ifv","_tank","_heli","_boat"];
 
-//Pause caching
-JOC_pauseCache = true;
-
 _groups = [];
 
 if((typeName _dimensions) == "SCALAR")then{
@@ -36,9 +33,9 @@ _j = 0;
 if((_inf select 0) > 0)then{
 	while{_j < (_inf select 0)} do{
 		_locationS = [_spawnMarkerName]call Zen_FindGroundPosition;
-		_array = [_locationS,4,0,[false,objNull],0.6]call JOC_cmdSpawnGroupVirtual;
-		virtualizedArray pushBack [_array,[],false,[-1,false]];
-		_groups pushBack ((count virtualizedArray) - 1);
+		_id = [_locationS,4,0,[false,objNull],0.6]call JOC_spawnGroup;
+
+		_groups pushBack _id;
 		_j = _j + 1;
 	};
 };
@@ -57,14 +54,14 @@ if((_car select 0) > 0)then{
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
 		};
 
-		_arrayG = [_locationS,getNumber(configFile >> "CfgVehicles" >> _class >> "transportSoldier"),0,[false,objNull],0.6]call JOC_cmdSpawnGroupVirtual;
-		_arrayI = [];
+		_idG = [_locationS,getNumber(configFile >> "CfgVehicles" >> _class >> "transportSoldier"),0,[false,objNull],0.6]call JOC_spawnGroup;
+		_idV = [_class,_locationS,true,0]call JOC_spawnVehicle;
+
 		{
-		    _arrayI pushBack _forEachIndex;
-		} forEach _arrayG;
-		_array = [_arrayG,[[_class,_locationS,_arrayI,0,1]],false,[-1,false]];
-		virtualizedArray pushBack _array;
-		_groups pushBack ((count virtualizedArray) - 1);
+			_x set [3,[_idV,[5,0]]];
+		} forEach (unitArray select {_x select 1 == _idG});
+
+		_groups pushBack _idG;
 		_j = _j + 1;
 	};
 };
@@ -83,9 +80,14 @@ if((_apc select 0) > 0)then{
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
 		};
 
-		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],0,1]],false,[-1,false]];
-		virtualizedArray pushBack _array;
-		_groups pushBack ((count virtualizedArray) - 1);
+		_idG = [_locationS,3,2,[false,objNull],0.6]call JOC_spawnGroup;
+		_idV = [_class,_locationS,true,0]call JOC_spawnVehicle;
+
+		{
+			_x set [3,[_idV,[_forEachIndex,0]]];
+		} forEach (unitArray select {_x select 1 == _idG});
+
+		_groups pushBack _idG;
 		_j = _j + 1;
 	};
 };
@@ -103,9 +105,15 @@ if((_ifv select 0) > 0)then{
 		}else{
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
 		};
-		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],0,1]],false,[-1,false]];
-		virtualizedArray pushBack _array;
-		_groups pushBack ((count virtualizedArray) - 1);
+
+		_idG = [_locationS,3,2,[false,objNull],0.6]call JOC_spawnGroup;
+		_idV = [_class,_locationS,true,0]call JOC_spawnVehicle;
+
+		{
+			_x set [3,[_idV,[_forEachIndex,0]]];
+		} forEach (unitArray select {_x select 1 == _idG});
+
+		_groups pushBack _idG;
 		_j = _j + 1;
 	};
 };
@@ -124,9 +132,14 @@ if((_tank select 0) > 0)then{
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0,100,_class]);
 		};
 
-		_array = [[[crewClass,_locationS,0.6],[crewClass,_locationS,0.6],[crewClass,_locationS,0.6]],[[_class,_locationS,[0,1,2],0,1]],false,[-1,false]];
-		virtualizedArray pushBack _array;
-		_groups pushBack ((count virtualizedArray) - 1);
+		_idG = [_locationS,3,2,[false,objNull],0.6]call JOC_spawnGroup;
+		_idV = [_class,_locationS,true,0]call JOC_spawnVehicle;
+
+		{
+			_x set [3,[_idV,[_forEachIndex,0]]];
+		} forEach (unitArray select {_x select 1 == _idG});
+
+		_groups pushBack _idG;
 		_j = _j + 1;
 	};
 };
@@ -141,18 +154,24 @@ if(_heliCount > 0)then{
 	while{_j < _heliCount} do{
 		_locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 		if(_heliType == "transport")then{
-			_pool = heliPool;
+			_pool = airPool;
 		};
 		if(_heliType == "cas")then{
 			_pool = casPool;
 		};
-		_array = [[[pilotClass,_locationS],[pilotClass,_locationS]],[[selectRandom _pool,_locationS,[0,1,2]]],false,[-1,false]];
-		virtualizedArray pushBack _array;
-		_groups pushBack ((count virtualizedArray) - 1);
+
+		_idG = [_locationS,3,2,[false,objNull],0.6]call JOC_spawnGroup;
+		_idV = [_class,_locationS,true,0]call JOC_spawnVehicle;
+
+		{
+			_x set [3,[_idV,[_forEachIndex,0]]];
+		} forEach (unitArray select {_x select 1 == _idG});
+
+		_groups pushBack _idG;
 		_j = _j + 1;
 	};
 };
-
+/*
 //Spawn boats
 _boatCount = (_boat select 0);
 _boatPatrol = (_boat select 1);
@@ -163,9 +182,7 @@ if(_boatCount > 0)then{
 		_boatV = [_locationS,["O_Boat_Armed_01_hmg_F"],false] call Zen_SpawnBoat;
 		_j = _j + 1;
 	};
-};
-
-JOC_pauseCache = false;
+};*/
 
 deleteMarker _spawnMarkerName;
 _groups

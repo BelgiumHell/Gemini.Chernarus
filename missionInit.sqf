@@ -65,6 +65,7 @@ heliTargets = [];
 activeTasks = [];   //Not being used
 fobTrucks = [];
 vehArray = [];
+readyArray = [];
 buildObjects = [];
 radars = nearestObjects [getMarkerPos "mrk_area",["Land_Radar_F","Land_Radar_Small_F"],worldSize*2.0^0.5];
 radiotowers = nearestObjects [getMarkerPos "mrk_area",["Land_TTowerBig_1_F","Land_TTowerBig_2_F"],worldSize*2.0^0.5];
@@ -75,28 +76,25 @@ jetReady = true;
 orderArray = [];
 requestArray = [];
 
-//Public var for local scripts
-publicVariable "leaderArray";
-publicVariable "logisticsArray";
-publicVariable "logisticsVehArray";
-publicVariable "editorObjects";
-publicVariable "airfieldMarkers";
-publicVariable "arsenalBoxes";
-publicVariable "CHVD_allowNoGrass";
-publicVariable "CHVD_maxView";
-publicVariable "CHVD_maxObj";
-
 //Init caching vars
 JOC_pauseCache = false;
-currentGroupID = 0;
-currentRequestID = 0;
+unitArray = [];
+unitArrayChanged = [];
+vehicleArray = [];
+vehicleArrayChanged = [];
+currentGroupId = 0;
+currentUnitId = 0;
+currentVehicleId = 0;
+
 
 //Most important arrays
 strategicArray = [];
-virtualizedArray = [];
 orderArray = [];
 requestArray = [];
 assignedArray = [];
+currentRequestID = 0;
+
+
 
 //Get a list of all objects placed in editor
 objectsStart = nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)];
@@ -141,10 +139,22 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
     } forEach strategicArray;
     strategicCount = count strategicArray;
 
-    //Get virtualized array
+    //unitArray
     _index = 0;
-    while{typeName (["read", ["main", format["virtualizedArray_%1",_index],0]] call _inidbi) != typeName 0}do{
-        virtualizedArray pushBack (["read", ["main", format["virtualizedArray_%1",_index]]] call _inidbi);
+    while{typeName (["read", ["main", format["unitArray_%1",_index],0]] call _inidbi) != typeName 0}do{
+        _array = (["read", ["main", format["unitArray_%1",_index]]] call _inidbi);
+        _array set[5,call (compile (_array select 5))];
+        _array set[8,call (compile (_array select 8))];
+        unitArray pushBack _array;
+        _index = _index + 1;
+    };
+
+    //vehicleArray
+    _index = 0;
+    while{typeName (["read", ["main", format["vehicleArray_%1",_index],0]] call _inidbi) != typeName 0}do{
+        _array = (["read", ["main", format["vehicleArray_%1",_index]]] call _inidbi);
+        _array set[3,call (compile (_array select 3))];
+        vehicleArray pushBack _array;
         _index = _index + 1;
     };
 
@@ -229,6 +239,8 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         };
     } forEach _fobArray;
 
+    currentUnitId = ["read", ["main", "currentUnitID", -1]] call _inidbi;
+    currentVehicleId = ["read", ["main", "currentVehicleID", -1]] call _inidbi;
     currentGroupID = ["read", ["main", "currentGroupID", -1]] call _inidbi;
     currentRequestID = ["read", ["main", "currentRequestID", -1]] call _inidbi;
     jetActive = ["read", ["main", "jetActive", false]] call _inidbi;
@@ -256,6 +268,22 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
     } forEach ((nearestObjects [[worldSize/2,worldSize/2], ["all"], (worldSize*2^0.5)]) - objectsStart - ([worldSize/2,worldSize/2] nearEntities [["all"],(worldSize*2^0.5)]));
 };
 
+//Public var for local scripts
+publicVariable "leaderArray";
+publicVariable "logisticsArray";
+publicVariable "logisticsVehArray";
+publicVariable "editorObjects";
+publicVariable "airfieldMarkers";
+publicVariable "arsenalBoxes";
+publicVariable "CHVD_allowNoGrass";
+publicVariable "CHVD_maxView";
+publicVariable "CHVD_maxObj";
+publicVariable "unitArray";
+publicVariable "vehicleArray";
+publicVariable "currentGroupId";
+publicVariable "currentUnitId";
+publicVariable "currentVehicleId";
+
 //End loading screen
 [[],{
     endLoadingScreen;
@@ -271,8 +299,14 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
 []call JOC_vehRespawn;
 
 
-//Using CBA EH should be faster than using spawn
-[JOC_aiManager, 5, []]call CBA_fnc_addPerFrameHandler;
+//Using CBA EH should be faster than using spawn (plz don't hate me)
+[{
+    if(!isNull HC1)then{
+        {[]call JOC_aiManager;} remoteExecCall ["bis_fnc_call", HC1]; 
+    }else{
+        {[]call JOC_aiManager;} remoteExecCall ["bis_fnc_call", 2]; 
+    };
+}, 5, []]call CBA_fnc_addPerFrameHandler;
 [JOC_perfLoop, 60, []]call CBA_fnc_addPerFrameHandler;
 [JOC_saveMission, 300, []]call CBA_fnc_addPerFrameHandler;
 [JOC_cmdMiscRadar, 10, []]call CBA_fnc_addPerFrameHandler;

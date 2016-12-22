@@ -3,8 +3,7 @@
 /////////////////////////
 params ["_group"];
 
-while{count (units _group) > 0}do{
-    {
-        deleteVehicle (objectParent _x);
-    } forEach (units _group);
-};
+{
+    deleteVehicle (objectParent _x);
+    deleteVehicle _x;
+} forEach (units _group);

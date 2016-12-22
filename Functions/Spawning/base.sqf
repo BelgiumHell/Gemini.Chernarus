@@ -18,27 +18,9 @@ if (_size < 50) then {
 
 //Spawn garrisoned infantry
 {
-    _array = [[0,0,0],ceil((count (_x buildingPos - 1)) * 0.5),0,[true,_x],0.6]call JOC_cmdSpawnGroupVirtual;
-    virtualizedArray pushBack [_array,[],false,[-1,true]];
-    _groups pushBack ((count virtualizedArray) - 1);
-} forEach _towersB;
+    _id = [[0,0,0],ceil((count (_x buildingPos - 1)) * 0.5),0,[true,_x],0.6]call JOC_spawnGroup;
 
-{
-    _array = [[0,0,0],ceil((count (_x buildingPos - 1)) * 0.5),0,[true,_x],0.6]call JOC_cmdSpawnGroupVirtual;
-    virtualizedArray pushBack [_array,[],false,[-1,true]];
-    _groups pushBack ((count virtualizedArray) - 1);
-} forEach _towersS;
-
-{
-    _array = [[0,0,0],ceil((count (_x buildingPos - 1)) * 0.5),0,[true,_x],0.6]call JOC_cmdSpawnGroupVirtual;
-    virtualizedArray pushBack [_array,[],false,[-1,true]];
-    _groups pushBack ((count virtualizedArray) - 1);
-} forEach _compoundsB;
-
-{
-    _array = [[0,0,0],ceil((count (_x buildingPos - 1)) * 0.5),0,[true,_x],0.6]call JOC_cmdSpawnGroupVirtual;
-    virtualizedArray pushBack [_array,[],false,[-1,true]];
-    _groups pushBack ((count virtualizedArray) - 1);
-} forEach _compoundsR;
+	_groups pushBack _id;
+} forEach (_towersB + _towersS + _compoundsB + _compoundsR);
 
 _groups

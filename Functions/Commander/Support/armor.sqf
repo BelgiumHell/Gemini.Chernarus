@@ -3,8 +3,9 @@
 /////////////////////////
 params["_array","_category"];
 
-_startPos = [(_array select 0),"base",[1200,5000]]call JOC_cmdMiscGetNearestStrategic;
-if(count (_startPos - [0,0,0]) == 0)exitWith{[]};
+_startBase = [(_array select 0),"base",[1200,5000]]call JOC_cmdMiscGetNearestStrategic;
+if((count _startPos) == 0)exitWith{[]};
+_startPos = _startBase select 0;
 
 _vehArr = [];
 switch (_category) do {
