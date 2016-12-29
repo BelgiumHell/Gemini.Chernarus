@@ -10,6 +10,8 @@ if(JOC_pauseCache)exitWith{};
 _orgUnitArray = +unitArray;
 _orgVehicleArray = +vehArray;
 
+_extraUnits = [];
+
 //Delete empty groups
 {
     deleteGroup _x;
@@ -58,10 +60,15 @@ _orgVehicleArray = +vehArray;
             _x set[2,_veh];
         };
     }else{
+        _id = _x select 0;
         _vehicle = _x select 2;
         if(alive _vehicle)then{
             _x set[1,getPosAsl _vehicle];
             _x set[4,damage _vehicle];
+            //Move units that are in vehicle to same pos as vehicle
+            {
+                _x set[2,getPosASL _vehicle];
+            } forEach (unitArray select {(_x select 3) select 0 == _id});
             if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"], 1500])) == 0 && (_x select 3))then{
                 _x set[2,typeOf _vehicle];
                 deleteVehicle _vehicle;

@@ -41,7 +41,8 @@ _scriptArray = [
 ["(leader (_this select 1)) distance2D ((_this select 0) select 0) < 200","(_this select 1) setVariable[""JOC_caching_disabled"", false, true];(_this select 1) setVariable[""JOC_cleanUp"", true, true];"]
 ];
 
-_order = [[[1,2],_array,(_groupConvoy getVariable ["groupID", -1]),_scriptArray]];
+_groupConvoy setVariable["JOC_caching_disabled", true, true];
+_order = [[[1,2],_array,[_groupConvoy]call JOC_coreGetId,_scriptArray]];
 
 {
     _scriptArray = [
@@ -50,7 +51,7 @@ _order = [[[1,2],_array,(_groupConvoy getVariable ["groupID", -1]),_scriptArray]
     ["speed (vehicle (leader (_this select 1))) < 1","[[(_this select 1)],{(_this select 0) leaveVehicle (vehicle (leader (_this select 0)));}] remoteExec [""BIS_fnc_spawn"", groupOwner (_this select 1), false]; _wp1 = (_this select 1) addWaypoint [((_this select 0) select 0), 0];_wp1 setWaypointType ""MOVE"";"],
     ["(leader (_this select 1)) distance2D ((_this select 0) select 0) < 200","(_this select 1) setVariable[""JOC_caching_disabled"", false, true];(_this select 1) setVariable[""JOC_cleanUp"", true, true];"]
     ];
-    _order pushBack [[1,2],_array,(_x getVariable ["groupID", -1]),_scriptArray];
+    _order pushBack [[1,2],_array,[_x]call JOC_coreGetId,_scriptArray];
 } forEach _groupsInf;
 
 _order

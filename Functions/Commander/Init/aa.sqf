@@ -20,30 +20,33 @@ _tankBlacklist = [];
 
 //Place AA-tanks
 _aaComp = [
-	["Land_HBarrier_5_F",[3.06836,2.20313,0],90,1,0,[0,-0],"","",true,false],
-	["Land_HBarrier_3_F",[0.968262,-3.6167,0],0,1,0,[0,0],"","",true,false],
-	["rhs_Igla_AA_pod_vdv",[-4.36865,-0.383301,2.8],359.998,1,0,[-0.000430414,0.00128648],"","",true,false],
-	["Land_TentA_F",[-5.09033,0.0844727,0],270,1,0,[0,0],"","",true,false],
-	["Land_BagBunker_Tower_F",[-4.70361,-2.10376,-0.00190163],0,1,0,[0,0],"","",true,false],
-	["Land_TentA_F",[-5.1084,-1.51123,0],270,1,0,[0,0],"","",true,false],
-	["Land_HBarrier_5_F",[-6.83838,3.42114,0],0,1,0,[0,0],"","",true,false],
-	["Land_HBarrier_5_F",[3.06934,7.91016,0],90,1,0,[0,-0],"","",true,false],
-	["rhs_KORD_high_VDV",[-5.5376,-4.33301,2.8],179.971,1,0,[0.114877,0.114682],"","",true,false],
-	["Land_HBarrier_5_F",[-6.69336,7.76904,0],90,1,0,[0,-0],"","",true,false],
-	["rhs_zsu234_aa",[-1.37842,9.02734,-0.0452938],3.40559e-005,1,0,[-0.0155337,-0.110973],"","",true,false],
-	["Land_HBarrier_5_F",[3.04639,13.5852,0],90,1,0,[0,-0],"","",true,false],
-	["Land_HBarrier_5_F",[-6.71631,13.4441,0],90,1,0,[0,-0],"","",true,false],
-	["Land_HBarrier_5_F",[-1.29004,14.8123,0],0,1,0,[0,0],"","",true,false],
-	["Land_HBarrier_5_F",[-6.89697,14.8108,0],0,1,0,[0,0],"","",true,false]
+	["Land_HBarrier_5_F",[3.479,0.705566,0],90,1,0,[],"","",true,false], 
+	["Land_HBarrier_3_F",[1.45459,-3.61816,0],0,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-6.42773,1.92358,0],0,1,0,[],"","",true,false], 
+	["Land_TentA_F",[-4.67969,-1.41309,0],270,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[3.47998,6.4126,0],90,1,0,[],"","",true,false], 
+	["Land_TentA_F",[-4.69775,-3.00879,0],270,1,0,[],"","",true,false], 
+	["Land_BagBunker_Tower_F",[-4.29297,-3.60132,-0.00190163],0,1,0,[],"","",true,false], 
+	["rhs_Igla_AA_pod_vdv",[-3.95801,-1.88062,-0.100008],359.994,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-6.28271,6.27148,0],90,1,0,[],"","",true,false], 
+	["Land_HBarrier_3_F",[-0.633789,-7.50073,0],0,1,0,[],"","",true,false], 
+	["rhs_weapon_crate",[-5.49316,-5.4126,-9.53674e-007],269.998,1,0.0262999,[],"","",true,false], 
+	["rhs_zsu234_aa",[-0.968262,7.53052,-0.0460162],0.00134093,1,0,[],"","",true,false], 
+	["rhs_KORD_high_VDV",[-5.12646,-5.83154,-0.105784],179.977,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[3.45703,12.0876,0],90,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-6.30566,11.9465,0],90,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-0.879395,13.3147,0],0,1,0,[],"","",true,false], 
+	["Land_HBarrier_5_F",[-6.48633,13.3132,0],0,1,0,[],"","",true,false]
 ];
 _tank = 0;
 _location = [];
+_group = createGroup east;
+_group setVariable["JOC_caching_disabled", true, true];
 
 while {_tank < 24} do{
 	_location = ["mrk_area",0,[_tankBlacklist + blackMarkers + airfieldMarkers,[],[]],1,[3,75],[0,360],[1,0,35],[0,0,0],[1,100],[1,10,15],[1,[0,0,-1],35]]call Zen_FindGroundPosition;
 
 	_objects = [_location,random 360,_aaComp]call BIS_fnc_ObjectsMapper;
-	_group = createGroup east;
 
 	{
         _obj = _x;

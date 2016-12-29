@@ -52,7 +52,7 @@ _groupConvoy setSpeedMode "normal";
 
 //Give all groups an ID
 {
-    [_x]call JOC_setGroupID;
+    [_x]call JOC_coreSetId;
 } forEach _groups;
 
 _return = [_groupConvoy,_groups];
