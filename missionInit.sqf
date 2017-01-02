@@ -11,6 +11,7 @@
 infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_aa","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
 sfPool       = ["rhs_vdv_recon_marksman_vss","rhs_vdv_recon_marksman_asval","rhs_vdv_recon_grenadier_scout","rhs_vdv_recon_rifleman_scout","rhs_vdv_recon_rifleman_scout_akm"]; //Special forces classnames (#getRekt)
 staticPoolAA = ["RHS_ZU23_VDV"];
+staticPoolAT = [];
 staticPoolMG = [];
 carPool      = ["rhs_tigr_m_vdv","rhs_tigr_sts_vdv","rhs_tigr_vdv"];        //car classnames
 truckPool    = ["RHS_Ural_VDV_01","RHS_Ural_Open_VDV_01"];        //truck classnames
@@ -47,7 +48,7 @@ medicalVehArray = [];   //All medical vehicles, mainly for proper display on BFT
 //Variables
 bftRefresh = 1;  //Refresh rate for blue force tracking (in seconds)
 fobLimit = 5;   //Max number of FOB trucks active
-radarRange = 6000;  //Max range of radars, after this distance radars won't chack for targets (currently ignored, might be added back)
+radarRange = 6000;  //Max range of radars, after this distance radars won't check for targets (currently ignored, might be added back)
 CHVD_allowNoGrass = false; // Set 'false' if you want to disable "Low" option for terrain (default: true)
 CHVD_maxView = 12000; // Set maximum view distance (default: 12000)
 CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)

@@ -7,8 +7,8 @@ if(JOC_pauseCache)exitWith{};
 //[vehicleID,position,class/object,virtualizing,damage]
 
 //Save original state of unitArray and vehicleArray
-_orgUnitArray = +unitArray;
-_orgVehicleArray = +vehArray;
+_orgUnitArray = [] + unitArray;
+_orgVehicleArray = [] + vehArray;
 
 _extraUnits = [];
 
@@ -65,10 +65,6 @@ _extraUnits = [];
         if(alive _vehicle)then{
             _x set[1,getPosAsl _vehicle];
             _x set[4,damage _vehicle];
-            //Move units that are in vehicle to same pos as vehicle
-            {
-                _x set[2,getPosASL _vehicle];
-            } forEach (unitArray select {(_x select 3) select 0 == _id});
             if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"], 1500])) == 0 && (_x select 3))then{
                 _x set[2,typeOf _vehicle];
                 deleteVehicle _vehicle;
@@ -77,9 +73,18 @@ _extraUnits = [];
     };
 } forEach vehicleArray;
 
+_realVehicles = [];
+{
+    if((side _x) != west)then{
+        _id = [_x]call JOC_coreGetId;
+        _realVehicles pushBackUnique _id;
+    };
+} forEach vehicles;
+_realVehicles = _realVehicles - [-1];
+
 {
     if(typeName (_x select 4) == "STRING")then{
-        if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"], 1500])) != 0 || !(_x select 5))then{
+        if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"], 1500])) != 0 || !(_x select 5) || ((_x select 3) select 0) in _realVehicles)then{
             //Group
             _group = [_x select 1]call JOC_coreGetGroup;
             if(isNull _group)then{
@@ -96,8 +101,8 @@ _extraUnits = [];
             _x set[4,_unit];
 
             //Vehicle (0:driver 1:commander 2:gunner)
-            _vehicle = [(_x select 3) select 0]call JOC_coreGetVehicle;
-            if(!isNull _vehicle)then{
+            if(((_x select 3) select 0) in _realVehicles)then{
+                _vehicle = [(_x select 3) select 0]call JOC_coreGetVehicle;
                 switch(((_x select 3) select 1) select 0)do{
                     case 0:{
                         _unit moveInDriver _vehicle;
