@@ -4,16 +4,11 @@
 #include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
 #include "Functions\fn_compile.sqf"
 
-sleep 1;
-
-titleText ["", "BLACK FADED", 0];
-startLoadingScreen["Loading..."];
-
 JOC_serverLoaded = false;
 
 // Gemini by Jochem
 // Version = DEV
-// Tested with ArmA 3 <1.64>
+// Tested with ArmA 3 <1.68>
 
 enableSaving [false, false];
 

@@ -29,7 +29,7 @@ _extraUnits = [];
 {
     _vehicle = _x;
     if([_vehicle]call JOC_coreGetId == -1 && count (vehArray select {_x select 3 == _vehicle}) == 0)then{
-        vehicleArray pushBack [currentVehicleId,getPosAsl _vehicle,_vehicle,true,damage _vehicle];
+        vehicleArray pushBack [currentVehicleId,getPosAsl _vehicle,_vehicle,_vehicle getVariable["JOC_virtualizing",true],damage _vehicle];
         _vehicle setVariable["id",currentVehicleId,true];
         currentVehicleId = currentVehicleId + 1;
     };
@@ -43,7 +43,7 @@ _extraUnits = [];
         if(!isNull (objectParent _unit))then{
             _vehicle = [[vehicle _unit]call JOC_coreGetId,[_unit]call JOC_getVehicleIndex];
         };
-        unitArray pushBack [currentUnitId,[group _unit]call JOC_coreGetId,getPosAsl _unit,_vehicle,_unit,!((group _unit) getVariable["JOC_caching_disabled",false]),damage _unit,skill _unit,side _unit,behaviour _unit];
+        unitArray pushBack [currentUnitId,[group _unit]call JOC_coreGetId,getPosAsl _unit,_vehicle,_unit,(group _unit) getVariable["JOC_virtualizing",true],damage _unit,skill _unit,side _unit,behaviour _unit];
         _unit setVariable["id",currentUnitId,true];
         currentUnitId = currentUnitId + 1;
     };

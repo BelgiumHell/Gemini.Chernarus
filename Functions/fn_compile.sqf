@@ -7,11 +7,6 @@ JOC_missionInit = compileFinal preprocessFileLineNumbers "missionInit.sqf";
 JOC_aiManager = compileFinal preprocessFileLineNumbers "Functions\AI\aiManager.sqf";
 JOC_cleanUp = compileFinal preprocessFileLineNumbers "Functions\AI\cleanUp.sqf";
 JOC_getVehicleIndex = compileFinal preprocessFileLineNumbers "Functions\AI\getVehicleIndex.sqf";
-JOC_virtualize = compileFinal preprocessFileLineNumbers "Functions\AI\virtualize.sqf";
-JOC_unVirtualize = compileFinal preprocessFileLineNumbers "Functions\AI\unVirtualize.sqf";
-
-//Bluforce tracking
-JOC_bftManager = compileFinal preprocessFileLineNumbers "Functions\BFT\manager.sqf";
 
 //Commander
 #include "Commander\fn_commander_compile.sqf";
@@ -64,9 +59,9 @@ JOC_playerLoop = compileFinal preprocessFileLineNumbers "Functions\Player\loop.s
 JOC_playerSmkGren = compileFinal preprocessFileLineNumbers "Functions\Player\smkGren.sqf";
 
 //Save
-JOC_savePrepUnit = compileFinal preprocessFileLineNumbers "Functions\Save\prepUnit.sqf";
-JOC_savePrepVehicle = compileFinal preprocessFileLineNumbers "Functions\Save\prepVehicle.sqf";
-JOC_saveMission = compileFinal preprocessFileLineNumbers "Functions\Save\save.sqf";
+JOC_saveLoad = compileFinal preprocessFileLineNumbers "Functions\Save\load.sqf";
+JOC_savePrepArray = compileFinal preprocessFileLineNumbers "Functions\Save\prepArray.sqf";
+JOC_saveSave = compileFinal preprocessFileLineNumbers "Functions\Save\save.sqf";
 
 //Spawning
 JOC_spawnBase = compileFinal preprocessFileLineNumbers "Functions\Spawning\base.sqf";
