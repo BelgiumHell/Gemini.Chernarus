@@ -1,21 +1,13 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_pos","_type","_distance","_playerA"];
-
-if(isNil{_playerA})then{
-    _playerA = [true,1100];
-};
+params["_pos","_type","_distance",["_playerA",[true,1100]],["_spawn",[0,1,2]]];
 
 _stratArray = [];
 {
-    if(((_x select 2) == _type || _type == "") && (_x select 4) == 1)then{
-        if(!(_playerA select 0))then{
+    if(((_x select 2) == _type || _type == "") && (_x select 4) == 1 && (!(_playerA select 0) || !([(_x select 0),(_playerA select 1),["plane"]]call JOC_playersNear)) && (_x select 5) in _spawn)then{
+        if(!([(_x select 0),(_playerA select 1),["plane"]]call JOC_playersNear))then{
             _stratArray pushBack _x;
-        }else{
-            if(!([(_x select 0), (_playerA select 1), ["plane"]]call JOC_playersNear))then{
-                _stratArray pushBack _x;
-            };
         };
     };
 } forEach strategicArray;

@@ -15,22 +15,22 @@ while {_roadblock < 40} do{
 		_offset = _x select 1;
 		_newdir = _x select 2;
 
-		_obj = createVehicle [_type, [0,0,0], [], 0, "CAN_COLLIDE"];
+		_obj = createVehicle [_type,[0,0,0],[],0,"CAN_COLLIDE"];
 		_obj allowDamage false;
-		[_helperObj,_obj,_offset,_newdir, true, true] call BIS_fnc_relPosObject;
+		[_helperObj,_obj,_offset,_newdir,true,true] call BIS_fnc_relPosObject;
 
 	}forEach _roadblockComp;
 
     deleteVehicle _helperObj;
 
 	_nameS = format ["mrk_strategic_roadblock_%1",_roadblock];
-	_marker = createMarker [_nameS, _location];
+	_marker = createMarker [_nameS,_location];
    	_nameS setMarkerShape "ELLIPSE";
    	_nameS setMarkerSize [50,50];
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	strategicArray pushBack [_location,10,"roadblock",_nameS,1];
+	strategicArray pushBack [_location,10,"roadblock",_nameS,1,2];
 
 	_roadblock = _roadblock + 1;
 };

@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_TrackVehicles", _this] call Zen_StackAdd;
-private ["_vehicles", "_textType", "_hideFromUnits", "_unitMarkers", "_vehicle", "_txt", "_markerShape", "_color", "_marker", "_thread"];
+_Zen_stack_Trace = ["Zen_TrackVehicles",_this] call Zen_StackAdd;
+private ["_vehicles","_textType","_hideFromUnits","_unitMarkers","_vehicle","_txt","_markerShape","_color","_marker","_thread"];
 
-if !([_this, [["ARRAY", "OBJECT"], ["STRING"], ["VOID"]], [["OBJECT", "ARRAY"]], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["ARRAY","OBJECT"],["STRING"],["VOID"]],[["OBJECT","ARRAY"]],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ([])
 };
@@ -70,7 +70,7 @@ _unitMarkers = [];
         };
         default {
             _markerShape = "c_unknown";
-            0 = ["Zen_TrackVehicles", "Object is of invalid side", _this] call Zen_PrintError;
+            0 = ["Zen_TrackVehicles","Object is of invalid side",_this] call Zen_PrintError;
             call Zen_StackPrint;
         };
     };
@@ -108,17 +108,17 @@ _unitMarkers = [];
         };
     };
 
-    _marker = [(getPosATL _vehicle), format ["%1", _txt], "colorBlack", [0.9, 0.9], _markerShape, 0, 1] call Zen_SpawnMarker;
+    _marker = [(getPosATL _vehicle),format ["%1",_txt],"colorBlack",[0.9,0.9],_markerShape,0,1] call Zen_SpawnMarker;
     _unitMarkers pushBack _marker;
 } forEach _vehicles;
 
 if (isMultiplayer) then {
-    0 = [_unitMarkers, 0, _hideFromUnits] call Zen_ShowHideMarkers;
+    0 = [_unitMarkers,0,_hideFromUnits] call Zen_ShowHideMarkers;
 };
 
-_thread = [_vehicles, _unitMarkers, _textType] spawn {
-    _Zen_stack_Trace = ["Zen_TrackVehicles", _this] call Zen_StackAdd;
-    private ["_vehicles", "_unitMarkers", "_textType", "_vehicle", "_marker"];
+_thread = [_vehicles,_unitMarkers,_textType] spawn {
+    _Zen_stack_Trace = ["Zen_TrackVehicles",_this] call Zen_StackAdd;
+    private ["_vehicles","_unitMarkers","_textType","_vehicle","_marker"];
 
     _vehicles = _this select 0;
     _unitMarkers = _this select 1;
@@ -131,8 +131,8 @@ _thread = [_vehicles, _unitMarkers, _textType] spawn {
             if !(alive _vehicle) then {
                 deleteMarker _marker;
 
-                _vehicles set [_forEachIndex, 0];
-                _unitMarkers set [_forEachIndex, 0];
+                _vehicles set [_forEachIndex,0];
+                _unitMarkers set [_forEachIndex,0];
             } else {
                 switch (toLower _textType) do {
                     case "object": {
@@ -173,8 +173,8 @@ _thread = [_vehicles, _unitMarkers, _textType] spawn {
             };
         } forEach _vehicles;
 
-        0 = [_vehicles, 0] call Zen_ArrayRemoveValue;
-        0 = [_unitMarkers, 0] call Zen_ArrayRemoveValue;
+        0 = [_vehicles,0] call Zen_ArrayRemoveValue;
+        0 = [_unitMarkers,0] call Zen_ArrayRemoveValue;
         sleep 10;
     };
     call Zen_StackRemove;
@@ -182,4 +182,4 @@ _thread = [_vehicles, _unitMarkers, _textType] spawn {
 };
 
 call Zen_StackRemove;
-[_unitMarkers, _thread]
+[_unitMarkers,_thread]

@@ -9,7 +9,7 @@ if((count jetTargets > 0 || count heliTargets > 1) && !jetActive)then{
 };
 
 if(!jetReady && !jetActive)then{
-    [{jetReady = true;}, [], 7200] call CBA_fnc_waitAndExecute;
+    [{jetReady = true;},[],7200] call CBA_fnc_waitAndExecute;
 };
 
 //Find concentration of known blufor
@@ -75,9 +75,9 @@ _refPlayer = _playersKnown select 0;
 
         _dir = _absDir / (count _x);
         _speed = _absSpeed / (count _x);
-        _pos = [_pos, _speed / 70, _dir] call BIS_fnc_relPos;
+        _pos = [_pos,_speed / 70,_dir] call BIS_fnc_relPos;
         
-        if(east countSide (_pos nearEntities [["men","car","tank"], 75]) == 0)then{
+        if(east countSide (_pos nearEntities [["men","car","tank"],75]) == 0)then{
             [[3,1],[_pos],-1,false]call JOC_cmdCmdRequest;
         };
     };
@@ -133,8 +133,8 @@ _strategicEast = strategicArray select {(_x select 4) == 1};
 _strategicDefend = strategicArray select {(_x select 4) == 2};
 _strategicAttack = strategicArray select {(_x select 4) == 3};
 
-_strengthEast = (count _strategicEast) / (count strategicArray);
-_strenghtWest = (count _strategicWest) / (count strategicArray);
+strengthEast = (count _strategicEast) / (count strategicArray);
+strenghtWest = (count _strategicWest) / (count strategicArray);
 
 {
     _array = _x;
@@ -157,8 +157,8 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
             };
         };
         case(_array select 1 >= 600 && _array select 1 < 800):{
-            if(_strengthEast > 0.2)then{
-                if(_strengthEast > 0.4)then{
+            if(strengthEast > 0.2)then{
+                if(strengthEast > 0.4)then{
                     [[1,0],[_array,2.5],_index,false]call JOC_cmdCmdRequest;
                 }else{
                     [[1,0],[_array,1.5],_index,false]call JOC_cmdCmdRequest;
@@ -166,8 +166,8 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
             };
         };
         case(_array select 1 >= 400 && _array select 1 < 600):{
-            if(_strengthEast > 0.25)then{
-                if(_strengthEast > 0.5)then{
+            if(strengthEast > 0.25)then{
+                if(strengthEast > 0.5)then{
                     [[1,0],[_array,2],_index,false]call JOC_cmdCmdRequest;
                 }else{
                     [[1,0],[_array,1],_index,false]call JOC_cmdCmdRequest;
@@ -175,8 +175,8 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
             };
         };
         case(_array select 1 >= 200 && _array select 1 < 400):{
-            if(_strengthEast > 0.3)then{
-                if(_strengthEast > 0.6)then{
+            if(strengthEast > 0.3)then{
+                if(strengthEast > 0.6)then{
                     [[1,0],[_array,1.5],_index,false]call JOC_cmdCmdRequest;
                 }else{
                     [[1,0],[_array,0.5],_index,false]call JOC_cmdCmdRequest;
@@ -184,7 +184,7 @@ _strenghtWest = (count _strategicWest) / (count strategicArray);
             };
         };
         case(_array select 1 >= 100 && _array select 1 < 200):{
-            if(_strengthEast > 0.6)then{
+            if(strengthEast > 0.6)then{
                 [[1,0],[_array,1],_index,false]call JOC_cmdCmdRequest;
             };
         };
@@ -216,7 +216,7 @@ _usedGroups = [];
     _request = _x;
     _order = [];
 
-    //If request hasn't been processed yet, do that
+    //If request hasn't been processed yet,do that
     if(!((_request select 3) select 1))then{
         switch((_request select 0) select 0)do{
             //Attack
@@ -228,11 +228,11 @@ _usedGroups = [];
                 switch((_request select 0) select 1)do{
                     //Convoy
                     case (0): {
-                        _order = (_request select 1)call JOC_cmdDefConvoy;
+                        _order = (_request select 1) call JOC_cmdDefConvoy;
                     };
                     //Heli
                     case (1): {
-                        _order = (_request select 1)call JOC_cmdDefHeli;
+                        _order = (_request select 1) call JOC_cmdDefHeli;
                     };
                     //Near
                     case (2): {
@@ -249,7 +249,7 @@ _usedGroups = [];
                 switch((_request select 0) select 1)do{
                     //Ammo supply
                     case (0): {
-                        _order = (_request select 1)call JOC_cmdLogAmmo;
+                        _order = (_request select 1) call JOC_cmdLogAmmo;
                     };
                     //Repair
                     case (1): {
@@ -262,25 +262,25 @@ _usedGroups = [];
                 switch((_request select 0) select 1)do{
                     //Armor support
                     case (1): {
-                        _order = (_request select 1)call JOC_cmdSupportArmor;
+                        _order = (_request select 1) call JOC_cmdSupportArmor;
                     };
                     //Arty support
                     case (1): {
-                        _order = (_request select 1)call JOC_cmdSupportArty;
+                        _order = (_request select 1) call JOC_cmdSupportArty;
                     };
                     //Cas support
                     case (2): {
-                        _order = (_request select 1)call JOC_cmdSupportCas;
+                        _order = (_request select 1) call JOC_cmdSupportCas;
                     };
                     //Intercept
                     case (3): {
-                        _order = (_request select 1)call JOC_cmdSupportIntercept;
+                        _order = (_request select 1) call JOC_cmdSupportIntercept;
                     };
                 };
             };
         };
 
-        //If order didn't fail to start, start execution of order
+        //If order didn't fail to start,start execution of order
         if(count _order != 0)then{
             {
                 orderArray pushBack [_x,currentRequestID];
@@ -290,7 +290,7 @@ _usedGroups = [];
             currentRequestID = currentRequestID + 1;
         };
     }else{
-        //If order that was activated by request is complete, delete request
+        //If order that was activated by request is complete,delete request
         _existArr = orderArray select {_x select 1 == ((_request select 3) select 0)};
         if(count _existArr == 0)then{
             requestArray deleteAt _forEachIndex;
@@ -302,18 +302,18 @@ _usedGroups = [];
 {
     _order = _x select 0;
 
-    //If group doesn't exist anymore, delete from orderarray
+    //If group doesn't exist anymore,delete from orderarray
     if(!([_order select 2]call JOC_groupExists))then{
         orderArray deleteAt _forEachIndex;
     }else{
         if(!isNil{(((_order select 3) select 0))})then{
-            //If group isn't virtuaized, evaluate condition
+            //If group isn't virtuaized,evaluate condition
             if(_order select 2 in _realGroups)then{
                 _usedGroups pushBack (_order select 2);
                 _group = [_order select 2]call JOC_getGroup;
-                //If condition is true, execute code and delete part from order
-                if([_order select 1, _group]call (compile (((_order select 3) select 0) select 0)))then{
-                    [_order select 1, _group]call (compile (((_order select 3) select 0) select 1));
+                //If condition is true,execute code and delete part from order
+                if([_order select 1,_group]call (compile (((_order select 3) select 0) select 0)))then{
+                    [_order select 1,_group]call (compile (((_order select 3) select 0) select 1));
                     (_order select 3) deleteAt 0;
                 };
             };

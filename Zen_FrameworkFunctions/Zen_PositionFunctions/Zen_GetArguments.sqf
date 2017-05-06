@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_GetArguments", _this] call Zen_StackAdd;
-private ["_water", "_road", "_roadID", "_roadDist", "_area", "_min", "_max", "_Vars", "_maxAngle", "_minAngle", "_angles", "_objSwitch", "_objLimit", "_objDist", "_objects", "_Trig", "_minMax", "_pointAvoid", "_pointAvoidSwitch", "_pointAvoidArray", "_pointAvoidDist", "_nearWater", "_nearWaterSwitch", "_nearWaterDist", "_terrainSlopeSwitch", "_terrainSlopeAngle", "_terrainSlopeRadius", "_terrainSlope", "_ambientClutterSwitch", "_ambientClutterCount", "_ambientClutterRadius", "_ambientClutter", "_height", "_heightSwitch", "_heightNumber", "_heightRadius", "_numbers", "_allBlacklist", "_allWhitelist", "_oneWhitelist"];
+_Zen_stack_Trace = ["Zen_GetArguments",_this] call Zen_StackAdd;
+private ["_water","_road","_roadID","_roadDist","_area","_min","_max","_Vars","_maxAngle","_minAngle","_angles","_objSwitch","_objLimit","_objDist","_objects","_Trig","_minMax","_pointAvoid","_pointAvoidSwitch","_pointAvoidArray","_pointAvoidDist","_nearWater","_nearWaterSwitch","_nearWaterDist","_terrainSlopeSwitch","_terrainSlopeAngle","_terrainSlopeRadius","_terrainSlope","_ambientClutterSwitch","_ambientClutterCount","_ambientClutterRadius","_ambientClutter","_height","_heightSwitch","_heightNumber","_heightRadius","_numbers","_allBlacklist","_allWhitelist","_oneWhitelist"];
 
-if !([_this, [["VOID"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["SCALAR"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["SCALAR"]], [[], ["SCALAR"], ["STRING", "ARRAY"], [], ["SCALAR"], ["SCALAR", "STRING"], ["SCALAR"], ["SCALAR", "ARRAY", "OBJECT", "GROUP", "STRING"], ["SCALAR"], ["SCALAR"], ["SCALAR", "ARRAY"], ["SCALAR"]], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["SCALAR"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["ARRAY","SCALAR"],["SCALAR"]],[[],["SCALAR"],["STRING","ARRAY"],[],["SCALAR"],["SCALAR","STRING"],["SCALAR"],["SCALAR","ARRAY","OBJECT","GROUP","STRING"],["SCALAR"],["SCALAR"],["SCALAR","ARRAY"],["SCALAR"]],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ([])
 };
@@ -175,7 +175,7 @@ if (count _this > 12) then {
 
 call Zen_StackRemove;
 (if (typeName _area == "STRING") then {
-    ([_area, _min, 0, _allBlacklist, _allWhitelist, _oneWhitelist, _water, _roadID, _roadDist, _minAngle, _maxAngle,_objSwitch,_objLimit,_objDist,_pointAvoidSwitch,_pointAvoidArray,_pointAvoidDist,_nearWaterSwitch,_nearWaterDist, _terrainSlopeSwitch, _terrainSlopeAngle, _terrainSlopeRadius, _ambientClutterSwitch, _ambientClutterCount, _ambientClutterRadius, _heightSwitch, _heightNumber, _heightRadius, _maxFailures])
+    ([_area,_min,0,_allBlacklist,_allWhitelist,_oneWhitelist,_water,_roadID,_roadDist,_minAngle,_maxAngle,_objSwitch,_objLimit,_objDist,_pointAvoidSwitch,_pointAvoidArray,_pointAvoidDist,_nearWaterSwitch,_nearWaterDist,_terrainSlopeSwitch,_terrainSlopeAngle,_terrainSlopeRadius,_ambientClutterSwitch,_ambientClutterCount,_ambientClutterRadius,_heightSwitch,_heightNumber,_heightRadius,_maxFailures])
 } else {
-    ([([_area] call Zen_ConvertToPosition), _min, _max, _allBlacklist, _allWhitelist, _oneWhitelist, _water, _roadID, _roadDist, _minAngle, _maxAngle,_objSwitch,_objLimit,_objDist,_pointAvoidSwitch,_pointAvoidArray,_pointAvoidDist,_nearWaterSwitch,_nearWaterDist, _terrainSlopeSwitch, _terrainSlopeAngle, _terrainSlopeRadius, _ambientClutterSwitch, _ambientClutterCount, _ambientClutterRadius, _heightSwitch, _heightNumber, _heightRadius, _maxFailures])
+    ([([_area] call Zen_ConvertToPosition),_min,_max,_allBlacklist,_allWhitelist,_oneWhitelist,_water,_roadID,_roadDist,_minAngle,_maxAngle,_objSwitch,_objLimit,_objDist,_pointAvoidSwitch,_pointAvoidArray,_pointAvoidDist,_nearWaterSwitch,_nearWaterDist,_terrainSlopeSwitch,_terrainSlopeAngle,_terrainSlopeRadius,_ambientClutterSwitch,_ambientClutterCount,_ambientClutterRadius,_heightSwitch,_heightNumber,_heightRadius,_maxFailures])
 })

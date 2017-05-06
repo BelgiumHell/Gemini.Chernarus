@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_FindGroundPosition", _this] call Zen_StackAdd;
-private ["_worldSizeXY", "_deleteArea", "_worldMiddle", "_area", "_pos", "_vars"];
+_Zen_stack_Trace = ["Zen_FindGroundPosition",_this] call Zen_StackAdd;
+private ["_worldSizeXY","_deleteArea","_worldMiddle","_area","_pos","_vars"];
 
-if !([_this, [["VOID"]], [], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"]],[],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ([0,0,0])
 };
@@ -170,19 +170,19 @@ switch (toLower worldName) do {
 //*/
 
 if (count _worldSizeXY == 0) then {
-    _worldSizeXY = [worldSize, worldSize];
+    _worldSizeXY = [worldSize,worldSize];
 };
 
 _deleteArea = false;
 if (typeName (_this select 0) == "SCALAR") then {
     if (count _worldSizeXY > 0) then {
-        _worldMiddle = [(_worldSizeXY select 0) / 2, (_worldSizeXY select 1) / 2];
-        _area = [_worldMiddle, "", "colorBlack", _worldMiddle, "rectangle", 0, 0] call Zen_SpawnMarker;
+        _worldMiddle = [(_worldSizeXY select 0) / 2,(_worldSizeXY select 1) / 2];
+        _area = [_worldMiddle,"","colorBlack",_worldMiddle,"rectangle",0,0] call Zen_SpawnMarker;
         _pos = _worldMiddle;
         _deleteArea = true;
-        _this set [0, _area];
+        _this set [0,_area];
     } else {
-        0 = ["Zen_FindGroundPosition", "Unable to generate world marker.", _this] call Zen_PrintError;
+        0 = ["Zen_FindGroundPosition","Unable to generate world marker.",_this] call Zen_PrintError;
         call Zen_StackPrint;
     };
 } else {
@@ -191,12 +191,12 @@ if (typeName (_this select 0) == "SCALAR") then {
 };
 
 if (typeName _area == "STRING") then {
-    if !([_area, allMapMarkers] call Zen_ValueIsInArray) then {
-        0 = ["Zen_FindGroundPosition", "The given marker does not exist", _this] call Zen_PrintError;
+    if !([_area,allMapMarkers] call Zen_ValueIsInArray) then {
+        0 = ["Zen_FindGroundPosition","The given marker does not exist",_this] call Zen_PrintError;
         call Zen_StackPrint;
     } else {
         if ((markerShape _area) == "ICON") then {
-            _this set [0, ([_area] call Zen_ConvertToPosition)];
+            _this set [0,([_area] call Zen_ConvertToPosition)];
             _vars = _this call Zen_GetArguments;
 
             if (count _vars > 0) then {
@@ -220,12 +220,12 @@ if (typeName _area == "STRING") then {
 
 if (count _worldSizeXY > 0) then {
     if ((((_pos select 0) < 0) || ((_pos select 1) < 0)) || {(((_pos select 0) > (_worldSizeXY select 0)) || ((_pos select 1) > (_worldSizeXY select 1)))}) then {
-        0 = ["Zen_FindGroundPosition", "Returned position is off the map", _this] call Zen_PrintError;
+        0 = ["Zen_FindGroundPosition","Returned position is off the map",_this] call Zen_PrintError;
         call Zen_StackPrint;
     };
 } else {
     if (((_pos select 0) < 0) || ((_pos select 1) < 0)) then {
-        0 = ["Zen_FindGroundPosition", "Returned position is off the map", _this] call Zen_PrintError;
+        0 = ["Zen_FindGroundPosition","Returned position is off the map",_this] call Zen_PrintError;
         call Zen_StackPrint;
     };
 };

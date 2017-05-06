@@ -4,10 +4,10 @@
 
 #include "..\Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_FindPositionPoly", _this] call Zen_StackAdd;
-private ["_center", "_centerXY", "_XYSizeArray", "_markerDir", "_phiArray", "_rho", "_phi", "_radius", "_polyType"];
+_Zen_stack_Trace = ["Zen_FindPositionPoly",_this] call Zen_StackAdd;
+private ["_center","_centerXY","_XYSizeArray","_markerDir","_phiArray","_rho","_phi","_radius","_polyType"];
 
-if !([_this, [["VOID"], ["ARRAY"], ["SCALAR"], ["STRING"], ["ARRAY"]], [[], ["SCALAR"], [], [], ["SCALAR"]], 2] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["ARRAY"],["SCALAR"],["STRING"],["ARRAY"]],[[],["SCALAR"],[],[],["SCALAR"]],2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ([0,0,0])
 };
@@ -30,7 +30,7 @@ if (typeName _center == "STRING") then {
 
 if (_polyType == "ICON") exitWith {
     call Zen_StackRemove;
-    ([(_centerXY select 0), (_centerXY select 1), 0])
+    ([(_centerXY select 0),(_centerXY select 1),0])
 };
 
 _rho = sqrt random 1;
@@ -43,4 +43,4 @@ if (toLower _polyType == "rectangle") then {
 };
 
 call Zen_StackRemove;
-([(_centerXY select 0) + _rho * _radius * cos _phi, (_centerXY select 1) + _rho * _radius * sin _phi, 0])
+([(_centerXY select 0) + _rho * _radius * cos _phi,(_centerXY select 1) + _rho * _radius * sin _phi,0])

@@ -4,19 +4,19 @@
 
 #include "..\Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_OrderInfantryMove", _this] call Zen_StackAdd;
-private ["_group", "_movePos", "_speedMode", "_behaviorMode", "_combatMode"];
+_Zen_stack_Trace = ["Zen_OrderInfantryMove",_this] call Zen_StackAdd;
+private ["_group","_movePos","_speedMode","_behaviorMode","_combatMode"];
 
-if !([_this, [["OBJECT", "GROUP"], ["VOID"], ["STRING"], ["STRING"]], [], 2] call Zen_CheckArguments) exitWith {
+if !([_this,[["OBJECT","GROUP"],["VOID"],["STRING"],["STRING"]],[],2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
 _group = _this select 0;
 _movePos = [(_this select 1)] call Zen_ConvertToPosition;
 
-ZEN_STD_Parse_GetArgumentDefault(_speedMode, 2, "normal")
-ZEN_STD_Parse_GetArgumentDefault(_behaviorMode, 3, "safe")
-ZEN_STD_Parse_GetArgumentDefault(_combatMode, 4, "green")
+ZEN_STD_Parse_GetArgumentDefault(_speedMode,2,"normal")
+ZEN_STD_Parse_GetArgumentDefault(_behaviorMode,3,"safe")
+ZEN_STD_Parse_GetArgumentDefault(_combatMode,4,"green")
 
 if (typeName _group == "OBJECT") then {
     _group = group _group;
@@ -32,7 +32,7 @@ sleep 5;
 
 waitUntil {
     sleep 2;
-    (((alive leader _group) && {(unitReady leader _group)}) || (({alive _x} count units _group) == 0) || (([_group, _movePos] call Zen_Find2dDistance) < 25))
+    (((alive leader _group) && {(unitReady leader _group)}) || (({alive _x} count units _group) == 0) || (([_group,_movePos] call Zen_Find2dDistance) < 25))
 };
 
 // _group move (getPosATL (leader _group));

@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_IsUrbanArea", _this] call Zen_StackAdd;
-private ["_blacklist", "_center", "_XYSizeArray", "_markerShape", "_radiusMax", "_buildings", "_roads", "_urbanArea", "_building", "_isBlacklisted", "_box", "_road", "_totalArea"];
+_Zen_stack_Trace = ["Zen_IsUrbanArea",_this] call Zen_StackAdd;
+private ["_blacklist","_center","_XYSizeArray","_markerShape","_radiusMax","_buildings","_roads","_urbanArea","_building","_isBlacklisted","_box","_road","_totalArea"];
 
-if !([_this, [["VOID"], ["ARRAY"], ["SCALAR"], ["STRING"], ["ARRAY"]], [[], ["STRING", "SCALAR"], [], [], ["STRING"]], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["ARRAY"],["SCALAR"],["STRING"],["ARRAY"]],[[],["STRING","SCALAR"],[],[],["STRING"]],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -28,8 +28,8 @@ if ((typeName (_this select 0)) == "STRING") then {
 };
 
 _radiusMax = (_XYSizeArray select 0) max (_XYSizeArray select 1);
-// _buildings = nearestObjects [_center, ["house"], _radiusMax];
-_buildings = nearestTerrainObjects [_center, ["Building", "House", "Church", "Chapel", "Fountain", "View-Tower", "FuelStation", "Hospital", "WaterTower"], _radiusMax];
+// _buildings = nearestObjects [_center,["house"],_radiusMax];
+_buildings = nearestTerrainObjects [_center,["Building","House","Church","Chapel","Fountain","View-Tower","FuelStation","Hospital","WaterTower"],_radiusMax];
 
 _roads = _center nearRoads _radiusMax;
 
@@ -45,7 +45,7 @@ _urbanArea = 0;
     if (([_building] + _this) call Zen_IsPointInPoly) then {
         _isBlacklisted = false;
         {
-            _isBlacklisted = ([_building, _x]) call Zen_IsPointInPoly;
+            _isBlacklisted = ([_building,_x]) call Zen_IsPointInPoly;
             if (_isBlacklisted) exitWith {};
         } forEach _blacklist;
 
@@ -61,7 +61,7 @@ _urbanArea = 0;
     if (([_road] + _this) call Zen_IsPointInPoly) then {
         _isBlacklisted = false;
         {
-            _isBlacklisted = ([_road, _x]) call Zen_IsPointInPoly;
+            _isBlacklisted = ([_road,_x]) call Zen_IsPointInPoly;
         } forEach _blacklist;
 
         if !(_isBlacklisted) then {

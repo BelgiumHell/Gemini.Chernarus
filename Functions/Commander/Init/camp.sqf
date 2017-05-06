@@ -9,13 +9,13 @@ while {_camp < 40} do{
     [_location]call Zen_SpawnCamp;
 
 	_nameS = format ["mrk_strategic_camp_%1",_camp];
-	_marker = createMarker [_nameS, _location];
+	_marker = createMarker [_nameS,_location];
    	_nameS setMarkerShape "ELLIPSE";
    	_nameS setMarkerSize [100,100];
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	strategicArray pushBack [_location,50,"camp",_nameS,1];
+	strategicArray pushBack [_location,50,"camp",_nameS,1,2];
 
 	_camp = _camp + 1;
 };

@@ -4,10 +4,10 @@
 
 if ((count Zen_Task_Array_Local) == 0) exitWith {};
 
-_Zen_stack_Trace = ["Zen_SetTaskTargetClient", _this] call Zen_StackAdd;
-private ["_nameString", "_taskArray", "_localTaskData", "_globalTaskData", "_taskUnits", "_target"];
+_Zen_stack_Trace = ["Zen_SetTaskTargetClient",_this] call Zen_StackAdd;
+private ["_nameString","_taskArray","_localTaskData","_globalTaskData","_taskUnits","_target"];
 
-if !([_this, [["STRING"], ["OBJECT"]], [], 2] call Zen_CheckArguments) exitWith {
+if !([_this,[["STRING"],["OBJECT"]],[],2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -21,11 +21,11 @@ _taskArray = _localTaskData select 1;
 _taskUnits = _globalTaskData select 1;
 
 {
-    _x setSimpleTaskTarget [_target, true];
+    _x setSimpleTaskTarget [_target,true];
 } forEach _taskArray;
 
 if ((!isDedicated && hasInterface) && {(player in _taskUnits)}) then {
-    0 = ["TaskUpdated", ["", (_globalTaskData select 5)]] call bis_fnc_showNotification;
+    0 = ["TaskUpdated",["",(_globalTaskData select 5)]] call bis_fnc_showNotification;
 };
 
 call Zen_StackRemove;

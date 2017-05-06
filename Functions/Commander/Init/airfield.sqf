@@ -34,5 +34,5 @@
         _priority = 500;
     };
 
-    strategicArray pushBack [_location,_priority,"airfield",_x,1];
+    strategicArray pushBack [_location,_priority,"airfield",_x,1,0];
 } forEach airfieldMarkers;

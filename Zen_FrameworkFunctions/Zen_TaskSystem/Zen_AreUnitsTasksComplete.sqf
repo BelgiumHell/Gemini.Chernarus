@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_AreUnitsTasksComplete", _this] call Zen_StackAdd;
-private ["_units", "_areComplete", "_taskState", "_includeTaskArray", "_excludeTaskArray", "_orgIncludeType", "_unitsTasks"];
+_Zen_stack_Trace = ["Zen_AreUnitsTasksComplete",_this] call Zen_StackAdd;
+private ["_units","_areComplete","_taskState","_includeTaskArray","_excludeTaskArray","_orgIncludeType","_unitsTasks"];
 
-if !([_this, [["VOID"], ["ARRAY", "STRING", "SCALAR"], ["ARRAY", "STRING"]], [[], ["STRING"], ["STRING"]], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["ARRAY","STRING","SCALAR"],["ARRAY","STRING"]],[[],["STRING"],["STRING"]],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     (false)
 };
@@ -41,9 +41,9 @@ _orgIncludeType = (typeName _includeTaskArray);
         };
         
         {
-            if (([_x, _includeTaskArray] call Zen_ValueIsInArray) && !([_x, _excludeTaskArray] call Zen_ValueIsInArray)) then {
+            if (([_x,_includeTaskArray] call Zen_ValueIsInArray) && !([_x,_excludeTaskArray] call Zen_ValueIsInArray)) then {
                 _taskState = ([_x] call Zen_GetTaskDataGlobal) select 2;
-                if !([_taskState, ["failed", "succeeded", "canceled"]] call Zen_ValueIsInArray) then {
+                if !([_taskState,["failed","succeeded","canceled"]] call Zen_ValueIsInArray) then {
                     _areComplete = false;
                 };
             };

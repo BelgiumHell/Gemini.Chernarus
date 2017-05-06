@@ -18,7 +18,7 @@ _groups = [];
 		if((count((getMarkerPos _id) - [0,0,0])) > 1)then{
 			_id setMarkerPos (getPos _leader);
 		}else{
-			_marker = createMarker [_id, (getPos _leader)];
+			_marker = createMarker [_id,(getPos _leader)];
 		};
 
 		_bftMarkers pushBackUnique _id;
@@ -62,9 +62,9 @@ _groups = [];
 }forEach _groups;
 
 {
-    if(!(isNull objectParent player) && ("ItemGPS" in (assigneditems player)))then{
+    if(!(isNull objectParent player) || ("ItemGPS" in (assigneditems player)))then{
 		{
 		    _x setMarkerAlphaLocal 1;
 		} forEach _bftMarkers;
 	};
-} remoteExec ["bis_fnc_call", -2]; 
+} remoteExec ["bis_fnc_call",-2]; 

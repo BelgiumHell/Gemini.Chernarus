@@ -4,10 +4,10 @@
 
 #include "..\Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_OrderExtraction", _this] call Zen_StackAdd;
-private ["_vehicle", "_posArray", "_units", "_speed", "_heliZ", "_landScript", "_moveFunction", "_vehMass"];
+_Zen_stack_Trace = ["Zen_OrderExtraction",_this] call Zen_StackAdd;
+private ["_vehicle","_posArray","_units","_speed","_heliZ","_landScript","_moveFunction","_vehMass"];
 
-if !([_this, [["OBJECT"], ["ARRAY"], ["VOID"], ["STRING"], ["SCALAR"]], [], 3] call Zen_CheckArguments) exitWith {
+if !([_this,[["OBJECT"],["ARRAY"],["VOID"],["STRING"],["SCALAR"]],[],3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -35,7 +35,7 @@ if (typeName _posArray == "ARRAY") then {
 };
 
 {
-    _posArray set [_forEachIndex, ([_x] call Zen_ConvertToPosition)];
+    _posArray set [_forEachIndex,([_x] call Zen_ConvertToPosition)];
 } forEach _posArray;
 
 if (_vehicle isKindOf "AIR") then {
@@ -45,7 +45,7 @@ if (_vehicle isKindOf "AIR") then {
 };
 
 {
-    _landScript = [_vehicle, _x, _speed, _heliZ] spawn (missionNamespace getVariable _moveFunction);
+    _landScript = [_vehicle,_x,_speed,_heliZ] spawn (missionNamespace getVariable _moveFunction);
 
     waitUntil {
         sleep 2;
@@ -66,7 +66,7 @@ if (_vehicle isKindOf "AIR") then {
 
     waitUntil {
         sleep 2;
-        ((([_units, _vehicle]) call Zen_AreInVehicle) || ((_vehicle emptyPositions "cargo") == 0) || !(alive _vehicle))
+        ((([_units,_vehicle]) call Zen_AreInVehicle) || ((_vehicle emptyPositions "cargo") == 0) || !(alive _vehicle))
     };
 
     _vehicle flyInHeight 40;

@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_TriggerAreNear", _this] call Zen_StackAdd;
-private ["_objPos", "_rangers", "_taskUniqueName", "_taskResult", "_areNear", "_distance", "_pos", "_requiredUnits", "_givenPos"];
+_Zen_stack_Trace = ["Zen_TriggerAreNear",_this] call Zen_StackAdd;
+private ["_objPos","_rangers","_taskUniqueName","_taskResult","_areNear","_distance","_pos","_requiredUnits","_givenPos"];
 
-if !([_this, [["VOID"], ["STRING", "ARRAY"], ["STRING"], ["VOID"], ["STRING"], ["SCALAR"]], [[], ["STRING"]], 4] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["STRING","ARRAY"],["STRING"],["VOID"],["STRING"],["SCALAR"]],[[],["STRING"]],4] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -34,7 +34,7 @@ if (typeName (_givenPos select 0) == "SCALAR") then {
 } else {
     _objPos = [];
     {
-        if ((typeName _x) in ["OBJECT", "GROUP"]) then {
+        if ((typeName _x) in ["OBJECT","GROUP"]) then {
             _pos = _x;
         } else {
             _pos = [_x] call Zen_ConvertToPosition;
@@ -50,7 +50,7 @@ if (typeName _taskUniqueName == "STRING") then {
 while {true} do {
     sleep 5;
 
-    if ([_taskUniqueName, _taskResult] call Zen_AreTasksComplete) exitWith {};
+    if ([_taskUniqueName,_taskResult] call Zen_AreTasksComplete) exitWith {};
 
     if (typeName (_this select 1) == "SIDE") then {
         _rangers = [(_this select 1)] call Zen_ConvertToObjectArray;
@@ -62,13 +62,13 @@ while {true} do {
     _areNear = true;
     if (_requiredUnits == "one") then {
         {
-            if ([_rangers, _x, [_distance, _distance], 0, "ellipse"] call Zen_AreNotInArea) then {
+            if ([_rangers,_x,[_distance,_distance],0,"ellipse"] call Zen_AreNotInArea) then {
                 _areNear = false;
             }
         } forEach _objPos;
     } else {
         {
-            if !([_rangers, _x, [_distance, _distance], 0, "ellipse"] call Zen_AreInArea) then {
+            if !([_rangers,_x,[_distance,_distance],0,"ellipse"] call Zen_AreInArea) then {
                 _areNear = false;
             }
         } forEach _objPos;
@@ -76,7 +76,7 @@ while {true} do {
 
     if (_areNear) exitWith {
         {
-            0 = [_x, _taskResult] call Zen_UpdateTask;
+            0 = [_x,_taskResult] call Zen_UpdateTask;
             sleep 2;
         } forEach _taskUniqueName;
     };

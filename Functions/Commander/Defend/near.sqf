@@ -13,7 +13,7 @@ _availableArray = [];
     };
 } forEach _entities;
 
-_unitArray = [_availableArray, ((count _availableArray) / 4)]call Zen_ArrayGetRandomSequence;
+_unitArray = [_availableArray,((count _availableArray) / 4)]call Zen_ArrayGetRandomSequence;
 
 {
     (group _x) move (_arg select 0);

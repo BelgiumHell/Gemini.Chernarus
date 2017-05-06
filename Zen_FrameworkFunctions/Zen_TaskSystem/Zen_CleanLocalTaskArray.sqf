@@ -4,9 +4,9 @@
 
 {
     if ((count (_x select 1) == 0)) then {
-        Zen_Task_Array_Local set [_forEachIndex, 0];
+        Zen_Task_Array_Local set [_forEachIndex,0];
     };
 } forEach Zen_Task_Array_Local;
 
-0 = [Zen_Task_Array_Local, 0] call Zen_ArrayRemoveValue;
+0 = [Zen_Task_Array_Local,0] call Zen_ArrayRemoveValue;
 if (true) exitWith {};

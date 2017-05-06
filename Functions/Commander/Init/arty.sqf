@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 _artyGroup = createGroup east;
-_artyGroup setVariable["JOC_caching_disabled", true , true];
+_artyGroup setVariable["JOC_caching_disabled",true ,true];
 [_artyGroup]call JOC_setGroupID;
 _tankBlacklist = [];
 _artyComp = [
@@ -64,16 +64,16 @@ while{_s < 4}do{
     }forEach _objects;
 
 	_nameS = format ["mrk_strategic_arty_%1",_s];
-	_marker = createMarker [_nameS, _location];
+	_marker = createMarker [_nameS,_location];
    	_nameS setMarkerShape "ELLIPSE";
    	_nameS setMarkerSize [100,100];
     _nameS setMarkerBrush "SolidBorder";
     _nameS setMarkerColor "ColorOpfor";
 
-	strategicArray pushBack [_location,60,"arty",_nameS,1];
+	strategicArray pushBack [_location,60,"arty",_nameS,1,2];
 
 	_nameM = [5] call Zen_StringGenerateRandom;
-	_marker = createMarker [_nameM, _location];
+	_marker = createMarker [_nameM,_location];
    	_nameM setMarkerShape "RECTANGLE";
    	_nameM setMarkerSize [6000,6000];
     _nameM setMarkerBrush "Border";

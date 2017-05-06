@@ -4,10 +4,10 @@
 
 #include "..\Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_IsWaterArea", _this] call Zen_StackAdd;
-private ["_blacklist", "_center", "_XYSizeArray", "_polyDir", "_markerShape", "_waterCount", "_notWaterCount", "_repeat", "_quantumAngles", "_pos", "_isBlacklisted", "_adjustment", "_xCoord"];
+_Zen_stack_Trace = ["Zen_IsWaterArea",_this] call Zen_StackAdd;
+private ["_blacklist","_center","_XYSizeArray","_polyDir","_markerShape","_waterCount","_notWaterCount","_repeat","_quantumAngles","_pos","_isBlacklisted","_adjustment","_xCoord"];
 
-if !([_this, [["VOID"], ["ARRAY"], ["SCALAR"], ["STRING"], ["ARRAY"]], [[], ["STRING", "SCALAR"], [], [], ["STRING"]], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["ARRAY"],["SCALAR"],["STRING"],["ARRAY"]],[[],["STRING","SCALAR"],[],[],["STRING"]],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -39,20 +39,20 @@ for "_i" from 1 to _repeat do {
     _pos = _center;
 
     if (toUpper _markerShape == "RECTANGLE") then {
-        _adjustment = [ZEN_STD_Math_RandNegativePositive() * random (_XYSizeArray select 0), ZEN_STD_Math_RandNegativePositive() * random (_XYSizeArray select 1), 0];
-        _adjustment = ZEN_STD_Math_VectRotateZ(_adjustment, _polyDir);
+        _adjustment = [ZEN_STD_Math_RandNegativePositive() * random (_XYSizeArray select 0),ZEN_STD_Math_RandNegativePositive() * random (_XYSizeArray select 1),0];
+        _adjustment = ZEN_STD_Math_VectRotateZ(_adjustment,_polyDir);
         _pos = _center vectorAdd _adjustment;
     } else {
         _xCoord = ZEN_STD_Math_RandNegativePositive() * random (_XYSizeArray select 0);
-        _adjustment = [_xCoord, ZEN_STD_Math_RandNegativePositive() * (_XYSizeArray select 1) * random ((1 - (_xCoord^2 / (_XYSizeArray select 0)^2))^0.5), 0];
-        _adjustment = ZEN_STD_Math_VectRotateZ(_adjustment, _polyDir);
+        _adjustment = [_xCoord,ZEN_STD_Math_RandNegativePositive() * (_XYSizeArray select 1) * random ((1 - (_xCoord^2 / (_XYSizeArray select 0)^2))^0.5),0];
+        _adjustment = ZEN_STD_Math_VectRotateZ(_adjustment,_polyDir);
 
         _pos = _center vectorAdd _adjustment;
     };
 
     _isBlacklisted = false;
     {
-        _isBlacklisted = ([_pos, _x]) call Zen_IsPointInPoly;
+        _isBlacklisted = ([_pos,_x]) call Zen_IsPointInPoly;
         if (_isBlacklisted) exitWith {};
     } forEach _blacklist;
 

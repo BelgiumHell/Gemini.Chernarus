@@ -5,10 +5,10 @@
 if ((count Zen_Task_Array_Global) == 0) exitWith {};
 if ((count Zen_Task_Array_Local) == 0) exitWith {};
 
-_Zen_stack_Trace = ["Zen_UpdateTaskClient", _this] call Zen_StackAdd;
-private ["_unitsTasksArrayGlobal", "_unitsTasksArrayLocal", "_nameString", "_currentTaskArray", "_destination", "_state", "_taskState", "_description", "_title", "_cfgNotifyClass", "_units", "_showNotification"];
+_Zen_stack_Trace = ["Zen_UpdateTaskClient",_this] call Zen_StackAdd;
+private ["_unitsTasksArrayGlobal","_unitsTasksArrayLocal","_nameString","_currentTaskArray","_destination","_state","_taskState","_description","_title","_cfgNotifyClass","_units","_showNotification"];
 
-if !([_this, [["STRING"], ["STRING", "SCALAR"], ["BOOL"]], [], 3] call Zen_CheckArguments) exitWith {
+if !([_this,[["STRING"],["STRING","SCALAR"],["BOOL"]],[],3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -35,7 +35,7 @@ _destination = _unitsTasksArrayGlobal select 3;
 _description = _unitsTasksArrayGlobal select 4;
 _title = _unitsTasksArrayGlobal select 5;
 
-if !([_destination, [0,0,0]] call Zen_ValuesAreEqual) then {
+if !([_destination,[0,0,0]] call Zen_ValuesAreEqual) then {
     {
         _x setSimpleTaskDestination _destination;
     } forEach _currentTaskArray;
@@ -49,17 +49,17 @@ if !([_destination, [0,0,0]] call Zen_ValuesAreEqual) then {
     if !((_x == currentTask player) && {(_state == "created")}) then {
         _x setTaskState _state;
     };
-    _x setSimpleTaskDescription [_description, _title, _title];
+    _x setSimpleTaskDescription [_description,_title,_title];
 } forEach _currentTaskArray;
 
 if (!(isDedicated && hasInterface) && {_showNotification}) then {
     if (player in _units) then {
-        if !([_taskState, "Created"] call Zen_ValuesAreEqual) then {
+        if !([_taskState,"Created"] call Zen_ValuesAreEqual) then {
             _cfgNotifyClass = "Task" + ([(toLower _state)] call Zen_StringCapitalizeLetter);
         } else {
             _cfgNotifyClass = "TaskUpdated";
         };
-        0 = [_cfgNotifyClass, ["", _title]] call bis_fnc_showNotification;
+        0 = [_cfgNotifyClass,["",_title]] call bis_fnc_showNotification;
     };
 };
 

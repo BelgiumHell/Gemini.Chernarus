@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_IsNearTerrain", _this] call Zen_StackAdd;
-private ["_center", "_radius", "_terrainType", "_repeatCount", "_nearLand", "_nearWater", "_distance", "_phi"];
+_Zen_stack_Trace = ["Zen_IsNearTerrain",_this] call Zen_StackAdd;
+private ["_center","_radius","_terrainType","_repeatCount","_nearLand","_nearWater","_distance","_phi"];
 
-if !([_this, [["VOID"], ["SCALAR"], ["STRING"]], [], 3] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["SCALAR"],["STRING"]],[],3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     (false)
 };
@@ -30,7 +30,7 @@ switch (toLower _terrainType) do {
         _nearWater = true;
     };
     default {
-        0 = ["Zen_IsNearTerrain", "Invalid terrain type given", _this] call Zen_PrintError;
+        0 = ["Zen_IsNearTerrain","Invalid terrain type given",_this] call Zen_PrintError;
         _nearLand = true;
         _nearWater = true;
     }
@@ -39,11 +39,11 @@ switch (toLower _terrainType) do {
 for "_i" from 1 to _repeatCount do {
     _distance = random _radius;
     _phi = random 360;
-    if (!(_nearLand) && {!(surfaceIsWater ([(_center select 0) + (cos _phi) * _distance, (_center select 1) + (sin _phi) * _distance, 0]))}) then {
+    if (!(_nearLand) && {!(surfaceIsWater ([(_center select 0) + (cos _phi) * _distance,(_center select 1) + (sin _phi) * _distance,0]))}) then {
         _nearLand = true;
     };
 
-    if (!(_nearWater) && {(surfaceIsWater ([(_center select 0) + (cos _phi) * _distance, (_center select 1) + (sin _phi) * _distance, 0]))}) then {
+    if (!(_nearWater) && {(surfaceIsWater ([(_center select 0) + (cos _phi) * _distance,(_center select 1) + (sin _phi) * _distance,0]))}) then {
         _nearWater = true;
     };
 

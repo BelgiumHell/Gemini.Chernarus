@@ -7,10 +7,10 @@
 #define GRADIENT_DOWN_COEF 12
 #define GRADIENT_DIR_RANGE 85
 
-_Zen_stack_Trace = ["Zen_IsHillArea", _this] call Zen_StackAdd;
-private ["_blacklist", "_center", "_XYSizeArray", "_markerShape", "_radiusMin", "_radiusMax", "_lowElevation", "_r", "_highElevation", "_elevationDiff", "_elevationDist", "_resultSlope", "_phi", "_downTotal", "_downCount", "_point", "_normal", "_dir", "_finalResult"];
+_Zen_stack_Trace = ["Zen_IsHillArea",_this] call Zen_StackAdd;
+private ["_blacklist","_center","_XYSizeArray","_markerShape","_radiusMin","_radiusMax","_lowElevation","_r","_highElevation","_elevationDiff","_elevationDist","_resultSlope","_phi","_downTotal","_downCount","_point","_normal","_dir","_finalResult"];
 
-if !([_this, [["VOID"], ["ARRAY"], ["SCALAR"], ["STRING"], ["ARRAY"]], [[], ["STRING", "SCALAR"], [], [], ["STRING"]], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["ARRAY"],["SCALAR"],["STRING"],["ARRAY"]],[[],["STRING","SCALAR"],[],[],["STRING"]],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -36,28 +36,28 @@ _radiusMin = (_XYSizeArray select 0) min (_XYSizeArray select 1);
 _radiusMax = (_XYSizeArray select 0) max (_XYSizeArray select 1);
 
 for "_r" from _radiusMax to _radiusMin step HIGH_LOW_SEARCH_STEP do {
-    _lowElevation = [_center, _r, "low"] call Zen_FindNearHeight;
+    _lowElevation = [_center,_r,"low"] call Zen_FindNearHeight;
     if (([_lowElevation] + _this) call Zen_IsPointInPoly) exitWith {};
 };
 
 for "_r" from _radiusMax to _radiusMin step HIGH_LOW_SEARCH_STEP do {
-    _highElevation = [_center, _r] call Zen_FindNearHeight;
+    _highElevation = [_center,_r] call Zen_FindNearHeight;
     if (([_highElevation] + _this) call Zen_IsPointInPoly) exitWith {};
 };
 
 _elevationDiff = (getTerrainHeightASL _highElevation) - (getTerrainHeightASL _lowElevation);
-_elevationDist = [_highElevation, _lowElevation] call Zen_Find2dDistance;
+_elevationDist = [_highElevation,_lowElevation] call Zen_Find2dDistance;
 _resultSlope = ((atan (_elevationDiff / _elevationDist)) / SLOPE_COEF_MAX);
 
 _downTotal = 0;
 for "_phi" from 0 to 350 step 10 do {
     _downCount = 0;
     for "_r" from 1 to _radiusMin step (_radiusMin / 10) do {
-        _point = [_center, _r, _phi] call Zen_ExtendPosition;
+        _point = [_center,_r,_phi] call Zen_ExtendPosition;
         _normal = surfaceNormal _point;
         _dir = ((_normal select 0) atan2 (_normal select 1));
 
-        if ([_dir, [_phi - GRADIENT_DIR_RANGE, _phi + GRADIENT_DIR_RANGE]] call Zen_IsAngleInSector) then {
+        if ([_dir,[_phi - GRADIENT_DIR_RANGE,_phi + GRADIENT_DIR_RANGE]] call Zen_IsAngleInSector) then {
             _downCount = _downCount + 1;
         };
     };

@@ -15,5 +15,5 @@ _availableArray = [];
 } forEach _entities;
 
 {
-    _x doMove [_near, random 100, random 100] call BIS_fnc_relPos;
+    _x doMove [_near,random 100,random 100] call BIS_fnc_relPos;
 } forEach _availableArray;

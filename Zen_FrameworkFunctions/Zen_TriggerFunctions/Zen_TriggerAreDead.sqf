@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_TriggerAreDead", _this] call Zen_StackAdd;
-private ["_taskUniqueName", "_taskResult", "_maxAlive", "_objectsArray"];
+_Zen_stack_Trace = ["Zen_TriggerAreDead",_this] call Zen_StackAdd;
+private ["_taskUniqueName","_taskResult","_maxAlive","_objectsArray"];
 
-if !([_this, [["VOID"], ["STRING", "ARRAY"], ["STRING"], ["SCALAR"]], [[], ["STRING"]], 3] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["STRING","ARRAY"],["STRING"],["SCALAR"]],[[],["STRING"]],3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -19,7 +19,7 @@ if (count _this > 3) then {
 };
 
 if (_maxAlive > count _objectsArray) then {
-    0 = ["Zen_TriggerAreDead", "Given number of max living units exceeds the number of units to check", _this] call Zen_PrintError;
+    0 = ["Zen_TriggerAreDead","Given number of max living units exceeds the number of units to check",_this] call Zen_PrintError;
     call Zen_StackPrint;
 };
 
@@ -30,7 +30,7 @@ if (typeName _taskUniqueName == "STRING") then {
 while {true} do {
     sleep 5;
 
-    if ([_taskUniqueName, _taskResult] call Zen_AreTasksComplete) exitWith {};
+    if ([_taskUniqueName,_taskResult] call Zen_AreTasksComplete) exitWith {};
 
     if (typeName (_this select 0) == "SIDE") then {
         _objectsArray = [(_this select 0)] call Zen_ConvertToObjectArray;
@@ -40,7 +40,7 @@ while {true} do {
 
     if ((count _objectsArray <= _maxAlive) || (count _objectsArray == 0)) exitWith {
         {
-            0 = [_x, _taskResult] call Zen_UpdateTask;
+            0 = [_x,_taskResult] call Zen_UpdateTask;
             sleep 2;
         } forEach _taskUniqueName;
     };

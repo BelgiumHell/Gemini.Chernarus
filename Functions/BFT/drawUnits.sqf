@@ -3,7 +3,7 @@
 /////////////////////////
 params["_units"];
 {
-    _marker = createMarkerLocal [format["mrk_bft_unit_%",_forEachIndex], getPos _x];
+    _marker = createMarkerLocal [format["mrk_bft_unit_%",_forEachIndex],getPos _x];
 } forEach _units;
 while{true}do{
     {

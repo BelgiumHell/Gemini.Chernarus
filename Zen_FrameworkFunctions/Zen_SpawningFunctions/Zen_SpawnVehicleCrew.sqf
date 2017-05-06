@@ -12,7 +12,7 @@
             }; \
         } forEach _vehicleTurrets;
 
-#define FILL_AIRCRAFT(PILOT_CLASS, GUNNER_CLASS) \
+#define FILL_AIRCRAFT(PILOT_CLASS,GUNNER_CLASS) \
         if ((isNull driver _vehicle) && _hasDriver) then { \
             _crewClasses pushBack PILOT_CLASS; \
         }; \
@@ -28,10 +28,10 @@
 
 #include "Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_SpawnVehicleCrew", _this] call Zen_StackAdd;
-private ["_vehicle", "_crewClasses", "_crewGroup", "_vehicleConfigEntry", "_side", "_carCrewClass", "_tankCrewClass", "_heliCrewClass", "_jetCrewClass", "_heliPilotClass", "_turretTypes", "_hasDriver"];
+_Zen_stack_Trace = ["Zen_SpawnVehicleCrew",_this] call Zen_StackAdd;
+private ["_vehicle","_crewClasses","_crewGroup","_vehicleConfigEntry","_side","_carCrewClass","_tankCrewClass","_heliCrewClass","_jetCrewClass","_heliPilotClass","_turretTypes","_hasDriver"];
 
-if !([_this, [["OBJECT"], ["SIDE"], ["ARRAY", "STRING"], ["BOOL"]], [[], [], ["STRING"]], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["OBJECT"],["SIDE"],["ARRAY","STRING"],["BOOL"]],[[],[],["STRING"]],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -50,12 +50,12 @@ if (count _this > 1) then {
     _side = [_vehicle] call Zen_GetSide;
 };
 
-_turretTypes = ["commander", "gunner"];
-ZEN_STD_Parse_GetArgument(_turretTypes, 2)
-ZEN_STD_Parse_GetArgumentDefault(_hasDriver, 3, true)
+_turretTypes = ["commander","gunner"];
+ZEN_STD_Parse_GetArgument(_turretTypes,2)
+ZEN_STD_Parse_GetArgumentDefault(_hasDriver,3,true)
 
 _crewClasses = [];
-_vehicleTurrets = [_vehicle, _turretTypes] call Zen_GetTurretPaths;
+_vehicleTurrets = [_vehicle,_turretTypes] call Zen_GetTurretPaths;
 
 switch (_side) do {
     case west: {
@@ -87,7 +87,7 @@ switch (_side) do {
         _jetCrewClass = "c_man_1";
     };
     default {
-        0 = ["Zen_SpawnVehicleCrew", "Invalid side given", _this] call Zen_PrintError;
+        0 = ["Zen_SpawnVehicleCrew","Invalid side given",_this] call Zen_PrintError;
         call Zen_StackPrint;
         _carCrewClass = "";
     };
@@ -124,35 +124,35 @@ switch (toLower (getText (_vehicleConfigEntry >> "vehicleClass"))) do {
     case "air": {
         switch (toLower (getText (_vehicleConfigEntry >> "textSingular"))) do {
             case (toLower (localize "str_Zen_Heli")): {
-                FILL_AIRCRAFT(_heliPilotClass, _heliCrewClass)
+                FILL_AIRCRAFT(_heliPilotClass,_heliCrewClass)
             };
             case (toLower (localize "str_Zen_Gunship")): {
-                FILL_AIRCRAFT(_heliPilotClass, _heliCrewClass)
+                FILL_AIRCRAFT(_heliPilotClass,_heliCrewClass)
             };
             case (toLower (localize "str_Zen_Jet")): {
-                FILL_AIRCRAFT(_jetCrewClass, _jetCrewClass)
+                FILL_AIRCRAFT(_jetCrewClass,_jetCrewClass)
             };
             default {
                 FILL_CAR(_heliPilotClass)
-                0 = ["Zen_SpawnVehicleCrew", "Vehicle is of unknown textSingular type", _this] call Zen_PrintError;
+                0 = ["Zen_SpawnVehicleCrew","Vehicle is of unknown textSingular type",_this] call Zen_PrintError;
                 call Zen_StackPrint;
             };
         };
     };
     default {
         FILL_CAR(_carCrewClass)
-        0 = ["Zen_SpawnVehicleCrew", "Vehicle is of unknown vehicleClass type", _this] call Zen_PrintError;
+        0 = ["Zen_SpawnVehicleCrew","Vehicle is of unknown vehicleClass type",_this] call Zen_PrintError;
         call Zen_StackPrint;
     };
 };
 
-_crewGroup = [_vehicle, _crewClasses] call Zen_SpawnGroup;
-0 = [_crewGroup, "Crew"] call Zen_SetAISkill;
+_crewGroup = [_vehicle,_crewClasses] call Zen_SpawnGroup;
+0 = [_crewGroup,"Crew"] call Zen_SetAISkill;
 
 if (_hasDriver) then {
-    0 = [_crewGroup, _vehicle, "all", _turretTypes] call Zen_MoveInVehicle;
+    0 = [_crewGroup,_vehicle,"all",_turretTypes] call Zen_MoveInVehicle;
 } else {
-    0 = [_crewGroup, _vehicle, "turret", _turretTypes] call Zen_MoveInVehicle;
+    0 = [_crewGroup,_vehicle,"turret",_turretTypes] call Zen_MoveInVehicle;
 };
 
 call Zen_StackRemove;

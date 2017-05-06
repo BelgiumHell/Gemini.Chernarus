@@ -7,13 +7,13 @@ private ["_cleanUnitsArray"];
 {
     _cleanUnitsArray = _x select 1;
     if (count _cleanUnitsArray == 0) then {
-        Zen_Task_Array_Global set [_forEachIndex, 0];
+        Zen_Task_Array_Global set [_forEachIndex,0];
     } else {
-        _x set [1, _cleanUnitsArray];
+        _x set [1,_cleanUnitsArray];
     };
 } forEach Zen_Task_Array_Global;
 
-0 = [Zen_Task_Array_Global, 0] call Zen_ArrayRemoveValue;
+0 = [Zen_Task_Array_Global,0] call Zen_ArrayRemoveValue;
 publicVariable "Zen_Task_Array_Global";
 
 if (true) exitWith {};

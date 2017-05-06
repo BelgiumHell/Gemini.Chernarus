@@ -10,17 +10,17 @@ if(count (_basePos - [0,0,0]) == 0)exitWith{false};
 //Spawn crate
 _location = [];
 while{count _location == 0}do{
-    _pos = [_basePos, [0,100]] call Zen_FindGroundPosition;
+    _pos = [_basePos,[0,100]] call Zen_FindGroundPosition;
     _location  = _pos findEmptyPosition [0,300,emptyClass];
 };
 _crate = "B_CargoNet_01_ammo_F" createVehicle _location;
 
 //Order slingload
-_wp1 = (group _heli) addWaypoint [getPosWorld _crate, 0];
+_wp1 = (group _heli) addWaypoint [getPosWorld _crate,0];
 _wp1 setWaypointType "HOOK";
 _wp1 waypointAttachVehicle _crate;
 
-_wp2 = (group _heli) addWaypoint [(_array select 0), 0];
+_wp2 = (group _heli) addWaypoint [(_array select 0),0];
 _wp2 setWaypointType "UNHOOK";
 //_wp2 waypointAttachVehicle _crate;
 

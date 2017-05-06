@@ -4,10 +4,10 @@
 
 #include "..\Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_FindValidDirection", _this] call Zen_StackAdd;
-private ["_center", "_avoidPoints", "_avoidDist", "_avoidRanges", "_dirToAvoid", "_distToAvoid", "_distAvoidRatio", "_tangentAngle", "_goodAngles", "_isGood"];
+_Zen_stack_Trace = ["Zen_FindValidDirection",_this] call Zen_StackAdd;
+private ["_center","_avoidPoints","_avoidDist","_avoidRanges","_dirToAvoid","_distToAvoid","_distAvoidRatio","_tangentAngle","_goodAngles","_isGood"];
 
-if !([_this, [["VOID"], ["VOID"], ["SCALAR"]], [], 3] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["VOID"],["SCALAR"]],[],3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ([])
 };
@@ -24,23 +24,23 @@ if ((typeName (_avoidPoints select 0)) == "SCALAR") then {
 _avoidRanges = [];
 
 {
-    _dirToAvoid = [_center, _x] call Zen_FindDirection;
-    _distToAvoid = [_center, _x] call Zen_Find2dDistance;
+    _dirToAvoid = [_center,_x] call Zen_FindDirection;
+    _distToAvoid = [_center,_x] call Zen_Find2dDistance;
     _distAvoidRatio = _avoidDist / _distToAvoid;
 
     if (_distAvoidRatio > 1) exitWith {
-        _avoidRanges = [[0, 360]];
+        _avoidRanges = [[0,360]];
     };
 
     _tangentAngle = 2 * (asin (_distAvoidRatio / 2));
-    _avoidRanges pushBack [_dirToAvoid - _tangentAngle, _dirToAvoid + _tangentAngle];
+    _avoidRanges pushBack [_dirToAvoid - _tangentAngle,_dirToAvoid + _tangentAngle];
 } forEach _avoidPoints;
 
 _goodAngles = [];
 for "_i" from 0 to 359 do {
     _isGood = true;
     {
-        if ([_i, _x] call Zen_IsAngleInSector) exitWith {
+        if ([_i,_x] call Zen_IsAngleInSector) exitWith {
             _isGood = false;
         };
     } forEach _avoidRanges;

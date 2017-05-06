@@ -2,10 +2,10 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_GetTaskDataGlobal", _this] call Zen_StackAdd;
-private ["_nameString", "_printError", "_taskArray"];
+_Zen_stack_Trace = ["Zen_GetTaskDataGlobal",_this] call Zen_StackAdd;
+private ["_nameString","_printError","_taskArray"];
 
-if !([_this, [["STRING"]], [], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["STRING"]],[],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ([])
 };
@@ -20,13 +20,13 @@ if (count _this > 1) then {
 _taskArray = [];
 
 {
-    if ([(_x select 0), _nameString] call Zen_ValuesAreEqual) exitWith {
+    if ([(_x select 0),_nameString] call Zen_ValuesAreEqual) exitWith {
         _taskArray =+ _x;
     };
 } forEach Zen_Task_Array_Global;
 
 if ((_printError) && {count _taskArray == 0}) then {
-    0 = ["Zen_GetTaskDataGlobal", "Given task does not exist", _this] call Zen_PrintError;
+    0 = ["Zen_GetTaskDataGlobal","Given task does not exist",_this] call Zen_PrintError;
     call Zen_StackPrint;
 };
 

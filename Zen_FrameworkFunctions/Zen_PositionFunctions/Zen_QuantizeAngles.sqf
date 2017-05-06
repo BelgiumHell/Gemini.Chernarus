@@ -5,10 +5,10 @@
 #include "..\Zen_StandardLibrary.sqf"
 #define SMALL_STEP 0.18
 
-_Zen_stack_Trace = ["Zen_QuantizeAngles", _this] call Zen_StackAdd;
-private ["_center", "_polyType", "_XYSizeArray", "_markerDir", "_minAngle", "_maxAngle", "_targetArea", "_phiArray", "_phi", "_radius"];
+_Zen_stack_Trace = ["Zen_QuantizeAngles",_this] call Zen_StackAdd;
+private ["_center","_polyType","_XYSizeArray","_markerDir","_minAngle","_maxAngle","_targetArea","_phiArray","_phi","_radius"];
 
-if !([_this, [["ARRAY", "STRING"], ["SCALAR"], ["SCALAR"], ["SCALAR"], ["STRING"]], [["SCALAR"]], 3] call Zen_CheckArguments) exitWith {
+if !([_this,[["ARRAY","STRING"],["SCALAR"],["SCALAR"],["SCALAR"],["STRING"]],[["SCALAR"]],3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ([])
 };
@@ -47,7 +47,7 @@ if (_minAngle == 0 || _minAngle == 360) then {
 };
 
 if (_minAngle > _maxAngle) then {
-    ZEN_STD_Code_SwapVars(_minAngle, _maxAngle)
+    ZEN_STD_Code_SwapVars(_minAngle,_maxAngle)
 };
 
 _phiArray = [_minAngle];

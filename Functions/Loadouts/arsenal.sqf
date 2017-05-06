@@ -1,7 +1,6 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-private["_box","_unit","_uniforms","_vests","_helmets","_backpacks"];
 params["_box"];
 
 _weapons = [

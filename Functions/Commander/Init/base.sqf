@@ -21,7 +21,7 @@ _compoundsS = nearestObjects [(getMarkerPos "mrk_area"),["Land_BagBunker_Small_F
         _pos = [_positions]call JOC_findCenter;
 
         _nameM = format["mrk_strategic_base_%1",_forEachIndex];
-        _marker = createMarker [_nameM, _pos];
+        _marker = createMarker [_nameM,_pos];
         _nameM setMarkerShape "ELLIPSE";
         _nameM setMarkerSize [200,200];
         _nameM setMarkerBrush "SolidBorder";
@@ -39,7 +39,7 @@ _compoundsS = nearestObjects [(getMarkerPos "mrk_area"),["Land_BagBunker_Small_F
         _priority = (count _compounds)*50;
 
         _nameM = format["mrk_strategic_outpost_%1",_forEachIndex];
-        _marker = createMarker [_nameM, (getPos _x)];
+        _marker = createMarker [_nameM,(getPos _x)];
         _nameM setMarkerShape "ELLIPSE";
         _nameM setMarkerSize [50,50];
         _nameM setMarkerBrush "SolidBorder";
@@ -47,6 +47,6 @@ _compoundsS = nearestObjects [(getMarkerPos "mrk_area"),["Land_BagBunker_Small_F
 
         _usedCompounds append _compounds;
 
-        strategicArray pushBack [(getPos _x),_priority,"outpost",_nameM,1];
+        strategicArray pushBack [(getPos _x),_priority,"outpost",_nameM,1,0];
     };
 } forEach ((_towersS + _compoundsS) - _usedCompounds);

@@ -3,34 +3,34 @@
 /////////////////////////
 
 //Note to user:
-//This is the only file in the mission meant to be edited, also the only one containing good commenting on variables.
+//This is the only file in the mission meant to be edited, also the only one containing 'good' commenting on variables.
 //Do not edit below 'do not edit' mark or an other file in this mission without knowledge of ArmA SQF scripting.
 
 //Parameters *FREE TO EDIT*
 //Classnames
-infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_aa","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];    //infantry classnames
-sfPool       = ["rhs_vdv_recon_marksman_vss","rhs_vdv_recon_marksman_asval","rhs_vdv_recon_grenadier_scout","rhs_vdv_recon_rifleman_scout","rhs_vdv_recon_rifleman_scout_akm"]; //Special forces classnames (#getRekt)
-staticPoolAA = ["RHS_ZU23_VDV"];
-staticPoolAT = [];
-staticPoolMG = [];
-carPool      = ["rhs_tigr_m_vdv","rhs_tigr_sts_vdv","rhs_tigr_vdv"];        //car classnames
-truckPool    = ["RHS_Ural_VDV_01","RHS_Ural_Open_VDV_01"];        //truck classnames
-apcPool      = ["rhs_btr80a_vdv","rhs_btr80_vdv"];       //apc classnames
-ifvPool      = ["rhs_bmd4ma_vdv","rhs_bmd4_vdv","rhs_bmp2k_vdv"];       //ifv classnames
-tankPool     = ["rhs_t90a_tv","rhs_t80ue1"];       //tank classnames
-supportPool  = ["RHS_Ural_Fuel_VDV_01","rhs_gaz66_ammo_vdv"];     //support classnames
-airPool      = ["RHS_Mi8AMT_vdv","RHS_Mi8mt_Cargo_vdv","RHS_Mi8MTV3_vdv"];     //transport helicopter classnames
-casPool      = ["RHS_Mi24V_vdv","RHS_Ka52_vvs"];      //cas helicopters classnames
-jetPoolAG    = ["RHS_Su25SM_KH29_vvs"];       //jet classnames (anti-ground)
-jetPoolAA    = ["RHS_T50_vvs_blueonblue"];       //jet classnames (anti-air)
-crewClass    = "rhs_vdv_combatcrew";    //Crewman classname
-pilotClass   = "rhs_pilot";   //Pilot classname
+infantryPool = ["rhs_vdv_rifleman","rhs_vdv_efreitor","rhs_vdv_engineer","rhs_vdv_grenadier","rhs_vdv_at","rhs_vdv_aa","rhs_vdv_strelok_rpg_assist","rhs_vdv_junior_sergeant","rhs_vdv_machinegunner","rhs_vdv_machinegunner_assistant","rhs_vdv_marksman","rhs_vdv_medic","rhs_vdv_LAT","rhs_vdv_RShG2","rhs_vdv_sergeant"];//Infantry classnames
+sfPool       = ["rhs_vdv_recon_marksman_vss","rhs_vdv_recon_marksman_asval","rhs_vdv_recon_grenadier_scout","rhs_vdv_recon_rifleman_scout","rhs_vdv_recon_rifleman_scout_akm"];//Special forces classnames (#getRekt)
+staticPoolAA = ["RHS_ZU23_VDV"];//AA statics
+staticPoolAT = [];//AT statics
+staticPoolMG = [];//MG statics
+carPool      = ["rhs_tigr_m_vdv","rhs_tigr_sts_vdv","rhs_tigr_vdv"];//Car classnames
+truckPool    = ["rhs_kamaz5350_vdv","rhs_kamaz5350_open_vdv"];//Truck classnames
+apcPool      = ["rhs_btr80a_vdv","rhs_btr80_vdv"];//APC classnames
+ifvPool      = ["rhs_bmd4ma_vdv","rhs_bmd4_vdv","rhs_bmp2k_vdv","rhs_bmp2d_vdv","rhs_bmd2m"];//IFV classnames
+tankPool     = ["rhs_t90a_tv","rhs_t80ue1","rhs_t90_tv","rhs_t80um"];//Tank classnames
+supportPool  = ["RHS_Ural_Fuel_VDV_01","rhs_gaz66_ammo_vdv"];//Support classnames
+airPool      = ["RHS_Mi8AMT_vdv","RHS_Mi8mt_Cargo_vdv","RHS_Mi8MTV3_vdv"];//Transport helicopter classnames
+casPool      = ["RHS_Mi24V_vdv","RHS_Ka52_vvs","rhs_mi28n_vvs"];//Cas helicopters classnames
+jetPoolAG    = ["RHS_Su25SM_KH29_vvs"];//Jet classnames (anti-ground)
+jetPoolAA    = ["RHS_T50_vvs_blueonblue"];//Jet classnames (anti-air)
+crewClass    = "rhs_vdv_combatcrew";//Crewman classname
+pilotClass   = "rhs_pilot";//Pilot classname
 officerClass = ""; //Officer classname
-artyClass    = "rhs_2s3_tv";    //Arty classname
-aaClass      = "rhs_zsu234_aa"; //AA classname
-fobClass     = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"; //Fob classname
-emptyClass   = "Land_Airport_center_F";  //Large object, don't change or delete
-roofPool     = ["Land_Offices_01_V1_F","Land_WIP_F"];
+artyClass    = "rhs_2s3_tv";//Arty classname
+aaClass      = "rhs_zsu234_aa";//AA classname
+fobClass     = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy";//Fob classname
+emptyClass   = "Land_Airport_center_F";//Large object, don't change or delete
+roofPool     = ["Land_Offices_01_V1_F","Land_WIP_F"];//Buildings with roofs statics can spawn on
 
 //Markers
 blackTowns = ["Sagonisi"];  //Blacklist towns to not get any strategic value
@@ -42,13 +42,15 @@ leaderArray = []; //All leading elements, this is also used for chain of command
 arsenalBoxes = [arsenal1,arsenal2];    //All pre-placed boxes that need to be a virtual arsenal
 logisticsArray = ["l1","l2","l3","l4"]; //All units that will be able to use the building crate
 logisticsVehArray = ["B_APC_Tracked_01_CRV_F"]; //All vehicles that can tow (might be broken atm, do not expect this to work properly)
-motorizedArray = [];    //All vehicles that are classed as motorized, mainly for proper display on BFT (will otherwised be displayed as tanks)
-medicalVehArray = [];   //All medical vehicles, mainly for proper display on BFT (will otherwise be displayed as their vehicle type, i.e. car)
+motorizedArray = ["rhsusf_M1117_W","rhsusf_m113_usarmy","rhsusf_m113_usarmy_MK19"];    //All vehicles that are classed as motorized, mainly for proper display on BFT (will otherwised be displayed as tanks)
+medicalVehArray = ["rhsusf_m113_usarmy_medical"];   //All medical vehicles, mainly for proper display on BFT (will otherwise be displayed as their vehicle type, i.e. car)
 
 //Variables
-bftRefresh = 1;  //Refresh rate for blue force tracking (in seconds)
+bftRefresh = 10;  //Refresh rate for blue force tracking (in seconds)
 fobLimit = 5;   //Max number of FOB trucks active
 radarRange = 6000;  //Max range of radars, after this distance radars won't check for targets (currently ignored, might be added back)
+
+//View distance settings
 CHVD_allowNoGrass = false; // Set 'false' if you want to disable "Low" option for terrain (default: true)
 CHVD_maxView = 12000; // Set maximum view distance (default: 12000)
 CHVD_maxObj = 12000; // Set maximimum object view distance (default: 12000)
@@ -150,6 +152,10 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         _index = _index + 1;
     };
 
+    [[],{
+        progressLoadingScreen 0.4;
+    }] remoteExec ["BIS_fnc_spawn", 0, true];
+
     //vehicleArray
     _index = 0;
     while{typeName (["read", ["main", format["vehicleArray_%1",_index],0]] call _inidbi) != typeName 0}do{
@@ -158,6 +164,10 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         vehicleArray pushBack _array;
         _index = _index + 1;
     };
+
+    [[],{
+        progressLoadingScreen 0.2;
+    }] remoteExec ["BIS_fnc_spawn", 0, true];
 
     //Orderarray
     _index = 0;
@@ -179,6 +189,10 @@ if(_dbSaved && (paramsArray select 0) == 1)then{
         assignedArray pushBack (["read", ["main", format["assignedArray_%1",_index]]] call _inidbi);
         _index = _index + 1;
     };
+
+    [[],{
+        progressLoadingScreen 0.2;
+    }] remoteExec ["BIS_fnc_spawn", 0, true];
 
     //Object damage
     _damageValues = [];
@@ -313,7 +327,7 @@ publicVariable "currentVehicleId";
 [JOC_cmdMiscRadar, 10, []]call CBA_fnc_addPerFrameHandler;
 [JOC_vehRespawn, 3600, []]call CBA_fnc_addPerFrameHandler;
 [JOC_cmdCmdLoop, 30, []]call CBA_fnc_addPerFrameHandler;
-//[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
+[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
 {
     _marker = _x select 3;
     _marker setMarkerAlpha 0;

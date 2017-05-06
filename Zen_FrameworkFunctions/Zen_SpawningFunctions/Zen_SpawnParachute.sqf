@@ -4,18 +4,18 @@
 
 #include "Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_SpawnParachute", _this] call Zen_StackAdd;
-private ["_object", "_parachute", "_height", "_signalGrenadeClass"];
+_Zen_stack_Trace = ["Zen_SpawnParachute",_this] call Zen_StackAdd;
+private ["_object","_parachute","_height","_signalGrenadeClass"];
 
-if !([_this, [["OBJECT"], ["STRING"]], [], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["OBJECT"],["STRING"]],[],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
 _object = _this select 0;
 
-ZEN_STD_Parse_GetArgumentDefault(_signalGrenadeClass, 1, "SmokeShell")
+ZEN_STD_Parse_GetArgumentDefault(_signalGrenadeClass,1,"SmokeShell")
 
-_parachute = createVehicle ["B_Parachute_02_F", getPosATL _object, [], 0, "CAN_COLLIDE"];
+_parachute = createVehicle ["B_Parachute_02_F",getPosATL _object,[],0,"CAN_COLLIDE"];
 _parachute setPosATL getPosATL _object;
 
 _object enableSimulation false;
@@ -23,7 +23,7 @@ _height = ZEN_STD_OBJ_BBZ(_object) / 2;
 _height = _height max 1.2;
 
 sleep 2;
-_object attachTo [_parachute, [0, 0, -_height]];
+_object attachTo [_parachute,[0,0,-_height]];
 _object enableSimulation true;
 _parachute setMass (getMass _object + getMass _parachute);
 
@@ -39,7 +39,7 @@ _object allowDamage false;
 detach _object;
 
 if ((_signalGrenadeClass != "") && {isClass (configFile >> "CfgMagazines" >> _signalGrenadeClass)}) then {
-    0 = [_object, _signalGrenadeClass] call Zen_SpawnVehicle;
+    0 = [_object,_signalGrenadeClass] call Zen_SpawnVehicle;
 };
 
 sleep 1;

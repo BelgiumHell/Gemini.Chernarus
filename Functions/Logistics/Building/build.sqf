@@ -19,18 +19,18 @@ if(!isNull _orgCurator)exitWith{hint "Logout as admin/zeus";};
 
     //Create curator
     _curatorGroup = creategroup sideLogic;
-    _curator = _curatorGroup createUnit ["ModuleCurator_F", [0, 90, 90],[],0.5,"NONE"];
+    _curator = _curatorGroup createUnit ["ModuleCurator_F",[0,90,90],[],0.5,"NONE"];
     _curator addCuratorEditingArea [0,getPos _crate,100];
     _curator setCuratorEditingAreaType true;
     _curator addCuratorCameraArea [0,getPos _crate,100];
     removeAllCuratorAddons _curator;
     _curator addCuratorAddons ["A3_Structures_F_Mil_BagBunker","A3_Structures_F_Mil_BagFence","A3_Structures_F_Mil_Bunker","A3_Structures_F_Mil_Cargo","A3_Structures_F_Mil_Fortification","A3_Structures_F_Mil_Helipads","A3_Structures_F_Mil_Shelters","rhsusf_c_statics"];
     _player assignCurator _curator;
-}] remoteExecCall ["BIS_fnc_call", 2];
+}] remoteExecCall ["BIS_fnc_call",2];
 
 waitUntil{sleep 1; !isNull(getAssignedCuratorLogic player)};
 
-(getAssignedCuratorLogic player) addEventHandler ["CuratorObjectPlaced", {
+(getAssignedCuratorLogic player) addEventHandler ["CuratorObjectPlaced",{
     [[(_this select 1)],{
     	params["_object"];
     	if(count buildObjects <= 1000)then{
@@ -38,7 +38,7 @@ waitUntil{sleep 1; !isNull(getAssignedCuratorLogic player)};
     	}else{
     	    deleteVehicle _object;
         };
-    }] remoteExec ["BIS_fnc_spawn", 2];
+    }] remoteExec ["BIS_fnc_spawn",2];
 }];
 
 openCuratorInterface;
@@ -50,4 +50,4 @@ waitUntil{sleep 1; isNull curatorCamera || player distance2D _crate > 7};
     objNull assignCurator _curator;
     deleteVehicle _curator;
     player assignCurator _orgCurator;
-}] remoteExec ["BIS_fnc_spawn", 2];
+}] remoteExec ["BIS_fnc_spawn",2];

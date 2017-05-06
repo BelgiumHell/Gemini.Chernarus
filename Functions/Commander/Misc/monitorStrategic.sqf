@@ -12,7 +12,7 @@ _ammo = false;
 
 if(_owner == 4)exitWith{};
 
-//If point has no strategic value anymore, set civilian as owner/Check for ammo
+//If point has no strategic value anymore,set civilian as owner/Check for ammo
 switch (_array select 2) do {
 	case "aa": {
         _objects = _pos nearEntities [[aaClass],100];
@@ -60,11 +60,11 @@ switch (_array select 2) do {
 };
 
 if(count _objects == 0)then{
-	(strategicArray select _id) set [4, 4];
+	(strategicArray select _id) set [4,4];
 };
 
 //Check if point is under attack
-_players = [_pos , _size, ["air"]]call JOC_nearestPlayers;
+_players = [_pos ,_size,["air"]]call JOC_nearestPlayers;
 _nearWest = count _players;
 
 if(_nearWest == 0)exitWith{};
@@ -73,25 +73,25 @@ _nearEast = east countSide (_pos nearEntities [["Man","Car","Tank"],_size]);
 
 //Set blufor owner
 if(_nearEast == 0 && _nearWest > 0 && _owner in [1,2])then{
-    (strategicArray select _id) set [4, 0];
+    (strategicArray select _id) set [4,0];
 };
 
 //Set opfor owner
 if(_nearWest == 0 && _nearEast >= 0 && _owner == 3)then{
-    (strategicArray select _id) set [4, 1];
+    (strategicArray select _id) set [4,1];
 };
 if(_nearWest == 0 && _nearEast > 0 && _owner == 0)then{
-    (strategicArray select _id) set [4, 1];
+    (strategicArray select _id) set [4,1];
 };
 
 if(_nearEast > 0 && _nearWest > 0)then{
     if(_owner == 1)then{
-        (strategicArray select _id) set [4, 2];
+        (strategicArray select _id) set [4,2];
         if(_nearWest > (_nearEast * 0.5))then{
             [_array]spawn JOC_cmdCmdreqSupport;
         };
     };
     if(_owner == 0)then{
-        (strategicArray select _id) set [4, 3];
+        (strategicArray select _id) set [4,3];
     };
 };

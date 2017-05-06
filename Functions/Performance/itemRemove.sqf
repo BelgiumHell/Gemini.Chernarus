@@ -3,7 +3,7 @@
 /////////////////////////
 _items = (getMarkerPos "mrk_area") nearEntities [["WeaponHolder","GroundWeaponHolder","WeaponHolderSimulated","SmokeShell","TimeBombCore"], worldSize*2.0^0.5];
 {
-	_nearestPlayers = [getPosASL _x, 1100, []]call JOC_nearestPlayers;
+	_nearestPlayers = [getPosASL _x, 1000, []]call JOC_nearestPlayers;
 
     if(count _nearestPlayers == 0)then{
 		deleteVehicle _x;

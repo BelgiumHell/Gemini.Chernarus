@@ -6,10 +6,6 @@ if(JOC_pauseCache)exitWith{};
 //[unitID,groupID,position,vehicle,class/object,virtualizing,damage,skill,side,behaviour]
 //[vehicleID,position,class/object,virtualizing,damage]
 
-//Save original state of unitArray and vehicleArray
-_orgUnitArray = [] + unitArray;
-_orgVehicleArray = [] + vehArray;
-
 _extraUnits = [];
 
 //Delete empty groups
@@ -20,7 +16,7 @@ _extraUnits = [];
 //Give groups Id
 {
     if([_x]call JOC_coreGetId == -1)then{
-        _x setVariable ["id", currentGroupID, true];
+        _x setVariable ["id",currentGroupID,true];
         currentGroupID = currentGroupID + 1;
     };
 } forEach allGroups;
@@ -29,7 +25,7 @@ _extraUnits = [];
 {
     _vehicle = _x;
     if([_vehicle]call JOC_coreGetId == -1 && count (vehArray select {_x select 3 == _vehicle}) == 0)then{
-        vehicleArray pushBack [currentVehicleId,getPosAsl _vehicle,_vehicle,true,damage _vehicle];
+        [vehicleArray,[currentVehicleId,getPosAsl _vehicle,_vehicle,true,damage _vehicle]] remoteExecCall ["pushBack",0]; 
         _vehicle setVariable["id",currentVehicleId,true];
         currentVehicleId = currentVehicleId + 1;
     };
@@ -43,7 +39,7 @@ _extraUnits = [];
         if(!isNull (objectParent _unit))then{
             _vehicle = [[vehicle _unit]call JOC_coreGetId,[_unit]call JOC_getVehicleIndex];
         };
-        unitArray pushBack [currentUnitId,[group _unit]call JOC_coreGetId,getPosAsl _unit,_vehicle,_unit,!((group _unit) getVariable["JOC_caching_disabled",false]),damage _unit,skill _unit,side _unit,behaviour _unit];
+        [unitArray,[currentUnitId,[group _unit]call JOC_coreGetId,getPosAsl _unit,_vehicle,_unit,!((group _unit) getVariable["JOC_caching_disabled",false]),damage _unit,skill _unit,side _unit,behaviour _unit]] remoteExecCall ["pushBack",0]; 
         _unit setVariable["id",currentUnitId,true];
         currentUnitId = currentUnitId + 1;
     };
@@ -52,7 +48,7 @@ _extraUnits = [];
 
 {
     if(typeName (_x select 2) == "STRING")then{
-        if((west countSide ((_x select 1) nearEntities[["Man","Car","Tank"], 1500])) != 0 || !(_x select 3))then{
+        if((west countSide ((_x select 1) nearEntities[["Man","Car","Tank"],2000])) != 0 || !(_x select 3))then{
             _veh = createVehicle[_x select 2,_x select 1,[],0,"CAN_COLLIDE"];
             _veh setVariable["id",(_x select 0),true];
             _veh setPosAsl (_x select 1);
@@ -65,12 +61,14 @@ _extraUnits = [];
         if(alive _vehicle)then{
             _x set[1,getPosAsl _vehicle];
             _x set[4,damage _vehicle];
-            if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"], 1500])) == 0 && (_x select 3))then{
+            if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"],2000])) == 0 && (_x select 3))then{
                 _x set[2,typeOf _vehicle];
                 deleteVehicle _vehicle;
             };
+            
         };
     };
+    [[_forEachIndex,_x],{vehicleArray set [_this select 0,_this select 1]}] remoteExecCall ["BIS_fnc_call",0];
 } forEach vehicleArray;
 
 _realVehicles = [];
@@ -84,16 +82,16 @@ _realVehicles = _realVehicles - [-1];
 
 {
     if(typeName (_x select 4) == "STRING")then{
-        if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"], 1500])) != 0 || !(_x select 5) || ((_x select 3) select 0) in _realVehicles)then{
+        if(((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"],1500])) != 0 && (((_x select 3) select 0) == -1)) || !(_x select 5) || ((_x select 3) select 0) in _realVehicles)then{
             //Group
             _group = [_x select 1]call JOC_coreGetGroup;
             if(isNull _group)then{
                 _group = createGroup (_x select 8);
-                _group setVariable ["id", _x select 1, true];
+                _group setVariable ["id",_x select 1,true];
             };
 
             //Create unit
-            _unit = _group createUnit [_x select 4, [0,0,0], [], 0, "CAN_COLLIDE"];
+            _unit = _group createUnit [_x select 4,[0,0,0],[],0,"CAN_COLLIDE"];
             _unit setVariable["id",(_x select 0),true];
             [_unit] joinSilent _group;
             _unit setPosAsl (_x select 2);
@@ -122,6 +120,9 @@ _realVehicles = _realVehicles - [-1];
                     case 5:{
                         _unit moveInAny _vehicle;
                     };
+                    default {
+                        _unit moveInAny _vehicle;
+                    };
                 };
             };
         };
@@ -135,22 +136,16 @@ _realVehicles = _realVehicles - [-1];
             _x set[7,skill _unit];
             _x set[8,side _unit];
             _x set[9,behaviour _unit];
-            if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"], 1500])) == 0 && (_x select 5))then{
+            if((west countSide ((_x select 2) nearEntities[["Man","Car","Tank"],2000])) == 0 && (_x select 5))then{
                 _x set[4,typeOf _unit];
                 deleteVehicle _unit;
             };
-        };
+        };    
     };
+    [[_forEachIndex,_x],{unitArray set [_this select 0,_this select 1]}] remoteExecCall ["BIS_fnc_call",0];
 } forEach unitArray;
 
-//publicVariable "unitArray";
-[_orgUnitArray,unitArray,0]call JOC_publicArray;
-[_orgVehicleArray,vehicleArray,1]call JOC_publicArray;
-//missionNamespace setVariable["unitArray",unitArray,true];
-//publicVariable "vehicleArray";
-//missionNamespace setVariable["vehicleArray",vehicleArray,true];
 publicVariable "currentGroupId";
 publicVariable "currentUnitId";
 publicVariable "currentVehicleId";
-
 //[false]call acex_headless_fnc_rebalance;

@@ -4,10 +4,10 @@
 
 #include "..\Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_TriggerAreRescued", _this] call Zen_StackAdd;
-private ["_hostages", "_rescuers", "_tasks", "_hostagesRemove", "_unitsIn", "_hostage", "_nearRescuer", "_hostagesRescued"];
+_Zen_stack_Trace = ["Zen_TriggerAreRescued",_this] call Zen_StackAdd;
+private ["_hostages","_rescuers","_tasks","_hostagesRemove","_unitsIn","_hostage","_nearRescuer","_hostagesRescued"];
 
-if !([_this, [["VOID"], ["VOID"], ["STRING", "ARRAY"]], [[], [], ["STRING"]], 3] call Zen_CheckArguments) exitWith {
+if !([_this,[["VOID"],["VOID"],["STRING","ARRAY"]],[[],[],["STRING"]],3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -28,7 +28,7 @@ _hostagesRescued = [];
 while {true} do {
     sleep 10;
 
-    if ([_tasks, "succeeded"] call Zen_AreTasksComplete) exitWith {};
+    if ([_tasks,"succeeded"] call Zen_AreTasksComplete) exitWith {};
     _hostagesRemove = [];
     {
         _hostage = _x;
@@ -42,11 +42,11 @@ while {true} do {
                 _rescuers = [_rescuers] call Zen_ArrayRemoveDead;
                 if (count _rescuers == 0) exitWith {};
 
-                _unitsIn = [_hostage, [5, 5], 0, "ellipse"] call Zen_GetAllInArea;
+                _unitsIn = [_hostage,[5,5],0,"ellipse"] call Zen_GetAllInArea;
 
                 {
                     if ((_x in _unitsIn) && {(abs (ZEN_STD_OBJ_ATLPositionZ(_x) - ZEN_STD_OBJ_ATLPositionZ(_hostage))) < 2}) exitWith {
-                        _nearRescuer = [_rescuers, _hostage] call Zen_FindMinDistance;
+                        _nearRescuer = [_rescuers,_hostage] call Zen_FindMinDistance;
                         [_hostage] join _nearRescuer;
                         _hostage enableAI "MOVE";
                         _hostage setCaptive false;
@@ -63,14 +63,14 @@ while {true} do {
 
     if (count _hostages == 0) exitWith {
         {
-            0 = [_x, "failed"] call Zen_UpdateTask;
+            0 = [_x,"failed"] call Zen_UpdateTask;
             sleep 2;
         } forEach _tasks;
     };
 
     if ((count _hostagesRescued > 0) && {(count _hostages == count _hostagesRescued)}) exitWith {
         {
-            0 = [_x, "succeeded"] call Zen_UpdateTask;
+            0 = [_x,"succeeded"] call Zen_UpdateTask;
             sleep 2;
         } forEach _tasks;
     };
@@ -79,12 +79,12 @@ while {true} do {
 while {true} do {
     sleep 10;
 
-    if ([_tasks, "failed"] call Zen_AreTasksComplete) exitWith {};
+    if ([_tasks,"failed"] call Zen_AreTasksComplete) exitWith {};
     _hostages = [_hostages] call Zen_ArrayRemoveDead;
 
     if (count _hostages == 0) exitWith {
         {
-            0 = [_x, "failed"] call Zen_UpdateTask;
+            0 = [_x,"failed"] call Zen_UpdateTask;
             sleep 2;
         } forEach _tasks;
     };

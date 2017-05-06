@@ -5,7 +5,7 @@
 #define FAIL _failures = _failures + 1;
 #define FAIL_CHECK if (_failures > (_maxFailures + 3)) exitWith {(_failures)};
 
-private ["_area", "_min", "_allWhitelist", "_pos", "_failures", "_roadDist", "_minAngle", "_maxAngle", "_ID", "_objSwitch", "_objLimit", "_objDist", "_nearobj","_pointAvoidSwitch","_pointAvoidArray","_pointAvoidDist","_nearWaterSwitch","_nearWaterDist", "_roads", "_water", "_road", "_angleToPos", "_markerDir", "_markerSizeArray", "_markerCenterXY", "_markerShape", "_terrainSlopeSwitch", "_terrainSlopeAngle", "_terrainSlopeRadius", "_ambientClutterSwitch", "_ambientClutterCount", "_ambientClutterRadius", "_heightSwitch", "_heightNumber", "_heightRadius", "_maxFailures", "_height", "_allBlacklist", "_pointIn", "_oneWhitelist"];
+private ["_area","_min","_allWhitelist","_pos","_failures","_roadDist","_minAngle","_maxAngle","_ID","_objSwitch","_objLimit","_objDist","_nearobj","_pointAvoidSwitch","_pointAvoidArray","_pointAvoidDist","_nearWaterSwitch","_nearWaterDist","_roads","_water","_road","_angleToPos","_markerDir","_markerSizeArray","_markerCenterXY","_markerShape","_terrainSlopeSwitch","_terrainSlopeAngle","_terrainSlopeRadius","_ambientClutterSwitch","_ambientClutterCount","_ambientClutterRadius","_heightSwitch","_heightNumber","_heightRadius","_maxFailures","_height","_allBlacklist","_pointIn","_oneWhitelist"];
 
 _area = _this select 0;
 _min = _this select 1;
@@ -41,20 +41,20 @@ _pos = _this select 29;
 _failures = 0;
 
 {
-    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    if (([_x,allMapMarkers] call Zen_ValueIsInArray) && {([_pos,_x] call Zen_IsPointInPoly)}) exitWith {
         FAIL
     };
 } forEach _allBlacklist;
 
 {
-    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {!([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    if (([_x,allMapMarkers] call Zen_ValueIsInArray) && {!([_pos,_x] call Zen_IsPointInPoly)}) exitWith {
         FAIL
     };
 } forEach _allWhitelist;
 
 _pointIn = false || (count _oneWhitelist == 0);
 {
-    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    if (([_x,allMapMarkers] call Zen_ValueIsInArray) && {([_pos,_x] call Zen_IsPointInPoly)}) exitWith {
         _pointIn = true;
     };
 } forEach _oneWhitelist;
@@ -66,14 +66,14 @@ if !(_pointIn) then {
 FAIL_CHECK
 switch (_water) do {
     case 1: {
-        if (surfaceIsWater [_pos select 0, _pos select 1]) then {FAIL};
+        if (surfaceIsWater [_pos select 0,_pos select 1]) then {FAIL};
     };
     case 2: {
-        if !(surfaceIsWater [_pos select 0, _pos select 1]) then {FAIL}
+        if !(surfaceIsWater [_pos select 0,_pos select 1]) then {FAIL}
     };
 };
 
-if (_road in [2, 3]) then {
+if (_road in [2,3]) then {
     _roads = _pos nearRoads _roadDist;
     switch (_road) do {
         case 2: {
@@ -86,23 +86,23 @@ if (_road in [2, 3]) then {
 };
 
 FAIL_CHECK
-if (([_area, _pos] call Zen_Find2dDistance) < _min) then {FAIL};
+if (([_area,_pos] call Zen_Find2dDistance) < _min) then {FAIL};
 
 FAIL_CHECK
 if !(_minAngle == _maxAngle) then {
-    _angleToPos = [_area, _pos] call Zen_FindDirection;
-    if !([_angleToPos, [_minAngle, _maxAngle]] call Zen_IsAngleInSector) then {FAIL};
+    _angleToPos = [_area,_pos] call Zen_FindDirection;
+    if !([_angleToPos,[_minAngle,_maxAngle]] call Zen_IsAngleInSector) then {FAIL};
 };
 
 FAIL_CHECK
 if (_objSwitch == 1) then {
-    // _nearObjHouse = nearestObjects [_pos, ["House", "Building", "Ruins"], _objDist];
-    _nearObjHouse = nearestTerrainObjects[_pos, ["Building", "House", "Church", "Chapel", "Bunker", "Fortress", "Fountain", "View-Tower", "Lighthouse", "FuelStation", "Hospital", "Wall", "WaterTower"], _objDist];
+    // _nearObjHouse = nearestObjects [_pos,["House","Building","Ruins"],_objDist];
+    _nearObjHouse = nearestTerrainObjects[_pos,["Building","House","Church","Chapel","Bunker","Fortress","Fountain","View-Tower","Lighthouse","FuelStation","Hospital","Wall","WaterTower"],_objDist];
     if ((count _nearObjHouse) > _objLimit) then {FAIL};
 } else {
     if (_objSwitch == 2) then {
-        // _nearObjHouse = nearestObjects [_pos, ["House", "Building", "Ruins"], _objDist];
-       _nearObjHouse = nearestTerrainObjects[_pos, ["Building", "House", "Church", "Chapel", "Bunker", "Fortress", "Fountain", "View-Tower", "Lighthouse", "FuelStation", "Hospital", "Wall", "WaterTower"], _objDist];
+        // _nearObjHouse = nearestObjects [_pos,["House","Building","Ruins"],_objDist];
+       _nearObjHouse = nearestTerrainObjects[_pos,["Building","House","Church","Chapel","Bunker","Fortress","Fountain","View-Tower","Lighthouse","FuelStation","Hospital","Wall","WaterTower"],_objDist];
         if ((count _nearObjHouse) < _objLimit) then {FAIL};
     };
 };
@@ -112,12 +112,12 @@ if (_pointAvoidSwitch != 0) then {
     if (((typeName _pointAvoidArray) == "ARRAY") && {((count _pointAvoidArray) > 0)}) then {
         if (_pointAvoidSwitch == 1) then {
             {
-                if (([_pos, _x] call Zen_Find2dDistance) < _pointAvoidDist) exitWith {FAIL};
+                if (([_pos,_x] call Zen_Find2dDistance) < _pointAvoidDist) exitWith {FAIL};
             } forEach _pointAvoidArray;
         } else {
             if (_pointAvoidSwitch == 2) then {
                 {
-                    if (([_pos, _x] call Zen_Find2dDistance) > _pointAvoidDist) exitWith {FAIL};
+                    if (([_pos,_x] call Zen_Find2dDistance) > _pointAvoidDist) exitWith {FAIL};
                 } forEach _pointAvoidArray;
             };
         };
@@ -126,10 +126,10 @@ if (_pointAvoidSwitch != 0) then {
 
 FAIL_CHECK
 if (_nearWaterSwitch == 1) then {
-    if ([_pos,_nearWaterDist, "water"] call Zen_IsNearTerrain) then {FAIL};
+    if ([_pos,_nearWaterDist,"water"] call Zen_IsNearTerrain) then {FAIL};
 } else {
     if (_nearWaterSwitch == 2) then {
-        if !([_pos,_nearWaterDist, "water"] call Zen_IsNearTerrain) then {FAIL};
+        if !([_pos,_nearWaterDist,"water"] call Zen_IsNearTerrain) then {FAIL};
     };
 };
 
@@ -148,9 +148,9 @@ if (_ambientClutterSwitch == 1) then {
         {
             _clutterMax = _ambientClutterCount select _forEachIndex;
             if ((_x > _clutterMax) && {(_clutterMax != -1)}) exitWith {FAIL};
-        } forEach ([_pos, _ambientClutterRadius] call Zen_GetAmbientClutterCount);
+        } forEach ([_pos,_ambientClutterRadius] call Zen_GetAmbientClutterCount);
     } else {
-        if (([([_pos, _ambientClutterRadius] call Zen_GetAmbientClutterCount)] call Zen_ArrayFindSum) > _ambientClutterCount) then {FAIL};
+        if (([([_pos,_ambientClutterRadius] call Zen_GetAmbientClutterCount)] call Zen_ArrayFindSum) > _ambientClutterCount) then {FAIL};
     };
 } else {
     if (_ambientClutterSwitch == 2) then {
@@ -158,9 +158,9 @@ if (_ambientClutterSwitch == 1) then {
             {
                 _clutterMax = _ambientClutterCount select _forEachIndex;
                 if ((_x < _clutterMax) && {(_clutterMax != -1)}) exitWith {FAIL};
-            } forEach ([_pos, _ambientClutterRadius] call Zen_GetAmbientClutterCount);
+            } forEach ([_pos,_ambientClutterRadius] call Zen_GetAmbientClutterCount);
         } else {
-            if (([([_pos, _ambientClutterRadius] call Zen_GetAmbientClutterCount)] call Zen_ArrayFindSum) < _ambientClutterCount) then {FAIL};
+            if (([([_pos,_ambientClutterRadius] call Zen_GetAmbientClutterCount)] call Zen_ArrayFindSum) < _ambientClutterCount) then {FAIL};
         };
     };
 };
@@ -168,7 +168,7 @@ if (_ambientClutterSwitch == 1) then {
 FAIL_CHECK
 if (_heightSwitch == 1) then {
     if (_heightRadius > 0) then {
-        _height = getTerrainHeightASL ([_pos, _heightRadius] call Zen_FindNearHeight);
+        _height = getTerrainHeightASL ([_pos,_heightRadius] call Zen_FindNearHeight);
     } else {
         _height = getTerrainHeightASL _pos;
     };
@@ -176,7 +176,7 @@ if (_heightSwitch == 1) then {
 } else {
     if (_heightSwitch == 2) then {
         if (_heightRadius > 0) then {
-            _height = getTerrainHeightASL ([_pos, _heightRadius] call Zen_FindNearHeight);
+            _height = getTerrainHeightASL ([_pos,_heightRadius] call Zen_FindNearHeight);
         } else {
             _height = getTerrainHeightASL _pos;
         };

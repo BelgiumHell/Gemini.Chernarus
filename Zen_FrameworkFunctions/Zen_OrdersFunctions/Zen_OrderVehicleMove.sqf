@@ -5,10 +5,10 @@
 #include "..\Zen_StandardLibrary.sqf"
 #include "..\Zen_FrameworkLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_OrderVehicleMove", _this] call Zen_StackAdd;
-private ["_vehicle", "_inPos", "_speedMode", "_vehicleDriver", "_vehicleGrp", "_height", "_cleanupEnd", "_cleanupCrash", "_isCrash", "_completionDistance"];
+_Zen_stack_Trace = ["Zen_OrderVehicleMove",_this] call Zen_StackAdd;
+private ["_vehicle","_inPos","_speedMode","_vehicleDriver","_vehicleGrp","_height","_cleanupEnd","_cleanupCrash","_isCrash","_completionDistance"];
 
-if !([_this, [["OBJECT"], ["VOID"], ["STRING"], ["SCALAR"], ["BOOL"], ["BOOL"]], [], 2] call Zen_CheckArguments) exitWith {
+if !([_this,[["OBJECT"],["VOID"],["STRING"],["SCALAR"],["BOOL"],["BOOL"]],[],2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -26,8 +26,8 @@ if (count _this > 3) then {
     _height = _this select 3;
 };
 
-ZEN_STD_Parse_GetArgumentDefault(_cleanupEnd, 4, false)
-ZEN_STD_Parse_GetArgumentDefault(_cleanupCrash, 5, false)
+ZEN_STD_Parse_GetArgumentDefault(_cleanupEnd,4,false)
+ZEN_STD_Parse_GetArgumentDefault(_cleanupCrash,5,false)
 
 _vehicleDriver = driver _vehicle;
 _vehicleGrp = group (driver _vehicle);
@@ -38,7 +38,7 @@ _vehicleDriver enableAI "Move";
 _vehicleDriver allowFleeing 0;
 
 if (_vehicle isKindOf "AIR") then {
-    _inPos = [_vehicle, _inPos, 75] call Zen_ExtendRay;
+    _inPos = [_vehicle,_inPos,75] call Zen_ExtendRay;
 };
 
 (group _vehicleDriver) move _inPos;
@@ -73,7 +73,7 @@ waitUntil {
         _isCrash = true;
     };
 
-    if (_cleanupCrash && {_isCrash && {(ZEN_FMW_Math_DistGreater2D(_vehicle, _inPos, _completionDistance))}}) then {
+    if (_cleanupCrash && {_isCrash && {(ZEN_FMW_Math_DistGreater2D(_vehicle,_inPos,_completionDistance))}}) then {
         if (_vehicle isKindOf "AIR") then {
             waitUntil {
                 sleep 2;
@@ -87,7 +87,7 @@ waitUntil {
         } forEach ((units _vehicleGrp) + [_vehicle]);
     };
 
-    (((unitReady (driver _vehicle)) || (([_vehicle] call Zen_IsReady))) || (([_vehicle, _inPos] call Zen_Find2dDistance) < _completionDistance) || _isCrash || ((_vehicle isKindOf "SHIP") && ((getTerrainHeightASL getPosATL _vehicle) > -1)))
+    (((unitReady (driver _vehicle)) || (([_vehicle] call Zen_IsReady))) || (([_vehicle,_inPos] call Zen_Find2dDistance) < _completionDistance) || _isCrash || ((_vehicle isKindOf "SHIP") && ((getTerrainHeightASL getPosATL _vehicle) > -1)))
 };
 
 _vehicleDriver enableAI "Move";
@@ -95,7 +95,7 @@ _vehicleDriver enableAI "Move";
 
 sleep 2;
 
-if (_cleanupEnd && {(([_vehicle, _inPos] call Zen_Find2dDistance) < _completionDistance)}) then {
+if (_cleanupEnd && {(([_vehicle,_inPos] call Zen_Find2dDistance) < _completionDistance)}) then {
     ZEN_STD_OBJ_DeleteVehCrew(_vehicle);
 };
 

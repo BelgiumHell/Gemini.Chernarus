@@ -5,10 +5,10 @@
 #include "..\Zen_StandardLibrary.sqf"
 #include "..\Zen_FrameworkLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_GetCurrentTask", _this] call Zen_StackAdd;
-private ["_unit", "_unitTasks"];
+_Zen_stack_Trace = ["Zen_GetCurrentTask",_this] call Zen_StackAdd;
+private ["_unit","_unitTasks"];
 
-if !([_this, [["OBJECT"]], [], 1] call Zen_CheckArguments) exitWith {
+if !([_this,[["OBJECT"]],[],1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ([])
 };
@@ -27,13 +27,13 @@ if (local _unit) then {
         } forEach Zen_Task_Array_Local;
     };
 
-    _unit setVariable ["Zen_Current_Task", _nameString, true];
+    _unit setVariable ["Zen_Current_Task",_nameString,true];
 } else {
-    ZEN_FMW_MP_REClient("Zen_GetCurrentTask", _this, call, _unit)
+    ZEN_FMW_MP_REClient("Zen_GetCurrentTask",_this,call,_unit)
 
     waitUntil {
         ZEN_STD_Code_SleepFrames(5)
-        !((_unit getVariable ["Zen_Current_Task", 0]) isEqualTo 0)
+        !((_unit getVariable ["Zen_Current_Task",0]) isEqualTo 0)
     };
 };
 

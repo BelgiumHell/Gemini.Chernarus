@@ -9,7 +9,7 @@ mainFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"
     if(!(_x in _usedCompounds))then{
 
         _nameM = format["mrk_strategic_factory_%1",_forEachIndex];
-        _marker = createMarker [_nameM, (getPos _x)];
+        _marker = createMarker [_nameM,(getPos _x)];
         _nameM setMarkerShape "RECTANGLE";
         _nameM setMarkerSize [200,200];
         _nameM setMarkerBrush "SolidBorder";
@@ -26,7 +26,7 @@ mainFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"
     if(!(_x in _usedCompounds))then{
 
         _nameM = format["mrk_strategic_powerplant_%1",_forEachIndex];
-        _marker = createMarker [_nameM, (getPos _x)];
+        _marker = createMarker [_nameM,(getPos _x)];
         _nameM setMarkerShape "RECTANGLE";
         _nameM setMarkerSize [120,120];
         _nameM setMarkerBrush "SolidBorder";
@@ -35,6 +35,6 @@ mainFactories = nearestObjects [(getMarkerPos "mrk_area"),["Land_Factory_Main_F"
         _compounds = nearestObjects [(getPos _x),["Land_dp_mainFactory_F"],200];
         _usedCompounds append _compounds;
 
-        strategicArray pushBack [(getPos _x),600,"factory",_nameM,1];
+        strategicArray pushBack [(getPos _x),600,"factory",_nameM,1,2];
     };
 } forEach dieselFactories;
