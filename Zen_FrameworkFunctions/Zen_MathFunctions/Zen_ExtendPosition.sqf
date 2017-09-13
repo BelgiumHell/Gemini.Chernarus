@@ -30,4 +30,4 @@ if ([_angleType, "Compass"] call Zen_ValuesAreEqual) then {
 };
 
 call Zen_StackRemove;
-([(_center select 0) + (_dist * (cos _phi)),(_center select 1) + (_dist * (sin _phi)), _height])
+([(_center select 0) + (_dist * (cos _phi)), (_center select 1) + (_dist * (sin _phi)), _height])

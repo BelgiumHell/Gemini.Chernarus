@@ -22,13 +22,13 @@ _sendPacket = true;
 if (count _this > 1) then {
     _objDist = _this select 1;
 } else {
-    _this set [1,-1];
+    _this set [1, -1];
 };
 
 if (count _this > 2) then {
     _shadowDist = _this select 2;
 } else {
-    _this set [2,-1];
+    _this set [2, -1];
 };
 
 if (count _this > 3) then {

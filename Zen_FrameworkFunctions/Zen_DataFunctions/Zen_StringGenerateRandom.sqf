@@ -20,19 +20,19 @@ _chars =  [];
 _characterLimits = [];
 switch (toLower _set) do {
     case "all": {
-        _characterLimits pushBack [33,126];
+        _characterLimits pushBack [33, 126];
     };
     case "alpha": {
-        _characterLimits pushBack [65,90];
-        _characterLimits pushBack [97,122];
+        _characterLimits pushBack [65, 90];
+        _characterLimits pushBack [97, 122];
     };
     case "alphanumeric": {
-        _characterLimits pushBack [48,57];
-        _characterLimits pushBack [65,90];
-        _characterLimits pushBack [97,122];
+        _characterLimits pushBack [48, 57];
+        _characterLimits pushBack [65, 90];
+        _characterLimits pushBack [97, 122];
     };
     case "numeric": {
-        _characterLimits pushBack [48,57];
+        _characterLimits pushBack [48, 57];
     };
 };
 

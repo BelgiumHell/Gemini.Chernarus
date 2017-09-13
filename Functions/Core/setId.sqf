@@ -5,7 +5,7 @@ params["_object"];
 
 switch (typeName _object) do {
     case ("OBJECT"): {
-        if(_object isKindOf "man")then{
+        if (_object isKindOf "man") then {
             _object setVariable ["id", currentUnitId, true];
             currentUnitId = currentUnitId + 1;
         }else{

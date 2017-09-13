@@ -3,7 +3,7 @@
 /////////////////////////
 
 //Check for special
-if(/*!((vehicleVarName player) in ["r1","r2","r3","r4","s1","s2","v1","v2","rip1","rip2","cmd1","cmd2"])*/true)then{
+if (/*!((vehicleVarName player) in ["r1","r2","r3","r4","s1","s2","v1","v2","rip1","rip2","cmd1","cmd2"])*/true) then {
 
 	removeAllWeapons player;
 	removeAllItems player;

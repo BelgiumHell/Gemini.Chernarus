@@ -5,6 +5,6 @@ params["_category","_params","_id","_duplicate"];
 
 _existArr = requestArray select {(_x select 0) isEqualTo _category && _x select 2 == _id};
 
-if(count _existArr == 0 || _duplicate)then{
+if (count _existArr == 0 || _duplicate) then {
     requestArray pushBack [_category,_params,_id,[-1,false]];
 };

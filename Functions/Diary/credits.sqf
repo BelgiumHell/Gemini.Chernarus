@@ -1,10 +1,10 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-player createDiarySubject ["credits","Credits"];
-player createDiaryRecord ["Credits",
+player createDiarySubject ["credits", "Credits"];
+player createDiaryRecord ["Credits", 
 [
-"Thanks to...",
+"Thanks to...", 
 "
 <br />CH for his viewDistance and FOB scripts
 <br />ZEN for his amazing framework

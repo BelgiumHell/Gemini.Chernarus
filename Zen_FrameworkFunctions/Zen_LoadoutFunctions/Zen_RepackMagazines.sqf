@@ -89,11 +89,11 @@ for "_i" from 0 to ((count _magTypes) - 1) do {
     _oddMagOutRoundCount = (_totalAmmo % _ammoPerMag);
 
     if (_totalFullMags != 0) then {
-    _unit addMagazines [_magType,_totalFullMags];
+    _unit addMagazines [_magType, _totalFullMags];
     };
 
     if (_oddMagOutRoundCount != 0) then {
-        _unit addMagazine [_magType,_oddMagOutRoundCount];
+        _unit addMagazine [_magType, _oddMagOutRoundCount];
     };
 };
 

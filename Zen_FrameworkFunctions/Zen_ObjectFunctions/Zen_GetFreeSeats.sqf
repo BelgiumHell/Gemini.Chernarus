@@ -26,7 +26,7 @@ if (local _vehicle) then {
     _unUsedCargo = [];
 
     _group = createGroup west;
-    _dummyUnit = _group createUnit ["B_Soldier_F", [0,0,0], [], 0, "NONE"];
+    _dummyUnit = _group createUnit ["B_Soldier_F", [0, 0, 0], [], 0, "NONE"];
     _dummyUnit allowDamage false;
     _dummyUnit setCaptive true;
     _dummyUnit hideObjectGlobal true;
@@ -37,7 +37,7 @@ if (local _vehicle) then {
     if (_dummyUnit in _vehicle) then {
         _hasDriver = false
     };
-    _dummyUnit setPosATL [0,0,0];
+    _dummyUnit setPosATL [0, 0, 0];
 
     {
         _dummyUnit assignAsTurret [_vehicle, _x];
@@ -45,7 +45,7 @@ if (local _vehicle) then {
         if (_dummyUnit in _vehicle) then {
             _unUsedTurrets pushBack _x;
         };
-        _dummyUnit setPosATL [0,0,0];
+        _dummyUnit setPosATL [0, 0, 0];
     } forEach _turrets;
 
     for "_i" from 0 to (ZEN_STD_OBJ_CountCargoSeats(_vehicle) - 1) do {
@@ -54,7 +54,7 @@ if (local _vehicle) then {
         if (_dummyUnit in _vehicle) then {
             _unUsedCargo pushBack _i;
         };
-        _dummyUnit setPosATL [0,0,0];
+        _dummyUnit setPosATL [0, 0, 0];
     };
     deleteVehicle _dummyUnit;
 

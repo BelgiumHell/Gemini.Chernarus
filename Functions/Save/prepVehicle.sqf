@@ -6,10 +6,10 @@ params["_array"];
 _arrayN = [];
 
 {
-    if((typeName _x) in ["STRING","SCALAR","ARRAY"])then{
+    if ((typeName _x) in ["STRING","SCALAR","ARRAY"]) then {
         _arrayN pushBack _x;
     }else{
-        _arrayN pushBack format["%1",_x];
+        _arrayN pushBack format ["%1",_x];
     };
 } forEach _array;
 

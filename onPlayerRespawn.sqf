@@ -3,7 +3,7 @@
 /////////////////////////
 cduEnabled = false;
 musicPlay = false;
-[]call JOC_loadoutMaster;
-if(!JOC_serverloaded)then{
+[] call JOC_loadoutMaster;
+if (!JOC_serverloaded) then {
     startLoadingScreen["Loading..."];
 };

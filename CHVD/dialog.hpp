@@ -13,16 +13,16 @@ class CHVD_rscXSliderH
 	y=0;
 	h=0.029412;
 	w=0.40000001;
-	color[]={1,1,1,0.60000002};
-	colorActive[]={1,1,1,1};
-	colorDisabled[]={1,1,1,0.2};
+	color[]={1, 1, 1, 0.60000002};
+	colorActive []={1, 1, 1, 1};
+	colorDisabled[]={1, 1, 1, 0.2};
 	arrowEmpty="\A3\ui_f\data\gui\cfg\slider\arrowEmpty_ca.paa";
 	arrowFull="\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
 	border="\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
 	thumb="\A3\ui_f\data\gui\cfg\slider\thumb_ca.paa";
-	tooltipColorText[]={1,1,1,1};
-	tooltipColorBox[]={1,1,1,1};
-	tooltipColorShade[]={0,0,0,0.64999998};
+	tooltipColorText []={1, 1, 1, 1};
+	tooltipColorBox[]={1, 1, 1, 1};
+	tooltipColorShade []={0, 0, 0, 0.64999998};
 };
 class CHVD_rscCheckbox
 {
@@ -33,16 +33,16 @@ class CHVD_rscCheckbox
 	y="0.36 * safezoneH + safezoneY";
 	w="0.025 * safezoneW";
 	h="0.04 * safezoneH";
-	color[]={1,1,1,0.69999999};
-	colorFocused[]={1,1,1,1};
-	colorHover[]={1,1,1,1};
-	colorPressed[]={1,1,1,1};
-	colorDisabled[]={1,1,1,0.2};
-	colorBackground[]={0,0,0,0};
-	colorBackgroundFocused[]={0,0,0,0};
-	colorBackgroundHover[]={0,0,0,0};
-	colorBackgroundPressed[]={0,0,0,0};
-	colorBackgroundDisabled[]={0,0,0,0};
+	color[]={1, 1, 1, 0.69999999};
+	colorFocused[]={1, 1, 1, 1};
+	colorHover[]={1, 1, 1, 1};
+	colorPressed[]={1, 1, 1, 1};
+	colorDisabled[]={1, 1, 1, 0.2};
+	colorBackground[]={0, 0, 0, 0};
+	colorBackgroundFocused[]={0, 0, 0, 0};
+	colorBackgroundHover[]={0, 0, 0, 0};
+	colorBackgroundPressed[]={0, 0, 0, 0};
+	colorBackgroundDisabled[]={0, 0, 0, 0};
 	textureChecked="\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
 	textureUnchecked="\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
 	textureFocusedChecked="\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
@@ -53,31 +53,31 @@ class CHVD_rscCheckbox
 	texturePressedUnchecked="\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
 	textureDisabledChecked="\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
 	textureDisabledUnchecked="\A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
-	tooltipColorText[]={1,1,1,1};
-	tooltipColorBox[]={1,1,1,1};
-	tooltipColorShade[]={0,0,0,0.64999998};
+	tooltipColorText []={1, 1, 1, 1};
+	tooltipColorBox[]={1, 1, 1, 1};
+	tooltipColorShade []={0, 0, 0, 0.64999998};
 	soundEnter[]=
 	{
-		"",
-		0.1,
+		"", 
+		0.1, 
 		1
 	};
 	soundPush[]=
 	{
-		"",
-		0.1,
+		"", 
+		0.1, 
 		1
 	};
 	soundClick[]=
 	{
-		"",
-		0.1,
+		"", 
+		0.1, 
 		1
 	};
-	soundEscape[]=
+	soundEscape []=
 	{
-		"",
-		0.1,
+		"", 
+		0.1, 
 		1
 	};
 };
@@ -91,28 +91,28 @@ class CHVD_rscButton
 	y=0;
 	w=0.095588997;
 	h=0.039216001;
-	animTextureNormal="#(argb,8,8,3)color(1,1,1,1)";
-	animTextureDisabled="#(argb,8,8,3)color(1,1,1,1)";
-	animTextureOver="#(argb,8,8,3)color(1,1,1,1)";
-	animTextureFocused="#(argb,8,8,3)color(1,1,1,1)";
-	animTexturePressed="#(argb,8,8,3)color(1,1,1,1)";
-	animTextureDefault="#(argb,8,8,3)color(1,1,1,1)";
-	colorBackground[]={0,0,0,0.80000001};
-	colorBackgroundFocused[]={1,1,1,1};
-	colorBackground2[]={0.75,0.75,0.75,1};
-	color[]={1,1,1,1};
-	colorFocused[]={0,0,0,1};
-	color2[]={0,0,0,1};
-	colorText[]={1,1,1,1};
-	colorDisabled[]={1,1,1,0.25};
+	animTextureNormal="#(argb, 8, 8, 3)color(1, 1, 1, 1)";
+	animTextureDisabled="#(argb, 8, 8, 3)color(1, 1, 1, 1)";
+	animTextureOver="#(argb, 8, 8, 3)color(1, 1, 1, 1)";
+	animTextureFocused="#(argb, 8, 8, 3)color(1, 1, 1, 1)";
+	animTexturePressed="#(argb, 8, 8, 3)color(1, 1, 1, 1)";
+	animTextureDefault="#(argb, 8, 8, 3)color(1, 1, 1, 1)";
+	colorBackground[]={0, 0, 0, 0.80000001};
+	colorBackgroundFocused[]={1, 1, 1, 1};
+	colorBackground2[]={0.75, 0.75, 0.75, 1};
+	color[]={1, 1, 1, 1};
+	colorFocused[]={0, 0, 0, 1};
+	color2[]={0, 0, 0, 1};
+	colorText []={1, 1, 1, 1};
+	colorDisabled[]={1, 1, 1, 0.25};
 	period=1.2;
 	periodFocus=1.2;
 	periodOver=1.2;
 	size="(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	sizeEx="(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-	tooltipColorText[]={1,1,1,1};
-	tooltipColorBox[]={1,1,1,1};
-	tooltipColorShade[]={0,0,0,0.64999998};
+	tooltipColorText []={1, 1, 1, 1};
+	tooltipColorBox[]={1, 1, 1, 1};
+	tooltipColorShade []={0, 0, 0, 0.64999998};
 	font="PuristaLight";
 	class TextPos
 	{
@@ -137,29 +137,29 @@ class CHVD_rscButton
 	};
 	soundEnter[]=
 	{
-		"\A3\ui_f\data\sound\RscButtonMenu\soundEnter",
-		0.090000004,
+		"\A3\ui_f\data\sound\RscButtonMenu\soundEnter", 
+		0.090000004, 
 		1
 	};
 	soundPush[]=
 	{
-		"\A3\ui_f\data\sound\RscButtonMenu\soundPush",
-		0.090000004,
+		"\A3\ui_f\data\sound\RscButtonMenu\soundPush", 
+		0.090000004, 
 		1
 	};
 	soundClick[]=
 	{
-		"\A3\ui_f\data\sound\RscButtonMenu\soundClick",
-		0.090000004,
+		"\A3\ui_f\data\sound\RscButtonMenu\soundClick", 
+		0.090000004, 
 		1
 	};
-	soundEscape[]=
+	soundEscape []=
 	{
-		"\A3\ui_f\data\sound\RscButtonMenu\soundEscape",
-		0.090000004,
+		"\A3\ui_f\data\sound\RscButtonMenu\soundEscape", 
+		0.090000004, 
 		1
 	};
-	textureNoShortcut="#(argb,8,8,3)color(0,0,0,0)";
+	textureNoShortcut="#(argb, 8, 8, 3)color(0, 0, 0, 0)";
 	class HitZone
 	{
 		left=0;
@@ -183,16 +183,16 @@ class CHVD_rscText
 	w=0.30000001;
 	style=0;
 	shadow=0;
-	colorShadow[]={0,0,0,0.5};
+	colorShadow[]={0, 0, 0, 0.5};
 	font="PuristaMedium";
 	size="(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	SizeEx="(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-	colorText[]={1,1,1,1};
-	colorBackground[]={0,0,0,0};
+	colorText []={1, 1, 1, 1};
+	colorBackground[]={0, 0, 0, 0};
 	linespacing=1;
-	tooltipColorText[]={1,1,1,1};
-	tooltipColorBox[]={1,1,1,1};
-	tooltipColorShade[]={0,0,0,0.64999998};
+	tooltipColorText []={1, 1, 1, 1};
+	tooltipColorBox[]={1, 1, 1, 1};
+	tooltipColorShade []={0, 0, 0, 0.64999998};
 	text = "";
 };
 class CHVD_rscTextRight
@@ -204,16 +204,16 @@ class CHVD_rscTextRight
 	w=0.30000001;
 	style=0x01;
 	shadow=0;
-	colorShadow[]={0,0,0,0.5};
+	colorShadow[]={0, 0, 0, 0.5};
 	font="PuristaMedium";
 	size="(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	SizeEx="(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-	colorText[]={1,1,1,1};
-	colorBackground[]={0,0,0,0};
+	colorText []={1, 1, 1, 1};
+	colorBackground[]={0, 0, 0, 0};
 	linespacing=1;
-	tooltipColorText[]={1,1,1,1};
-	tooltipColorBox[]={1,1,1,1};
-	tooltipColorShade[]={0,0,0,0.64999998};
+	tooltipColorText []={1, 1, 1, 1};
+	tooltipColorBox[]={1, 1, 1, 1};
+	tooltipColorShade []={0, 0, 0, 0.64999998};
 	text = "";
 };
 class CHVD_rscFrame
@@ -224,16 +224,16 @@ class CHVD_rscFrame
 	shadow = 1;
 	colorBackground[] = 
 	{
-		0,
-		0,
-		0,
+		0, 
+		0, 
+		0, 
 		0
 	};
-	colorText[] = 
+	colorText [] = 
 	{
-		1,
-		1,
-		1,
+		1, 
+		1, 
+		1, 
 		1
 	};
 	font = "PuristaMedium";
@@ -249,17 +249,17 @@ class CHVD_rscXListBox
 	x = 0.1;
 	y = 0.1;
 	color[] = {1, 1, 1, 0.6};
-	colorActive[] = {1, 1, 1, 1};
+	colorActive [] = {1, 1, 1, 1};
 	colorDisabled[] = {1, 1, 1, 0.25};
-	colorSelect[] = {0.95, 0.95, 0.95, 1};
-	colorText[] = {1, 1, 1, 1};
-	soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.09, 1};
-	colorPicture[] = {1, 1, 1, 1};
+	colorSelect [] = {0.95, 0.95, 0.95, 1};
+	colorText [] = {1, 1, 1, 1};
+	soundSelect [] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.09, 1};
+	colorPicture [] = {1, 1, 1, 1};
 	colorPictureSelected[] = {1, 1, 1, 1};
 	colorPictudeDisabled[] = {1, 1, 1, 0.25};
-	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorText [] = {1, 1, 1, 1};
 	tooltipColorBox[] = {1, 1, 1, 1};
-	tooltipColorShade[] = {0, 0, 0, 0.65};
+	tooltipColorShade [] = {0, 0, 0, 0.65};
 	style = "0x400 + 0x02 +	0x10";
 	shadow = 2;
 	arrowEmpty = "\A3\ui_f\data\gui\cfg\slider\arrowEmpty_ca.paa";
@@ -279,20 +279,20 @@ class CHVD_rscEdit
 	font="PuristaMedium";
 	shadow=2;
 	sizeEx="(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-	colorBackground[]={0,0,0,1};
-	colorText[]={0.94999999,0.94999999,0.94999999,1};
-	colorDisabled[]={1,1,1,0.25};
+	colorBackground[]={0, 0, 0, 1};
+	colorText []={0.94999999, 0.94999999, 0.94999999, 1};
+	colorDisabled[]={1, 1, 1, 0.25};
 	colorSelection[]=
 	{
-		"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])",
-		"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])",
-		"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.5])",
+		"(profilenamespace getvariable ['GUI_BCG_RGB_R', 0.69])", 
+		"(profilenamespace getvariable ['GUI_BCG_RGB_G', 0.75])", 
+		"(profilenamespace getvariable ['GUI_BCG_RGB_B', 0.5])", 
 		1
 	};
 	canModify=1;
-	tooltipColorText[]={1,1,1,1};
-	tooltipColorBox[]={1,1,1,1};
-	tooltipColorShade[]={0,0,0,0.64999998};
+	tooltipColorText []={1, 1, 1, 1};
+	tooltipColorBox[]={1, 1, 1, 1};
+	tooltipColorShade []={0, 0, 0, 0.64999998};
 	text = "";
 };
 class CHVD_dialog
@@ -313,7 +313,7 @@ class CHVD_dialog
 			y = 1.6 * GUI_GRID_H + GUI_GRID_Y;
 			w = 24.5 * GUI_GRID_W;
 			h = 19.7 * GUI_GRID_H;
-			colorBackground[] = {0,0,0,0.7};
+			colorBackground[] = {0, 0, 0, 0.7};
 		};
 		class CHVD_rscTitle: CHVD_rscText
 		{
@@ -324,7 +324,7 @@ class CHVD_dialog
 			y = 0.5 * GUI_GRID_H + GUI_GRID_Y;
 			w = 24.5 * GUI_GRID_W;
 			h = 1 * GUI_GRID_H;
-			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.7])"};
+			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R', 0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G', 0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B', 0.8862])", "(profilenamespace getvariable ['GUI_BCG_RGB_A', 0.7])"};
 		};
 		class CHVD_rscFootHeaderText: CHVD_rscTextRight
 		{
@@ -335,7 +335,7 @@ class CHVD_dialog
 			y = 2 * GUI_GRID_H + GUI_GRID_Y;
 			w = 7 * GUI_GRID_W;
 			h = 1 * GUI_GRID_H;
-			colorBackground[] = {0,0,0,1};
+			colorBackground[] = {0, 0, 0, 1};
 		};
 		class CHVD_rscFootViewText: CHVD_rscTextRight
 		{
@@ -376,7 +376,7 @@ class CHVD_dialog
 			y = 8.5 * GUI_GRID_H + GUI_GRID_Y;
 			w = 7 * GUI_GRID_W;
 			h = 1 * GUI_GRID_H;
-			colorBackground[] = {0,0,0,1};
+			colorBackground[] = {0, 0, 0, 1};
 		};
 		class CHVD_rscCarSyncText: CHVD_rscTextRight
 		{
@@ -437,7 +437,7 @@ class CHVD_dialog
 			y = 15 * GUI_GRID_H + GUI_GRID_Y;
 			w = 7 * GUI_GRID_W;
 			h = 1 * GUI_GRID_H;
-			colorBackground[] = {0,0,0,1};
+			colorBackground[] = {0, 0, 0, 1};
 		};
 		class CHVD_rscAirViewText: CHVD_rscTextRight
 		{

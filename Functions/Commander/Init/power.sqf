@@ -13,7 +13,7 @@ lights = nearestObjects [(getMarkerPos "mrk_area"),["Streetlamp"],worldSize*2.0^
         } forEach _nearTransformers;
 
         {
-            if(((getPos _x) nearestObject "Land_dp_transformer_F") == _transformer)then{
+            if (((getPos _x) nearestObject "Land_dp_transformer_F") == _transformer) then {
                 _x switchLight "OFF";
             };
         } forEach lights;

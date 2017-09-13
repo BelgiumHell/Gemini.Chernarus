@@ -49,17 +49,17 @@ ADD_LOADED_MAG(handgunMagazine)
 } forEach (weapons _unit);
 
 _loadoutData = [
-    (if (uniform _unit != "") then {["uniform", uniform _unit]} else {0}),
-    (if (vest _unit != "") then {["vest", vest _unit]} else {0}),
-    (if (backpack _unit != "") then {["backpack", backpack _unit]} else {0}),
-    (if (headgear _unit != "") then {["headgear", headgear _unit]} else {0}),
-    (if (goggles _unit != "") then {["goggles", goggles _unit]} else {0}),
-    (if (count assignedItems _unit > 0) then {["assignedItems", (assignedItems _unit) - ["Binocular", "Rangefinder", "Laserdesignator"]]} else {0}),
-    (if (count weapons _unit > 0) then {["weapons", weapons _unit]} else {0}),
-    (if (count _magsCargo > 0) then {["magazines", _magsCargo]} else {0}),
-    (if (count items _unit > 0) then {["items", _itemsCargo]} else {0}),
-    (if ({_x != ""} count primaryWeaponItems _unit > 0) then {["primaryAttachments", (primaryWeaponItems _unit) - [""]]} else {0}),
-    (if ({_x != ""} count secondaryWeaponItems _unit > 0) then {["secondaryAttachments", (secondaryWeaponItems _unit) - [""]]} else {0}),
+    (if (uniform _unit != "") then {["uniform", uniform _unit]} else {0}), 
+    (if (vest _unit != "") then {["vest", vest _unit]} else {0}), 
+    (if (backpack _unit != "") then {["backpack", backpack _unit]} else {0}), 
+    (if (headgear _unit != "") then {["headgear", headgear _unit]} else {0}), 
+    (if (goggles _unit != "") then {["goggles", goggles _unit]} else {0}), 
+    (if (count assignedItems _unit > 0) then {["assignedItems", (assignedItems _unit) - ["Binocular", "Rangefinder", "Laserdesignator"]]} else {0}), 
+    (if (count weapons _unit > 0) then {["weapons", weapons _unit]} else {0}), 
+    (if (count _magsCargo > 0) then {["magazines", _magsCargo]} else {0}), 
+    (if (count items _unit > 0) then {["items", _itemsCargo]} else {0}), 
+    (if ({_x != ""} count primaryWeaponItems _unit > 0) then {["primaryAttachments", (primaryWeaponItems _unit) - [""]]} else {0}), 
+    (if ({_x != ""} count secondaryWeaponItems _unit > 0) then {["secondaryAttachments", (secondaryWeaponItems _unit) - [""]]} else {0}), 
     (if ({_x != ""} count handgunItems _unit > 0) then {["handgunAttachments", (handgunItems _unit) - [""]]} else {0})
 ];
 

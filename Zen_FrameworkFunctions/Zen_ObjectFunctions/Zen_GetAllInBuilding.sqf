@@ -24,7 +24,7 @@ if (typeName _sidesAllowed != "ARRAY") then {
 };
 
 _building = nearestBuilding _center;
-_buidingSize = [ZEN_STD_OBJ_BBX(_building), ZEN_STD_OBJ_BBY(_building)] distance [0,0];
+_buidingSize = [ZEN_STD_OBJ_BBX(_building), ZEN_STD_OBJ_BBY(_building)] distance [0, 0];
 
 _objectArray = [];
 {

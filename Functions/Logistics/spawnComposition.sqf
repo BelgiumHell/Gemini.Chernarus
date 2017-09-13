@@ -12,12 +12,12 @@ _objArray = [];
 	_offset = _x select 1;
 	_newdir = _x select 2;
 
-	_obj = createVehicle [_type, [0,0,0], [], 0, "CAN_COLLIDE"];
+	_obj = createVehicle [_type, [0, 0, 0], [], 0, "CAN_COLLIDE"];
 	_obj allowDamage false;
-	[_baseObj,_obj,_offset,_newdir, true, true] call BIS_fnc_relPosObject;
+	[_baseObj, _obj, _offset, _newdir, true, true] call BIS_fnc_relPosObject;
 	_obj allowDamage true;
 	_objArray pushBack _obj;
-}forEach _compArray;
+} forEach _compArray;
 
 deleteVehicle _obj;
 

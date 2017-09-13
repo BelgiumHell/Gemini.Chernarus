@@ -15,9 +15,9 @@ _areNotIndoors = true;
 
 {
     _unitPos = eyePos _x;
-    _unitPosAbove = [_unitPos select 0,_unitPos select 1,(_unitPos select 2) + 10];
+    _unitPosAbove = [_unitPos select 0, _unitPos select 1, (_unitPos select 2) + 10];
 
-    if ((count (lineIntersectsWith [_unitPos,_unitPosAbove,_x])) > 0) exitWith {
+    if ((count (lineIntersectsWith [_unitPos, _unitPosAbove, _x])) > 0) exitWith {
         _areNotIndoors = false;
     };
 } forEach _units;

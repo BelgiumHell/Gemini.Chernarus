@@ -33,12 +33,12 @@ if (_side == West) then {
 
 if (count _this > 4) then {
     _menType = _this select 4;
-	if(_menType == "Basic")then{
-		_soldierlist = infantryPool;
+	if (_menType == "Basic") then {
+		_soldierlist = poolInfantry;
 	};
-	if(_menType == "SF")then{
-		//_soldierlist = sfPool;
-        _soldierlist = infantryPool;
+	if (_menType == "SF") then {
+		//_soldierlist = poolSf;
+        _soldierlist = poolInfantry;
 	};
 };
 

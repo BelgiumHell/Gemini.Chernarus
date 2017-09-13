@@ -15,7 +15,7 @@ _pos = [(_this select 0)] call Zen_ConvertToPosition;
 _name = "";
 _txt = "";
 _color = "colorBlack";
-_size = [1,1];
+_size = [1, 1];
 _type = "mil_dot";
 _dir = 0;
 _alpha = 1;
@@ -51,10 +51,10 @@ if (count _this > 7) then {
 }; 
 
 if (_name == "") then {
-    _name = format["Zen_mk_%1", ([10] call Zen_StringGenerateRandom)];
+    _name = format ["Zen_mk_%1", ([10] call Zen_StringGenerateRandom)];
 };
 
-createMarker [_name,_pos];
+createMarker [_name, _pos];
 _name setMarkerAlpha _alpha;
 _name setMarkerPos _pos;
 

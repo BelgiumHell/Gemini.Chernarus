@@ -48,7 +48,6 @@ JOC_getNearest = compileFinal preprocessFileLineNumbers "Functions\Misc\getNeare
 JOC_groupExists = compileFinal preprocessFileLineNumbers "Functions\Misc\groupExists.sqf";
 JOC_nearestPlayers = compileFinal preprocessFileLineNumbers "Functions\Misc\nearestPlayers.sqf";
 JOC_playersNear = compileFinal preprocessFileLineNumbers "Functions\Misc\playersNear.sqf";
-JOC_publicArray = compileFinal preprocessFileLineNumbers "Functions\Misc\publicArray.sqf";
 JOC_setGroupID = compileFinal preprocessFileLineNumbers "Functions\Misc\setGroupID.sqf";
 
 //Performance
@@ -64,6 +63,7 @@ JOC_playerLoop = compileFinal preprocessFileLineNumbers "Functions\Player\loop.s
 JOC_playerSmkGren = compileFinal preprocessFileLineNumbers "Functions\Player\smkGren.sqf";
 
 //Save
+JOC_loadMission = compileFinal preprocessFileLineNumbers "Functions\Save\load.sqf";
 JOC_savePrepUnit = compileFinal preprocessFileLineNumbers "Functions\Save\prepUnit.sqf";
 JOC_savePrepVehicle = compileFinal preprocessFileLineNumbers "Functions\Save\prepVehicle.sqf";
 JOC_saveMission = compileFinal preprocessFileLineNumbers "Functions\Save\save.sqf";

@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 onMapSingleClick{
-	if(!(isNull objectParent player) || ("ItemGPS" in (assigneditems player)))exitWith{};
+	if (!(isNull objectParent player) || ("ItemGPS" in (assigneditems player)))exitWith{};
 	hint "";
 	//terminate bftHandle;
 	_prevDis = 999;
@@ -13,39 +13,39 @@ onMapSingleClick{
 	_markers = allMapMarkers;
 	{
 		_distance = ((getMarkerPos _x) distance _position);
-		if((_distance < 70) and (_distance < _prevDis))then{
+		if ((_distance < 70) and (_distance < _prevDis)) then {
 			_prevDis = _distance;
 			_groupIdG = _x;
 		};
-	}forEach _markers;
+	} forEach _markers;
 
-	if(!(_groupIdG == ""))then{
+	if (!(_groupIdG == "")) then {
 		{
-			if((groupId _x) == _groupIdG)then{
+			if ((groupId _x) == _groupIdG) then {
 				_group = _x;
 			};
-		}forEach allGroups;
+		} forEach allGroups;
 
 		_unitsG = (units _group);
 		_unitText = "";
 		{
 			_veh = vehicle _x;
-			if(_veh isKindOf "man")then{
+			if (_veh isKindOf "man") then {
 				_vehText = "";
 			}else{
-				_vehText = format["(%1)",(typeOf _veh)]
+				_vehText = format ["(%1)", (typeOf _veh)]
 			};
 			_unitText = composeText [_unitText, lineBreak, (name _x) + ""];
-		}forEach _unitsG;
-		_text = parseText format["<t color='#0080FF' size='2'>%1</t>",_groupIdG];
+		} forEach _unitsG;
+		_text = parseText format ["<t color='#0080FF' size='2'>%1</t>", _groupIdG];
 
 		_freq = 0;
 		_block = 1;
 		{player setAmmo [primaryWeapon player, 1];} remoteExec ["bis_fnc_call", 0];
 		{
-			_freq = [[]call acre_api_fnc_getCurrentRadio]call acre_api_fnc_getRadioChannel;
-		}forEach [(leader _group)];
-		if(isNil {_freq})then{
+			_freq = [[] call acre_api_fnc_getCurrentRadio] call acre_api_fnc_getRadioChannel;
+		} forEach [(leader _group)];
+		if (isNil {_freq}) then {
 			_freq = "N/A";
 			_block = "N/A";
 		}else{
@@ -55,10 +55,10 @@ onMapSingleClick{
 			};
 		};
 
-		_freqText = format["Radio freq: block:%1 ch:%2",_block,_freq];
+		_freqText = format ["Radio freq: block:%1 ch:%2", _block, _freq];
 		_text = composeText [_text, lineBreak, _unitText, lineBreak, lineBreak, _freqText];
 		hint _text;
 
-		//bftHandle = [_unitsG]spawn JOC_bftDrawUnits;
+		//bftHandle = [_unitsG] spawn JOC_bftDrawUnits;
 	};
 };

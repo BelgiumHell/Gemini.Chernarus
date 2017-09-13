@@ -60,7 +60,7 @@
     _Zen_GrpsArray = []; \
     for "_Z" from 1 to N do { \
         _Zen_Pos = [ M ] call Zen_FindGroundPosition; \
-        _Zen_Group = [_Zen_Pos, S, "infantry", [4,6]] call Zen_SpawnInfantry; \
+        _Zen_Group = [_Zen_Pos, S, "infantry", [4, 6]] call Zen_SpawnInfantry; \
         _Zen_GrpsArray pushBack _Zen_Group; \
     }; \
     0 = [_Zen_GrpsArray, S, ZEN_FMW_Loadout_StdInfantryPreset, false] call Zen_GiveLoadout; \
@@ -70,7 +70,7 @@
     _Zen_GrpsArray = []; \
     for "_Z" from 1 to N do { \
         _Zen_Pos = [C, [0, D]] call Zen_FindGroundPosition; \
-        _Zen_Group = [_Zen_Pos, S, "infantry", [4,6]] call Zen_SpawnInfantry; \
+        _Zen_Group = [_Zen_Pos, S, "infantry", [4, 6]] call Zen_SpawnInfantry; \
         _Zen_GrpsArray pushBack _Zen_Group; \
     }; \
     0 = [_Zen_GrpsArray, S, ZEN_FMW_Loadout_StdInfantryPreset, false] call Zen_GiveLoadout; \
@@ -171,21 +171,21 @@
 #define ZEN_FMW_ZAS_AlphaNumeric ({_2a = toArray (_this select 1); _c = 0; {if (_x < (_2a select _forEachIndex)) exitWith {_c = -1}; if (_x > (_2a select _forEachIndex)) exitWith {_c = 1};} forEach (toArray (_this select 0)); (_c)})
 #define ZEN_FMW_ZAS_DistFarNear(C) (compile format ["if ((_this select 0) distance %1 > (_this select 1) distance %1) exitWith {-1}; (if ((_this select 0) distance %1 == (_this select 1) distance %1) then {0} else {1})", C])
 #define ZEN_FMW_ZAS_DistNearFar(C) (compile format ["if ((_this select 0) distance %1 < (_this select 1) distance %1) exitWith {-1}; (if ((_this select 0) distance %1 == (_this select 1) distance %1) then {0} else {1})", C])
-#define ZEN_FMW_ZAS_IntInArray(I) (compile format["if (((_this select 0) select %1) < ((_this select 1) select %1)) exitWith {-1}; (if (((_this select 0) select %1) == ((_this select 1) select %1)) then {0} else {1})", I])
+#define ZEN_FMW_ZAS_IntInArray(I) (compile format ["if (((_this select 0) select %1) < ((_this select 1) select %1)) exitWith {-1}; (if (((_this select 0) select %1) == ((_this select 1) select %1)) then {0} else {1})", I])
 #define ZEN_FMW_ZAS_StringLength {if (count toArray (_this select 0) < count toArray (_this select 1)) exitWith {-1}; (if (count toArray (_this select 0) == count toArray (_this select 1)) then {0} else {1})}
 
 #define ZEN_FMW_ZAF_NotString(S) (compile format ["(if (typeName _this == 'STRING') then {!(['%1', _this] call Zen_StringIsInString)} else {false})", S])
 #define ZEN_FMW_ZAF_String(S) (compile format ["(if (typeName _this == 'STRING') then {(['%1', _this] call Zen_StringIsInString)} else {false})", S])
 #define ZEN_FMW_ZAF_Type(T) (compile format ["((toLower typeName _this) == '%1')", (toLower T)])
 
-#define ZEN_FMW_ZFGP_Beach 1, [3,50], 0, 0, 0, [2,30], [1,10], 0, [1,10,10]
+#define ZEN_FMW_ZFGP_Beach 1, [3, 50], 0, 0, 0, [2, 30], [1, 10], 0, [1, 10, 10]
 #define ZEN_FMW_ZFGP_DeepSea 2, 0, 0, 0, 0, 0, 0, 0, [1, -50]
-#define ZEN_FMW_ZFGP_Flat 1, 0, 0, 0, 0, 0, [1,10]
-#define ZEN_FMW_ZFGP_Forest 1, [3,100], 0, [1,0,20], 0, [1,50], 0, [2,[4, -1, -1], 20]
-#define ZEN_FMW_ZFGP_Hill 1, 0, 0, 0, 0, [1,25], [2,20], 0, [2,25,10]
-#define ZEN_FMW_ZFGP_LandingZone 1, [1,100], 0, [1,0,20], 0, [1,25], [1,20], [1,[0, 1, -1], 20]
-#define ZEN_FMW_ZFGP_NotForest 1, 0, 0, 0, 0, 0, 0, [1,[1, -1, -1], 20]
-#define ZEN_FMW_ZFGP_Urban 1, [2, 0], 0, [2,1,25], 0, [1,100], 0, [1,[1,-1,-1], 20]
+#define ZEN_FMW_ZFGP_Flat 1, 0, 0, 0, 0, 0, [1, 10]
+#define ZEN_FMW_ZFGP_Forest 1, [3, 100], 0, [1, 0, 20], 0, [1, 50], 0, [2, [4, -1, -1], 20]
+#define ZEN_FMW_ZFGP_Hill 1, 0, 0, 0, 0, [1, 25], [2, 20], 0, [2, 25, 10]
+#define ZEN_FMW_ZFGP_LandingZone 1, [1, 100], 0, [1, 0, 20], 0, [1, 25], [1, 20], [1, [0, 1, -1], 20]
+#define ZEN_FMW_ZFGP_NotForest 1, 0, 0, 0, 0, 0, 0, [1, [1, -1, -1], 20]
+#define ZEN_FMW_ZFGP_Urban 1, [2, 0], 0, [2, 1, 25], 0, [1, 100], 0, [1, [1, -1, -1], 20]
 
 #define ZEN_FMW_Loadout_DefaultPreset (["Rifleman", "AT Rifleman", "Assistant AA", "Assistant AT", "Assistant AR", "Team Leader", "Squad Leader", "Grenadier", "Auto Rifleman", "Marksman", "Medic", "AA Specialist", "AT Specialist", "Sapper", "Miner", "EOD Specialist"])
 #define ZEN_FMW_Loadout_StdInfantryPreset (["Rifleman", "Rifleman", "Rifleman", "AT Rifleman", "Assistant AR", "Team Leader", "Squad Leader", "Grenadier", "Grenadier", "Auto Rifleman", "Auto Rifleman", "Marksman", "Medic"])

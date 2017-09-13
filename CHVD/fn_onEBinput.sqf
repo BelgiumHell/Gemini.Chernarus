@@ -1,4 +1,4 @@
-private ["_textValue","_updateType"];
+private ["_textValue", "_updateType"];
 _varType1 = [_this, 0, "", [""]] call BIS_fnc_param;
 _slider1 = [_this, 1, controlNull, [0, controlNull]] call BIS_fnc_param;
 _text1 = [_this, 2, controlNull, [0, controlNull]] call BIS_fnc_param;
@@ -27,14 +27,14 @@ switch (_updateType) do {
 		sliderSetRange [_slider2, 0, _textValue min CHVD_maxView];
 			
 		call compile format ["%1 = %2", _varType1, _textValue min CHVD_maxView];
-		call compile format ["profileNamespace setVariable ['%1',%1]", _varType1];
+		call compile format ["profileNamespace setVariable ['%1', %1]", _varType1];
 		
 		if ((call compile _varType2) > _textValue) then {
 			sliderSetPosition [_slider2, _textValue min CHVD_maxObj];
 			ctrlSetText [_text2, str round (_textValue min CHVD_maxObj)];
 
 			call compile format ["%1 = %2", _varType2, _textValue min CHVD_maxObj];
-			call compile format ["profileNamespace setVariable ['%1',%1]", _varType2];
+			call compile format ["profileNamespace setVariable ['%1', %1]", _varType2];
 		};
 		
 		[_updateType] call CHVD_fnc_updateSettings;
@@ -47,7 +47,7 @@ switch (_updateType) do {
 		//ctrlSetText [_text1, str round (_textValue min CHVD_maxObj)];
 			
 		call compile format ["%1 = %2", _varType1, _textValue min CHVD_maxObj];
-		call compile format ["profileNamespace setVariable ['%1',%1]", _varType1];
+		call compile format ["profileNamespace setVariable ['%1', %1]", _varType1];
 			
 		[_updateType] call CHVD_fnc_updateSettings;
 	};
@@ -60,21 +60,21 @@ switch (_updateType) do {
 		sliderSetRange [_slider2, 0, _textValue min CHVD_maxView];
 			
 		call compile format ["%1 = %2", _varType1, _textValue min CHVD_maxView];
-		call compile format ["profileNamespace setVariable ['%1',%1]", _varType1];
+		call compile format ["profileNamespace setVariable ['%1', %1]", _varType1];
 		
 		if ((call compile _varType2) > _textValue) then {
 			sliderSetPosition [_slider2, _textValue min CHVD_maxObj];
 			ctrlSetText [_text2, str round (_textValue min CHVD_maxObj)];
 
 			call compile format ["%1 = %2", _varType2, _textValue min CHVD_maxObj];
-			call compile format ["profileNamespace setVariable ['%1',%1]", _varType2];
+			call compile format ["profileNamespace setVariable ['%1', %1]", _varType2];
 		};
 		
 		sliderSetPosition [_slider2, _textValue min CHVD_maxObj];
 		ctrlSetText [_text2, str round (_textValue min CHVD_maxObj)];	
 		
 		call compile format ["%1 = %2", _varType2, _textValue min CHVD_maxObj];
-		call compile format ["profileNamespace setVariable ['%1',%1]", _varType2];
+		call compile format ["profileNamespace setVariable ['%1', %1]", _varType2];
 		
 		[_updateType] call CHVD_fnc_updateSettings;
 	};	

@@ -6,7 +6,7 @@ _Zen_stack_Trace = ["Zen_FindRayIntersection", _this] call Zen_StackAdd;
 
 if !([_this, [["VOID"], ["VOID"], ["SCALAR"], ["SCALAR"]], [], 4] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
-    ([0,0,0])
+    ([0, 0, 0])
 };
 
 // /* Cartesian
@@ -26,7 +26,7 @@ _distP1_P3 = [_point1, _point3] call Zen_Find2dDistance;
 
 if !(([([_point1, _distP1_P3, _angleRay1, "trig"] call Zen_ExtendPosition), _point3] call Zen_Find2dDistance) < 5) exitWith {
     call Zen_StackRemove;
-    ([0,0,0])
+    ([0, 0, 0])
 };
 
 call Zen_StackRemove;
@@ -42,7 +42,7 @@ _angleRay2 = ((_this select 3) + 360) % 360;
 
 if (_angleRay1 == _angleRay2) exitWith {
     call Zen_StackRemove;
-    ([0,0,0])
+    ([0, 0, 0])
 };
 
 _dist_P1toP2 = [_point1, _point2] call Zen_Find2dDistance;
@@ -61,7 +61,7 @@ _distP2_P3 = [_point2, _point3] call Zen_Find2dDistance;
 
 if !((([([_point1, _distP1_P3, _angleRay1, "trig"] call Zen_ExtendPosition), _point3] call Zen_Find2dDistance) < 5) &&((([([_point2, _distP2_P3, _angleRay2, "trig"] call Zen_ExtendPosition), _point3] call Zen_Find2dDistance) < 5))) exitWith {
     call Zen_StackRemove;
-    ([0,0,0])
+    ([0, 0, 0])
 };
 
 call Zen_StackRemove;

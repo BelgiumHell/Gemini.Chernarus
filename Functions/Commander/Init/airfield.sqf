@@ -13,7 +13,7 @@
 
     {
         _spawnPos = [getPos _x,25,(getDir _x)] call Zen_ExtendPosition;
-        _heli = [_spawnPos,((airPool + casPool) call BIS_fnc_selectRandom),1,(getDir _x)] call Zen_SpawnVehicle;
+        _heli = [_spawnPos,((poolAir + poolCas) call BIS_fnc_selectRandom),1,(getDir _x)] call Zen_SpawnVehicle;
         _heli enableSimulationGlobal false;
         _heli allowDamage false;
         _heli enableSimulationGlobal true;
@@ -21,7 +21,7 @@
     } forEach _tentHangars;
 
     {
-        _heli = [getPos _x,((jetPoolAA + jetPoolAG) call BIS_fnc_selectRandom),1,(getDir _x) + 180] call Zen_SpawnVehicle;
+        _heli = [getPos _x,((poolJetAA + poolJetAG) call BIS_fnc_selectRandom),1,(getDir _x) + 180] call Zen_SpawnVehicle;
         _heli enableSimulationGlobal false;
         _heli allowDamage false;
         _heli enableSimulationGlobal true;
@@ -30,7 +30,7 @@
 
     _priority = (_size select 0)*3;
 
-    if(_priority < 500)then{
+    if (_priority < 500) then {
         _priority = 500;
     };
 

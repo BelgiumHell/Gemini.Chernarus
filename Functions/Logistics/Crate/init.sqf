@@ -10,6 +10,6 @@ clearMagazineCargoGlobal _crate;
 clearItemCargoGlobal _crate;
 
 //FOB crate
-if(_cratetype == "B_Slingload_01_Cargo_F")then{
-	[_crate]call JOC_buildInit;
+if (_cratetype == "B_Slingload_01_Cargo_F") then {
+	[_crate] call JOC_buildInit;
 };

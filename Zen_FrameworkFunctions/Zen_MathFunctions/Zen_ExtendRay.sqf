@@ -7,7 +7,7 @@ private ["_point1", "_point2", "_distance", "_direction"];
 
 if !([_this, [["VOID"], ["VOID"], ["SCALAR"]], [], 3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
-    ([0,0,0])
+    ([0, 0, 0])
 };
 
 _point1 = [(_this select 0)] call Zen_ConvertToPosition;
@@ -17,4 +17,4 @@ _distance = _this select 2;
 _direction = ((_point2 select 1) - (_point1 select 1)) atan2 ((_point2 select 0) - (_point1 select 0));
 
 call Zen_StackRemove;
-([(_point2 select 0) + (_distance * (cos _direction)),(_point2 select 1) + (_distance * (sin _direction)), 0])
+([(_point2 select 0) + (_distance * (cos _direction)), (_point2 select 1) + (_distance * (sin _direction)), 0])

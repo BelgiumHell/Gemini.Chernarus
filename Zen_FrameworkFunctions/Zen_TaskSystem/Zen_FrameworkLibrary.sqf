@@ -171,7 +171,7 @@
 #define ZEN_FMW_ZAS_AlphaNumeric ({_2a = toArray (_this select 1); _c = 0; {if (_x < (_2a select _forEachIndex)) exitWith {_c = -1}; if (_x > (_2a select _forEachIndex)) exitWith {_c = 1};} forEach (toArray (_this select 0)); (_c)})
 #define ZEN_FMW_ZAS_DistFarNear(C) (compile format ["if ((_this select 0) distance %1 > (_this select 1) distance %1) exitWith {-1}; (if ((_this select 0) distance %1 == (_this select 1) distance %1) then {0} else {1})",C])
 #define ZEN_FMW_ZAS_DistNearFar(C) (compile format ["if ((_this select 0) distance %1 < (_this select 1) distance %1) exitWith {-1}; (if ((_this select 0) distance %1 == (_this select 1) distance %1) then {0} else {1})",C])
-#define ZEN_FMW_ZAS_IntInArray(I) (compile format["if (((_this select 0) select %1) < ((_this select 1) select %1)) exitWith {-1}; (if (((_this select 0) select %1) == ((_this select 1) select %1)) then {0} else {1})",I])
+#define ZEN_FMW_ZAS_IntInArray(I) (compile format ["if (((_this select 0) select %1) < ((_this select 1) select %1)) exitWith {-1}; (if (((_this select 0) select %1) == ((_this select 1) select %1)) then {0} else {1})",I])
 #define ZEN_FMW_ZAS_StringLength {if (count toArray (_this select 0) < count toArray (_this select 1)) exitWith {-1}; (if (count toArray (_this select 0) == count toArray (_this select 1)) then {0} else {1})}
 
 #define ZEN_FMW_ZAF_NotString(S) (compile format ["(if (typeName _this == 'STRING') then {!(['%1',_this] call Zen_StringIsInString)} else {false})",S])

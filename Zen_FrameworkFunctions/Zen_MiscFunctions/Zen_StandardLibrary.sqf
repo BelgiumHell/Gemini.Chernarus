@@ -61,7 +61,7 @@
 #define ZEN_STD_OBJ_CountBuildingPos(V, B) \
     V = 0; \
     for "_i" from 0 to 100 do { \
-        if ((B buildingPos V) isEqualTo [0,0,0]) exitWith {}; \
+        if ((B buildingPos V) isEqualTo [0, 0, 0]) exitWith {}; \
         V = V + 1; \
     }; \
     V = V - 1;

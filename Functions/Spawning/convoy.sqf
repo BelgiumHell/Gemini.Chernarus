@@ -2,11 +2,11 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-params["_startPos","_vehArr","_prefDir"];
+params["_startPos", "_vehArr", "_prefDir"];
 
 
 _groupConvoy = createGroup east;
-[_groupConvoy]call JOC_setGroupID;
+[_groupConvoy] call JOC_setGroupID;
 _groups = [];
 
 //Pause caching
@@ -18,31 +18,31 @@ _dir = ([_pos] call Zen_FindRoadDirection) + 90;
 
 
 {
-    _nearRoad = [_pos, _pos nearRoads 15]call JOC_getNearest;
-    if(!isNull _nearRoad)then{
+    _nearRoad = [_pos, _pos nearRoads 15] call JOC_getNearest;
+    if (!isNull _nearRoad) then {
         _pos = getPos _nearRoad;
         _dir = ([_pos] call Zen_FindRoadDirection) + 90;
     };
     
-    if(_dir < 0)then{
+    if (_dir < 0) then {
         _dir = 360 + _dir;
     };
 
-    if(_dir - _prefDir > (360 - _dir) - _prefDir)then{
+    if (_dir - _prefDir > (360 - _dir) - _prefDir) then {
         _dir = (360 - _dir);
     };
 
-    _veh = createVehicle[_x, _pos, [], 0, "CAN_COLLIDE"];
-    _pos = [_pos, -15, _dir]call Zen_ExtendPosition;
+    _veh = createVehicle [_x, _pos, [], 0, "CAN_COLLIDE"];
+    _pos = [_pos, -15, _dir] call Zen_ExtendPosition;
     _veh setDir _dir;
     _veh setDamage 0;
     createVehicleCrew _veh;
     (crew _veh) joinSilent _groupConvoy;
 
-    _group = [[0,0,0], east, "infantry", count(getArray(configFile >> "CfgVehicles" >> _x >> "getInProxyOrder")) - (count (crew _veh)),"Basic"]call Zen_SpawnInfantry;
+    _group = [[0, 0, 0], east, "infantry", count(getArray(configFile >> "CfgVehicles" >> _x >> "getInProxyOrder")) - (count (crew _veh)), "Basic"] call Zen_SpawnInfantry;
     {
         _x moveInCargo _veh;
-    }forEach (units _group);
+    } forEach (units _group);
     _groups pushBack _group;
 } forEach _vehArr;
 
@@ -52,10 +52,10 @@ _groupConvoy setSpeedMode "normal";
 
 //Give all groups an ID
 {
-    [_x]call JOC_coreSetId;
+    [_x] call JOC_coreSetId;
 } forEach _groups;
 
-_return = [_groupConvoy,_groups];
+_return = [_groupConvoy, _groups];
 
 JOC_pauseCache = false;
 

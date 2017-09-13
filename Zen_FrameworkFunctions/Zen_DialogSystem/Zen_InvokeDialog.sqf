@@ -66,7 +66,7 @@ if !(_doRefresh) then {
             _control = _display ctrlCreate [_controlInstanClass, NEXT_IDC
             _Zen_Dialog_Controls_Local pushBack [_controlID, _control, ([_controlID] call Zen_HashControlData)];
 
-            if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+            if ((toUpper _controlType) in ["LIST", "DROPLIST"]) then {
                 {
                     if ((toUpper (_x select 0)) == "LIST") then {
                         {
@@ -76,7 +76,7 @@ if !(_doRefresh) then {
                 } forEach _controlBlocks;
             };
 
-            if (toUpper _controlType in ["LIST","DROPLIST"]) then {
+            if (toUpper _controlType in ["LIST", "DROPLIST"]) then {
                 _control lbSetCurSel 0;
             };
 
@@ -97,7 +97,7 @@ if !(_doRefresh) then {
                         _control progressSetPosition (((_data max 0) min 255) / 255);
                     };
                     case "FONTCOLORSELECTED": {
-                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+                        if ((toUpper _controlType) in ["LIST", "DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetSelectColor [_i, [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP]];
                             };
@@ -106,7 +106,7 @@ if !(_doRefresh) then {
                         };
                     };
                     case "PICTURE": {
-                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+                        if ((toUpper _controlType) in ["LIST", "DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetPicture [_i, _data select _i];
                             };
@@ -117,14 +117,14 @@ if !(_doRefresh) then {
                         };
                     };
                     case "PICTURECOLOR": {
-                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+                        if ((toUpper _controlType) in ["LIST", "DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetPictureColor [_i, [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP]];
                             };
                         };
                     };
                     case "PICTURECOLORSELECTED": {
-                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+                        if ((toUpper _controlType) in ["LIST", "DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetPictureColorSelected [_i, [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP]];
                             };
@@ -168,7 +168,7 @@ if !(_doRefresh) then {
                         _control ctrlSetFontHeight _data / FONT_DIVISION;
                     };
                     case "FONTCOLOR": {
-                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+                        if ((toUpper _controlType) in ["LIST", "DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetColor [_i, [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP]];
                             };

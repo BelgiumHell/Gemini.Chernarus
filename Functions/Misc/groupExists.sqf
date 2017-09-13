@@ -4,11 +4,11 @@
 params["_groupID"];
 _exists = false;
 _group = grpNull;
-_group = [_groupID]call JOC_getGroup;
+_group = [_groupID] call JOC_coreGetGroup;
 
-if(isNull _group)then{
+if (isNull _group) then {
     _existsArr =  virtualizedArray select {((_x select 3) select 0 )== _groupID};
-    if(count _existsArr > 0)then{
+    if (count _existsArr > 0) then {
         _exists = true;
     };
 }else{

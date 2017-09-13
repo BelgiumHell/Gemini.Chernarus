@@ -27,7 +27,7 @@ _listboxCtrl ctrlSetEventHandler ["LBSelChanged",
 ];
 
 //ctrlSetText [_textCtrl, str _textValue];	
-call compile format ["%1 = %2",_varType, _textValue];
-call compile format ["profileNamespace setVariable ['%1',%1]", _varType];
+call compile format ["%1 = %2", _varType, _textValue];
+call compile format ["profileNamespace setVariable ['%1', %1]", _varType];
 
 [] call CHVD_fnc_updateTerrain;

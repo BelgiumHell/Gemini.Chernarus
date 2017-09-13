@@ -109,7 +109,7 @@ while {(count _grpsArray != 0)} do {
             _joined = false;
 
             if (_joinWeak && {(({alive _x} count (units _group)) < 3)}) then {
-                _nearGroup = [_grpsArray - [_group],compile format["_this distanceSqr %1",getPosATL leader _group]] call Zen_ArrayFindExtremum;
+                _nearGroup = [_grpsArray - [_group],compile format ["_this distanceSqr %1",getPosATL leader _group]] call Zen_ArrayFindExtremum;
 
                 if (([_group,_nearGroup] call Zen_Find2dDistance) < 100) then {
                     _joined = true;

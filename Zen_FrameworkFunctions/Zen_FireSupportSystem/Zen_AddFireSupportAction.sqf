@@ -8,7 +8,7 @@
 _Zen_stack_Trace = ["Zen_AddFireSupportAction", _this] call Zen_StackAdd;
 private ["_units", "_supportString", "_titleString", "_maxCalls", "_guideObj", "_guideType", "_args", "_descr"];
 
-if !([_this, [["VOID"], ["STRING"], ["STRING"], ["SCALAR"], ["STRING"], ["OBJECT","STRING"], ["STRING"]], [], 4] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["STRING"], ["STRING"], ["SCALAR"], ["STRING"], ["OBJECT", "STRING"], ["STRING"]], [], 4] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ("")
 };
@@ -28,12 +28,12 @@ if ((count Zen_Fire_Support_Action_Array_Global) == 0) then {
     Zen_Fire_Support_Action_Array_Global pushBack ["Zen_fire_support_action_global_null_init_flag", [], "", "", objNull, "", 0, 0];
     _dialogID = [] call Zen_CreateDialog;
 
-    _controlList = ["List", ["List", []], ["ListData", []], ["Position", [0, 0]], ["Size", [35,11.5]], ["SelectionFunction", "Zen_AddFireSupportAction_DialogListSel_MP"]] call Zen_CreateControl;
-    _controlOK = ["Button", ["Text", "Call"], ["Position", [35, 0]], ["Size", [5,2]], ["ActivationFunction", "Zen_AddFireSupportAction_DialogOK_MP"], ["LinksTo", [_controlList]]] call Zen_CreateControl;
-    _controlCancel = ["Button", ["Text", "Cancel"], ["Position", [35, 2]], ["Size", [5,2]], ["ActivationFunction", "Zen_AddFireSupportAction_DialogCancel_MP"], ["LinksTo", [_controlList]]] call Zen_CreateControl;
-    _controlRefresh = ["Button", ["Text", "Refresh"], ["Position", [35, 4]], ["Size", [5,2]], ["ActivationFunction", "Zen_AddFireSupportAction_DialogRefresh_MP"]] call Zen_CreateControl;
-    _controlClose = ["Button", ["Text", "Close"], ["Position", [35, 6]], ["Size", [5,2]], ["ActivationFunction", "Zen_CloseDialog"]] call Zen_CreateControl;
-    _controlDecr = ["Text", ["Position", [0, 12]], ["Size", [35,2]], ["Text", ""]] call Zen_CreateControl;
+    _controlList = ["List", ["List", []], ["ListData", []], ["Position", [0, 0]], ["Size", [35, 11.5]], ["SelectionFunction", "Zen_AddFireSupportAction_DialogListSel_MP"]] call Zen_CreateControl;
+    _controlOK = ["Button", ["Text", "Call"], ["Position", [35, 0]], ["Size", [5, 2]], ["ActivationFunction", "Zen_AddFireSupportAction_DialogOK_MP"], ["LinksTo", [_controlList]]] call Zen_CreateControl;
+    _controlCancel = ["Button", ["Text", "Cancel"], ["Position", [35, 2]], ["Size", [5, 2]], ["ActivationFunction", "Zen_AddFireSupportAction_DialogCancel_MP"], ["LinksTo", [_controlList]]] call Zen_CreateControl;
+    _controlRefresh = ["Button", ["Text", "Refresh"], ["Position", [35, 4]], ["Size", [5, 2]], ["ActivationFunction", "Zen_AddFireSupportAction_DialogRefresh_MP"]] call Zen_CreateControl;
+    _controlClose = ["Button", ["Text", "Close"], ["Position", [35, 6]], ["Size", [5, 2]], ["ActivationFunction", "Zen_CloseDialog"]] call Zen_CreateControl;
+    _controlDecr = ["Text", ["Position", [0, 12]], ["Size", [35, 2]], ["Text", ""]] call Zen_CreateControl;
 
     {
         0 = [_dialogID, _x] call Zen_LinkControl;
@@ -48,7 +48,7 @@ if ((count Zen_Fire_Support_Action_Array_Global) == 0) then {
     } forEach allUnits;
 };
 
-_nameString = format ["Zen_fire_support_action_global_%1",([10] call Zen_StringGenerateRandom)];
+_nameString = format ["Zen_fire_support_action_global_%1", ([10] call Zen_StringGenerateRandom)];
 Zen_Fire_Support_Action_Array_Global pushBack [_nameString, _units, _titleString, _supportString, _guideObj, _guideType, _maxCalls, 0, _descr, false, []];
 publicVariable "Zen_Fire_Support_Action_Array_Global";
 

@@ -7,11 +7,11 @@ private ["_dataToConvert", "_returnPosition"];
 
 if !([_this, [["VOID"]], [], 1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
-    ([0,0,0])
+    ([0, 0, 0])
 };
 
 _dataToConvert = _this select 0;
-_returnPosition = [0,0,0];
+_returnPosition = [0, 0, 0];
 
 switch (typeName _dataToConvert) do {
     case "OBJECT": {
@@ -37,15 +37,15 @@ switch (typeName _dataToConvert) do {
                 _returnPosition =+ _dataToConvert;
             };
             default {
-                0 = ["Zen_ConvertToPosition", "Given array is not in [x,y] or [x,y,z] format", _this] call Zen_PrintError;
+                0 = ["Zen_ConvertToPosition", "Given array is not in [x, y] or [x, y, z] format", _this] call Zen_PrintError;
                 call Zen_StackPrint;
             };
         };
 
         {
             if (typeName _x != "SCALAR") exitWith {
-                _returnPosition = [0,0,0];
-                0 = ["Zen_ConvertToPosition", "Given array does not contain valid x,y,z numerical coordinates", _this] call Zen_PrintError;
+                _returnPosition = [0, 0, 0];
+                0 = ["Zen_ConvertToPosition", "Given array does not contain valid x, y, z numerical coordinates", _this] call Zen_PrintError;
                 call Zen_StackPrint;
             };
         } forEach _returnPosition;

@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 params["_array"];
-private["_category","_clearence","_types"];
+private ["_category","_clearence","_types"];
 
 _pos = _array select 0;
 _priority = _array select 1;
@@ -14,10 +14,10 @@ _typesMain = [];
 _typesSupport = [];
 
 //Get category
-if(_priority > 800)then{
+if (_priority > 800) then {
     _category = 1;
 };
-if(_priority < 800 && _priority > 400)then{
+if (_priority < 800 && _priority > 400) then {
     _category = 2;
 }else{
     _category = 3;
@@ -83,6 +83,6 @@ switch (_typeSupport) do {
 };
 
 //Chance for arty support
-if((-1*_category) + 2.5 + (random 1) < 1)then{
+if ((-1*_category) + 2.5 + (random 1) < 1) then {
     requestArray pushBack [[1,1],_array,_category != 1];
 };

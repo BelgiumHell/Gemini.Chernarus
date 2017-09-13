@@ -5,7 +5,7 @@
     _tower = _x;
     _location = getPosWorld _tower;
 
-    _nameM = format["mrk_strategic_radio_%1",_forEachIndex];
+    _nameM = format ["mrk_strategic_radio_%1",_forEachIndex];
     _marker = createMarker [_nameM,_location];
     _nameM setMarkerShape "ELLIPSE";
     _nameM setMarkerSize [200,200];

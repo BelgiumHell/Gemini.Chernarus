@@ -12,9 +12,9 @@ _nameM = "";
 {
     _name = (text _x);
     _location = (getPos _x);
-    _nameM = format["mrk_strategic_town_%1",_name];
-    if(!(_name in blackTowns))then{
-        if(_x in _villages)then{
+    _nameM = format ["mrk_strategic_town_%1",_name];
+    if (!(_name in blackTowns)) then {
+        if (_x in _villages) then {
             _marker = createMarker [_nameM,_location];
             _nameM setMarkerShape "ELLIPSE";
             _nameM setMarkerSize [120,120];
@@ -24,7 +24,7 @@ _nameM = "";
             strategicArray pushBack [_location,300,"town",_nameM,1,2];
         };
 
-        if(_x in _towns)then{
+        if (_x in _towns) then {
             _marker = createMarker [_nameM,_location];
             _nameM setMarkerShape "ELLIPSE";
             _nameM setMarkerSize [200,200];
@@ -34,7 +34,7 @@ _nameM = "";
             strategicArray pushBack [_location,500,"town",_nameM,1,2];
         };
 
-        if(_x in _capitals)then{
+        if (_x in _capitals) then {
             _marker = createMarker [_nameM,_location];
             _nameM setMarkerShape "ELLIPSE";
             _nameM setMarkerSize [400,400];
