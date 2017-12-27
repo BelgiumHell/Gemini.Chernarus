@@ -8,7 +8,7 @@ _footUnits = [];
 {
     if (isNull (objectParent _x)) then {
         _footUnits pushBack _x;
-    }else{
+    } else {
         if (!(vehicle _x in _vehicles)) then {
             _groupNew = createGroup east;
             [crew (vehicle _x)] joinSilent _groupNew;

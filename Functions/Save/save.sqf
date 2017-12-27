@@ -7,7 +7,7 @@
     if (saveCount/2 == round(saveCount/2)) then {
         _inidbi = inidbiDB1;
         _inidbiBack = inidbiDB2;
-    }else{
+    } else {
         _inidbi = inidbiDB2;
         _inidbiBack = inidbiDB1;
     };
@@ -80,7 +80,7 @@
     {
         if (locked _x == 2) then {
             _fobArray pushBack [getPosASL _x, getDir _x, true];
-        }else{
+        } else {
             _fobArray pushBack [getPosASL _x, getDir _x, false];
         };
     } forEach fobTrucks;

@@ -4,7 +4,7 @@
 params["_pos"];
 
 _artyPos = [_pos, "arty", [1200, 10000]] call JOC_cmdMiscGetNearestStrategic;
-if (count (_artyPos - [0, 0, 0]) == 0)exitWith{[]};
+if (count (_artyPos - [0, 0, 0]) == 0) exitWith {[]};
 
 _artyA =  nearestObjects [_artyPos, [classArty], 100];
 

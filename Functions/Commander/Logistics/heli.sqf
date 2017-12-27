@@ -5,13 +5,13 @@ params["_heli", "_array"];
 
 //Get location
 _basePos = [(_array select 0), "base", [500, 99999]] call JOC_cmdMiscGetNearestStrategic;
-if (count (_basePos - [0, 0, 0]) == 0)exitWith{false};
+if (count (_basePos - [0, 0, 0]) == 0) exitWith {false};
 
 //Spawn crate
 _location = [];
-while{count _location == 0}do{
+while {count _location == 0} do {
     _pos = [_basePos, [0, 100]] call Zen_FindGroundPosition;
-    _location  = _pos findEmptyPosition [0, 300, classEmpty];
+    _location = _pos findEmptyPosition [0, 300, classEmpty];
 };
 _crate = "B_CargoNet_01_ammo_F" createVehicle _location;
 

@@ -14,7 +14,7 @@ params["_truck"];
     [_truck, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
 
     _truck setVariable ["ace_medical_medicClass", 1];
-}] remoteExec ["BIS_fnc_spawn", 0, true];
+}] remoteExec ["BIS_fnc_call", 0, true];
 
 //Dismantle option
 [[_truck], {
@@ -30,4 +30,4 @@ params["_truck"];
 	}, {(side (_this select 1) == west) && (speed (_this select 0) < 1) && (locked (_this select 0) == 2) && (alive (_this select 0))}] call ace_interact_menu_fnc_createAction;
 
     [_truck, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
-}] remoteExec ["BIS_fnc_spawn", 0, true];
+}] remoteExec ["BIS_fnc_call", 0, true];

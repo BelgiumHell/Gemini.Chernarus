@@ -12,7 +12,7 @@ switch (_this select 1) do
 		if ((vehicle player)isKindOf "Air" && player == (driver(vehicle player))) then {
 			if (musicPlay) then {
 				musicPlay = false;
-			}else{
+			} else {
 				musicPlay = true;
 			};
 		};

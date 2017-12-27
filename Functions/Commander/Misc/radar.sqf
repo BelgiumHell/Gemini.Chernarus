@@ -21,14 +21,14 @@
             if ((side _object) == west && !(terrainIntersectASL [getPosASL _object,_pos])) then {
                 if (_object isKindOf "Helicopter") then {
                     heliTargets pushBackUnique _object;
-                }else{
+                } else {
                     jetTargets pushBackUnique _object;
                 };
 
                 {
                     _x reveal [_object,4];
                 } forEach (allGroups select {side _x == east});
-            }else{
+            } else {
                 {
                     _x reveal [_object,0];
                 } forEach (allGroups select {side _x == east});

@@ -8,10 +8,10 @@ _arrayN = [];
 {
     if ((typeName _x) in ["STRING","SCALAR","ARRAY"]) then {
         _arrayN pushBack _x;
-    }else{
+    } else {
         if ((typeName _x) == "OBJECT") then {
             _arrayN pushBack (typeOf _x);
-        }else{
+        } else {
             _arrayN pushBack format ["%1",_x];
         };
     };

@@ -153,7 +153,7 @@ if (_dbSaved && (paramsArray select 0) == 1) then {
 	currentRequestID = ["read", ["main", "currentRequestID", -1]] call _inidbi;
 	jetActive = ["read", ["main", "jetActive", false]] call _inidbi;
 	jetReady = ["read", ["main", "jetReady", false]] call _inidbi;
-}else{
+} else {
 	"delete" call inidbiDB1;
 	"delete" call inidbiDB2;
 

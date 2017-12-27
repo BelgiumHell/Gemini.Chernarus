@@ -14,7 +14,7 @@ _unable = true;
 		[_obj] spawn JOC_crateInit;
 		_unable = false;
 	};
-	if ((count _veh) == 0)exitWith{};
+	if ((count _veh) == 0) exitWith {};
 } forEach [logiSpawn_0, logiSpawn_1, logiSpawn_2, logiSpawn_3, logiSpawn_4, logiSpawn_5];
 
 if (_unable) then {

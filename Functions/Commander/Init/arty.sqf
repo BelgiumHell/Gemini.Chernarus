@@ -6,8 +6,7 @@ _artyGroup setVariable ["JOC_caching_disabled", true , true];
 [_artyGroup] call JOC_coreSetID;
 _tankBlacklist = [];
 
-_s = 0;
-while{_s < 4}do{
+for "_s" from 0 to 4 step 1 do {
 	//Get position
 	_location = ["mrk_area", 0, [_tankBlacklist + blackMarkers + airfieldMarkers, [], []], 1, [3, 75], [0, 360], [1, 0, 35], [0, 0, 0], [1, 100], [1, 10, 15], [1, [0, 0, -1], 35]] call Zen_FindGroundPosition;
 
@@ -20,7 +19,7 @@ while{_s < 4}do{
         createVehicleCrew _obj;
         if (typeOf _obj == classArty) then {
             (crew _obj) joinSilent _artyGroup;
-        }else{
+        } else {
             (crew _obj) joinSilent _group;
         };
         _obj setFuel 0;
@@ -43,8 +42,6 @@ while{_s < 4}do{
     _nameM setMarkerBrush "Border";
     _nameM setMarkerAlpha 0;
 	_tankBlacklist pushBack _nameM;
-
-   	_s = _s + 1;
 };
 
 {

@@ -6,16 +6,16 @@ params["_group"];
 //No vehicles as they can't manage to drive past infantry
 _vehicle = false;
 {
-    if (!isNull (objectParent _x))exitWith{
+    if (!isNull (objectParent _x)) exitWith {
         _vehicle = true;
     };
 } forEach (units _group);
 
-if (_vehicle)exitWith{};
+if (_vehicle) exitWith {};
 
 _id = [_group] call JOC_coreGetId;
 _assignedArr = assignedArray select {(_x select 0) == _id};
-if (count _assignedArr == 0)exitWith{};
+if (count _assignedArr == 0) exitWith {};
 _assigned = _assignedArr select 0;
 
 _strategic = strategicArray select (_assigned select 1);

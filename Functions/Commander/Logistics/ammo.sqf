@@ -6,7 +6,7 @@ _order = [];
 
 //Get nearest base
 _startPos = [(_array select 0), "base", [1200, 5000], [true, 2000]] call JOC_cmdMiscGetNearestStrategic;
-if (count (_startPos - [0, 0, 0]) == 0)exitWith{_order};
+if (count (_startPos - [0, 0, 0]) == 0) exitWith {_order};
 
 //Generate composition
 _vehArr = [];

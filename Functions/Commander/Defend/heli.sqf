@@ -1,8 +1,8 @@
 params["_array", "_force"];
 
 //Find airfield
-_airfield = [_array select 0, "airfield", [1000, 99999], [0]] call JOC_cmdMiscGetNearestStrategic;
-if ((count _airfield) == 0)exitWith{[]};
+_airfield = [_array select 0, "airfield", [1000, 99999]] call JOC_cmdMiscGetNearestStrategic;
+if ((count _airfield) == 0) exitWith {[]};
 _airfieldPos = _airfield select 0;
 
 JOC_pauseCache = true;
@@ -10,17 +10,14 @@ JOC_pauseCache = true;
 //Generate composition
 _heliArr = [];
 _gunshipArr = [];
-_heliCount = _force * 2 - random 2;
-_gunshipCount = _force + random 1;
-_i = 0;
-while{_i < _heliCount}do{
-    _heliArr pushBack (selectRandom heliPool);
-    _i = _i + 1;
+_heliCount = 4 min _force * 2 - random 2;
+_gunshipCount = 2 min _force + random 1;
+
+for "_i" from 0 to _heliCount step 1 do {
+    _heliArr pushBack (selectRandom poolAir);
 };
-_i = 0;
-while{_i < _gunshipCount}do{
+for "_i" from 0 to _gunshipCount step 1 do {
     _gunshipArr pushBack (selectRandom poolCas);
-    _i = _i + 1;
 };
 
 _order = [];
@@ -50,7 +47,7 @@ _posHeli = getPos (_list select 0);
     _wp2 setWaypointType "MOVE";
 
     _scriptArray1 = [
-    ["crew (vehicle (leader (_this select 1))) < 4", "_airfieldPos = ([getPos ((_this select 1) select 0), ""airfield"", [1000, 99999]] call JOC_cmdMiscGetNearestStrategic) select 0; _wp1 = (_this select 1) addWaypoint [_airfieldPos, 0];_wp1 setWaypointType ""GETOUT"";"], 
+    ["count (crew (vehicle (leader (_this select 1)))) < 4", "_airfieldPos = ([getPos ((_this select 0) select 0), ""airfield"", [1000, 99999]] call JOC_cmdMiscGetNearestStrategic) select 0; _wp1 = (_this select 1) addWaypoint [_airfieldPos, 0];_wp1 setWaypointType ""GETOUT"";"], 
     ["(count (waypoints (_this select 1)) <= currentWaypoint (_this select 1))", "(_this select 1) setVariable [""JOC_caching_disabled"", false, true];(_this select 1) setVariable [""JOC_cleanUp"", true, true]"]
     ];
     _scriptArray2 = [
@@ -61,6 +58,7 @@ _posHeli = getPos (_list select 0);
 } forEach _heliArr;
 
 {
+    _posHeli = [_posHeli, 100, 0] call BIS_fnc_relPos;
     _veh = createVehicle [_x, _posHeli, [], 0, "FLY"];
     createVehicleCrew _veh;
     [(group ((crew _veh) select 0))] call JOC_coreSetID;
@@ -70,7 +68,7 @@ _posHeli = getPos (_list select 0);
     _wp1 setWaypointType "SAD";
 
     _scriptArray = [
-    ["fuel (vehicle (leader (_this select 1))) < 0.1 || damage (vehicle (leader (_this select 1))) > 0.5 || (_this select 0) select 4 == 1", "_airfieldPos = ([getPos ((_this select 1) select 0), ""airfield"", [1000, 99999]] call JOC_cmdMiscGetNearestStrategic) select 0; _wp1 = (_this select 1) addWaypoint [_airfieldPos, 0];_wp1 setWaypointType ""GETOUT"";"], 
+    ["fuel (vehicle (leader (_this select 1))) < 0.1 || damage (vehicle (leader (_this select 1))) > 0.5 || (_this select 0) select 4 == 1", "_airfieldPos = ([getPos ((_this select 0) select 0), ""airfield"", [1000, 99999]] call JOC_cmdMiscGetNearestStrategic) select 0; _wp1 = (_this select 1) addWaypoint [_airfieldPos, 0];_wp1 setWaypointType ""GETOUT"";"], 
     ["(count (waypoints (_this select 1)) <= currentWaypoint (_this select 1))", "(_this select 1) setVariable [""JOC_cleanUp"", true, true]"]
     ];
     _order pushBack [[1, 1], _array, [(group ((crew _veh) select 0))] call JOC_coreGetId, _scriptArray];

@@ -41,7 +41,7 @@ params ["_group", ["_delete", false]];
 
 
 
-if (_group getVariable ["JOC_caching_disabled", false] && _delete)exitWith{[]};
+if (_group getVariable ["JOC_caching_disabled", false] && _delete) exitWith {[]};
 _units = units _group;
 
 if ((_group getVariable ["groupID", -1]) == -1) then {
@@ -67,7 +67,7 @@ _vehiclesTemp = [];
             _vehicle = (vehicle _x);
             _vehicles pushBack [(typeOf _vehicle), (getPosASL _vehicle), [_forEachIndex], damage _vehicle, fuel _vehicle, getDir _vehicle];
             _vehiclesTemp pushBack _vehicle;
-        }else{
+        } else {
             _index = _vehiclesTemp find (vehicle _x);
             (_vehicles select _index select 2) pushBack _forEachIndex;
         };

@@ -4,7 +4,7 @@
 params["_pos"];
 //Find airfield
 _airfield = [_pos, "airfield", [1000, 99999]] call JOC_cmdMiscGetNearestStrategic;
-if ((count _airfield) == 0)exitWith{[]};
+if ((count _airfield) == 0) exitWith {[]};
 _airfieldPos = _airfield select 0;
 
 //Spawn jet
@@ -24,10 +24,10 @@ JOC_pauseCache = false;
 _wp = _group addWaypoint [[0, 0], 0];
 _wp setWaypointType "DESTROY";
 _wp waypointAttachObject ((jetTargets + heliTargets) select 0);
-_wp setWaypointStatements ["count (jetTargets + heliTargets) != 0", "if (!isServer)exitWith{}; _wp = (group this) addWaypoint [[0, 0], 0]; _wp setWaypointType ""DESTROY""; _wp waypointAttachObject ((jetTargets + heliTargets) select 0); _wp setWaypointStatements [""count (jetTargets + heliTargets) != 0"", ""if (!isServer)exitWith{}; _wp = (group this) addWaypoint [[0, 0], 0]; _wp setWaypointType ""DESTROY""; _wp waypointAttachObject ((jetTargets + heliTargets) select 0);""];"];
+_wp setWaypointStatements ["count (jetTargets + heliTargets) != 0", "if (!isServer) exitWith {}; _wp = (group this) addWaypoint [[0, 0], 0]; _wp setWaypointType ""DESTROY""; _wp waypointAttachObject ((jetTargets + heliTargets) select 0); _wp setWaypointStatements [""count (jetTargets + heliTargets) != 0"", ""if (!isServer) exitWith {}; _wp = (group this) addWaypoint [[0, 0], 0]; _wp setWaypointType ""DESTROY""; _wp waypointAttachObject ((jetTargets + heliTargets) select 0);""];"];
 
 _scriptArray = [
-["fuel (vehicle (leader (_this select 1))) < 0.1 || damage (vehicle (leader (_this select 1))) > 0.5 || count (jetTargets + heliTargets) == 0", "_airfieldPos = ([getPos ((_this select 1) select 0), ""airfield"", [1000, 99999]] call JOC_cmdMiscGetNearestStrategic) select 0; _wp1 = (_this select 1) addWaypoint [_airfieldPos, 0];_wp1 setWaypointType ""GETOUT"";"], 
+["fuel (vehicle (leader (_this select 1))) < 0.1 || damage (vehicle (leader (_this select 1))) > 0.5 || count (jetTargets + heliTargets) == 0", "_airfieldPos = ([getPos ((_this select 0) select 0), ""airfield"", [1000, 99999]] call JOC_cmdMiscGetNearestStrategic) select 0; _wp1 = (_this select 1) addWaypoint [_airfieldPos, 0];_wp1 setWaypointType ""GETOUT"";"], 
 ["(count (waypoints (_this select 1)) < 2)", "(_this select 1) setVariable [""JOC_caching_disabled"", false, true];(_this select 1) setVariable [""JOC_cleanUp"", true, true]"]
 ];
 

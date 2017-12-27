@@ -19,7 +19,7 @@ if (_priority > 800) then {
 };
 if (_priority < 800 && _priority > 400) then {
     _category = 2;
-}else{
+} else {
     _category = 3;
 };
 

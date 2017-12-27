@@ -4,27 +4,24 @@
 params["_array", "_force"];
 
 //Get nearest base
-_startBase = [(_array select 0), "base", [1200, 5000], [0]] call JOC_cmdMiscGetNearestStrategic;
-if ((count _startBase) == 0)exitWith{[]};
+_startBase = [(_array select 0), "base", [1200, 5000]] call JOC_cmdMiscGetNearestStrategic;
+if ((count _startBase) == 0) exitWith {[]};
 _startPos = _startBase select 0;
 
 //Make base unavailable for some time
 _startBase set [5, 1];
-[{_this set [5, 0];}, _startBase, (3600/strengthEast)] call CBA_fnc_waitAndExecute;
+[{_this set [5, 0];}, _startBase, (3600 / strengthEast)] call CBA_fnc_waitAndExecute;
 
 //Generate composition
 _vehArr = [];
 _truckCount = (_force * 2 - (random _force)) - 1;
-_apcCount = (_force * 0.75 + (random (_force*0.5))) - 1;
-_i = 0;
-while{_i < _apcCount}do{
+_apcCount = (_force * 0.75 + (random (_force * 0.5))) - 1;
+
+for "_i" from 0 to _apcCount step 1 do {
     _vehArr pushBack (selectRandom poolApc);
-    _i = _i + 1;
 };
-_i = 0;
-while{_i < _truckCount}do{
+for "_i" from 0 to _truckCount step 1 do {
     _vehArr pushBack (selectRandom poolTruck);
-    _i = _i + 1;
 };
 
 //Spawn convoy

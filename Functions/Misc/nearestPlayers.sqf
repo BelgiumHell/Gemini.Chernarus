@@ -15,7 +15,7 @@ _nearestPlayers = [];
             if ((_knows select 1) knowsAbout _player > 2 || (_knows select 1) knowsAbout (vehicle _player) > 2) then {
                 _nearestPlayers pushBack _player;
             };
-        }else{
+        } else {
             _nearestPlayers pushBack _player;
         };
     };

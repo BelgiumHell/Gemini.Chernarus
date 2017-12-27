@@ -36,12 +36,12 @@ if (!(count _isFlat isEqualTo 0)) then {
 
 		_objArray pushBack _obj;
 	} forEach fobComposition;
-}else{
+} else {
 	hint "Terrain not suitable";
 	_unable = true;
 };
 
-if (_unable)exitWith{};
+if (_unable) exitWith {};
 
 {
 	_x action ["eject", _truck]
@@ -66,4 +66,4 @@ _truck setVariable ["assignedFob", [_objArray, _name, _respawn], true];
 [[_truck], {
 	params["_truck"];
 	_truck lock 2;
-}] remoteExec ["BIS_fnc_spawn", 0, true];
+}] remoteExec ["BIS_fnc_call", 0, true];

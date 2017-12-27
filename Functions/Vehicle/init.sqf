@@ -3,7 +3,7 @@
 /////////////////////////
 params["_veh"];
 
-if (!isServer)exitWith{};
+if (!isServer) exitWith {};
 waitUntil{!isNil{vehArray}};
 
 _type = typeOf _veh;

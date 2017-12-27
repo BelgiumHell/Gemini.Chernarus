@@ -10,7 +10,7 @@ _owner = _array select 4;	//0 = BLUFOR|1 = OPFOR|2 = contested by BLUFOR|3 = con
 _objects = [];
 _ammo = false;
 
-if (_owner == 4)exitWith{};
+if (_owner == 4) exitWith {};
 
 //If point has no strategic value anymore, set civilian as owner/Check for ammo
 switch (_array select 2) do {
@@ -33,7 +33,7 @@ switch (_array select 2) do {
 				requestArray pushBack [[2, 0], _array, true];
 				_ammo = true;
 			};
-		}else{
+		} else {
 			if (_ammo) then {
 				_ammo = false;
 			};
@@ -67,7 +67,7 @@ if (count _objects == 0) then {
 _players = [_pos , _size, ["air"]] call JOC_nearestPlayers;
 _nearWest = count _players;
 
-if (_nearWest == 0)exitWith{};
+if (_nearWest == 0) exitWith {};
 
 _nearEast = east countSide (_pos nearEntities [["Man", "Car", "Tank"], _size]);
 

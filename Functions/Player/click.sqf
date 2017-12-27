@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 onMapSingleClick{
-	if (!(isNull objectParent player) || ("ItemGPS" in (assigneditems player)))exitWith{};
+	if (!(isNull objectParent player) || ("ItemGPS" in (assigneditems player))) exitWith {};
 	hint "";
 	//terminate bftHandle;
 	_prevDis = 999;
@@ -32,7 +32,7 @@ onMapSingleClick{
 			_veh = vehicle _x;
 			if (_veh isKindOf "man") then {
 				_vehText = "";
-			}else{
+			} else {
 				_vehText = format ["(%1)", (typeOf _veh)]
 			};
 			_unitText = composeText [_unitText, lineBreak, (name _x) + ""];
@@ -48,8 +48,8 @@ onMapSingleClick{
 		if (isNil {_freq}) then {
 			_freq = "N/A";
 			_block = "N/A";
-		}else{
-			while{_freq > 16}do{
+		} else {
+			while {_freq > 16} do {
 				_block = _block + 1;
 				_freq = _freq - 16;
 			};

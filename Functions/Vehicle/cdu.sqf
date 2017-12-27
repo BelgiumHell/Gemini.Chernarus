@@ -3,7 +3,7 @@
 /////////////////////////
 _veh = (vehicle player);
 //if (cduEnabled) then {cduEnabled = false};
-if (cduEnabled || (player != (commander _veh)) || player == _veh)exitWith{cduEnabled = false};
+if (cduEnabled || (player != (commander _veh)) || player == _veh) exitWith {cduEnabled = false};
 if (!cduEnabled) then {
 	cduEnabled = true;
 	while{cduEnabled && (player == (commander _veh))}do{
@@ -27,7 +27,7 @@ if (!cduEnabled) then {
 				_magazineNames pushBack _name;
 				_magazineAmmo pushBack _ammo;
 				_magazineStrings pushBack _string;
-			}else{
+			} else {
 				_id = (_magazineNames find _name);
 				_ammoN = ((_magazineAmmo select _id) + _ammo);
 				_magazineAmmo set [_id, _ammoN];

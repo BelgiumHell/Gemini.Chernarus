@@ -8,7 +8,7 @@ _arrayN = [];
 {
     if ((typeName _x) in ["STRING","SCALAR","ARRAY"]) then {
         _arrayN pushBack _x;
-    }else{
+    } else {
         _arrayN pushBack format ["%1",_x];
     };
 } forEach _array;

@@ -3,10 +3,10 @@
 /////////////////////////
 params["_crate"];
 
-if (_crate inArea "mrk_safeZone")exitWith{hint "Can't build in base area";};
+if (_crate inArea "mrk_safeZone") exitWith {hint "Can't build in base area";};
 
 _orgCurator = getAssignedCuratorLogic player;
-//if (!isNull _orgCurator)exitWith{hint "Logout as admin/zeus";};
+//if (!isNull _orgCurator) exitWith {hint "Logout as admin/zeus";};
 
 [[_crate,player],{
     params["_crate","_player"];
@@ -39,7 +39,7 @@ waitUntil{sleep 1; !isNull(getAssignedCuratorLogic player)};
     	params["_object"];
     	if (count buildObjects <= 1000) then {
     	    buildObjects pushBack _object;
-    	}else{
+    	} else {
     	    deleteVehicle _object;
         };
     }] remoteExecCall ["BIS_fnc_call",2];

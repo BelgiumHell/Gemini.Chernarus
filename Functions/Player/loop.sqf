@@ -17,7 +17,7 @@ if (musicPlay && (vehicle player) != player && musicTime < serverTime) then {
         (_this select 0) say3D "heliSpeakerSound";
     }] remoteExec ["BIS_fnc_spawn", 0, true];
     musicVehicle = (vehicle player);
-}else{
+} else {
     if (!musicPlay || (vehicle player) != musicVehicle) then {
         musicTime = 0;
         detach musicDummy;
@@ -45,7 +45,7 @@ if ((count (nearestObjects [player, ["Land_TTowerBig_1_F", "Land_TTowerBig_2_F"]
 			} forEach _radios;
 		}, 1, []] call CBA_fnc_addPerFrameHandler;
 	};
-}else{
+} else {
     if (radioHandle != -1) then {
 	    [radioHandle] call CBA_fnc_removePerFrameHandler;
 

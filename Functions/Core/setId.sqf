@@ -8,7 +8,7 @@ switch (typeName _object) do {
         if (_object isKindOf "man") then {
             _object setVariable ["id", currentUnitId, true];
             currentUnitId = currentUnitId + 1;
-        }else{
+        } else {
             _object setVariable ["id", currentVehicleId, true];
             currentVehicleId = currentVehicleId + 1;
         };

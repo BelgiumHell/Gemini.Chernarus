@@ -1,7 +1,7 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
-if (!isServer)exitWith{};
+if (!isServer) exitWith {};
 
 if (isNil{fobCount}) then {
 	fobCount = 0;
@@ -9,11 +9,11 @@ if (isNil{fobCount}) then {
 	publicVariable "fobComposition";
 
 	[] call JOC_fobSpawn;
-}else{
+} else {
 	_veh = (nearestObjects [(getPos fobSpawn), ["All"], 3] - [fobSpawn]);
 	if ((count _veh) >= 1 or (count fobTrucks >= fobLimit)) then {
 		hint "Pad not clear or max vehicles reached";
-	}else{
+	} else {
 		_truck = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy" createVehicle [16000, 16000, 0];
 		_truck setDir getDir fobSpawn;
 		_truck setPosASL getPosASL fobSpawn;

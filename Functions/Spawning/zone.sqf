@@ -29,28 +29,25 @@ _roadPos = [];
 _roadCount = 0;
 
 //Spawn infantry
-_j = 0;
 if ((_inf select 0) > 0) then {
-	while{_j < (_inf select 0)} do{
+	for "_j" from 0 to (_inf select 0) step 1 do {
 		_locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 		_id = [_locationS, 4, 0, [false, objNull], 0.6] call JOC_spawnGroup;
 
 		_groups pushBack _id;
-		_j = _j + 1;
 	};
 };
 
 //Spawn cars
-_j = 0;
 if ((_car select 0) > 0) then {
-	while{_j < (_car select 0)} do{
+	for "_j" from 0 to (_car select 0) step 1 do {
 	    _class = selectRandom poolCar;
 
 	    _locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 	    if (count _roadPos > _roadCount) then {
 		    _locationS = _roadPos select _roadCount;
 		    _roadCount = _roadCount + 1;
-		}else{
+		} else {
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0, 100, _class]);
 		};
 
@@ -62,21 +59,19 @@ if ((_car select 0) > 0) then {
 		} forEach (unitArray select {_x select 1 == _idG});
 
 		_groups pushBack _idG;
-		_j = _j + 1;
 	};
 };
 
 //Spawn apc's
-_j = 0;
 if ((_apc select 0) > 0) then {
-	while{_j < (_apc select 0)} do{
+	for "_j" from 0 to (_apc select 0) step 1 do {
 	    _class = selectRandom poolApc;
 
 	    _locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 	    if (count _roadPos > _roadCount) then {
 		    _locationS = _roadPos select _roadCount;
 		    _roadCount = _roadCount + 1;
-		}else{
+		} else {
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0, 100, _class]);
 		};
 
@@ -88,21 +83,19 @@ if ((_apc select 0) > 0) then {
 		} forEach (unitArray select {_x select 1 == _idG});
 
 		_groups pushBack _idG;
-		_j = _j + 1;
 	};
 };
 
 //Spawn ifv's
-_j = 0;
 if ((_ifv select 0) > 0) then {
-	while{_j < (_ifv select 0)} do{
+	for "_j" from 0 to (_ifv select 0) step 1 do {
 	    _class = selectRandom poolIfv;
 
 	    _locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 	    if (count _roadPos > _roadCount) then {
 		    _locationS = _roadPos select _roadCount;
 		    _roadCount = _roadCount + 1;
-		}else{
+		} else {
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0, 100, _class]);
 		};
 
@@ -114,21 +107,19 @@ if ((_ifv select 0) > 0) then {
 		} forEach (unitArray select {_x select 1 == _idG});
 
 		_groups pushBack _idG;
-		_j = _j + 1;
 	};
 };
 
 //Spawn tanks
-_j = 0;
 if ((_tank select 0) > 0) then {
-	while{_j < (_tank select 0)} do{
+	for "_j" from 0 to (_tank select 0) step 1 do {
 	    _class = selectRandom poolTank;
 
 	    _locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 	    if (count _roadPos > _roadCount) then {
 		    _locationS = _roadPos select _roadCount;
 		    _roadCount = _roadCount + 1;
-		}else{
+		} else {
 		    _locationS = AGLToASL (_locationS findEmptyPosition [0, 100, _class]);
 		};
 
@@ -140,7 +131,6 @@ if ((_tank select 0) > 0) then {
 		} forEach (unitArray select {_x select 1 == _idG});
 
 		_groups pushBack _idG;
-		_j = _j + 1;
 	};
 };
 
@@ -148,10 +138,9 @@ if ((_tank select 0) > 0) then {
 _heliCount = (_heli select 0);
 _heliPatrol = (_heli select 1);
 _heliType = (_heli select 2);
-_j = 0;
 _pool = [];
 if (_heliCount > 0) then {
-	while{_j < _heliCount} do{
+	for "_j" from 0 to (_heliCount select 0) step 1 do {
 		_locationS = [_spawnMarkerName] call Zen_FindGroundPosition;
 		if (_heliType == "transport") then {
 			_pool = poolAir;
@@ -168,7 +157,6 @@ if (_heliCount > 0) then {
 		} forEach (unitArray select {_x select 1 == _idG});
 
 		_groups pushBack _idG;
-		_j = _j + 1;
 	};
 };
 /*

@@ -4,7 +4,7 @@
 params["_array", "_category"];
 
 _startBase = [(_array select 0), "base", [1200, 5000]] call JOC_cmdMiscGetNearestStrategic;
-if ((count _startPos) == 0)exitWith{[]};
+if ((count _startPos) == 0) exitWith {[]};
 _startPos = _startBase select 0;
 
 _vehArr = [];

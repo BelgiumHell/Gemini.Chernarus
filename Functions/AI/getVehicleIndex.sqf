@@ -10,7 +10,7 @@ _index = [-1,0];
 if (!isNull objectParent _unit) then {
     switch((assignedVehicleRole _unit) select 0)do{
         case "Driver": { 
-        _index set [0,0];
+            _index set [0,0];
         };
         case "Commander": { 
             _index set [0,1];

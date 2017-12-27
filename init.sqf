@@ -21,7 +21,7 @@ if (isServer) then {
     inidbiDB1 = ["new", "GEMINI1"] call OO_INIDBI;
     inidbiDB2 = ["new", "GEMINI2"] call OO_INIDBI;
     [] call JOC_missionInit;
-}else{
+} else {
     player enableSimulation false;
     player allowDamage false;
 };

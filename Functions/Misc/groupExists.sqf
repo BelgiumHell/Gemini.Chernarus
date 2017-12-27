@@ -11,7 +11,7 @@ if (isNull _group) then {
     if (count _existsArr > 0) then {
         _exists = true;
     };
-}else{
+} else {
     _exists = true;
 };
 

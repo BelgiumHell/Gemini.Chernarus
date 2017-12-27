@@ -2,7 +2,7 @@
 //Script made by Jochem//
 /////////////////////////
 [[], {
-    if (isServer)exitWith{};
+    if (isServer) exitWith {};
     waitUntil{!isNil{JOC_playerInit}};
 
 	_action = cmd_laptop addAction["Gather leaders", {

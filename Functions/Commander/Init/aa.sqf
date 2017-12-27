@@ -19,12 +19,11 @@ _tankBlacklist = [];
 } forEach radars;*/
 
 //Place AA-tanks
-_tank = 0;
 _location = [];
 _group = createGroup east;
 _group setVariable ["JOC_caching_disabled", true, true];
 
-while {_tank < 24} do{
+for "_tank" from 0 to 24 step 1 do {
 	_location = ["mrk_area", 0, [_tankBlacklist + blackMarkers + airfieldMarkers, [], []], 1, [3, 75], [0, 360], [1, 0, 35], [0, 0, 0], [1, 100], [1, 10, 15], [1, [0, 0, -1], 35]] call Zen_FindGroundPosition;
 
 	_objects = [_location, random 360, compAA] call BIS_fnc_ObjectsMapper;
@@ -56,8 +55,6 @@ while {_tank < 24} do{
     _nameM setMarkerBrush "Border";
     _nameM setMarkerAlpha 0;
 	_tankBlacklist pushBack _nameM;
-
-	_tank = _tank + 1;
 };
 
 {

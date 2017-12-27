@@ -1,10 +1,10 @@
 author = "Jochem";
 OnLoadName = "Gemini";
-OnLoadMission = "A persistent mission aimed portraying the invasion of Altis.";
+OnLoadMission = "WIP";
 loadScreen = "Data\gemini.paa";
 respawn = 3;
 respawndelay = 5;
-respawnTemplatesWest [] = {"MenuPosition", "Spectator"};
+respawnTemplatesWest[] = {"MenuPosition", "Spectator"};
 respawnOnStart = 1;
 respawnVehicleDelay = 0;
 disabledAI = true;
@@ -36,7 +36,7 @@ class CfgSounds
 		// how the sound is referred to in the editor (e.g. trigger effects)
 		name = "speakersForHeli";
 		// filename, volume, pitch
-		sound[] = {"Data\Sounds\heliSpeakerSound.ogg", 7, 1};
+		sound[] = {"Data\Sounds\heliSpeakerSound.ogg", 25, 1};
 		// subtitle delay in seconds, subtitle text
 		titles[] = {};
 	};

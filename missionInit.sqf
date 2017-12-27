@@ -135,7 +135,7 @@
     [{
         if (!isNil {HC1}) then {
             {[] call JOC_aiManager;} remoteExecCall ["bis_fnc_call", HC1]; 
-        }else{
+        } else {
             {[] call JOC_aiManager;} remoteExecCall ["bis_fnc_call", 2]; 
         };
     }, 5, []] call CBA_fnc_addPerFrameHandler;
@@ -144,7 +144,7 @@
     [JOC_cmdMiscRadar, 10, []] call CBA_fnc_addPerFrameHandler;
     [JOC_vehRespawn, 60, []] call CBA_fnc_addPerFrameHandler;
     [JOC_cmdCmdLoop, 30, []] call CBA_fnc_addPerFrameHandler;
-    [JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
+    //[JOC_bftManager, bftRefresh, []] call CBA_fnc_addPerFrameHandler;
     {
         _marker = _x select 3;
         _marker setMarkerAlpha 0;

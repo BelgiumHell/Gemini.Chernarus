@@ -4,7 +4,7 @@
 {
     if ((!canMove (_x select 3) || !alive (_x select 3)) || !([getPosASL (_x select 3), 2000, ["plane"]] call JOC_playersNear)) then {
         {
-            (_x select 3) deleteVehicleCrew _x;
+            deleteVehicle _x;
         } forEach crew (_x select 3);
         deleteVehicle (_x select 3);
         _veh = (_x select 0) createVehicle [0, 0, 1000];

@@ -40,7 +40,7 @@ if (count _array > 2) then {
 if (count _array > 3) then {
     _group setVariable ["groupID", (_array select 3 select 0), true];
     _group setVariable ["garrisoned", (_array select 3 select 1), true];
-}else{
+} else {
     [_group] call JOC_coreSetID;
 };
 

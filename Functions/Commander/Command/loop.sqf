@@ -1,12 +1,15 @@
 /////////////////////////
 //Script made by Jochem//
 /////////////////////////
+diag_log "Cmd loop";
+diag_log "Checking player count";
 //Check if there are still players online
 if (count (allPlayers - entities "HeadlessClient_F") == 0) then {
     [] call JOC_saveMission;
     [] call BIS_fnc_endMissionServer;
 };
 
+diag_log "Intercept";
 //Check for AA intercept
 if ((count jetTargets > 0 || count heliTargets > 1) && !jetActive) then {
     jetActive = true;
@@ -18,6 +21,7 @@ if (!jetReady && !jetActive) then {
     [{jetReady = true;}, [], 7200] call CBA_fnc_waitAndExecute;
 };
 
+diag_log "Playersknown";
 //Find concentration of known blufor
 _playersKnown = allPlayers select {east knowsAbout _x > 2};
 
@@ -32,7 +36,7 @@ _refPlayer = _playersKnown select 0;
     if (isNull (objectParent player)) then {
         if (_x distance2D _refPlayer < 100) then {
             _newGroup pushBackUnique _x;
-        }else{
+        } else {
             _newGroup call BIS_fnc_arrayShuffle;
             if (count _newGroup > 4) then {
                 _groups pushBack _newGroup;
@@ -44,19 +48,20 @@ _refPlayer = _playersKnown select 0;
 
     if (vehicle player isKindOf "man") then {
         _infantry pushBackUnique (vehicle player);
-    }else{
+    } else {
         if (vehicle player isKindOf "car") then {
             _motor pushBackUnique (vehicle player);
-        }else{
+        } else {
             if (vehicle player isKindOf "tank") then {
                 _armor pushBackUnique (vehicle player);
-            }else{
+            } else {
                 _ship pushBackUnique (vehicle player);
             }
         }
     }
 } forEach _playersKnown;
 
+diag_log "Arty";
 {
     //Call in arty
     if (count _x > 10) then {
@@ -106,7 +111,7 @@ switch (count _armor + (count _motor) * 0.5) do {
 
     };
 };
-
+diag_log "strategic";
 //Check strategicarray
 {
     //No side cheking
@@ -142,6 +147,7 @@ _strategicAttack = strategicArray select {(_x select 4) == 3};
 strengthEast = (count _strategicEast) / (count strategicArray);
 strenghtWest = (count _strategicWest) / (count strategicArray);
 
+diag_log "defend";
 {
     _array = _x;
     _index = _array select 5;
@@ -150,7 +156,7 @@ strenghtWest = (count _strategicWest) / (count strategicArray);
             [[3, 2], _array, _index, false] call JOC_cmdCmdRequest;
             if (random 2 >= 1) then {
                 [[1, 0], [_array, 4], _index, false] call JOC_cmdCmdRequest;
-            }else{
+            } else {
                 [[1, 1], [_array, 4], _index, false] call JOC_cmdCmdRequest;
             };
         };
@@ -158,7 +164,7 @@ strenghtWest = (count _strategicWest) / (count strategicArray);
             [[3, 2], _array, _index, false] call JOC_cmdCmdRequest;
             if (random 2 >= 1) then {
                 [[1, 0], [_array, 3], _index, false] call JOC_cmdCmdRequest;
-            }else{
+            } else {
                 [[1, 1], [_array, 3], _index, false] call JOC_cmdCmdRequest;
             };
         };
@@ -166,7 +172,7 @@ strenghtWest = (count _strategicWest) / (count strategicArray);
             if (strengthEast > 0.2) then {
                 if (strengthEast > 0.4) then {
                     [[1, 0], [_array, 2.5], _index, false] call JOC_cmdCmdRequest;
-                }else{
+                } else {
                     [[1, 0], [_array, 1.5], _index, false] call JOC_cmdCmdRequest;
                 };
             };
@@ -175,7 +181,7 @@ strenghtWest = (count _strategicWest) / (count strategicArray);
             if (strengthEast > 0.25) then {
                 if (strengthEast > 0.5) then {
                     [[1, 0], [_array, 2], _index, false] call JOC_cmdCmdRequest;
-                }else{
+                } else {
                     [[1, 0], [_array, 1], _index, false] call JOC_cmdCmdRequest;
                 };
             };
@@ -184,7 +190,7 @@ strenghtWest = (count _strategicWest) / (count strategicArray);
             if (strengthEast > 0.3) then {
                 if (strengthEast > 0.6) then {
                     [[1, 0], [_array, 1.5], _index, false] call JOC_cmdCmdRequest;
-                }else{
+                } else {
                     [[1, 0], [_array, 0.5], _index, false] call JOC_cmdCmdRequest;
                 };
             };
@@ -217,7 +223,7 @@ _usedGroups = [];
     };
 } forEach allGroups;
 
-
+diag_log "request";
 {
     _request = _x;
     _order = [];
@@ -295,7 +301,7 @@ _usedGroups = [];
             (requestArray select _forEachIndex) set [3, [currentRequestID, true]];
             currentRequestID = currentRequestID + 1;
         };
-    }else{
+    } else {
         //If order that was activated by request is complete, delete request
         _existArr = orderArray select {_x select 1 == ((_request select 3) select 0)};
         if (count _existArr == 0) then {
@@ -304,14 +310,14 @@ _usedGroups = [];
     };
 } forEach requestArray;
 
-
+diag_log "order";
 {
     _order = _x select 0;
 
     //If group doesn't exist anymore, delete from orderarray
     if (!([_order select 2] call JOC_groupExists)) then {
         orderArray deleteAt _forEachIndex;
-    }else{
+    } else {
         if (!isNil{(((_order select 3) select 0))}) then {
             //If group isn't virtuaized, evaluate condition
             if (_order select 2 in _realGroups) then {
@@ -327,10 +333,11 @@ _usedGroups = [];
     };
 } forEach orderArray;
 
+diag_log "Patrol";
 //Patrol
 {
     _group = [_x] call JOC_coreGetGroup;
-    if ((count (waypoints _group) <= currentWaypoint _group) && !(_x in _usedGroups) && !(_group getVariable ["JOC_caching_disabled", false]) && !(_group getVariable ["garrisoned", false]) && (combatMode _group != "COMBAT")) then {
+    if ((count (waypoints _group) <= currentWaypoint _group) && !(_x in _usedGroups) && !(_group getVariable ["JOC_caching_disabled", false]) && !((leader _group) getVariable ["garrisoned", false]) && (combatMode _group != "COMBAT")) then {
         [_group] call JOC_cmdPatrolStrategic;
     };
 } forEach _realGroups;

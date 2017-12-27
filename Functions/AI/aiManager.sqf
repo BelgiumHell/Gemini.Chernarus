@@ -2,14 +2,18 @@
 //Script made by Jochem//
 /////////////////////////
 //virtualizing
-if (JOC_pauseCache)exitWith{};
+if (JOC_pauseCache) exitWith {};
 //[unitID, groupID, position, vehicle, class/object, virtualizing, damage, skill, side, behaviour, garrisoned]
 //[vehicleID, position, class/object, virtualizing, damage]
 //Give groups Id
 {
-    if ([_x] call JOC_coreGetId == -1) then {
-        _x setVariable ["id", currentGroupID, true];
-        currentGroupID = currentGroupID + 1;
+    if (count units _x == 0) then {
+        deleteGroup _x;
+    } else {
+        if ([_x] call JOC_coreGetId == -1) then {
+            _x setVariable ["id", currentGroupID, true];
+            currentGroupID = currentGroupID + 1;
+        };
     };
 } forEach allGroups;
 
@@ -48,7 +52,7 @@ if (JOC_pauseCache)exitWith{};
             _x set [2, _veh];
             [[_forEachIndex, _x], {vehicleArray set [_this select 0, _this select 1]}] remoteExecCall ["BIS_fnc_call", 0];
         };
-    }else{
+    } else {
         _id = _x select 0;
         _vehicle = _x select 2;
         if (alive _vehicle) then {
@@ -79,7 +83,7 @@ _createArray = [];
         if (((west countSide ((_x select 2) nearEntities[["Man", "Car", "Tank"], 1000])) != 0 && (((_x select 3) select 0) == -1)) || !(_x select 5) || ((_x select 3) select 0) in _realVehicles) then {
             _createArray pushBack [_forEachIndex, _x];
         };
-    }else{
+    } else {
         _unit = _x select 4;
         if (alive _unit) then {
             _x set [1, [group _unit] call JOC_coreGetId];
@@ -91,6 +95,7 @@ _createArray = [];
             _x set [7, skill _unit];
             _x set [8, side _unit];
             _x set [9, behaviour _unit];
+            _x set [10, (_unit getVariable ["garrisoned", false])];
             if ((west countSide ((_x select 2) nearEntities[["Man", "Car", "Tank"], 1200])) == 0 && (_x select 5) && !(((_x select 3) select 0) in _realVehicles)) then {
                 _x set [4, typeOf _unit];
                 deleteVehicle _unit;
@@ -124,6 +129,10 @@ _time = 0;
         [_unit] joinSilent _group;
         _unit setPosAsl (_array select 2);
         _unit setDamage (_array select 6);
+        _unit setVariable ["garrisoned", (_array select 10)];
+        if (_array select 10) then {
+            doStop (units _group);
+        };
         _array set [4, _unit];
 
         //Vehicle (0:driver 1:commander 2:gunner)
